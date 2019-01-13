@@ -1,0 +1,83 @@
+@import "../../../styles/index";
+nm-table {
+    display: block;
+    table,
+    thead,
+    tbody,
+    tr,
+    th,
+    td {
+        padding: 0;
+        margin: 0;
+        font-size: 12px;
+    }
+    >table {
+        width: 100%;
+        border-spacing: 0;
+        border: 1px solid #e8e8e8;
+        margin-bottom: 5px;
+        border-radius: 10px;
+        overflow: hidden;
+        &:hover {
+            box-shadow: 0 0 2px 1px #d4d4d43b;
+        }
+        >thead {
+            >tr {
+                background-color: #F4F4F6;
+                >th {
+                    &:first-child {
+                        text-align: center;
+                    }
+                    &.operations {
+                        text-align: center;
+                    }
+                    &.select{
+                        text-align: center;
+                    }
+                    border-bottom: 1px solid $border-color;
+                    line-height: 35px;
+                    height: 35px;
+                    padding: 0 8px;
+                    text-align: left;
+                    white-space: nowrap;
+                }
+            }
+        }
+        >tbody {
+            >tr {
+                &:nth-child(even) {
+                    background-color: #F4F4F6;
+                }
+                &:hover {
+                    background-color: rgba(0, 0, 0, .05);
+                }
+                >td {
+                    line-height: 35px;
+                    height: 35px;
+                    padding: 0 8px;
+                    text-align: left;
+                    white-space: nowrap;
+                    &:first-child {
+                        text-align: center;
+                        width: 55px;
+                    }
+                    &.operations {
+                        color: $primary-color;
+                        text-align: center;
+                        padding: 0 12px;
+                        width: 30px;
+                        >span {
+                            display: inline-block;
+                            padding: 7px;
+                            vertical-align: middle;
+                            font-size: 14px;
+                        }
+                    }
+                    &.select{
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}

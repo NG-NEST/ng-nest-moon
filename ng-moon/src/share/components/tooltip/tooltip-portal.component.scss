@@ -1,0 +1,41 @@
+nm-tooltip-portal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000000b3;
+    color: white;
+    min-width: 1px;
+    min-height: 1px;
+    max-width: 250px;
+    border-radius: 1px;
+    box-shadow: 0 0 10px 2px #06060617;
+    font-size: 12px;
+    margin-top: 10px;
+    >.inner {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        >article {
+            padding: 8px 10px;
+            >h1 {
+                font-size: 14px;
+                margin: 10px 0 6px 0;
+            }
+            >p{
+                line-height: 1.5;
+            }
+        }
+        >span.arrow {
+            display: block;
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-width: 0 7px 7px;
+            border-style: solid;
+            border-color: transparent transparent #000000b3;
+            top: 0;
+            margin-top: -7px;
+        }
+    }
+}

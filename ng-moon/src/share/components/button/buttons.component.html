@@ -1,0 +1,17 @@
+<ng-container [ngSwitch]="option.type">
+    <ng-container *ngSwitchCase="'button'">
+        <ng-content></ng-content>
+    </ng-container>
+    <ng-container *ngSwitchCase="'single'">
+        <nm-button [ngClass]="{selected: value?.key==button.key}" *ngFor="let button of option.buttons" [option]="button"
+            (click)="singleClick(button)"></nm-button>
+    </ng-container>
+    <ng-container *ngSwitchCase="'multiple'">
+        <nm-button [ngClass]="{selected: setSelected(button)}" *ngFor="let button of option.buttons" [option]="button"
+            (click)="multipleClick(button)"></nm-button>
+    </ng-container>
+</ng-container>
+
+<nm-tooltip *ngIf="option.tooltip" [option]="option.tooltip">
+    <nm-button class="outline" [option]="{icon:'icon-help-circle'}"></nm-button>
+</nm-tooltip>

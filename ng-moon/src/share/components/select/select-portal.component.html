@@ -1,0 +1,45 @@
+<div class="inner">
+    <ng-container [ngSwitch]="option.type">
+        <ng-container *ngSwitchCase="'list'">
+            <ng-container *ngIf="_category.length==0; else listCategoryTemp">
+                <ul>
+                    <ng-container *ngTemplateOutlet="listTemp; context: option"></ng-container>
+                </ul>
+            </ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="'buttons'">
+            <ng-container *ngIf="_category.length==0; else buttonCategoryTemp">
+                <ng-container *ngTemplateOutlet="buttonsTemp; context: option"></ng-container>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+</div>
+
+<ng-template #listCategoryTemp>
+    <ul *ngFor="let cate of _category">
+        <h1>{{cate.label}}</h1>
+        <ng-container *ngTemplateOutlet="listTemp; context: cate"></ng-container>
+    </ul>
+</ng-template>
+
+<ng-template #listTemp let-data="data">
+    <li *ngFor="let select of data" [ngClass]="{selected: option.value?.key==select.key}">
+        <a (click)="handler(select)">
+            <span *ngIf="select.icon" class="{{select.icon}}"></span>
+            <span>{{select.label}}</span>
+        </a>
+    </li>
+</ng-template>
+
+<ng-template #buttonCategoryTemp>
+    <ng-container *ngFor="let cate of _category">
+        <h1>{{cate.label}}</h1>
+        <ng-container *ngTemplateOutlet="buttonsTemp; context: cate"></ng-container>
+    </ng-container>
+</ng-template>
+
+<ng-template #buttonsTemp let-data="data">
+    <div class="buttonList">
+        <nm-button (click)="handler(button)" *ngFor="let button of data" [option]="button" [ngClass]="{selected: option.value?.key==button.key}"></nm-button>
+    </div>
+</ng-template>

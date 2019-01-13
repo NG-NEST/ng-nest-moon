@@ -1,0 +1,15 @@
+<ul>
+  <li class="login">
+    <img class="logo" src="../../assets/logo.png" />
+    <span>NG-MOON</span>
+  </li>
+  <li>
+    <nm-input [(ngModel)]="user.account" [option]="{ placeholder:'用户名', icon: 'icon-user', iconLayout:'icon-left' }"></nm-input>
+  </li>
+  <li>
+    <nm-input [(ngModel)]="user.password" [option]="{ placeholder:'密码', type:'password', icon: 'icon-lock', iconLayout:'icon-left' }"></nm-input>
+  </li>
+  <li class="submit">
+    <nm-button [option]="{ title:'进入', icon:'icon-chevron-right' }" (click)="login()"></nm-button>
+  </li>
+</ul>

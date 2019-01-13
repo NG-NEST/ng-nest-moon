@@ -1,0 +1,7 @@
+<header>
+    <h1 *ngIf="option.title">{{option.title}}</h1>
+    <span class="icon-x" (click)="close()"></span>
+</header>
+<article>
+    <ng-container cdkPortalOutlet #portalOutlet="cdkPortalOutlet"></ng-container>
+</article>

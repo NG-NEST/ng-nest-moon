@@ -1,0 +1,18 @@
+<p>
+    <label *ngIf="option.label">{{option?.label}}</label>
+    <ng-container *ngIf="!option.tooltip; else tooltipTemp">
+        <input [type]="option.type" name="1" [placeholder]="option.placeholder" [required]="option.required"
+            [(ngModel)]="value" />
+    </ng-container>
+    <span *ngIf="option.icon" class="{{option.icon}}"></span>
+</p>
+
+<ng-template #tooltipTemp>
+    <div class="tooltip">
+        <input [type]="option.type" name="1" [placeholder]="option.placeholder" [required]="option.required"
+            [(ngModel)]="value" />
+        <nm-tooltip [option]="option.tooltip">
+            <nm-button [option]="{icon:'icon-help-circle'}"></nm-button>
+        </nm-tooltip>
+    </div>
+</ng-template>

@@ -1,0 +1,23 @@
+<table>
+    <thead>
+        <tr>
+            <th>序号</th>
+            <th class="operations" *ngIf="option.operations?.length>0">操作</th>
+            <th *ngFor="let item of option.columns">{{item.title}}</th>
+            <th class="select" *ngIf="option.selectType">选择</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of _resultList.list; index as i" (click)="action('trClick', item)">
+            <td>{{(option.query.size*(option.query.index-1)+i+1) | nmCover}}</td>
+            <td class="operations" *ngIf="option.operations?.length>0">
+                <span *ngFor="let operation of option.operations" class="{{operation.icon}}" (click)="handler(operation, item)"></span>
+            </td>
+            <td *ngFor="let col of option.columns">{{item[col.key]}}</td>
+            <th class="select" *ngIf="option.selectType">
+                <nm-checkbox [(ngModel)]="item.$selected" (click)="action('checkbox', item, $event)"></nm-checkbox>
+            </th>
+        </tr>
+    </tbody>
+</table>
+<nm-pagination #pagination [option]="_resultList"></nm-pagination>

@@ -1,0 +1,100 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "styles/index";
+@import '~@angular/cdk/overlay-prebuilt.css';
+*,
+:after,
+:before {
+    box-sizing: border-box;
+}
+
+*:focus {
+    outline: none;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+body,
+input,
+ul,
+li,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    color: $a-color;
+    text-decoration: none;
+    transition: all .4s;
+    cursor: default;
+    &:hover {
+        color: $a-hover-color;
+    }
+}
+
+body,
+input {
+    font-family: -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
+}
+
+nm-col,
+nm-control {
+    position: relative;
+    float: left; // padding-left: 15px;
+    display: block; // &:last-child {
+    //     padding-right: 15px;
+    // }
+    overflow: auto;
+    &.col-12 {
+        width: 100%;
+    }
+    &.col-11 {
+        width: 91.66666667%;
+    }
+    &.col-10 {
+        width: 83.33333333%;
+    }
+    &.col-9 {
+        width: 75%;
+    }
+    &.col-8 {
+        width: 66.66666667%;
+    }
+    &.col-7 {
+        width: 58.33333333%;
+    }
+    &.col-6 {
+        width: 50%;
+    }
+    &.col-5 {
+        width: 41.66666667%;
+    }
+    &.col-4 {
+        width: 33.33333333%;
+    }
+    &.col-3 {
+        width: 25%;
+    }
+    &.col-2 {
+        width: 16.66666667%;
+    }
+    &.col-1 {
+        width: 8.33333333%;
+    }
+    &.col-0 {
+        width: inherit;
+    }
+}

@@ -1,0 +1,68 @@
+<nm-inner>
+    <nm-grid>
+        <nm-row>
+            <nm-col class="col-4">
+                <nm-panel>
+                    <ul>
+                        <li>
+                            <nm-input [(ngModel)]="value" [option]="{label: '账号', placeholder:'请输入账号', required: true }"></nm-input>
+                        </li>
+                    </ul>
+                </nm-panel>
+            </nm-col>
+            <nm-col class="col-4">
+                <nm-panel>
+                    <ul>
+                        <li>
+                            <nm-input [(ngModel)]="value" [option]="{label: '账号', placeholder:'请输入账号', required: true }"></nm-input>
+                        </li>
+                    </ul>
+                </nm-panel>
+            </nm-col>
+        </nm-row>
+        <nm-row>
+            <nm-col class="col-4">
+                <nm-panel>
+                    <ul>
+                        <li>
+                            <nm-input [(ngModel)]="value" [option]="{label: '账号', placeholder:'请输入账号', required: true, layout: 'horizontal' }"></nm-input>
+                        </li>
+                    </ul>
+                </nm-panel>
+            </nm-col>
+        </nm-row>
+        <nm-row>
+            <nm-col class="col-3">
+                <nm-panel>
+                    <ul>
+                        <li>
+                            <nm-input [(ngModel)]="search" [option]="{label: '搜索', placeholder:'请输入关键字', required: true, layout: 'horizontal', icon: 'icon-search' }"></nm-input>
+                        </li>
+                    </ul>
+                </nm-panel>
+            </nm-col>
+        </nm-row>
+        <nm-row>
+            <nm-col class="col-3">
+                <nm-panel>
+                    <ul>
+                        <li>
+                            <nm-input [(ngModel)]="search" [option]="{label: '搜索', placeholder:'请输入关键字', required: true, icon: 'icon-search' }"></nm-input>
+                        </li>
+                    </ul>
+                </nm-panel>
+            </nm-col>
+        </nm-row>
+        <nm-row>
+            <nm-col class="col-3">
+                <nm-panel>
+                    <ul>
+                        <li>
+                            <nm-input [(ngModel)]="search" [option]="{label: '搜索', placeholder:'请输入关键字', required: true, icon: 'icon-search', iconLayout:'icon-left' }"></nm-input>
+                        </li>
+                    </ul>
+                </nm-panel>
+            </nm-col>
+        </nm-row>
+    </nm-grid>
+</nm-inner>

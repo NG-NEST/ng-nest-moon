@@ -1,0 +1,53 @@
+@import "../../../styles/index";
+nm-tree {
+    >.inner {
+        font-size: 14px;
+        ul,
+        li {
+            padding: 0;
+            margin: 0;
+            >a {
+                padding: 0 14px;
+                display: flex;
+                align-items: center;
+                height: 30px;
+                line-height: 30px;
+                color: $normal-color;
+                >label {
+                    flex: 1;
+                    white-space: nowrap;
+                }
+                >span[class*='icon-'] {
+                    font-size: 16px;
+                    padding: 3px;
+                    &:hover {
+                        color: $primary-color;
+                    }
+                }
+                >nm-buttons {
+                    display: none;
+                    >nm-button {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        >p>button {
+                            margin-right: 0;
+                            padding: 5px;
+                        }
+                    }
+                }
+                &:hover {
+                    color: $normal-color;
+                    background-color: #e8e8e8;
+                    >nm-buttons {
+                        display: flex;
+                    }
+                }
+                &.selected{
+                    color: white;
+                    background: $a-color;
+                }
+            }
+        }
+    }
+}

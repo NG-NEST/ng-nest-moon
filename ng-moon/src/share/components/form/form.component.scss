@@ -1,0 +1,51 @@
+@import "../../../styles/index";
+nm-form {
+    >form {
+        >nm-panel {
+            >nm-grid {
+                >nm-row {
+                    padding: 10px;
+                    border-bottom: 1px solid #f8f8f8;
+                    position: relative;
+                    &:hover {
+                        background: rgba(242, 242, 242, 0.32);
+                        >div.title>label>span[class*='icon-'] {
+                            color: $primary-color;
+                        }
+                    }
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                    &.has-title {
+                        padding-left: 160px;
+                        >div.title {
+                            position: absolute;
+                            font-size: 14px;
+                            left: 12px;
+                            >label {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                >span[class*='icon-'] {
+                                    font-size: 18px;
+                                    margin-right: 5px;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.title-top {
+                    >nm-row {
+                        &.has-title {
+                            padding-left: 10px;
+                            padding-top: 36px;
+                            >div.title {
+                                top: 15px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,56 @@
+@import "../../../styles/index";
+nm-radio {
+    display: block;
+    >p {
+        display: flex;
+        align-items: center;
+        color: #333333;
+        >span.radio {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &:before {
+                content: '';
+                display: block;
+                width: 16px;
+                height: 16px;
+                border: 1px solid #959595a3;
+                border-radius: 8px;
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                width: 8px;
+                height: 8px;
+                border-radius: 4px;
+                transition: all .3s;
+            }
+        }
+        >label {
+            margin-left: 5px;
+            font-size: 12px;
+        }
+    }
+    &:hover,
+    &.checked {
+        >p {
+            color: black;
+            >span.radio:before {
+                border-color: #686868d5;
+            }
+        }
+    }
+    &.checked {
+        >p {
+            >span.radio {
+                &:before {
+                    border-color: $a-color;
+                }
+                &:after {
+                    background-color: $a-color;
+                }
+            }
+        }
+    }
+}

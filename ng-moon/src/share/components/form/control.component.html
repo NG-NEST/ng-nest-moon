@@ -1,0 +1,16 @@
+<ng-container [ngSwitch]="option.controlType">
+    <ng-container *ngSwitchCase="'input'">
+        <nm-input [option]="option" [form]="form" [(ngModel)]="option.value"></nm-input>
+    </ng-container>
+    <ng-container *ngSwitchCase="'buttons'">
+        <nm-buttons [option]="option" [form]="form" [(ngModel)]="option.value"></nm-buttons>
+    </ng-container>
+    <ng-container *ngSwitchCase="'select'">
+        <label *ngIf="option.label">{{option.label}}</label>
+        <nm-select [option]="option" [form]="form" [(ngModel)]="option.value"></nm-select>
+    </ng-container>
+    <ng-container *ngSwitchCase="'findback'">
+        <label *ngIf="option.label">{{option.label}}</label>
+        <nm-findback [option]="option" [form]="form" [(ngModel)]="option.value"></nm-findback>
+    </ng-container>
+</ng-container>

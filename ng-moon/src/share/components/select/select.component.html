@@ -1,0 +1,9 @@
+<div class="inner">
+    <ul #select>
+        <li [ngClass]="{placeholder: !(value&&value.label)}">{{value&&value.label?value.label: option.placeholder}}</li>
+        <li class="arrow"><span class="icon-chevron-down"></span></li>
+    </ul>
+    <nm-tooltip *ngIf="option.tooltip" [option]="option.tooltip">
+        <nm-button class="outline" [option]="{icon:'icon-help-circle'}"></nm-button>
+    </nm-tooltip>
+</div>

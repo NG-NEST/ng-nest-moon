@@ -1,0 +1,36 @@
+nm-select {
+    display: inline-block;
+    >div.inner {
+        display: flex;
+        align-items: center;
+        >ul {
+            border: 1px solid #d2d2d2a3;
+            font-size: 12px;
+            padding: 5px 6px;
+            border-radius: 1px;
+            min-width: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #333333;
+            transition: all .3s;
+            white-space: nowrap;
+            &:hover {
+                border-color: #b3b3b3d5;
+                color: black;
+            }
+            >li {
+                display: flex;
+                align-items: center;
+                line-height: 16px;
+                cursor: default;
+                &.arrow {
+                    margin-left: 5px;
+                }
+                &.placeholder {
+                    color: #757575
+                }
+            }
+        }
+    }
+}

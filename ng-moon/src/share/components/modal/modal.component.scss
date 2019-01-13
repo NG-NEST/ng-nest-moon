@@ -1,0 +1,39 @@
+nm-modal {
+    background: white;
+    min-width: 300px;
+    max-width: 100%;
+    min-height: 150px;
+    max-height: 100%;
+    border-radius: 2px;
+    box-shadow: 0 0 3px 1px #00000030;
+    position: relative;
+    >header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        >h1 {
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0;
+        }
+        >span[class*='icon-'] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 4px;
+            margin: 4px;
+            border-radius: 20px;
+            color: #333333;
+            font-size: 16px;
+            &:hover {
+                transition: all .4s;
+                background: #eeeeee;
+                color: black;
+            }
+        }
+    }
+    >article {
+        padding: 0 15px 15px 15px;
+    }
+}

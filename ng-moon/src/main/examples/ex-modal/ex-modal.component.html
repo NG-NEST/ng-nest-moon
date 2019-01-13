@@ -1,0 +1,17 @@
+<nm-inner>
+    <nm-grid>
+        <nm-row>
+            <nm-col class="col-3">
+                <nm-panel>
+                    <ul>
+                        <li>
+                            <nm-button #popover [option]="{title:'模态框', icon:'icon-share-2'}" (click)="operation('modal')"></nm-button>
+                        </li>
+                    </ul>
+                </nm-panel>
+            </nm-col>
+        </nm-row>
+    </nm-grid>
+</nm-inner>
+
+<ng-template #template let-name="name">{{name}}</ng-template>

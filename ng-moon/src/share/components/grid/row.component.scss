@@ -1,0 +1,10 @@
+@import "../../../styles/index";
+nm-row {
+    // margin: 0 -15px;
+    display: block;
+    &:before, &:after{
+        content: '';
+        display: table;
+        clear: both;
+    }
+}

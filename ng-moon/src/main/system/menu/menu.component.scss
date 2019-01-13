@@ -1,0 +1,16 @@
+nm-menu {
+    >nm-inner {
+        display: flex;
+        >nm-panel {
+            margin-top: 0px;
+            &.left {
+                width: 270px;
+                margin-right: 10px;
+                padding: 5px;
+            }
+            &.right {
+                flex: 1;
+            }
+        }
+    }
+}
