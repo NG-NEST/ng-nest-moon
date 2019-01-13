@@ -1,0 +1,62 @@
+@import "../../../styles/index";
+nm-checkbox {
+    display: inline-block;
+    >p {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #333333;
+        >span.checkbox {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &:before {
+                content: '';
+                display: block;
+                width: 16px;
+                height: 16px;
+                border: 1px solid #959595a3;
+                transition: all .3s;
+                border-radius: 1px;
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                width: 6px;
+                height: 10px;
+                border-right: 2px solid transparent;
+                border-bottom: 2px solid transparent;
+                transform: rotate(45deg);
+                transition: all .3s;
+                bottom: 5px;
+            }
+        }
+        >label {
+            margin-left: 5px;
+            font-size: 12px;
+        }
+    }
+    &:hover,
+    &.checked {
+        >p {
+            color: black;
+            >span.checkbox:before {
+                border-color: #686868d5;
+            }
+        }
+    }
+    &.checked {
+        >p {
+            >span.checkbox {
+                &:before {
+                    border-color: $a-color;
+                    background-color: $a-color;
+                }
+                &:after {
+                    border-color: white;
+                }
+            }
+        }
+    }
+}

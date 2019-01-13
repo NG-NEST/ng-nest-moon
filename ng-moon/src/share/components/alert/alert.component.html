@@ -1,0 +1,8 @@
+<div class="inner">
+    <h1 *ngIf="option.title">{{option.title}}</h1>
+    <p>{{option.content}}</p>
+    <footer>
+        <nm-button [option]="{label:'取消', icon:'icon-x'}" (click)="cancel()"></nm-button>
+        <nm-button [option]="{label:'确认', icon:'icon-check'}" (click)="sure()"></nm-button>
+    </footer>
+</div>

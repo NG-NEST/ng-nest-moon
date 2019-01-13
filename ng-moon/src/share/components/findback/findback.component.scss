@@ -1,0 +1,77 @@
+@import "../../../styles/index";
+@mixin selected {
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+    border-left: 1px solid #e8e8e8;
+    >ul {
+        margin-top: 2px;
+        flex: 1;
+        >li {
+            font-size: 12px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            >span.title {
+                flex: 1;
+                background: $a-color;
+                color: white;
+                padding: 6px 28px 6px 8px;
+                border-radius: 2px;
+            }
+            >span.icon-x {
+                position: absolute;
+                right: 0;
+                padding: 3px;
+                margin-right: 5px;
+                border-radius: 10px;
+                color: white;
+                &:hover {
+                    transition: all .4s;
+                    background: lighten($a-color, 15%);
+                }
+            }
+        }
+    }
+}
+
+nm-findback {
+    display: flex;
+    justify-content: start;
+    >.selected {
+        @include selected;
+        border-left: 0;
+        padding-left: 0;
+        margin-left: 6px;
+        flex-direction: row;
+        >ul {
+            margin-top: 0;
+            display: flex;
+            flex-wrap: wrap;
+            >li {
+                height: inherit;
+                margin: 2px;
+            }
+        }
+    }
+    nm-button {
+        margin: 2px;
+    }
+}
+
+nm-modal.findback {
+    >article {
+        display: flex;
+        >nm-table {
+            margin-right: 15px;
+        }
+        >.selected {
+            @include selected;
+        }
+        >nm-toolbar {
+            margin-top: 15px;
+            justify-content: flex-end;
+        }
+    }
+}

@@ -1,0 +1,46 @@
+<form (ngSubmit)="submit()" [formGroup]="form">
+    <nm-panel class="toolbar" *ngIf="option.type!='info'">
+        <nm-toolbar class="form">
+            <nm-buttons>
+                <nm-button [option]="{icon:'icon-x', title:'取消'}" (click)="cancel()"></nm-button>
+                <nm-button class="orange" [option]="{icon:'icon-check', type: 'submit', title:'提交'}"></nm-button>
+            </nm-buttons>
+        </nm-toolbar>
+    </nm-panel>
+    <nm-panel class="controls">
+        <nm-grid class="title-{{option.titleLayout}}">
+            <ng-container [ngSwitch]="controlsType">
+                <ng-container *ngSwitchCase="'controls'">
+                    <nm-row>
+                        <ng-container *ngTemplateOutlet="controlsTemp;context:{controls: option.controls}"></ng-container>
+                    </nm-row>
+                </ng-container>
+                <ng-container *ngSwitchCase="'row'">
+                    <ng-container *ngTemplateOutlet="rowsTemp;context:{rows: option.controls}"></ng-container>
+                </ng-container>
+            </ng-container>
+        </nm-grid>
+    </nm-panel>
+</form>
+
+<ng-template #rowsTemp let-rows='rows'>
+    <ng-container *ngFor="let row of rows">
+        <nm-row *ngIf="!row.hide" [ngClass]="{'has-title': row.title}">
+            <ng-container *ngTemplateOutlet="titleTemp;context:{row: row}"></ng-container>
+            <ng-container *ngTemplateOutlet="controlsTemp;context:{controls: row.controls}"></ng-container>
+        </nm-row>
+    </ng-container>
+</ng-template>
+
+<ng-template #controlsTemp let-controls='controls'>
+    <nm-control [option]="control" [form]="form" [formOption]="option" *ngFor="let control of controls"></nm-control>
+</ng-template>
+
+<ng-template #titleTemp let-row='row'>
+    <div class="title">
+        <label>
+            <span *ngIf="row.icon" class="{{row.icon}}"></span>
+            <span>{{row.title}}</span>
+        </label>
+    </div>
+</ng-template>

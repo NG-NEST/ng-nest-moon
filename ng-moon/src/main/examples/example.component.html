@@ -1,0 +1,9 @@
+<nm-inner>
+  <nm-panel>
+    <ul class="card">
+      <li *ngFor="let item of list">
+        <a routerLink="{{item.page}}">{{item.title}}</a>
+      </li>
+    </ul>
+  </nm-panel>
+</nm-inner>

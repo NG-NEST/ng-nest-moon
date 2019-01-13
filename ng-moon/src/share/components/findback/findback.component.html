@@ -1,0 +1,28 @@
+
+<nm-button [option]="{icon:'icon-search'}" (click)="action('openModal')"></nm-button>
+<div class="selected">
+    <ul>
+        <li *ngFor="let item of value">
+            <span class="title">{{item.title}}</span>
+            <span class="icon-x" (click)="action('removeValue', item)"></span>
+        </li>
+    </ul>
+</div>
+
+<ng-template #template>
+    <nm-table [(option)]="option.table" #tableCom></nm-table>
+    <div class="selected">
+        <ul>
+            <li *ngFor="let item of selected">
+                <span class="title">{{item.title}}</span>
+                <span class="icon-x" (click)="action('remove', item)"></span>
+            </li>
+        </ul>
+        <nm-toolbar class="form">
+            <nm-buttons>
+                <nm-button [option]="{icon:'icon-x', title:'取消'}" (click)="action('cancel')"></nm-button>
+                <nm-button [option]="{icon:'icon-check', title:'确认'}" (click)="action('sure')"></nm-button>
+            </nm-buttons>
+        </nm-toolbar>
+    </div>
+</ng-template>

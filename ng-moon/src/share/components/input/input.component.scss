@@ -1,0 +1,66 @@
+@import "../../../styles/index";
+nm-input {
+    display: block;
+    >p {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        position: relative;
+        >label {
+            margin-bottom: 5px;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+        >input,
+        >div.tooltip>input {
+            border: 1px solid $border-color;
+            width: 100%;
+            border-radius: 2px;
+            padding: 6px;
+            font-size: 12px;
+            &:focus {
+                transition: all .5s;
+                border-color: $input-focus-border-color;
+            }
+        }
+        >span[class*='icon-'] {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            padding: 6px;
+        }
+        >div.tooltip {
+            display: flex;
+            align-items: center;
+        }
+    }
+    &.icon {
+        >p {
+            >input {
+                padding-right: 28px;
+            }
+        }
+    }
+    &.horizontal {
+        >p {
+            align-items: center;
+            flex-direction: row;
+            >label {
+                margin-bottom: 0px;
+                margin-right: 10px;
+            }
+        }
+    }
+    &.icon-left {
+        >p {
+            >span[class*='icon-'] {
+                left: 0;
+                right: initial;
+            }
+            >input {
+                padding-right: 6px;
+                padding-left: 28px;
+            }
+        }
+    }
+}

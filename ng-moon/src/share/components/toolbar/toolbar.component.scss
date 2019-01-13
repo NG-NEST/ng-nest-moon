@@ -1,0 +1,20 @@
+@import "../../../styles/index";
+nm-toolbar {
+    display: flex;
+    align-items: center;
+    &.form {
+        >nm-button,
+        >nm-buttons>nm-button {
+            >p>button {
+                padding: 6px 15px;
+                border-radius: 20px;
+                span[class*="icon-"] {
+                    font-size: 18px
+                }
+                &:hover {
+                    box-shadow: 0 0 2px 2px #a1a1a13b;
+                }
+            }
+        }
+    }
+}

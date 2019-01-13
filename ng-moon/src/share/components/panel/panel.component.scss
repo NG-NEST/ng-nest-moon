@@ -1,0 +1,12 @@
+@import "../../../styles/index";
+nm-panel {
+    display: block;
+    // margin: 0 15px 15px 0;
+    &.controls {
+        border: 1px solid #f3f3f3;
+        border-radius: 10px;
+        &:hover {
+            box-shadow: 0 0 2px 1px #d4d4d43b;
+        }
+    }
+}

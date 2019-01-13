@@ -1,0 +1,10 @@
+<div class="inner">
+    <ul>
+        <li *ngFor="let menu of option.menus">
+            <a (click)="handler(menu)">
+                <span *ngIf="menu.icon" class="{{menu.icon}}"></span>
+                <span>{{menu.title}}</span>
+            </a>
+        </li>
+    </ul>
+</div>

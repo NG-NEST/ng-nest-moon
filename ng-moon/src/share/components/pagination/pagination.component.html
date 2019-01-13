@@ -1,0 +1,4 @@
+<a title="上一页" (click)="handler('previous')" [ngClass]="{'disabled': _isFirst}"><span class="icon-chevron-left "></span></a>
+<a title="下一页" (click)="handler('next')" [ngClass]="{'disabled': _isLast}"><span class="icon-chevron-right"></span></a>
+<a *ngIf="option?.query?.index" class="info">第{{option?.query?.index}}页 / 共{{_pageCount}}页</a>
+<a class="info">总数：{{option.count}}</a>

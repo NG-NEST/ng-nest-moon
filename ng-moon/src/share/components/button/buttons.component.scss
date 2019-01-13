@@ -1,0 +1,18 @@
+nm-buttons {
+    display: flex;
+    align-items: center;
+    >nm-button {
+        >p {
+            >button {
+                margin-right: 5px;
+            }
+        }
+        &:last-of-type {
+            >p {
+                >button {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}

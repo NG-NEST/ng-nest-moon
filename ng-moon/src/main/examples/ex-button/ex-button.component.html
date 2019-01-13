@@ -1,0 +1,28 @@
+<nm-inner>
+    <nm-grid>
+        <nm-row>
+            <nm-col class="col-3">
+                <nm-button [option]="{label:'分享', icon:'icon-share-2'}"></nm-button>
+            </nm-col>
+        </nm-row>
+        <nm-row>
+            <nm-col class="col-12">
+                <nm-buttons>
+                    <nm-button [option]="{label:'分享', icon:'icon-share-2'}"></nm-button>
+                    <nm-button [option]="{label:'分享', icon:'icon-share-2'}"></nm-button>
+                    <nm-button [option]="{label:'分享', icon:'icon-share-2'}"></nm-button>
+                </nm-buttons>
+            </nm-col>
+        </nm-row>
+        <nm-row>
+            <nm-col class="col-12">
+                <nm-buttons [option]="{type:'single',buttons: buttons}" [(ngModel)]="selected"></nm-buttons>
+            </nm-col>
+        </nm-row>
+        <nm-row>
+            <nm-col class="col-12">
+                <nm-buttons [option]="{type:'multiple',buttons: buttons}" [(ngModel)]="selecteds"></nm-buttons>
+            </nm-col>
+        </nm-row>
+    </nm-grid>
+</nm-inner>

@@ -1,0 +1,32 @@
+@import "../../../styles/index";
+nm-pagination {
+    display: flex;
+    >a {
+        font-size: 18px;
+        padding: 5px 10px;
+        border: 1px solid #e8e8e8;
+        margin-right: 4px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        color: $normal-color;
+        &:hover {
+            color: $a-color;
+            border-color: $a-color;
+        }
+        &.disabled {
+            color: #e8e8e8;
+            pointer-events: none;
+        }
+        &.info {
+            font-size: 12px;
+            &:hover {
+                border: 1px solid #e8e8e8;
+                color: $normal-color;
+            }
+        }
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
