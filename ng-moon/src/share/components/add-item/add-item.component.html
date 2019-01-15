@@ -1,0 +1,6 @@
+<nm-button [option]="{icon:'icon-plus'}" (click)="action('add')"></nm-button>
+<nm-table [(option)]="table" #tableCom></nm-table>
+
+<ng-template #template>
+    <nm-form #formCom [option]="option.form" [ngStyle]="{width: option.width}"></nm-form>
+</ng-template>

@@ -4,7 +4,7 @@ import {
 import { TableOption } from './table.type';
 import { ResultList } from 'src/services/repository.service';
 import { PaginationResult, PaginationOption } from '../pagination/pagination.type';
-import { Subject, Subscription } from 'rxjs';
+import { Subject, Subscription, Observable } from 'rxjs';
 import { SettingService } from 'src/services/setting.service';
 import { PaginationComponent } from '../pagination/pagination.component';
 import * as _ from 'lodash';
@@ -61,7 +61,7 @@ export class TableComponent implements OnInit, OnDestroy {
     }
 
     refresh() {
-        if (this.option.data) {
+        if (this.option.data instanceof Observable) {
             this.option.data.subscribe((x: ResultList<any>) => {
                 this._resultList.list = x.list;
                 this._resultList.count = x.count;
@@ -69,7 +69,15 @@ export class TableComponent implements OnInit, OnDestroy {
                 this.setSelected();
                 this.pagination.setPagination();
             })
+        } else if (this.option.data instanceof Array) {
+            this.setArrayData(this.option.data);
         }
+    }
+
+    setArrayData(data) {
+        this._resultList.list = data
+        this._resultList.count = data.length;
+        this._resultList.query = { index: 1, size: 0 }
     }
 
     handler(operation, item) {

@@ -14,6 +14,7 @@ import { ExFormComponent } from './ex-form/ex-form.component';
 import { ExTooltipComponent } from './ex-tooltip/ex-tooltip.component';
 import { ExSelectComponent } from './ex-select/ex-select.component';
 import { ExFindbackComponent } from './ex-findback/ex-findback.component';
+import { ExAddItemComponent } from './ex-add-item/ex-add-item.component';
 
 const routes: Routes = [
   { path: '', component: ExampleComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'ex-select', component: ExSelectComponent },
   { path: 'ex-popover', component: ExPopoverComponent },
   { path: 'ex-findback', component: ExFindbackComponent },
+  { path: 'ex-add-item', component: ExAddItemComponent },
   { path: 'ex-modal', component: ExModalComponent },
   { path: 'ex-form', component: ExFormComponent }
 ];

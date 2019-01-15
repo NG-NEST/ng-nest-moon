@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, getManager, EntityManager, Like } from 'typeorm';
+import { Repository, getManager, EntityManager, Like, ObjectID } from 'typeorm';
 import { RepositoryService } from '../../../common/services/repository.service';
 import { Menu } from '../entities/menu.entity';
 import * as _ from 'lodash';
@@ -13,6 +13,10 @@ export class MenusService extends RepositoryService<Menu> {
         private readonly entityRepository: Repository<Menu>
     ) {
         super(entityRepository);
+    }
+
+    async findOne(id: string | number | Date | ObjectID): Promise<Menu> {
+        return await this.entityRepository.findOne(id, { relations: ['actions'] });
     }
 
     async create(entity: Menu): Promise<Menu> {

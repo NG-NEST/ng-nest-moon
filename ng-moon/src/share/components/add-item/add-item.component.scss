@@ -1,0 +1,46 @@
+@import "../../../styles/index";
+nm-add-item {
+    display: flex;
+    flex-direction: column;
+    nm-button {
+        margin-bottom: 5px;
+    }
+    >nm-table {
+        >table {
+            margin-bottom: 0;
+        }
+        >nm-pagination {
+            margin-top: 5px;
+        }
+    }
+}
+
+nm-modal.add-item {
+    >article {
+        display: flex;
+        >nm-form {
+            display: flex;
+            flex: 1;
+            >form {
+                display: flex;
+                flex: 1;
+                flex-direction: column-reverse;
+                >nm-panel {
+                    &.controls {
+                        border: 0;
+                        >nm-grid {
+                            >nm-row {
+                                padding: 0;
+                                border: 0;
+                            }
+                        }
+                    }
+                    >nm-toolbar {
+                        margin-top: 15px;
+                        justify-content: flex-end;
+                    }
+                }
+            }
+        }
+    }
+}

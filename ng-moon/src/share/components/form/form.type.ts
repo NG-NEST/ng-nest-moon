@@ -3,10 +3,12 @@ import { ButtonOption, ButtonsOption } from "../button/button.type";
 import { Select, SelectOption } from "../select/select.type";
 import { Observable } from "rxjs";
 import { Findback, FindbackOption } from "../findback/findback.type";
+import { PropertyWrite } from "@angular/compiler";
+import { AddItem, AddItemOption } from "../add-item/add-item.type";
 
 export type ColType = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 12;
 
-export type ControlType = 'input' | 'buttons' | 'select' | 'findback';
+export type ControlType = 'input' | 'buttons' | 'select' | 'findback' | 'add-item';
 
 export type ControlsType = 'controls' | 'row';
 
@@ -49,6 +51,7 @@ export interface ControlI<T> {
     label?: string;
     controlType?: ControlType;
     col?: ColType;
+    [property: string]: any;
 }
 
 export class Control<T> {
@@ -57,6 +60,7 @@ export class Control<T> {
     label: string;
     controlType: ControlType;
     col: ColType;
+    [property: string]: any;
     constructor(option: ControlI<T> = {}) {
         Object.assign(this, option)
     }
@@ -99,6 +103,16 @@ export interface FindbackControlOption extends ControlI<Findback | Findback[]>, 
 export class FindbackControl extends Control<Findback | Findback[]> {
     controlType: ControlType = 'findback';
     constructor(option: FindbackControlOption = {}) {
+        super(option);
+        Object.assign(this, option);
+    }
+}
+
+export interface AddItemControlOption extends ControlI<AddItem | AddItem[]>, AddItemOption { }
+
+export class AddItemControl extends Control<AddItem | AddItem[]> {
+    controlType: ControlType = 'add-item';
+    constructor(option: AddItemControlOption = {}) {
         super(option);
         Object.assign(this, option);
     }

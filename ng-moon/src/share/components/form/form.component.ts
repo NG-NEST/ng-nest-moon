@@ -40,7 +40,7 @@ export class FormComponent implements OnInit, OnChanges {
         this.config();
     }
 
-    ngOnChanges(){
+    ngOnChanges() {
         // console.log(this.option);
     }
 
@@ -90,6 +90,16 @@ export class FormComponent implements OnInit, OnChanges {
     }
 
     cancel() {
-        this.navService.back();
+        if (this.option.buttons) {
+            let cancel = _.find(this.option.buttons, x => x.type === 'cancel');
+            if (cancel) {
+                cancel.handler.next(this.form.value);
+            } else {
+                this.navService.back();
+            }
+        } else {
+            this.navService.back();
+        }
+        
     }
 }

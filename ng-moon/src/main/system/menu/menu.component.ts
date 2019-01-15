@@ -4,7 +4,7 @@ import { TreeOption, TreeNode } from 'src/share/components/tree/tree.type';
 import { map } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { Subject } from 'rxjs';
-import { FormOption, Row, InputControl } from 'src/share/components/form/form.type';
+import { FormOption, Row, InputControl, AddItemControl } from 'src/share/components/form/form.type';
 import { FormComponent } from 'src/share/components/form/form.component';
 import { TreeComponent } from 'src/share/components/tree/tree.component';
 
@@ -54,7 +54,28 @@ export class MenuComponent implements OnInit {
       }),
       new Row({
         title: '功能', icon: 'icon-grid', controls: [
-
+          new AddItemControl({
+            key: "actions",
+            title: '功能',
+            width: 300,
+            form: {
+              title: '角色信息',
+              controls: [
+                new Row({
+                  hide: true, controls: [
+                    new InputControl({ key: "id", label: "编号" }),
+                  ]
+                }),
+                new Row({
+                  controls: [
+                    new InputControl({ key: "name", label: "名称", colHead: true }),
+                    new InputControl({ key: "code", label: "编码", colHead: true }),
+                    new InputControl({ key: "icon", label: "图标", colHead: true }),
+                  ]
+                })
+              ]
+            }
+          }),
         ]
       })
     ],

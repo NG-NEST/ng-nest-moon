@@ -21,6 +21,11 @@ nm-table {
         &:hover {
             box-shadow: 0 0 2px 1px #d4d4d43b;
         }
+        &.data-null{
+            >thead>tr>th{
+                border-bottom: 0;
+            }
+        }
         >thead {
             >tr {
                 background-color: #F4F4F6;

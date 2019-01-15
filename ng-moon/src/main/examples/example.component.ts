@@ -28,6 +28,7 @@ export class ExampleComponent implements OnInit {
     { title: '浮动菜单', page: './ex-popover' },
     { title: '模态框', page: './ex-modal' },
     { title: '查找带回', page: './ex-findback' },
+    { title: '添加行', page: './ex-add-item' },
     { title: '动态表单', page: './ex-form' },
     { title: '工作流', page: './ex-input' }
   ]
