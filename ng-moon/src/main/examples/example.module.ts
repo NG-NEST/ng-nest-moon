@@ -17,6 +17,7 @@ import { ExFormComponent } from './ex-form/ex-form.component';
 import { ExTooltipComponent } from './ex-tooltip/ex-tooltip.component';
 import { ExSelectComponent } from './ex-select/ex-select.component';
 import { ExFindbackComponent } from './ex-findback/ex-findback.component';
+import { ExAddItemComponent } from './ex-add-item/ex-add-item.component';
 
 // 声明模块中拥有的视图类
 const components = [
@@ -33,7 +34,8 @@ const components = [
   ExPopoverComponent,
   ExModalComponent,
   ExFormComponent,
-  ExFindbackComponent
+  ExFindbackComponent,
+  ExAddItemComponent
 ]
 
 // 能够动态创建的视图类

@@ -9,7 +9,7 @@ export interface TableOption {
 
     operations?: TableOperation[];
 
-    data?: Observable<any>;
+    data?: Observable<any> | [];
 
     query?: Query;
 

@@ -1,7 +1,7 @@
 <ul>
   <li class="login">
     <img class="logo" src="../../assets/logo.png" />
-    <span>NG-MOON</span>
+    <span>NG-NEST</span>
   </li>
   <li>
     <nm-input [(ngModel)]="user.account" [option]="{ placeholder:'用户名', icon: 'icon-user', iconLayout:'icon-left' }"></nm-input>
@@ -10,6 +10,6 @@
     <nm-input [(ngModel)]="user.password" [option]="{ placeholder:'密码', type:'password', icon: 'icon-lock', iconLayout:'icon-left' }"></nm-input>
   </li>
   <li class="submit">
-    <nm-button [option]="{ title:'进入', icon:'icon-chevron-right' }" (click)="login()"></nm-button>
+    <nm-button [option]="{ label:'登 录' }" (click)="login()"></nm-button>
   </li>
 </ul>

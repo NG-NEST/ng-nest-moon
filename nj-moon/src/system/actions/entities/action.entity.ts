@@ -11,6 +11,9 @@ export class Action {
     name: string;
 
     @Column()
+    code: string;
+
+    @Column()
     icon: string;
 
     @Column()

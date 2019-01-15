@@ -13,4 +13,8 @@
         <label *ngIf="option.label">{{option.label}}</label>
         <nm-findback [option]="option" [form]="form" [(ngModel)]="option.value"></nm-findback>
     </ng-container>
+    <ng-container *ngSwitchCase="'add-item'">
+        <label *ngIf="option.label">{{option.label}}</label>
+        <nm-add-item [option]="option" [form]="form" [(ngModel)]="option.value"></nm-add-item>
+    </ng-container>
 </ng-container>

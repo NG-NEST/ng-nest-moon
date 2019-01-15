@@ -41,6 +41,8 @@ import { CoverPipe } from './pipes/cover.pipe';
 import { FindbackComponent } from './components/findback/findback.component';
 import { FindbackService } from './components/findback/findback.service';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { AddItemComponent } from './components/add-item/add-item.component';
+import { AddItemService } from './components/add-item/add-item.service';
 
 // 声明模块中拥有的视图类
 const components = [
@@ -72,6 +74,7 @@ const components = [
     TreeNodeComponent,
     PaginationComponent,
     FindbackComponent,
+    AddItemComponent,
 
     CoverPipe
 ]
@@ -105,7 +108,8 @@ const providers = [
     FormService,
     TooltipService,
     SelectService,
-    FindbackService
+    FindbackService,
+    AddItemService
 ]
 
 @NgModule({
