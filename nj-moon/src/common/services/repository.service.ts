@@ -35,7 +35,7 @@ export class RepositoryService<T extends Id> {
         return await this.repository.save(entity);
     }
 
-    async update(entity: T): Promise<T> {
+    async update(entity: T): Promise<any> {
         let index = await this.repository.findOne(entity.id);
         if (index) {
             Object.assign(index, entity);
@@ -53,4 +53,3 @@ export class RepositoryService<T extends Id> {
     }
 
 }
-

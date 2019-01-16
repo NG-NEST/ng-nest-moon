@@ -75,6 +75,7 @@ export class TableComponent implements OnInit, OnDestroy {
     }
 
     setArrayData(data) {
+        if (!data) return;
         this._resultList.list = data
         this._resultList.count = data.length;
         this._resultList.query = { index: 1, size: 0 }

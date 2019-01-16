@@ -12,5 +12,19 @@ nm-control {
                 background-color: lighten($normal-color, 95%);
             }
         }
+        nm-add-item {
+            >nm-button {
+                pointer-events: none;
+                background-color: lighten($normal-color, 95%);
+            }
+            >nm-table {
+                td.operations {
+                    >span {
+                        pointer-events: none;
+                        color: lighten($normal-color, 10%);
+                    }
+                }
+            }
+        }
     }
 }

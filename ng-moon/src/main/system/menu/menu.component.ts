@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 import { FormOption, Row, InputControl, AddItemControl } from 'src/share/components/form/form.type';
 import { FormComponent } from 'src/share/components/form/form.component';
 import { TreeComponent } from 'src/share/components/tree/tree.component';
+import { SettingService } from 'src/services/setting.service';
 
 @Component({
   selector: 'nm-menu',
@@ -32,7 +33,7 @@ export class MenuComponent implements OnInit {
       { title: '修改', icon: 'icon-edit-2', handler: this.updateSubject },
       { title: '删除', icon: 'icon-trash-2', handler: this.deleteSubject }
     ],
-    data: this.menuService.findAll().pipe(map(x => x.list))
+    data: this.menuService.findAll({ index: 1, size: 0 }).pipe(map(x => x.list))
   }
 
   formOption: FormOption = {
@@ -59,11 +60,11 @@ export class MenuComponent implements OnInit {
             title: '功能',
             width: 300,
             form: {
-              title: '角色信息',
               controls: [
                 new Row({
                   hide: true, controls: [
                     new InputControl({ key: "id", label: "编号" }),
+                    new InputControl({ key: "menuId", label: "编号", relation: 'many-one' }),
                   ]
                 }),
                 new Row({
@@ -85,13 +86,17 @@ export class MenuComponent implements OnInit {
     type: 'info'
   }
 
-  constructor(private menuService: MenuService) { }
+  constructor(private menuService: MenuService, private settingService: SettingService) { }
 
   ngOnInit() {
     this.addSubject.subscribe((x: TreeNode) => {
       this.menu.option.type = 'add';
       this.menu.form.reset();
-      this.menu.form.patchValue({ parentId: x.id })
+      this.menu.form.patchValue({
+        parentId: x.id,
+        id: this.settingService.guid(),
+        actions: []
+      })
     })
     this.updateSubject.subscribe((x: TreeNode) => {
       this.menu.option.type = 'update';

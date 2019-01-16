@@ -44,7 +44,7 @@ export class RepositoryService {
     }
 
     create(entity) {
-        if (_.has(entity, 'id')) { entity = _.omit(entity, ['id']) }
+        // if (_.has(entity, 'id')) { entity = _.omit(entity, ['id']) }
         return this.http.post(`${this.option.controller.name}`, entity);
     }
 
