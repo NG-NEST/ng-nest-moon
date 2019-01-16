@@ -3,10 +3,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Menu } from './entities/menu.entity';
 import { MenusService } from './services/menus.service';
 import { MenusController } from './menus.controller';
+import { Action } from 'system/actions/entities/action.entity';
 
 @Module({
     imports:[
-        TypeOrmModule.forFeature([Menu])
+        TypeOrmModule.forFeature([Menu, Action])
     ],
     controllers: [MenusController],
     providers: [MenusService]

@@ -36,7 +36,6 @@ export class ControlComponent implements OnInit {
         // this.option = Object.assign(this._default, this.option);
         this.setting.mapToObject(this._default, this.option)
         this.setClass();
-        // this.option.value = '1'
     }
 
     ngOnChanges(){

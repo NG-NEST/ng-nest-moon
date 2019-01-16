@@ -5,7 +5,7 @@ import { Action } from '../../actions/entities/action.entity';
 @Entity("system_menu")
 export class Menu {
     @PrimaryGeneratedColumn("uuid")
-    id: number;
+    id: string;
 
     @Column()
     label: string;
