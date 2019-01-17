@@ -113,12 +113,6 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
             { type: 'submit', handler: this.submitSubject },
             { type: 'cancel', handler: this.cancelSubject }
         ]
-        // if (this.option.table.selectSub == null) {
-        //     this.option.table.selectSub = new Subject<any>();
-        // }
-        // if (this.option.table.selectedSub == null) {
-        //     this.option.table.selectedSub = new Subject<any>();
-        // }
         this.subject();
     }
 
@@ -130,6 +124,7 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
                 break;
             case 'remove':
                 _.remove(this.value, (x: any) => x.id == item.id);
+                this.tableCom.setArrayData(this.value);
                 break;
             case 'update':
                 this.type = 'update';
@@ -138,6 +133,20 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
                 break;
             case 'cancel':
                 this.modal.detach();
+                break;
+            case 'button':
+                if (item && item.defaultData) {
+                    item.defaultData.forEach(x => {
+                        x.id = this.setting.guid();
+                        x[this.relationManyOne.key] = this.form.value.id;
+                        this.value = _.union(_.cloneDeep(this.value), [x]);
+                    })
+                    this.tableCom.setArrayData(this.value);
+                    // console.log(this.value, datas)
+                    // this.value = _.union(_.cloneDeep(this.value), datas);
+                    // item.defaultData = datas;
+                }
+                if (item.handler) item.handler.next(item);
                 break;
         }
     }
@@ -186,8 +195,6 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
             } else if (this.type == 'update') {
                 let item = _.find(this.value, y => y.id === x.id)
                 Object.assign(item, x);
-                console.log(item);
-                // this.setting.mapToObject(x, item);
             }
             this.tableCom.setArrayData(this.value);
             this.formCom.form.reset();

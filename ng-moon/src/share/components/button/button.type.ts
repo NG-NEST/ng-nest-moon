@@ -11,6 +11,7 @@ export interface ButtonOption {
     title?: string;
     icon?: string;
     handler?: Subject<any>;
+    [prop: string]: any;
 }
 
 export interface ButtonsOption {

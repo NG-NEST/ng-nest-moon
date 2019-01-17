@@ -23,6 +23,7 @@ export class MenuComponent implements OnInit {
   deleteSubject = new Subject();
   submitSubject = new Subject();
   nodeClickSubject = new Subject();
+  addDefaultSubject = new Subject();
 
   @ViewChild("menu") menu: FormComponent;
   @ViewChild("menuTree") menuTree: TreeComponent;
@@ -60,6 +61,14 @@ export class MenuComponent implements OnInit {
             key: "actions",
             title: '功能',
             width: 300,
+            buttons: [{
+              label: '添加默认', handler: this.addDefaultSubject, defaultData: [
+                { name: '查看', code: 'info', icon: 'icon-eye' },
+                { name: '增加', code: 'add', icon: 'icon-plus' },
+                { name: '修改', code: 'update', icon: 'icon-edit-2' },
+                { name: '删除', code: 'delete', icon: 'icon-trash-2' }
+              ]
+            }],
             form: {
               controls: [
                 new Row({
@@ -135,6 +144,9 @@ export class MenuComponent implements OnInit {
       this.menuService.findOne(x.id).subscribe(y => {
         if (y) this.menu.form.setValue(y);
       })
+    })
+    this.addDefaultSubject.subscribe((x) => {
+
     })
   }
 
