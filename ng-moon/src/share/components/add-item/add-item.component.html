@@ -1,4 +1,6 @@
-<nm-button [option]="{icon:'icon-plus'}" (click)="action('add')"></nm-button>
+<nm-buttons>
+    <nm-button [option]="{icon:'icon-plus'}" (click)="action('add')" title="增加"></nm-button>
+</nm-buttons>
 <nm-table [(option)]="table" #tableCom></nm-table>
 
 <ng-template #template>

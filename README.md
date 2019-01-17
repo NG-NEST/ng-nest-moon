@@ -67,6 +67,7 @@ $ npm run start:prod
 | ——浮动菜单  | √           |             |
 | ——模态框    | √           |             |
 | ——查找带回  | √           |             |
+| ——添加行    | √           |             |
 | ——动态表单  | √           |             |
 | ——工作流    |             |             |
 | 菜单管理    | √           |             |
@@ -76,5 +77,5 @@ $ npm run start:prod
 
 ### 6. 架构规划
 <div align="center">
-    <img src="https://thumbnail0.baidupcs.com/thumbnail/1b47df1eae85651bde963b690d09be34?fid=252197559-250528-954224087011568&time=1547474400&rt=sh&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-hcZyN7MQE4OO8wKUgZBhEZjcIlY%3D&expires=8h&chkv=0&chkbd=0&chkpc=&dp-logid=323167710052292002&dp-callid=0&size=c710_u400&quality=100&vuk=-&ft=video" />
+    <img src="https://raw.githubusercontent.com/NG-NEST/ng-nest-moon/master/ng-moon/src/assets/ng-nest-moon.png" />
 </div>
