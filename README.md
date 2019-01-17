@@ -84,15 +84,21 @@ $ npm run start:prod
 <div align="center">
     <img src="https://github.com/NG-NEST/ng-nest-moon/blob/master/doc/assets/ng-nest-login.png?raw=true" />
 </div>
+
 ------
+
 <div align="center">
     <img src="https://github.com/NG-NEST/ng-nest-moon/blob/master/doc/assets/ng-nest-examples.png?raw=true" />
 </div>
+
 ------
+
 <div align="center">
     <img src="https://github.com/NG-NEST/ng-nest-moon/blob/master/doc/assets/ng-nest-menu.png?raw=true" />
 </div>
+
 ------
+
 <div align="center">
     <img src="https://github.com/NG-NEST/ng-nest-moon/blob/master/doc/assets/ng-nest-user.png?raw=true" />
 </div>
