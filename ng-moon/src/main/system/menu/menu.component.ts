@@ -8,6 +8,7 @@ import { FormOption, Row, InputControl, AddItemControl } from 'src/share/compone
 import { FormComponent } from 'src/share/components/form/form.component';
 import { TreeComponent } from 'src/share/components/tree/tree.component';
 import { SettingService } from 'src/services/setting.service';
+import { ToastService } from 'src/share/components/toast/toast.service';
 
 @Component({
   selector: 'nm-menu',
@@ -86,7 +87,11 @@ export class MenuComponent implements OnInit {
     type: 'info'
   }
 
-  constructor(private menuService: MenuService, private settingService: SettingService) { }
+  constructor(
+    private menuService: MenuService,
+    private settingService: SettingService,
+    private toastService: ToastService
+  ) { }
 
   ngOnInit() {
     this.addSubject.subscribe((x: TreeNode) => {
@@ -107,16 +112,21 @@ export class MenuComponent implements OnInit {
     this.deleteSubject.subscribe((x: TreeNode) => {
       this.menuService.remove(x.id).subscribe(y => {
         this.menuTree.remove(x);
+        this.toastService.create('删除成功');
       })
     })
     this.submitSubject.subscribe((x) => {
       if (this.menu.option.type == 'add') {
         this.menuService.create(x).subscribe(y => {
           this.menuTree.add(y);
+          this.toastService.create('添加成功');
+          this.menu.option.type = 'info';
         })
       } else if (this.menu.option.type == 'update') {
         this.menuService.update(x).subscribe(y => {
           this.menuTree.update(y);
+          this.toastService.create('修改成功');
+          this.menu.option.type = 'info';
         })
       }
     })

@@ -3,6 +3,7 @@ import { Subject, Observable } from "rxjs";
 import { TooltipOption } from "../tooltip/tooltip.type";
 import { ModalOption } from "../modal/modal.type";
 import { FormOption } from "../form/form.type";
+import { ButtonOption } from "../button/button.type";
 
 export const ADDITEMMODALOPTION = new InjectionToken<{}>('ADDITEMMODALOPTION');
 
@@ -12,6 +13,7 @@ export interface AddItemOption extends ModalOption {
     label?: string;
     data?: Observable<AddItem[]>;
     form?: FormOption;
+    buttons?: ButtonOption[];
     placeholder?: string;
     tooltip?: TooltipOption;
     key?: string;

@@ -2,7 +2,7 @@
 nm-add-item {
     display: flex;
     flex-direction: column;
-    nm-button {
+    >nm-buttons {
         margin-bottom: 5px;
     }
     >nm-table {

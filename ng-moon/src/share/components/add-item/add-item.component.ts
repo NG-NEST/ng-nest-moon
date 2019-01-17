@@ -63,7 +63,8 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
     }
 
     private _default: AddItemOption = {
-        panelClass: 'add-item'
+        panelClass: 'add-item',
+        buttons: []
     };
 
     private _value: any;
@@ -97,9 +98,7 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
     }
 
     constructor(
-        private elementRef: ElementRef,
         private addItemService: AddItemService,
-        private renderer: Renderer2,
         private setting: SettingService
     ) { }
 
@@ -135,12 +134,9 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
             case 'update':
                 this.type = 'update';
                 this.modal = this.addItemService.create(this.option);
+                setTimeout(() => this.formCom.form.setValue(item))
                 break;
             case 'cancel':
-                this.modal.detach();
-                break;
-            case 'sure':
-                // this.value = _.cloneDeep(this.selected);
                 this.modal.detach();
                 break;
         }
@@ -178,15 +174,20 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
     }
 
     subject() {
-        this.submitSubject.subscribe(x => {
+        this.submitSubject.subscribe((x: any) => {
             if (this.type == 'add') {
-                if (_.isEmpty(x['id'])) {
-                    x['id'] = this.setting.guid();
+                if (_.isEmpty(x.id)) {
+                    x.id = this.setting.guid();
                 }
                 if (this.relationManyOne && this.form) {
                     x[this.relationManyOne.key] = this.form.value.id;
                 }
                 this.value = _.union(this.value, [x]);
+            } else if (this.type == 'update') {
+                let item = _.find(this.value, y => y.id === x.id)
+                Object.assign(item, x);
+                console.log(item);
+                // this.setting.mapToObject(x, item);
             }
             this.tableCom.setArrayData(this.value);
             this.formCom.form.reset();
