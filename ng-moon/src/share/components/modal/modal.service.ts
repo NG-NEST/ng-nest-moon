@@ -21,7 +21,7 @@ export class ModalService {
         let portalOption: PortalOption = {
             panelClass: option.panelClass,
             hasBackdrop: true,
-            backdropClass: 'cdk-overlay-transparent-backdrop',
+            backdropClass: 'cdk-overlay-dark-backdrop',
             injector: this.portalSerivce.createInjector(option, MODALOPTION)
         }
         Object.assign(portalOption, option);
