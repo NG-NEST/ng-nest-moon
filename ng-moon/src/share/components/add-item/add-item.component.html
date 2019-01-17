@@ -1,5 +1,6 @@
 <nm-buttons>
     <nm-button [option]="{icon:'icon-plus'}" (click)="action('add')" title="增加"></nm-button>
+    <nm-button *ngFor="let button of option.buttons" [option]="button" (click)="action('button', button)" ></nm-button>
 </nm-buttons>
 <nm-table [(option)]="table" #tableCom></nm-table>
 

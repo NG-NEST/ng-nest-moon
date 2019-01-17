@@ -13,7 +13,7 @@ nm-control {
             }
         }
         nm-add-item {
-            >nm-button {
+            >nm-buttons {
                 pointer-events: none;
                 background-color: lighten($normal-color, 95%);
             }
