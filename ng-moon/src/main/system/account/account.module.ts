@@ -5,6 +5,8 @@ import { AccountRoutesModule } from './account-routes.module';
 import { ShareModule } from 'src/share/share.module';
 import { AccountService } from './account.service';
 import { AccountInfoComponent } from './account-info/account-info.component';
+import { OrganizationService } from '../organization/organization.service';
+import { RoleService } from '../role/role.service';
 
 @NgModule({
   imports: [
@@ -15,7 +17,9 @@ import { AccountInfoComponent } from './account-info/account-info.component';
   declarations: [AccountComponent,AccountInfoComponent],
   exports: [AccountComponent, AccountInfoComponent],
   providers: [
-    AccountService
+    AccountService,
+    OrganizationService,
+    RoleService
   ]
 })
 export class AccountModule { }

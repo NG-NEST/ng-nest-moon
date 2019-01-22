@@ -15,6 +15,6 @@ export class UsersService extends RepositoryService<User> {
     }
 
     async findOne(id: string | number | Date | ObjectID): Promise<User> {
-        return await this.usersRepository.findOne(id, { relations: ['roles'] });
+        return await this.usersRepository.findOne(id, { relations: ['roles', 'organizations'] });
     }
 }

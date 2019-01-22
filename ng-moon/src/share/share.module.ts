@@ -108,7 +108,6 @@ const providers = [
     FormService,
     TooltipService,
     SelectService,
-    FindbackService,
     AddItemService
 ]
 

@@ -8,12 +8,13 @@ import { FormComponent } from 'src/share/components/form/form.component';
 import { NavService } from 'src/services/nav.service';
 import { RoleService } from '../../role/role.service';
 import * as _ from 'lodash';
+import { OrganizationService } from '../../organization/organization.service';
+import { SettingService } from 'src/services/setting.service';
 
 @Component({
     selector: 'nm-account-info',
     templateUrl: './account-info.component.html',
-    styleUrls: ['./account-info.component.scss'],
-    providers: [RoleService]
+    styleUrls: ['./account-info.component.scss']
 })
 export class AccountInfoComponent implements OnInit {
 
@@ -28,6 +29,7 @@ export class AccountInfoComponent implements OnInit {
             return this.accountService.findOne(id)
                 .pipe(map(x => {
                     x.roles = _.map(x.roles, y => { return { id: y.id, title: y.name } });
+                    x.organizations = _.map(x.organizations, y => { return { id: y.id, title: y.label } });
                     return x;
                 }));
         } else {
@@ -61,10 +63,22 @@ export class AccountInfoComponent implements OnInit {
                             columns: [
                                 { key: 'title', title: '角色名称' },
                             ],
-                            data: this.getRolesData().pipe(map(x => {
-                                x.list = _.map(x.list, y => { return { id: y.id, title: y.name } })
-                                return x
-                            })),
+                            data: this.getRolesData(),
+                            selectType: 'multiple'
+                        }
+                    }),
+                ]
+            }),
+            new Row({
+                title: '组织机构', icon: 'icon-triangle', controls: [
+                    new FindbackControl({
+                        key: "organizations", col: 12, title: '选择组织机构',
+                        type: 'multiple',
+                        table: {
+                            columns: [
+                                { key: 'title', title: '组织机构' },
+                            ],
+                            data: this.getOrganizationsData(),
                             selectType: 'multiple'
                         }
                     }),
@@ -83,15 +97,18 @@ export class AccountInfoComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private accountService: AccountService,
         private navService: NavService,
-        private roleService: RoleService
+        private roleService: RoleService,
+        private settingService: SettingService,
+        private organizationService: OrganizationService
     ) { }
 
     ngOnInit() {
-        this.submitSubject.subscribe(x => {
+        this.submitSubject.subscribe((x: any) => {
             this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
                 // console.log(this.account)
                 let type = params.get('type');
                 if (type === 'add') {
+                    if (x.id === '') x.id = this.settingService.guid();
                     this.accountService.create(x).subscribe(y => {
                         this.navService.back(true);
                     })
@@ -107,7 +124,22 @@ export class AccountInfoComponent implements OnInit {
     getRolesData(): Observable<any> {
         return Observable.create(x => {
             let rolesControl = _.find(this.account.controls, x => x.key == 'roles') as any;
-            this.roleService.findAll(rolesControl.table.query).subscribe(y => {
+            this.roleService.findAll(rolesControl.table.query).pipe(map(x => {
+                x.list = _.map(x.list, y => { return { id: y.id, title: y.name } })
+                return x
+            })).subscribe(y => {
+                x.next(y);
+            })
+        })
+    }
+
+    getOrganizationsData(): Observable<any> {
+        return Observable.create(x => {
+            let organizationsControl = _.find(this.account.controls, x => x.key == 'organizations') as any;
+            this.organizationService.findAll(organizationsControl.table.query).pipe(map(x => {
+                x.list = _.map(x.list, y => { return { id: y.id, title: y.label } })
+                return x
+            })).subscribe(y => {
                 x.next(y);
             })
         })

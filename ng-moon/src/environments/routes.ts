@@ -32,6 +32,8 @@ export const layoutRoutes: Routes = [
     { path: 'role', loadChildren: 'src/main/system/role/role.module#RoleModule' },
     // 菜单管理的路由模块
     { path: 'menu', loadChildren: 'src/main/system/menu/menu.module#MenuModule' },
+    // 菜单管理的路由模块
+    { path: 'organization', loadChildren: 'src/main/system/organization/organization.module#OrganizationModule' },
     // 错误的路由或不存在的路由指向的模块department-structural role-manager
     { path: '**', loadChildren: 'src/main/exception/404.module#Exception404Module' }
 ]

@@ -1,10 +1,11 @@
 
-import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, PrimaryColumn } from 'typeorm';
 import { Role } from '../../roles/entities/role.entity';
+import { Organization } from '../../organization/entities/organization.entity';
 
 @Entity("system_user")
 export class User {
-    @PrimaryGeneratedColumn("uuid")
+    @PrimaryColumn("uuid", { length: 36 })
     id: string;
 
     @Column()
@@ -21,6 +22,14 @@ export class User {
 
     @Column()
     phone: string;
+
+    @ManyToMany(type => Organization, organization => organization)
+    @JoinTable({
+        name: "system_user_organization",
+        joinColumn: { name: 'userId' },
+        inverseJoinColumn: { name: 'organizationId' }
+    })
+    organizations: Organization[];
 
     @ManyToMany(type => Role, role => role)
     @JoinTable({
