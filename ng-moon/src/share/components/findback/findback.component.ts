@@ -8,7 +8,7 @@ import { FindbackOption } from './findback.type';
 import { FindbackService } from './findback.service';
 import * as _ from 'lodash';
 import { OverlayRef } from '@angular/cdk/overlay';
-import { filter, distinctUntilKeyChanged } from 'rxjs/operators';
+import { filter, distinctUntilKeyChanged, map, debounceTime } from 'rxjs/operators';
 
 @Component({
     selector: 'nm-findback',
@@ -17,6 +17,7 @@ import { filter, distinctUntilKeyChanged } from 'rxjs/operators';
     encapsulation: ViewEncapsulation.None,
     inputs: ['option', 'form'],
     providers: [
+        FindbackService,
         {
             provide: NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => FindbackComponent),
@@ -126,9 +127,14 @@ export class FindbackComponent implements OnInit, ControlValueAccessor {
             }
             this.option.table.selectedSub.next(this.selected);
         })
-        if (this.form) this.form.valueChanges.pipe(distinctUntilKeyChanged(this.option.key)).subscribe(x => {
-            this.value = x[this.option.key];
-        })
+        if (this.form) this.form.valueChanges
+            .pipe(
+                distinctUntilKeyChanged(this.option.key),
+                map(x => x[this.option.key]),
+                debounceTime(0)
+            ).subscribe(x => {
+                this.value = x;
+            })
     }
 
 }

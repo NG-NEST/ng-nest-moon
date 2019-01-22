@@ -1,10 +1,10 @@
 
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, Tree, TreeChildren, TreeParent, TreeLevelColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, Tree, TreeChildren, TreeParent, TreeLevelColumn, PrimaryColumn } from 'typeorm';
 import { Action } from '../../actions/entities/action.entity';
 
 @Entity("system_menu")
 export class Menu {
-    @PrimaryGeneratedColumn("uuid")
+    @PrimaryColumn("uuid", { length: 36 })
     id: string;
 
     @Column()
@@ -16,10 +16,10 @@ export class Menu {
     @Column()
     icon: string;
 
-    @Column({ nullable: true })
+    @Column({ nullable: true, length: 36 })
     parentId?: string;
 
-    @Column({ nullable: true, length: 5000 })
+    @Column({ nullable: true, type: 'text' })
     path?: string;
 
     @ManyToOne(type => Menu, menu => menu.children)

@@ -1,12 +1,17 @@
 <nm-inner>
-  <nm-panel>
-    <nm-toolbar class="form">
-      <nm-buttons>
-        <nm-button [option]="{icon:'icon-plus', title:'增加'}" (click)="action('add')"></nm-button>
-      </nm-buttons>
-    </nm-toolbar>
+  <nm-panel class="left controls">
+    <nm-tree #organizationTree [option]="treeOption"></nm-tree>
   </nm-panel>
-  <nm-panel>
-    <nm-table [(option)]="table" #tableCom></nm-table>
+  <nm-panel class="right">
+    <nm-panel>
+      <nm-toolbar class="form">
+        <nm-buttons>
+          <nm-button [option]="{icon:'icon-plus', title:'增加'}" (click)="action('add')"></nm-button>
+        </nm-buttons>
+      </nm-toolbar>
+    </nm-panel>
+    <nm-panel>
+      <nm-table [(option)]="table" #tableCom></nm-table>
+    </nm-panel>
   </nm-panel>
 </nm-inner>

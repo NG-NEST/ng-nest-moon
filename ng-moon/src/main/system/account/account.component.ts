@@ -1,23 +1,37 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TableOption } from 'src/share/components/table/table.type';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { AccountService } from './account.service';
 import { TableComponent } from 'src/share/components/table/table.component';
 import { Router, ActivatedRoute } from '@angular/router';
+import { TreeComponent } from 'src/share/components/tree/tree.component';
+import { TreeOption } from 'src/share/components/tree/tree.type';
+import { map } from 'rxjs/operators';
+import { OrganizationService } from '../organization/organization.service';
 
 @Component({
   selector: 'nm-account',
   templateUrl: './account.component.html',
-  styleUrls: ['./account.component.scss']
+  styleUrls: ['./account.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AccountComponent implements OnInit {
 
   @ViewChild("tableCom") tableCom: TableComponent;
 
+  @ViewChild("organizationTree") organizationTree: TreeComponent;
+
+  nodeClickSubject = new Subject();
+
+  treeOption: TreeOption = {
+    nodeClick: this.nodeClickSubject,
+    data: this.organization.findAll({ index: 1, size: 0 }).pipe(map(x => x.list))
+  }
+
   table: TableOption = {
     columns: [
       { key: 'account', title: '账号' },
-      { key: 'password', title: '密码' },
+      // { key: 'password', title: '密码' },
       { key: 'name', title: '姓名' },
       { key: 'email', title: '邮箱' },
       { key: 'phone', title: '电话' }
@@ -31,12 +45,19 @@ export class AccountComponent implements OnInit {
 
   constructor(
     private account: AccountService,
+    private organization: OrganizationService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.subject()
+  }
 
+  subject() {
+    this.nodeClickSubject.subscribe(x => {
+      console.log(x);
+    })
   }
 
   update(param) {

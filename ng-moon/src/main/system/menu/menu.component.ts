@@ -39,7 +39,6 @@ export class MenuComponent implements OnInit {
   }
 
   formOption: FormOption = {
-    title: '账号信息',
     controls: [
       new Row({
         hide: true, controls: [
