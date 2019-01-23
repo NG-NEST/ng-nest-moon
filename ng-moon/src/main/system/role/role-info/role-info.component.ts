@@ -6,6 +6,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { FormComponent } from 'src/share/components/form/form.component';
 import { NavService } from 'src/services/nav.service';
+import { SettingService } from 'src/services/setting.service';
 
 @Component({
     selector: 'nm-role-info',
@@ -53,14 +54,16 @@ export class RoleInfoComponent implements OnInit {
     constructor(
         private activatedRoute: ActivatedRoute,
         private roleService: RoleService,
-        private navService: NavService
+        private navService: NavService,
+        private settingService: SettingService
     ) { }
 
     ngOnInit() {
-        this.submitSubject.subscribe(x => {
+        this.submitSubject.subscribe((x:any) => {
             this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
                 let type = params.get('type');
                 if (type === 'add') {
+                    if (x.id === '') x.id = this.settingService.guid();
                     this.roleService.create(x).subscribe(y => {
                         this.navService.back(true);
                     })

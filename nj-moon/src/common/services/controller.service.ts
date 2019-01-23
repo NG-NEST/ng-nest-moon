@@ -1,6 +1,5 @@
-import { Injectable, Get, Param, Post, Body, Put, Delete, UseInterceptors, ParseIntPipe } from "@nestjs/common";
+import { Injectable, Get, Param, Post, Body, Put, Delete, ParseIntPipe, Query } from "@nestjs/common";
 import { Id, RepositoryService } from "./repository.service";
-import { ResultListInterceptor } from "common/interceptors/result.interceptor";
 import { ResultList } from "common/interfaces/result.interface";
 
 @Injectable()
@@ -11,8 +10,9 @@ export class ControllerService<T extends Id> {
     @Get(':size/:index')
     async findAll(
         @Param('index', new ParseIntPipe()) index: number = 1,
-        @Param('size', new ParseIntPipe()) size: number = 10): Promise<ResultList<T>> {
-        return await this.service.findAll(index, size);
+        @Param('size', new ParseIntPipe()) size: number = 10,
+        @Query() query): Promise<ResultList<T>> {
+        return await this.service.findAll(index, size, query);
     }
 
     @Get(':id')

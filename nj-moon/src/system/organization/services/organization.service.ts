@@ -1,10 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, getManager, EntityManager, Like, ObjectID } from 'typeorm';
+import { Repository, getManager, Like, ObjectID } from 'typeorm';
 import { RepositoryService } from '../../../common/services/repository.service';
 import { Organization } from '../entities/organization.entity';
 import * as _ from 'lodash';
-import { Action } from 'system/actions/entities/action.entity';
 
 @Injectable()
 export class OrganizationService extends RepositoryService<Organization> {

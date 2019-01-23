@@ -23,7 +23,8 @@ export class TableComponent implements OnInit, OnDestroy {
     private _default = {
         query: {
             index: 1,
-            size: 10
+            size: 10,
+            filter: {}
         }
     }
 
