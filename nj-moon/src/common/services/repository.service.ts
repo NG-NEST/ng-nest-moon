@@ -13,7 +13,7 @@ export class RepositoryService<T extends Id> {
         private repository: Repository<T>
     ) { }
 
-    async findAll(index: number, size: number): Promise<ResultList<T>> {
+    async findAll(index: number, size: number, query: any): Promise<ResultList<T>> {
         return new Promise<ResultList<T>>(async (x) => {
             let result: ResultList<T> = {
                 list: await this.repository.find({ skip: size * (index - 1), take: size }),

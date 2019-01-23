@@ -13,7 +13,7 @@ export interface RepositoryOption {
     controller: Controller
 }
 
-export interface ResultList<T>{
+export interface ResultList<T> {
     list?: T[],
     count?: number;
     query?: Query;
@@ -22,6 +22,7 @@ export interface ResultList<T>{
 export interface Query {
     index?: number;
     size?: number;
+    filter?: any;
 }
 
 export class RepositoryService {
@@ -36,7 +37,7 @@ export class RepositoryService {
         if (query) {
             param = Object.assign(param, query)
         }
-        return this.http.get(`${this.option.controller.name}/${param.size}/${param.index}`);
+        return this.http.get(`${this.option.controller.name}/${param.size}/${param.index}`, query.filter);
     }
 
     findOne(id) {

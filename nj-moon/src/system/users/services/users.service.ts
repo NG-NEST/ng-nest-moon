@@ -3,6 +3,11 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, ObjectID } from 'typeorm';
 import { User } from '../entities/user.entity';
 import { RepositoryService } from '../../../common/services/repository.service';
+import { ResultList } from 'common/interfaces/result.interface';
+
+export interface UserQuery {
+    organizationId: string;
+}
 
 @Injectable()
 export class UsersService extends RepositoryService<User> {
@@ -12,6 +17,26 @@ export class UsersService extends RepositoryService<User> {
         private readonly usersRepository: Repository<User>
     ) {
         super(usersRepository);
+    }
+
+    async findAll(index: number, size: number, query: UserQuery): Promise<ResultList<User>> {
+        return new Promise<ResultList<User>>(async (x) => {
+            let querys = this.usersRepository
+                .createQueryBuilder('user')
+                .leftJoinAndSelect("user.organizations", "organization")
+            if (query.organizationId) {
+                querys = querys.where("organization.id = :id", { id: query.organizationId })
+            }
+            let result: ResultList<User> = {
+                list: await querys.skip(size * (index - 1)).take(size).getMany(),
+                count: await querys.getCount(),
+                query: {
+                    index: index,
+                    size: size
+                }
+            }
+            x(result);
+        })
     }
 
     async findOne(id: string | number | Date | ObjectID): Promise<User> {
