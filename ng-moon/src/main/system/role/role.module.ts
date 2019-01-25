@@ -5,6 +5,7 @@ import { RoleRoutesModule } from './role-routes.module';
 import { ShareModule } from 'src/share/share.module';
 import { RoleService } from './role.service';
 import { RoleInfoComponent } from './role-info/role-info.component';
+import { MenuService } from '../menu/menu.service';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { RoleInfoComponent } from './role-info/role-info.component';
   declarations: [RoleComponent,RoleInfoComponent],
   exports: [RoleComponent, RoleInfoComponent],
   providers: [
-    RoleService
+    RoleService,
+    MenuService
   ]
 })
 export class RoleModule { }

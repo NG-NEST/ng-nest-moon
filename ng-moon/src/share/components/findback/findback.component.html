@@ -9,7 +9,8 @@
 </div>
 
 <ng-template #template>
-    <nm-table [(option)]="option.table" #tableCom></nm-table>
+    <nm-tree #treeCom *ngIf="option.tree" [(option)]="option.tree"></nm-tree>
+    <nm-table #tableCom *ngIf="option.table" [(option)]="option.table"></nm-table>
     <div class="selected">
         <ul>
             <li *ngFor="let item of selected">

@@ -63,6 +63,13 @@ nm-findback {
 nm-modal.findback {
     >article {
         display: flex;
+        >nm-tree {
+            min-width: 180px;
+            display: inline-block;
+            margin-right: 15px;
+            padding-right: 15px;
+            border-right: 1px solid #e8e8e8;
+        }
         >nm-table {
             margin-right: 15px;
         }

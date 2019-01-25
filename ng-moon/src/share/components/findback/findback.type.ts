@@ -3,6 +3,7 @@ import { Subject, Observable } from "rxjs";
 import { TooltipOption } from "../tooltip/tooltip.type";
 import { ModalOption } from "../modal/modal.type";
 import { SelectType, TableOption } from "../table/table.type";
+import { TreeOption } from "../tree/tree.type";
 
 export const FINDBACKMODALOPTION = new InjectionToken<{}>('FINDBACKMODALOPTION');
 
@@ -10,6 +11,7 @@ export interface FindbackOption extends ModalOption {
     label?: string;
     type?: SelectType;
     data?: Observable<Findback[]>;
+    tree?: TreeOption;
     table?: TableOption;
     placeholder?: string;
     tooltip?: TooltipOption;
