@@ -1,4 +1,6 @@
 @import "../../../styles/index";
+$max-width: 800px;
+$max-height: 600px;
 @mixin selected {
     display: flex;
     flex-direction: column;
@@ -61,6 +63,8 @@ nm-findback {
 }
 
 nm-modal.findback {
+    max-width: $max-width;
+    max-height: $max-height;
     >article {
         display: flex;
         >nm-tree {
@@ -69,12 +73,22 @@ nm-modal.findback {
             margin-right: 15px;
             padding-right: 15px;
             border-right: 1px solid #e8e8e8;
+            max-height: $max-height - 65;
+            overflow: auto;
         }
         >nm-table {
             margin-right: 15px;
+            >table {
+                max-height: $max-height - 95;
+                overflow: auto;
+            }
         }
         >.selected {
             @include selected;
+            >ul {
+                max-height: $max-height - 97;
+                overflow: auto;
+            }
         }
         >nm-toolbar {
             margin-top: 15px;

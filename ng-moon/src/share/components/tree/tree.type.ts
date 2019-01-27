@@ -5,6 +5,7 @@ export interface TreeOption {
     nodeClick?: Subject<any>;
     operations?: TreeOperation[];
     data?: Observable<TreeNode[]>;
+    openLevel?: number;
 }
 
 export interface TreeNode {

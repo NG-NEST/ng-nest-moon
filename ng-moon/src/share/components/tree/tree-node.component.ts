@@ -10,7 +10,7 @@ import { Subject } from 'rxjs';
   selector: '[nm-tree-node]',
   templateUrl: './tree-node.component.html',
   encapsulation: ViewEncapsulation.None,
-  inputs: ['option', 'level', 'operations', 'nodeClick'],
+  inputs: ['option', 'level', 'operations', 'nodeClick', 'openLevel'],
 })
 export class TreeNodeComponent implements OnInit {
 
@@ -22,12 +22,15 @@ export class TreeNodeComponent implements OnInit {
 
   nodeClick: Subject<any>;
 
+  openLevel: number;
+
   _childrens: TreeNode[];
 
   constructor(private treeService: TreeService) { }
 
   ngOnInit() {
     this.level = this.level + 1;
+    this.option.showChildren = this.level <= this.openLevel
     this._childrens = _.filter(this.treeService.nodes, x => x.parentId == this.option.id);
   }
 

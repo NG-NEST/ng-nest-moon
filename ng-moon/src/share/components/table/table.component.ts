@@ -20,7 +20,8 @@ export class TableComponent implements OnInit, OnDestroy {
 
     option: TableOption;
 
-    private _default = {
+    private _default: TableOption = {
+        initRequestData: true,
         query: {
             index: 1,
             size: 10,
@@ -44,7 +45,7 @@ export class TableComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.setting.mapToObject(this._default, this.option);
-        this.refresh();
+        if (this.option.initRequestData) this.refresh();
         this.subject();
     }
 
