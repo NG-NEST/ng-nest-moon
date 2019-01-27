@@ -5,6 +5,7 @@ import { TreeOption, TreeNode } from './tree.type';
 import { TreeService } from './tree.service';
 import * as _ from 'lodash';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { SettingService } from 'src/services/setting.service';
 
 @Component({
   selector: 'nm-tree',
@@ -25,18 +26,22 @@ export class TreeComponent implements OnInit {
 
   option: TreeOption;
 
-  private _default: TreeOption;
+  private _default: TreeOption = {
+    openLevel: 1
+  };
 
   _rootNodes: TreeNode[];
 
   level: number = 0;
 
   constructor(
-    private treeService: TreeService,
-    private changeDetectorRef: ChangeDetectorRef
+    public treeService: TreeService,
+    private changeDetectorRef: ChangeDetectorRef,
+    private setting: SettingService
   ) { }
 
   ngOnInit() {
+    this.setting.mapToObject(this._default, this.option);
     if (this.option.data) {
       this.option.data.subscribe(x => {
         if (x && x.length > 0) {

@@ -12,6 +12,7 @@ export interface FindbackOption extends ModalOption {
     type?: SelectType;
     data?: Observable<Findback[]>;
     tree?: TreeOption;
+    tableRelation?: string; 
     table?: TableOption;
     placeholder?: string;
     tooltip?: TooltipOption;

@@ -10,4 +10,15 @@ export class MenuService extends RepositoryService {
     }
 }
 
+@Injectable()
+export class ActionService extends RepositoryService {
+
+    constructor(public http: HttpService) {
+        super(http, { controller: { name: "actions" } });
+    }
+
+    findByMenuId(id){
+        return this.http.get(`${this.option.controller.name}/findByMenuId/${id}`);
+    }
+}
 

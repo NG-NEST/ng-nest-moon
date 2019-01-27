@@ -9,6 +9,8 @@ import { FindbackService } from './findback.service';
 import * as _ from 'lodash';
 import { OverlayRef } from '@angular/cdk/overlay';
 import { filter, distinctUntilKeyChanged, map, debounceTime } from 'rxjs/operators';
+import { TableComponent } from '../table/table.component';
+import { TreeComponent } from '../tree/tree.component';
 
 @Component({
     selector: 'nm-findback',
@@ -36,6 +38,24 @@ export class FindbackComponent implements OnInit, ControlValueAccessor {
     modal: OverlayRef;
 
     @ViewChild("template") templateRef: TemplateRef<any>;
+
+    @ViewChild("treeCom")
+    private _treeCom: TreeComponent;
+    public get treeCom(): TreeComponent {
+        return this._treeCom;
+    }
+    public set treeCom(value: TreeComponent) {
+        this._treeCom = value;
+    }
+
+    @ViewChild("tableCom")
+    private _tableCom: TableComponent;
+    public get tableCom(): TableComponent {
+        return this._tableCom;
+    }
+    public set tableCom(value: TableComponent) {
+        this._tableCom = value;
+    }
 
     private _default: FindbackOption = {
         panelClass: 'findback'
@@ -135,6 +155,20 @@ export class FindbackComponent implements OnInit, ControlValueAccessor {
             ).subscribe(x => {
                 this.value = x;
             })
+        if (this.option.tree && this.option.tree.nodeClick) {
+            if (this.option.tableRelation) {
+                this.option.table.initRequestData = false;
+                this.option.tree.nodeClick.subscribe(x => {
+                    this.option.table.query.filter[this.option.tableRelation] = x.id;
+                    this.tableCom.refresh();
+                })
+            }
+        }
+        // if (this.option.tree && this.option.tree.data) {
+        //     this.option.tree.data.subscribe(x => {
+        //         this.treeCom.treeService.selected = _.find(x, y => y.parentId === null);
+        //     })
+        // }
     }
 
 }

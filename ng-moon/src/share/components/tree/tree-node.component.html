@@ -8,5 +8,5 @@
 </a>
 <ul *ngIf="(_childrens.length>0?true:false) && option.showChildren">
     <li nm-tree-node *ngFor="let item of _childrens" [option]="item" [nodeClick]="nodeClick" [level]="level"
-        [operations]="operations"></li>
+        [operations]="operations" [openLevel]="openLevel"></li>
 </ul>

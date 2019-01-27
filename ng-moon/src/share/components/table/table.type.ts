@@ -20,6 +20,8 @@ export interface TableOption {
     selectSub?: Subject<any>;
 
     selectedSub?: Subject<any>;
+
+    initRequestData?: boolean;
 }
 
 export interface TableColumn {

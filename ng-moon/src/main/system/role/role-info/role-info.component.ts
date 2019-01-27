@@ -8,7 +8,7 @@ import { FormComponent } from 'src/share/components/form/form.component';
 import { NavService } from 'src/services/nav.service';
 import { SettingService } from 'src/services/setting.service';
 import * as _ from 'lodash';
-import { MenuService } from '../../menu/menu.service';
+import { MenuService, ActionService } from '../../menu/menu.service';
 
 @Component({
     selector: 'nm-role-info',
@@ -55,11 +55,17 @@ export class RoleInfoComponent implements OnInit {
                             nodeClick: this.actionsTreeNodeClickSubject,
                             data: this.menuService.findAll({ index: 1, size: 0 }).pipe(map(x => x.list))
                         },
+                        tableRelation: 'menuId',
                         table: {
                             columns: [
                                 { key: 'title', title: '菜单功能' },
                             ],
                             data: this.getActionsData(),
+                            query: {
+                                index: 1,
+                                size: 0,
+                                filter: {}
+                            },
                             selectType: 'multiple'
                         }
                     }),
@@ -79,7 +85,8 @@ export class RoleInfoComponent implements OnInit {
         private roleService: RoleService,
         private navService: NavService,
         private settingService: SettingService,
-        private menuService: MenuService
+        private menuService: MenuService,
+        private actionService: ActionService
     ) { }
 
     ngOnInit() {
@@ -98,16 +105,13 @@ export class RoleInfoComponent implements OnInit {
                 }
             });
         })
-        this.actionsTreeNodeClickSubject.subscribe(x => {
-            console.log(x);
-        })
     }
 
     getActionsData(): Observable<any> {
         return Observable.create(x => {
-            let menusControl = _.find(this.role.controls, x => x.key == 'actions') as any;
-            this.menuService.findAll(menusControl.table.query).pipe(map(x => {
-                x.list = _.map(x.list, y => { return { id: y.id, title: y.label } })
+            let actionsControl = _.find(this.role.controls, x => x.key == 'actions') as any;
+            this.actionService.findAll(actionsControl.table.query).pipe(map(x => {
+                x.list = _.map(x.list, y => { return { id: y.id, title: y.name } })
                 return x
             })).subscribe(y => {
                 x.next(y);
