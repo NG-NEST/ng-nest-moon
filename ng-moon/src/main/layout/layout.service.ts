@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import * as _ from 'lodash';
-import { AuthService } from 'src/services/auths/auth.service';
+import { AuthService, Menu as AuthMenu } from 'src/services/auths/auth.service';
 
 @Injectable()
 export class LayoutService {
@@ -13,7 +13,7 @@ export class LayoutService {
     key: string = 'Layout';
 
     // 菜单数据
-    menus: Menu[] = this.auth.user.menus;
+    menus: Menu[] = this.auth.user.permissions.menus;
 
     // 本地长期存储
     private _local = null;
@@ -183,19 +183,7 @@ export interface Session {
  * @export
  * @interface Menu
  */
-export interface Menu {
-    // 菜单ID
-    id: string;
-    // 菜单父节点ID
-    parentId: string;
-    // 图标
-    icon: string;
-    // 标题
-    label: string;
-    // 路由页面
-    router: string;
-    // path
-    path?: string;
+export interface Menu extends AuthMenu {
     // 子路由页面
     subPage?: string;
 }
