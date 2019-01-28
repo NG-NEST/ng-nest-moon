@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { User, AuthService } from 'src/services/auths/auth.service';
 import { environment } from 'src/environments/environment';
 import { ToastService } from 'src/share/components/toast/toast.service';
+import { userInfo } from 'os';
 
 @Component({
   selector: 'nm-login',
@@ -25,6 +26,8 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.user.account = 'admin';
+    this.user.password = '123qwe';
   }
 
   // 登录

@@ -77,14 +77,10 @@ export class AuthService {
             this.httpService
                 .post(`${this.controllerName}/login`, Object.assign(new User(), user))
                 .subscribe((z) => {
-                    user.token = z.token;
-                    this.user = user;
+                    this.user = { token: z.token, permissions: z.permissions };
                     this.isLoggedIn = true;
-                    forkJoin([this.getMenus()]).subscribe(y => {
-                        this.user = { menus: y[0] }
-                        x.next(z)
-                        x.complete();
-                    }, y => x.error(y))
+                    x.next(z)
+                    x.complete();
                 }, k => {
                     x.error(k)
                 })
@@ -101,47 +97,10 @@ export class AuthService {
     logout(): Observable<boolean> {
         return of(true).pipe(
             tap(() => {
-                this.removeLocal();
-                this.removeSession();
                 this.isLoggedIn = false;
             })
         )
     }
-
-    /**
-     * 获取用户菜单信息
-     * 
-     * @memberof AuthService
-     */
-    getMenus(): Observable<any> {
-        return Observable.create((x) => {
-            this.httpService
-                .get(`${this.controllerName}/menus`)
-                .subscribe((z) => {
-                    x.next(z);
-                }, k => {
-                    x.error(k);
-                }, () => x.complete())
-        })
-    }
-
-    /**
-     * 获取用户功能权限信息
-     * 
-     * @memberof AuthService
-     */
-    getPermissions(): Observable<any> {
-        return Observable.create((x) => {
-            this.httpService
-                .get(`${this.controllerName}/menus`)
-                .subscribe((z) => {
-                    x.next(z);
-                }, k => {
-                    x.error(k);
-                }, () => x.complete())
-        })
-    }
-
 }
 
 /**
@@ -157,8 +116,28 @@ export class User {
     password?: string;
     // token
     token?: string;
-    // 菜单
-    menus?: [];
+    // 权限
+    permissions?: {
+        actions?: Action[],
+        menus?: Menu[]
+    }
+}
+
+export class Action {
+    code: string;
+    icon: string;
+    id: string;
+    menuId: string;
+    name: string;
+}
+
+export class Menu {
+    icon: string;
+    id: string;
+    label: string;
+    parentId: string;
+    path: string;
+    router: string;
 }
 
 

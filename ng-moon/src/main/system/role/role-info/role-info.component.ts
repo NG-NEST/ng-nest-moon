@@ -28,6 +28,10 @@ export class RoleInfoComponent implements OnInit {
         let type = params.get('type');
         if (type === 'update') {
             return this.roleService.findOne(id)
+                .pipe(map(x => {
+                    x.actions = _.map(x.actions, y => { return { id: y.id, title: y.name } });
+                    return x;
+                }));
         } else {
             return Observable.create();
         }
