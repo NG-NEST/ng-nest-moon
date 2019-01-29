@@ -49,7 +49,7 @@ export class AuthService {
             let permissions = await this.getPermissions(this.user);
             return new Promise((x, y) => {
                 this.createToken(this.user.account, this.user.password)
-                    .then(z => x({ token: z, permissions: permissions }))
+                    .then(z => x({ name: this.user.name, token: z, permissions: permissions }))
                     .catch(z => y(z))
             })
         } else {

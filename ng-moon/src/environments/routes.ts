@@ -21,19 +21,19 @@ export const layoutRoutes: Routes = [
     // 如果路由为空就指向配置的默认首页
     { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' },
     // 账号管理的路由模块
-    { path: 'examples', loadChildren: 'src/main/examples/example.module#ExampleModule' },
+    { path: 'examples', loadChildren: 'src/main/examples/example.module#ExampleModule', canLoad: [AuthGuard] },
     // 工作型首页路由模块
-    { path: 'workplace', loadChildren: 'src/main/dashboard/workplace/workplace.module#WorkplaceModule' },
+    { path: 'workplace', loadChildren: 'src/main/dashboard/workplace/workplace.module#WorkplaceModule', canLoad: [AuthGuard] },
     // 数据型首页的路由模块
-    { path: 'analysis', loadChildren: 'src/main/dashboard/analysis/analysis.module#AnalysisModule' },
+    { path: 'analysis', loadChildren: 'src/main/dashboard/analysis/analysis.module#AnalysisModule', canLoad: [AuthGuard] },
     // 账号管理的路由模块
-    { path: 'account', loadChildren: 'src/main/system/account/account.module#AccountModule' },
+    { path: 'account', loadChildren: 'src/main/system/account/account.module#AccountModule', canLoad: [AuthGuard] },
     // 角色管理的路由模块
-    { path: 'role', loadChildren: 'src/main/system/role/role.module#RoleModule' },
+    { path: 'role', loadChildren: 'src/main/system/role/role.module#RoleModule', canLoad: [AuthGuard] },
     // 菜单管理的路由模块
-    { path: 'menu', loadChildren: 'src/main/system/menu/menu.module#MenuModule' },
+    { path: 'menu', loadChildren: 'src/main/system/menu/menu.module#MenuModule', canLoad: [AuthGuard] },
     // 菜单管理的路由模块
-    { path: 'organization', loadChildren: 'src/main/system/organization/organization.module#OrganizationModule' },
+    { path: 'organization', loadChildren: 'src/main/system/organization/organization.module#OrganizationModule', canLoad: [AuthGuard] },
     // 错误的路由或不存在的路由指向的模块department-structural role-manager
     { path: '**', loadChildren: 'src/main/exception/404.module#Exception404Module' }
 ]

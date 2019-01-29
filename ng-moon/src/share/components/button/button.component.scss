@@ -58,4 +58,15 @@ nm-button {
             color: white;
         }
     }
+    &.disabled {
+        color: #e8e8e8;
+        pointer-events: none;
+        >p>button {
+            border-color: #e8e8e8;
+            background-color: white;
+            >span[class*="icon-"] {
+                color: #e8e8e8;
+            }
+        }
+    }
 }

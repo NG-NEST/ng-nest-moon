@@ -28,7 +28,7 @@ const entryComponents = [
 
 // 服务提供者
 const providers = [
-  LayoutService
+  // LayoutService
 ]
 
 @NgModule({

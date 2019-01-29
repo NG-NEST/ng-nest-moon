@@ -39,10 +39,10 @@ import { TreeComponent } from './components/tree/tree.component';
 import { TreeNodeComponent } from './components/tree/tree-node.component';
 import { CoverPipe } from './pipes/cover.pipe';
 import { FindbackComponent } from './components/findback/findback.component';
-import { FindbackService } from './components/findback/findback.service';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { AddItemComponent } from './components/add-item/add-item.component';
 import { AddItemService } from './components/add-item/add-item.service';
+import { ActionDirective } from './pipes/action.directive';
 
 // 声明模块中拥有的视图类
 const components = [
@@ -76,7 +76,8 @@ const components = [
     FindbackComponent,
     AddItemComponent,
 
-    CoverPipe
+    CoverPipe,
+    ActionDirective
 ]
 
 // 能够动态创建的视图类

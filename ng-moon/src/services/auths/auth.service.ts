@@ -75,9 +75,9 @@ export class AuthService {
     login(user: User): Observable<any> {
         return Observable.create((x) => {
             this.httpService
-                .post(`${this.controllerName}/login`, Object.assign(new User(), user))
+                .post(`${this.controllerName}/login`, user)
                 .subscribe((z) => {
-                    this.user = { token: z.token, permissions: z.permissions };
+                    this.user = Object.assign(user, z);
                     this.isLoggedIn = true;
                     x.next(z)
                     x.complete();
@@ -111,16 +111,18 @@ export class AuthService {
  */
 export class User {
     // 用户名
-    account?: string;
+    account?: string = '';
     // 密码
-    password?: string;
+    password?: string = '';
     // token
-    token?: string;
+    token?: string = '';
+    // 姓名
+    name?: string = '';
     // 权限
     permissions?: {
         actions?: Action[],
         menus?: Menu[]
-    }
+    } = { actions: [], menus: [] }
 }
 
 export class Action {
