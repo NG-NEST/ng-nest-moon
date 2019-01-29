@@ -73,7 +73,6 @@ export class AccountComponent implements OnInit {
 
   getData(): Observable<any> {
     return Observable.create(x => {
-      console.log(this.table.query)
       this.account.findAll(this.table.query).subscribe(y => {
         x.next(y);
       })

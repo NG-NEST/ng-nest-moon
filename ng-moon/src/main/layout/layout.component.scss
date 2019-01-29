@@ -64,7 +64,7 @@ nm-layout {
         justify-content: space-between;
         padding: 0 12px;
         box-sizing: border-box;
-        .logo {
+        >.logo {
             display: flex;
             align-items: center;
             img {
@@ -74,8 +74,13 @@ nm-layout {
                 margin-left: 10px;
             }
         }
-        .nav {
-            [class^="icon-"] {
+        >.nav {
+            display: flex;
+            align-items: center;
+            >span {
+                cursor: default;
+            }
+            >[class^="icon-"] {
                 font-size: 20px;
                 padding: 6px 12px;
                 border-radius: 2px;
@@ -85,6 +90,10 @@ nm-layout {
                     // color: $sider-node-hover-color;
                     background-color: grba(0, 0, 0, .2);
                 }
+            }
+            >.name {
+                font-size: 12px;
+                padding: 6px 12px 6px 0;
             }
         }
     }

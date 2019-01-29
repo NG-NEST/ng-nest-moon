@@ -6,14 +6,16 @@ import { filter } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { AuthService, Menu as AuthMenu } from 'src/services/auths/auth.service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class LayoutService {
 
     // 当前存储关键字
     key: string = 'Layout';
 
     // 菜单数据
-    menus: Menu[] = this.auth.user.permissions.menus;
+    public get menus(): Menu[] {
+        return this.auth.user.permissions.menus;
+    }
 
     // 本地长期存储
     private _local = null;

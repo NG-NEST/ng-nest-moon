@@ -17,40 +17,16 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
     constructor(public authService: AuthService, public router: Router) { }
 
-    /**
-     * 一级路由
-     * 
-     * @param {ActivatedRouteSnapshot} route 
-     * @param {RouterStateSnapshot} state 
-     * @returns {(boolean | Observable<boolean> | Promise<boolean>)} 
-     * @memberof AuthGuard
-     */
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
-        let url: string = state.url;
-        return this.checkLogin(url);
+        return this.checkLogin(state.url);
     }
 
-    /**
-     * 子路由
-     * 
-     * @param {ActivatedRouteSnapshot} childRoute 
-     * @param {RouterStateSnapshot} state 
-     * @returns {(boolean | Observable<boolean> | Promise<boolean>)} 
-     * @memberof AuthGuard
-     */
     canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
         return this.canActivate(childRoute, state)
     }
 
-    /**
-     * 检查用户登录
-     * 
-     * @param {string} url 
-     * @returns 
-     * @memberof AuthGuard
-     */
     checkLogin(url: string) {
-        if (this.authService.isLoggedIn) {
+        if (this.authService.isLoggedIn || this.authService.user.token) {
             return true;
         }
         this.authService.redirectUrl = url;
@@ -58,30 +34,16 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
         return false;
     }
 
-    /**
-     * 检查模块权限
-     * 
-     * @param {Route} route 
-     * @returns 
-     * @memberof AuthGuard
-     */
     checkModule(route: Route) {
-        if (route.path === environment.layout) { return true; };
+        if (route.path === environment.layout ||
+            _.find(this.authService.user.permissions.menus, x => x.router === route.path)) { return true; };
         this.router.navigate(['index/no-auth']);
         return false;
     }
 
-    /**
-     * 检查用户登录与否
-     * 
-     * @param {Route} route 
-     * @returns {(boolean | Observable<boolean> | Promise<boolean>)} 
-     * @memberof AuthGuard
-     */
     canLoad(route: Route): boolean | Observable<boolean> | Promise<boolean> {
         let url = `/${route.path}`;
         return this.checkLogin(url) && this.checkModule(route);
     }
-
 
 }
