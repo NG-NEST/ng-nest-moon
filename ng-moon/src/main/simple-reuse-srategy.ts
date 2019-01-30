@@ -34,7 +34,7 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
      * @memberof SimpleReuseStrategy
      */
     public store(route: ActivatedRouteSnapshot, handle: DetachedRouteHandle): void {
-        if(handle==null) return;
+        if (handle == null) return;
         if (SimpleReuseStrategy.waitDelete && SimpleReuseStrategy.waitDelete == this.getRouteUrl(route)) {
             //如果待删除是当前路由则不存储快照
             SimpleReuseStrategy.waitDelete = null
@@ -93,7 +93,7 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
     private getRouteUrl(route: ActivatedRouteSnapshot) {
         return route['_routerState'].url;
     }
-    
+
     /**
      * 删除复用的路由
      * 
@@ -101,11 +101,16 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
      * @param {string} name 
      * @memberof SimpleReuseStrategy
      */
-    public static deleteRouteSnapshot(name: string): void {
-        if (SimpleReuseStrategy.handlers[name]) {
-            delete SimpleReuseStrategy.handlers[name];
-        } else {
+    public static deleteRouteSnapshot(name?: string): void {
+        if (name) {
+            if (SimpleReuseStrategy.handlers[name]) {
+                delete SimpleReuseStrategy.handlers[name];
+            }
             SimpleReuseStrategy.waitDelete = name;
+        } else {
+            for (let key in SimpleReuseStrategy.handlers) {
+                delete SimpleReuseStrategy.handlers[key];
+            }
         }
     }
 }

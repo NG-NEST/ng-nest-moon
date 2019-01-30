@@ -8,7 +8,7 @@ import * as _ from 'lodash';
  * @export
  * @class SettingsService
  */
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class SettingService {
 
   constructor() { }
