@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, of, forkJoin } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { HttpService } from '../http.service';
 import { SettingService } from '../setting.service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthService {
 
     // 存储的KEY
@@ -38,20 +38,10 @@ export class AuthService {
         if (this._user.rememberClient) this.settingService.setLocal(this.key, this._user);
     }
 
-    /**
-     * 移除KEY
-     * 
-     * @memberof AuthService
-     */
     removeLocal() {
         this.settingService.removeLocal(this.key);
     }
 
-    /**
-     * 移除KEY
-     * 
-     * @memberof AuthService
-     */
     removeSession() {
         this.settingService.removeSession(this.key);
     }
@@ -97,6 +87,8 @@ export class AuthService {
     logout(): Observable<boolean> {
         return of(true).pipe(
             tap(() => {
+                this.removeLocal();
+                this.removeSession();
                 this.isLoggedIn = false;
             })
         )

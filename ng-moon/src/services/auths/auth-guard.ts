@@ -12,7 +12,7 @@ import * as _ from "lodash";
  * @implements {CanActivate}
  * @implements {CanActivateChild}
  */
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
     constructor(public authService: AuthService, public router: Router) { }

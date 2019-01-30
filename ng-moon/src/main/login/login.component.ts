@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { User, AuthService } from 'src/services/auths/auth.service';
 import { environment } from 'src/environments/environment';
 import { ToastService } from 'src/share/components/toast/toast.service';
-import { userInfo } from 'os';
+import { SimpleReuseStrategy } from '../simple-reuse-srategy';
 
 @Component({
   selector: 'nm-login',
@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
       if (this.user.account && this.user.password) {
         this.authService.login(this.user).subscribe(x => {
           if (this.authService.isLoggedIn) {
+
             let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : `/${environment.layout}`;
             this.router.navigate([redirect]);
           }

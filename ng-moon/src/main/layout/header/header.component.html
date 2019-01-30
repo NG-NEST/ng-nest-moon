@@ -3,8 +3,15 @@
     <span class="title">NG-NEST</span>
 </div>
 <div class="nav">
-    <span class="icon-search" title="搜索"></span>
-    <span class="icon-message-circle" title="消息"></span>
-    <span class="icon-user" title="用户"></span>
-    <span class="name">{{auth.user.name}}</span>
+    <p>
+        <span class="icon-message-circle" title="消息"></span>
+    </p>
+    <p>
+        <span class="icon-user" title="用户"></span>
+        <span class="info">{{auth.user.name}}</span>
+    </p>
+    <p *ngIf="auth.user.name" (click)="action('logout')">
+        <span class="icon-log-out " title="登出"></span>
+        <span class="info">登出</span>
+    </p>
 </div>

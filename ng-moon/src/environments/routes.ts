@@ -34,6 +34,8 @@ export const layoutRoutes: Routes = [
     { path: 'menu', loadChildren: 'src/main/system/menu/menu.module#MenuModule', canLoad: [AuthGuard] },
     // 菜单管理的路由模块
     { path: 'organization', loadChildren: 'src/main/system/organization/organization.module#OrganizationModule', canLoad: [AuthGuard] },
+    // 没有权限的显示模块
+    { path: 'no-auth', loadChildren: 'src/main/no-auth/no-auth.module#NoAuthModule' },
     // 错误的路由或不存在的路由指向的模块department-structural role-manager
     { path: '**', loadChildren: 'src/main/exception/404.module#Exception404Module' }
 ]

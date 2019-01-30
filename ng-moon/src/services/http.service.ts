@@ -12,7 +12,7 @@ import { SettingService } from './setting.service';
  * @class HttpService
  */
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class HttpService {
     constructor(
         public http: HttpClient,

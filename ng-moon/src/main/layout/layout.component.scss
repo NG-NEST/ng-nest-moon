@@ -80,20 +80,26 @@ nm-layout {
             >span {
                 cursor: default;
             }
-            >[class^="icon-"] {
-                font-size: 20px;
+            >p {
+                display: flex;
+                align-items: center;
                 padding: 6px 12px;
                 border-radius: 2px;
-                display: inline-block;
-                transition: color $transition-duration, background-color $transition-duration;
-                &:hover {
-                    // color: $sider-node-hover-color;
-                    background-color: grba(0, 0, 0, .2);
+                >span {
+                    cursor: default;
+                    &.info {
+                        font-size: 12px;
+                        padding-left: 5px;
+                    }
+                    &[class^="icon-"] {
+                        font-size: 18px;
+                        display: inline-block;
+                    }
                 }
-            }
-            >.name {
-                font-size: 12px;
-                padding: 6px 12px 6px 0;
+                &:hover {
+                    background-color: lighten($primary-color, 10%);
+                    transition: color $transition-duration, background-color $transition-duration;
+                }
             }
         }
     }
@@ -136,8 +142,9 @@ nm-layout {
                     font-size: 16px;
                 }
                 .close {
-                    width: 28px;
-                    height: 28px;
+                    width: 20px;
+                    height: 20px;
+                    margin-right: 4px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
