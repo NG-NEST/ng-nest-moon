@@ -29,7 +29,7 @@ export class TableComponent implements OnInit, OnDestroy {
         }
     }
 
-    private _resultList: PaginationOption = {
+    _resultList: PaginationOption = {
         handler: new Subject<PaginationResult>()
     };
 

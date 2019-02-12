@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, ObjectID } from 'typeorm';
 import { User } from '../entities/user.entity';
 import { RepositoryService } from '../../../common/services/repository.service';
-import { ResultList } from 'common/interfaces/result.interface';
+import { ResultList } from '../../../common/interfaces/result.interface';
 
 export interface UserQuery {
     organizationId: string;

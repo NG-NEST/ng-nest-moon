@@ -11,7 +11,7 @@ import { PopoverOption, POPOVEROPTION, PopoverMenu } from './popover.type';
 })
 export class PopoverComponent implements OnInit {
 
-  constructor(@Inject(POPOVEROPTION) private option: PopoverOption) { }
+  constructor(@Inject(POPOVEROPTION) public option: PopoverOption) { }
 
   ngOnInit() {
 

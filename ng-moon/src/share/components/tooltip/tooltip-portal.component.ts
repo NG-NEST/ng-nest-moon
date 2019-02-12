@@ -11,7 +11,7 @@ import { TOOLTIPPORTALOPTION, TooltipPortalOption } from './tooltip.type';
 })
 export class TooltipPortalComponent implements OnInit {
 
-  constructor(@Inject(TOOLTIPPORTALOPTION) private option: TooltipPortalOption) { }
+  constructor(@Inject(TOOLTIPPORTALOPTION) public option: TooltipPortalOption) { }
 
   ngOnInit() {
     

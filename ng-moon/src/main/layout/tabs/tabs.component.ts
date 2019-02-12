@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 export class TabsComponent implements OnInit {
 
   constructor(
-    private layoutService: LayoutService,
+    public layoutService: LayoutService,
     private router: Router
   ) { }
 

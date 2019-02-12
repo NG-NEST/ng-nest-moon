@@ -15,7 +15,7 @@ export class ModalComponent implements OnInit {
   @ViewChild('portalOutlet') portalOutlet: CdkPortalOutlet;
 
   constructor(
-    @Inject(MODALOPTION) private option: ModalOption,
+    @Inject(MODALOPTION) public option: ModalOption,
     private ele: ElementRef,
     private renderer: Renderer2,
     private viewContainerRef: ViewContainerRef

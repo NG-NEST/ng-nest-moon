@@ -1,6 +1,6 @@
 import { Injectable, Get, Param, Post, Body, Put, Delete, ParseIntPipe, Query } from "@nestjs/common";
 import { Id, RepositoryService } from "./repository.service";
-import { ResultList } from "common/interfaces/result.interface";
+import { ResultList } from "../../common/interfaces/result.interface";
 
 @Injectable()
 export class ControllerService<T extends Id> {

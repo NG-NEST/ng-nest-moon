@@ -26,7 +26,7 @@ export class TreeNodeComponent implements OnInit {
 
   _childrens: TreeNode[];
 
-  constructor(private treeService: TreeService) { }
+  constructor(public treeService: TreeService) { }
 
   ngOnInit() {
     this.level = this.level + 1;

@@ -33,7 +33,7 @@ export class SelectPortalComponent implements OnInit {
 
   private _category: Select[] = [];
 
-  constructor(@Inject(SELECTPORTALOPTION) private option: SelectPortalOption) { }
+  constructor(@Inject(SELECTPORTALOPTION) public option: SelectPortalOption) { }
 
   ngOnInit() {
     this.setCategory();
