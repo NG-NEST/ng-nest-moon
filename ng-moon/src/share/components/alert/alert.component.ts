@@ -11,7 +11,7 @@ import { AlertOption, ALERTOPTION } from './alert.type';
 })
 export class AlertComponent implements OnInit {
 
-  constructor(@Inject(ALERTOPTION) private option: AlertOption) {
+  constructor(@Inject(ALERTOPTION) public option: AlertOption) {
 
   }
 

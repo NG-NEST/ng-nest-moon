@@ -11,7 +11,7 @@ import { ToastOption, TOASTOPTION } from './toast.type';
 })
 export class ToastComponent implements OnInit {
 
-  constructor(@Inject(TOASTOPTION) private option: ToastOption) { }
+  constructor(@Inject(TOASTOPTION) public option: ToastOption) { }
 
   ngOnInit() {
     setTimeout(() => {

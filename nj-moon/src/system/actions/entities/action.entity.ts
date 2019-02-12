@@ -1,5 +1,5 @@
 
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, PrimaryColumn, ManyToMany } from 'typeorm';
+import { Entity, Column, ManyToOne, PrimaryColumn, ManyToMany } from 'typeorm';
 import { Menu } from '../../menus/entities/menu.entity';
 import { Role } from '../../roles/entities/role.entity';
 

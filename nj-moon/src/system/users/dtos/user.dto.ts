@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsInt } from 'class-validator';
 import { ApiErrorCode } from '../../../common/enums/api-error-code.enum';
-import { Role } from 'system/roles/entities/role.entity';
-import { Organization } from 'system/organization/entities/organization.entity';
+import { Role } from '../../../system/roles/entities/role.entity';
+import { Organization } from '../../../system/organization/entities/organization.entity';
 
 export class UserDto {
     @IsNotEmpty({ message: '用户姓名是必不可少的', context: { errorCode: ApiErrorCode.USER_NAME_INVALID } })

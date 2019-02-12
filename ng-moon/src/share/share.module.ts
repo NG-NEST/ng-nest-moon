@@ -16,6 +16,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { ButtonsComponent } from './components/button/buttons.component';
 import { RadioComponent } from './components/radio/radio.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { PortalComponent } from './components/portal/portal.component';
 import { PortalService } from './components/portal/portal.service';
 import { ToastComponent } from './components/toast/toast.component';
 import { ToastService } from './components/toast/toast.service';
@@ -52,6 +53,7 @@ const components = [
     ScrollComponent,
     InnerComponent,
     PanelComponent,
+    PortalComponent,
     ToolbarComponent,
     SearchComponent,
     TableComponent,

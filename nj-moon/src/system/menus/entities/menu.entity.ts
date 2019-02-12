@@ -1,5 +1,5 @@
 
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, Tree, TreeChildren, TreeParent, TreeLevelColumn, PrimaryColumn } from 'typeorm';
+import { Entity, Column, ManyToOne, OneToMany, PrimaryColumn } from 'typeorm';
 import { Action } from '../../actions/entities/action.entity';
 
 @Entity("system_menu")

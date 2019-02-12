@@ -4,7 +4,7 @@ import { Repository, getManager, EntityManager, Like, ObjectID } from 'typeorm';
 import { RepositoryService } from '../../../common/services/repository.service';
 import { Menu } from '../entities/menu.entity';
 import * as _ from 'lodash';
-import { Action } from 'system/actions/entities/action.entity';
+import { Action } from '../../../system/actions/entities/action.entity';
 
 @Injectable()
 export class MenusService extends RepositoryService<Menu> {
