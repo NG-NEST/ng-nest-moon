@@ -1,7 +1,7 @@
 <a [ngStyle]="{'padding-left.px':14*level}" (click)="click($event)" [ngClass]="{selected: treeService.selected && treeService.selected.id === option.id}">
     <span (click)="toggle($event, option)" [ngStyle]="{'visibility':(_childrens.length>0?true:false)?'':'hidden'}"
         class="icon-{{option.showChildren?'chevron-down':'chevron-right'}}"></span>
-    <label>{{option.label}}</label>
+    <label>{{option.label}} <span *ngIf="option.assist">{{option.assist}}</span></label>
     <nm-buttons *ngIf="operations">
         <nm-button class="outline" *ngFor="let operation of operations" [option]="operation" (click)="action($event, operation)"></nm-button>
     </nm-buttons>

@@ -3,7 +3,9 @@
         <tr>
             <th>序号</th>
             <th class="operations" *ngIf="option.operations?.length>0">操作</th>
-            <th *ngFor="let item of option.columns">{{item.title}}</th>
+            <ng-container *ngFor="let item of option.columns">
+                <th *ngIf="!item.hidden">{{item.title}}</th>
+            </ng-container>
             <th class="select" *ngIf="option.selectType">选择</th>
         </tr>
     </thead>
@@ -13,7 +15,10 @@
             <td class="operations" *ngIf="option.operations?.length>0">
                 <span *ngFor="let operation of option.operations" class="{{operation.icon}}" (click)="handler(operation, item)"></span>
             </td>
-            <td *ngFor="let col of option.columns">{{item[col.key]}}</td>
+            <ng-container *ngFor="let col of option.columns">
+                <td *ngIf="!col.hidden">{{item[col.key]}}</td>
+            </ng-container>
+
             <th class="select" *ngIf="option.selectType">
                 <nm-checkbox [(ngModel)]="item.$selected" (click)="action('checkbox', item, $event)"></nm-checkbox>
             </th>

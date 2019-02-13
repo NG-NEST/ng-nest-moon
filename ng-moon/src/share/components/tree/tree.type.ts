@@ -13,7 +13,8 @@ export interface TreeNode {
     label: string;
     parentId: string | number;
     path: string;
-    showChildren?: boolean
+    showChildren?: boolean;
+    assist?: string;
 }
 
 export interface TreeOperation extends ButtonOption {

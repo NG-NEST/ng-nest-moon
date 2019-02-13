@@ -67,27 +67,36 @@ nm-modal.findback {
     max-height: $max-height;
     >article {
         display: flex;
-        >nm-tree {
-            min-width: 180px;
-            display: inline-block;
-            margin-right: 15px;
-            padding-right: 15px;
-            border-right: 1px solid #e8e8e8;
-            max-height: $max-height - 65;
-            overflow: auto;
-        }
-        >nm-table {
-            margin-right: 15px;
-            >table {
-                max-height: $max-height - 95;
+        flex-direction: column;
+        >.content {
+            display: flex;
+            >nm-tree {
+                min-width: 180px;
+                display: inline-block;
+                margin-right: 15px;
+                padding-right: 15px;
+                border-right: 1px solid #e8e8e8;
+                max-height: $max-height - 65;
                 overflow: auto;
             }
-        }
-        >.selected {
-            @include selected;
-            >ul {
-                max-height: $max-height - 97;
-                overflow: auto;
+            >nm-table {
+                
+                >table {
+                    max-height: $max-height - 95;
+                    overflow: auto;
+                }
+            }
+            >.selected {
+                margin-left: 15px;
+                @include selected;
+                >ul {
+                    max-height: $max-height - 97;
+                    overflow: auto;
+                }
+            }
+            >nm-toolbar {
+                margin-top: 15px;
+                justify-content: flex-end;
             }
         }
         >nm-toolbar {

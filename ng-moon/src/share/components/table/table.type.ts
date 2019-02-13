@@ -29,6 +29,8 @@ export interface TableColumn {
     key?: string;
 
     title?: string;
+
+    hidden?: boolean;
 }
 
 export interface TableOperation {
