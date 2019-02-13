@@ -8,7 +8,7 @@ import { FindbackOption } from './findback.type';
 import { FindbackService } from './findback.service';
 import * as _ from 'lodash';
 import { OverlayRef } from '@angular/cdk/overlay';
-import { filter, distinctUntilKeyChanged, map, debounceTime } from 'rxjs/operators';
+import { distinctUntilKeyChanged, map, debounceTime } from 'rxjs/operators';
 import { TableComponent } from '../table/table.component';
 import { TreeComponent } from '../tree/tree.component';
 
@@ -107,6 +107,12 @@ export class FindbackComponent implements OnInit, ControlValueAccessor {
         if (this.option.table.selectedSub == null) {
             this.option.table.selectedSub = new Subject<any>();
         }
+        if (this.option.tree && this.option.tree.data) {
+            this.option.tree.data = this.option.tree.data.pipe(map(x => _.map(x, y => {
+                this.action('changeAssist', y);
+                return y
+            })))
+        }
         this.subject();
     }
 
@@ -131,6 +137,14 @@ export class FindbackComponent implements OnInit, ControlValueAccessor {
                 this.value = _.cloneDeep(this.selected);
                 this.modal.detach();
                 break;
+            case 'changeAssist':
+                if (this.selected
+                    && this.selected.length > 0
+                    && this.selected[0].hasOwnProperty(this.option.tableRelation)) {
+                    let len = _.filter(this.selected, z => z[this.option.tableRelation] == item.id).length;
+                    item.assist = len ? `${len}` : null;
+                }
+                break;
         }
     }
 
@@ -140,12 +154,15 @@ export class FindbackComponent implements OnInit, ControlValueAccessor {
                 this.selected = x;
             } else {
                 if (x.$selected == true) {
-                    this.selected = _.unionBy(this.selected, [x], 'id')
+                    this.selected = _.unionBy(this.selected, [x], 'id');
                 } else {
-                    _.remove(this.selected, (y: any) => y.id == x.id)
+                    _.remove(this.selected, (y: any) => y.id == x.id);
                 }
             }
             this.option.table.selectedSub.next(this.selected);
+            if (this.option.tree && this.option.tree.data) {
+                this.action('changeAssist', _.find(this.treeCom.treeService.nodes, y => y.id == this.treeCom.treeService.selected.id));
+            }
         })
         if (this.form) this.form.valueChanges
             .pipe(

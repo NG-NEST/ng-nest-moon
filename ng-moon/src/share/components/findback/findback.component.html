@@ -1,5 +1,5 @@
 <nm-button [option]="{icon:'icon-search'}" (click)="action('openModal')"></nm-button>
-<div class="selected">
+<div class="selected" *ngIf="!option.tree">
     <ul>
         <li *ngFor="let item of value">
             <span class="title">{{item.title}}</span>
@@ -9,20 +9,29 @@
 </div>
 
 <ng-template #template>
-    <nm-tree #treeCom *ngIf="option.tree" [(option)]="option.tree"></nm-tree>
-    <nm-table #tableCom *ngIf="option.table" [(option)]="option.table"></nm-table>
-    <div class="selected">
-        <ul>
-            <li *ngFor="let item of selected">
-                <span class="title">{{item.title}}</span>
-                <span class="icon-x" (click)="action('remove', item)"></span>
-            </li>
-        </ul>
-        <nm-toolbar class="form">
-            <nm-buttons>
-                <nm-button [option]="{icon:'icon-x', title:'取消'}" (click)="action('cancel')"></nm-button>
-                <nm-button class="orange" [option]="{icon:'icon-check', title:'确认'}" (click)="action('sure')"></nm-button>
-            </nm-buttons>
-        </nm-toolbar>
+    <div class="content">
+        <nm-tree #treeCom *ngIf="option.tree" [(option)]="option.tree"></nm-tree>
+        <nm-table #tableCom *ngIf="option.table" [(option)]="option.table"></nm-table>
+        <div class="selected" *ngIf="!option.tree">
+            <ul>
+                <li *ngFor="let item of selected">
+                    <span class="title">{{item.title}}</span>
+                    <span class="icon-x" (click)="action('remove', item)"></span>
+                </li>
+            </ul>
+            <ng-container *ngTemplateOutlet="toolsTemp"></ng-container>
+        </div>
     </div>
+    <ng-container *ngIf="option.tree">
+        <ng-container *ngTemplateOutlet="toolsTemp"></ng-container>
+    </ng-container>
+</ng-template>
+
+<ng-template #toolsTemp>
+    <nm-toolbar class="form">
+        <nm-buttons>
+            <nm-button [option]="{icon:'icon-x', title:'取消'}" (click)="action('cancel')"></nm-button>
+            <nm-button class="orange" [option]="{icon:'icon-check', title:'确认'}" (click)="action('sure')"></nm-button>
+        </nm-buttons>
+    </nm-toolbar>
 </ng-template>

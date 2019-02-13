@@ -6,7 +6,7 @@ module.exports = {
     "username": "root",
     "password": "123qwe",
     "database": "nj-nest",
-    "entities": [`dist/**/**.entity{.ts,.js}`],
+    "entities": [`${SOURCE_PATH}/**/**.entity{.ts,.js}`],
     "synchronize": true,
     "logging": [
         "query",
