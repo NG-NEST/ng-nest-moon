@@ -1,18 +1,30 @@
 <nm-button [option]="{icon:'icon-search'}" (click)="action('openModal')"></nm-button>
-<div class="selected" *ngIf="!option.tree">
-    <ul>
-        <li *ngFor="let item of value">
-            <span class="title">{{item.title}}</span>
-            <span class="icon-x" (click)="action('removeValue', item)"></span>
-        </li>
-    </ul>
-</div>
+
+<ng-container [ngSwitch]="option.layoutType">
+    <ng-container *ngSwitchCase="'table'">
+        <ng-container *ngTemplateOutlet="selectedTemp"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'tree'">
+        <ng-container *ngTemplateOutlet="selectedTemp"></ng-container>
+    </ng-container>
+</ng-container>
+
+<ng-template #selectedTemp>
+    <div class="selected">
+        <ul>
+            <li *ngFor="let item of value">
+                <span class="title">{{item.title}}</span>
+                <span class="icon-x" (click)="action('removeValue', item)"></span>
+            </li>
+        </ul>
+    </div>
+</ng-template>
 
 <ng-template #template>
-    <div class="content">
+    <div class="content {{option.layoutType}}">
         <nm-tree #treeCom *ngIf="option.tree" [(option)]="option.tree"></nm-tree>
         <nm-table #tableCom *ngIf="option.table" [(option)]="option.table"></nm-table>
-        <div class="selected" *ngIf="!option.tree">
+        <div class="selected" *ngIf="option.layoutType!= 'treeAndTable'">
             <ul>
                 <li *ngFor="let item of selected">
                     <span class="title">{{item.title}}</span>
@@ -22,7 +34,7 @@
             <ng-container *ngTemplateOutlet="toolsTemp"></ng-container>
         </div>
     </div>
-    <ng-container *ngIf="option.tree">
+    <ng-container *ngIf="option.layoutType == 'treeAndTable'">
         <ng-container *ngTemplateOutlet="toolsTemp"></ng-container>
     </ng-container>
 </ng-template>
