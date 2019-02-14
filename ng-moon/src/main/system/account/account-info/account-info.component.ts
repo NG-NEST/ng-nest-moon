@@ -74,13 +74,17 @@ export class AccountInfoComponent implements OnInit {
                     new FindbackControl({
                         key: "organizations", col: 12, title: '选择组织机构',
                         type: 'multiple',
-                        table: {
-                            columns: [
-                                { key: 'title', title: '组织机构' },
-                            ],
-                            data: this.getOrganizationsData(),
-                            selectType: 'multiple'
-                        }
+                        tree: {
+                            nodeClick: new Subject(),
+                            data: this.organizationService.findAll({ index: 1, size: 0 }).pipe(map(x => x.list))
+                        },
+                        // table: {
+                        //     columns: [
+                        //         { key: 'title', title: '组织机构' },
+                        //     ],
+                        //     data: this.getOrganizationsData(),
+                        //     selectType: 'multiple'
+                        // }
                     }),
                 ]
             })

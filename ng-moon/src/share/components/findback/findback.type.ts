@@ -7,12 +7,15 @@ import { TreeOption } from "../tree/tree.type";
 
 export const FINDBACKMODALOPTION = new InjectionToken<{}>('FINDBACKMODALOPTION');
 
+export enum LayoutType { Table = 'table', Tree = 'tree', TreeAndTable = 'treeAndTable' }
+
 export interface FindbackOption extends ModalOption {
     label?: string;
     type?: SelectType;
+    layoutType?: LayoutType;
     data?: Observable<Findback[]>;
     tree?: TreeOption;
-    tableRelation?: string; 
+    tableRelation?: string;
     table?: TableOption;
     placeholder?: string;
     tooltip?: TooltipOption;

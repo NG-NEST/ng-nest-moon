@@ -4,6 +4,7 @@ import { Repository, ObjectID } from 'typeorm';
 import { User } from '../entities/user.entity';
 import { RepositoryService } from '../../../common/services/repository.service';
 import { ResultList } from '../../../common/interfaces/result.interface';
+import * as _ from 'lodash';
 
 export interface UserQuery {
     organizationId: string;
@@ -23,12 +24,22 @@ export class UsersService extends RepositoryService<User> {
         return new Promise<ResultList<User>>(async (x) => {
             let querys = this.usersRepository
                 .createQueryBuilder('user')
-                .leftJoinAndSelect("user.organizations", "organization")
+                .leftJoin("user.organizations", "organization")
             if (query.organizationId) {
                 querys = querys.where("organization.id = :id", { id: query.organizationId })
             }
+            let users = await querys.skip(size * (index - 1)).take(size).getMany();
             let result: ResultList<User> = {
-                list: await querys.skip(size * (index - 1)).take(size).getMany(),
+                list: await this.usersRepository.find({
+                    where: _.map(users, x => ({ id: x.id })),
+                    relations: ['roles', 'organizations'],
+                    // join: {
+                    //     alias: "user",
+                    //     leftJoinAndSelect: {
+
+                    //     }
+                    // }
+                }),
                 count: await querys.getCount(),
                 query: {
                     index: index,

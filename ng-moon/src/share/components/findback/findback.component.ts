@@ -4,7 +4,7 @@ import {
 import { NG_VALUE_ACCESSOR, FormGroup, ControlValueAccessor } from '@angular/forms';
 import { noop, Subject } from 'rxjs';
 import { SettingService } from 'src/services/setting.service';
-import { FindbackOption } from './findback.type';
+import { FindbackOption, LayoutType } from './findback.type';
 import { FindbackService } from './findback.service';
 import * as _ from 'lodash';
 import { OverlayRef } from '@angular/cdk/overlay';
@@ -58,7 +58,8 @@ export class FindbackComponent implements OnInit, ControlValueAccessor {
     }
 
     private _default: FindbackOption = {
-        panelClass: 'findback'
+        panelClass: 'findback',
+        layoutType: LayoutType.Table
     };
 
     private _value: any;
@@ -101,10 +102,10 @@ export class FindbackComponent implements OnInit, ControlValueAccessor {
     ngOnInit() {
         this.setting.mapToObject(this._default, this.option);
         this.option.templateRef = this.templateRef;
-        if (this.option.table.selectSub == null) {
+        if (this.option.table && this.option.table.selectSub == null) {
             this.option.table.selectSub = new Subject<any>();
         }
-        if (this.option.table.selectedSub == null) {
+        if (this.option.table && this.option.table.selectedSub == null) {
             this.option.table.selectedSub = new Subject<any>();
         }
         if (this.option.tree && this.option.tree.data) {
@@ -113,6 +114,9 @@ export class FindbackComponent implements OnInit, ControlValueAccessor {
                 return y
             })))
         }
+        if (this.option.table) this.option.layoutType = LayoutType.Table;
+        if (this.option.tree) this.option.layoutType = LayoutType.Tree;
+        if (this.option.table && this.option.tree) this.option.layoutType = LayoutType.TreeAndTable;
         this.subject();
     }
 
@@ -121,7 +125,9 @@ export class FindbackComponent implements OnInit, ControlValueAccessor {
             case 'openModal':
                 this.selected = this.value ? _.cloneDeep(this.value) : [];
                 this.modal = this.findbackService.create(this.option);
-                setTimeout(() => this.option.table.selectedSub.next(this.selected))
+                setTimeout(() => {
+                    if (this.option.table) this.option.table.selectedSub.next(this.selected)
+                })
                 break;
             case 'remove':
                 _.remove(this.selected, (x: any) => x.id == item.id);
@@ -145,39 +151,56 @@ export class FindbackComponent implements OnInit, ControlValueAccessor {
                     item.assist = len ? `${len}` : null;
                 }
                 break;
+            case 'selected':
+                if (this.option.type == 'single') {
+                    this.selected = item;
+                } else {
+                    let seted = _.find(this.selected, (y: any) => y.id == item.id);
+                    if (seted) {
+                        _.remove(this.selected, (y: any) => y.id == item.id);
+                    } else {
+                        this.selected = _.unionBy(this.selected, [item], 'id');
+                    }
+                }
+                break;
         }
     }
 
     subject() {
-        this.option.table.selectSub.subscribe((x: any) => {
-            if (this.option.table.selectType == 'single') {
-                this.selected = x;
-            } else {
-                if (x.$selected == true) {
-                    this.selected = _.unionBy(this.selected, [x], 'id');
-                } else {
-                    _.remove(this.selected, (y: any) => y.id == x.id);
+        if (this.option.table) {
+            this.option.table.selectSub.subscribe((x: any) => {
+                this.action('selected', x);
+                this.option.table.selectedSub.next(this.selected);
+                if (this.option.layoutType == LayoutType.TreeAndTable) {
+                    if (this.option.tree && this.option.tree.data) {
+                        this.action('changeAssist', _.find(this.treeCom.treeService.nodes, y => y.id == this.treeCom.treeService.selected.id));
+                    }
                 }
-            }
-            this.option.table.selectedSub.next(this.selected);
-            if (this.option.tree && this.option.tree.data) {
-                this.action('changeAssist', _.find(this.treeCom.treeService.nodes, y => y.id == this.treeCom.treeService.selected.id));
-            }
-        })
-        if (this.form) this.form.valueChanges
-            .pipe(
-                distinctUntilKeyChanged(this.option.key),
-                map(x => x[this.option.key]),
-                debounceTime(0)
-            ).subscribe(x => {
-                this.value = x;
             })
+        }
+        if (this.form) {
+            this.form.valueChanges
+                .pipe(
+                    distinctUntilKeyChanged(this.option.key),
+                    map(x => x[this.option.key]),
+                    debounceTime(0)
+                ).subscribe(x => {
+                    this.value = x;
+                })
+        }
         if (this.option.tree && this.option.tree.nodeClick) {
-            if (this.option.tableRelation) {
-                this.option.table.initRequestData = false;
+            if (this.option.layoutType == LayoutType.TreeAndTable) {
+                if (this.option.tableRelation) {
+                    this.option.table.initRequestData = false;
+                    this.option.tree.nodeClick.subscribe(x => {
+                        this.option.table.query.filter[this.option.tableRelation] = x.id;
+                        this.tableCom.refresh();
+                    })
+                }
+            } else if (this.option.layoutType == LayoutType.Tree) {
                 this.option.tree.nodeClick.subscribe(x => {
-                    this.option.table.query.filter[this.option.tableRelation] = x.id;
-                    this.tableCom.refresh();
+                    //x.$selected = !x.$selected;
+                    this.action('selected', { id: x.id, title: x.label });
                 })
             }
         }
