@@ -36,9 +36,11 @@ export class MenusService extends RepositoryService<Menu> {
         let find = await this.menuRepository.findOne(entity.id, { relations: ['actions'] });
         if (find) {
             return await getManager().transaction(async x => {
-                await this.actionRepository.remove(find.actions);
+                let removeActions = _.filter(find.actions, y => !_.find(entity.actions, z => y.id == z.id)) as Action[];
+                let addActions = _.filter(entity.actions, y => !_.find(find.actions, z => y.id == z.id)) as Action[];
+                if (removeActions.length > 0) await this.actionRepository.remove(removeActions);
+                if (addActions.length > 0) addActions.forEach(async y => await this.actionRepository.save(y));
                 Object.assign(find, entity);
-                find.actions.forEach(async y => await this.actionRepository.save(y));
                 let result = await this.menuRepository.save(find);
                 return result
             })
