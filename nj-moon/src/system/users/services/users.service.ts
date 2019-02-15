@@ -30,16 +30,17 @@ export class UsersService extends RepositoryService<User> {
             }
             let users = await querys.skip(size * (index - 1)).take(size).getMany();
             let result: ResultList<User> = {
-                list: await this.usersRepository.find({
-                    where: _.map(users, x => ({ id: x.id })),
-                    relations: ['roles', 'organizations'],
+                list: await querys.skip(size * (index - 1)).take(size).getMany(),
+                // await this.usersRepository.find({
+                //     where: _.map(users, x => ({ id: x.id })),
+                //     relations: ['roles', 'organizations'],
                     // join: {
                     //     alias: "user",
                     //     leftJoinAndSelect: {
 
                     //     }
                     // }
-                }),
+                //}),
                 count: await querys.getCount(),
                 query: {
                     index: index,

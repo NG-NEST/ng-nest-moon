@@ -20,22 +20,24 @@ export const mainRoutes: Routes = [
 export const layoutRoutes: Routes = [
     // 如果路由为空就指向配置的默认首页
     { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' },
-    // 账号管理的路由模块
+    // 示例功能
     { path: 'examples', loadChildren: 'src/main/examples/example.module#ExampleModule', canLoad: [AuthGuard] },
-    // 工作型首页路由模块
+    // 工作型首页
     { path: 'workplace', loadChildren: 'src/main/dashboard/workplace/workplace.module#WorkplaceModule', canLoad: [AuthGuard] },
-    // 数据型首页的路由模块
+    // 数据型首页
     { path: 'analysis', loadChildren: 'src/main/dashboard/analysis/analysis.module#AnalysisModule', canLoad: [AuthGuard] },
-    // 账号管理的路由模块
+    // 账号管理
     { path: 'account', loadChildren: 'src/main/system/account/account.module#AccountModule', canLoad: [AuthGuard] },
-    // 角色管理的路由模块
+    // 角色管理
     { path: 'role', loadChildren: 'src/main/system/role/role.module#RoleModule', canLoad: [AuthGuard] },
-    // 菜单管理的路由模块
+    // 菜单管理
     { path: 'menu', loadChildren: 'src/main/system/menu/menu.module#MenuModule', canLoad: [AuthGuard] },
-    // 菜单管理的路由模块
+    // 组织管理
     { path: 'organization', loadChildren: 'src/main/system/organization/organization.module#OrganizationModule', canLoad: [AuthGuard] },
+    // 模块设计
+    { path: 'module', loadChildren: 'src/main/module/module.module#ModuleModule', canLoad: [AuthGuard] },
     // 没有权限的显示模块
     { path: 'no-auth', loadChildren: 'src/main/no-auth/no-auth.module#NoAuthModule' },
-    // 错误的路由或不存在的路由指向的模块department-structural role-manager
+    // 错误的路由或不存在的路由指向的模块
     { path: '**', loadChildren: 'src/main/exception/404.module#Exception404Module' }
 ]
