@@ -13,4 +13,7 @@ export class Module {
 
     @Column()
     icon: string;
+
+    @Column()
+    updateDate: Date;
 }

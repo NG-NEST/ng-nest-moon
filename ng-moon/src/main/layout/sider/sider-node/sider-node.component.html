@@ -1,4 +1,4 @@
-<a *ngIf="option.router && option.router!='$'" routerLink="{{option.router}}" routerLinkActive="activated" title="{{option.title}}" [ngStyle]="{'padding-left.px':15*level}">
+<a *ngIf="option.router && option.router!='$'" routerLink="{{option.router}}" routerLinkActive="active" title="{{option.title}}" [ngStyle]="{'padding-left.px':15*level}">
   <ng-container *ngTemplateOutlet="itemTemp;context:{option: option}"></ng-container>
 </a>
 <a *ngIf="!option.router || option.router=='$'" (click)="toggle($event, option)" title="{{option.title}}" [ngStyle]="{'padding-left.px':15*level}">

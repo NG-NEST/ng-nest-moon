@@ -1,0 +1,77 @@
+@import "index";
+nm-module-info {
+    >nm-inner {
+        display: flex;
+        >nm-panel {
+            margin-top: 0px;
+            &.left {
+                width: 200px;
+                margin-right: 10px;
+                border-top: 2px solid $a-color;
+                background-color: #fafafa;
+                height: fit-content;
+                >.info {
+                    border: 1px solid #ddd;
+                    border-top: none;
+                    display: flex;
+                    flex-direction: column;
+                    >h1 {
+                        font-size: 16px;
+                        margin: 0;
+                        font-weight: inherit;
+                        padding: 18px 15px 15px;
+                    }
+                    >ul {
+                        padding: 0 15px 15px;
+                        >li {
+                            color: lighten($normal-color, 50%);
+                            font-size: 12px;
+                            height: 22px;
+                            line-height: 22px;
+                            >span {
+                                color: lighten($normal-color, 20%);
+                            }
+                        }
+                    }
+                    &:hover {
+                        border-color: $a-color;
+                    }
+                }
+                >ul {
+                    >li {
+                        border: 1px solid #ddd;
+                        border-top: none;
+                        >a {
+                            color: $normal-color;
+                            padding: 0 15px;
+                            height: 34px;
+                            display: flex;
+                            align-items: center;
+                            border-left: 1px solid #fafafa;
+                            >i {
+                                font-size: 16px;
+                            }
+                            >span {
+                                margin: 0 5px;
+                            }
+                            &:hover {
+                                color: $a-color;
+                            }
+                        }
+                        &.active {
+                            border-left-color: $a-color;
+                            >a {
+                                color: $a-color;
+                                border-left-color: $a-color;
+                            }
+                        }
+                    }
+                }
+            }
+            &.right {
+                flex: 1;
+                height: fit-content;
+            }
+        }
+    }
+}
