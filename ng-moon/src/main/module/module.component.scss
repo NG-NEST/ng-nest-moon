@@ -1,7 +1,46 @@
+@import "index";
 nm-module {
-    >ul {
-        >li {
-            
+    >nm-inner {
+        >nm-panel {
+            >ul {
+                display: flex;
+                flex-wrap: wrap;
+                >li {
+                    margin: 0 10px 10px 0;
+                    max-width: 200px;
+                    >a {
+                        min-width: 150px; // padding: 5px 10px;
+                        display: flex;
+                        background-color: #f7f7f7de;
+                        border: 1px solid #d2d2d2a3;
+                        color: $normal-color;
+                        border-radius: 2px;
+                        flex-direction: column;
+                        justify-content: center;
+                        padding-bottom: 10px;
+                        overflow: hidden;
+                        >img {
+                            border-top-left-radius: 2px;
+                            border-top-right-radius: 2px;
+                            width: 100%;
+                            transition: .3 all;
+                        }
+                        >h4 {
+                            margin: 0;
+                            padding: 10px 10px 0 10px;
+                        }
+                        >p {
+                            padding: 5px 10px 0 10px;
+                            color: lighten($normal-color, 50%);
+                            font-size: 12px;
+                        }
+                        &:hover {
+                            box-shadow: 0 0 2px 2px #a1a1a13b;
+                            border-color: #b3b3b3d5;
+                        }
+                    }
+                }
+            }
         }
     }
 }

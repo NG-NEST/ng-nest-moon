@@ -1,9 +1,20 @@
 ﻿<nm-inner>
-  <ul>
-    <li>
-      <img src="../../assets/logo.png"/>
-      <h1>项目管理</h1>
-      <p></p>
-    </li>
-  </ul>
+  <nm-panel>
+    <nm-toolbar class="form">
+      <nm-buttons>
+        <nm-button [option]="{icon:'icon-plus', title:'增加'}" (click)="action('add')" [action]="'add'"></nm-button>
+      </nm-buttons>
+    </nm-toolbar>
+  </nm-panel>
+  <nm-panel>
+    <ul>
+      <li>
+        <a>
+          <img src='../../assets/module.jpg' />
+          <h4>项目管理</h4>
+          <p>说明信息</p>
+        </a>
+      </li>
+    </ul>
+  </nm-panel>
 </nm-inner>

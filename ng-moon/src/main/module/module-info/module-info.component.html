@@ -1,0 +1,22 @@
+<nm-inner>
+    <nm-panel class="left">
+        <div class="info">
+            <h1>模块名称1</h1>
+            <ul>
+                <li>更新：<span>2019-02-16</span></li>
+                <li><span>模块描述信息</span></li>
+            </ul>
+        </div>
+        <ul>
+            <li *ngFor="let item of list" routerLinkActive="active">
+                <a routerLink="{{item.page}}">
+                    <i class="{{item.icon}}"></i>
+                    <span>{{item.name}}</span>
+                </a>
+            </li>
+        </ul>
+    </nm-panel>
+    <nm-panel class="right">
+        <router-outlet></router-outlet>
+    </nm-panel>
+</nm-inner>

@@ -2,18 +2,24 @@ import { Routes } from "@angular/router";
 import { environment } from "./environment";
 import { AuthGuard } from "src/services/auths/auth-guard";
 
+// 公共路由
+export const shareRoutes: Routes = [
+    // 没有权限的显示模块
+    { path: 'no-auth', loadChildren: 'src/main/no-auth/no-auth.module#NoAuthModule' },
+    // 错误的路由或不存在的路由指向的模块
+    { path: '**', loadChildren: 'src/main/exception/404.module#Exception404Module' }
+]
+
 // 顶级路由，指向框架页
 export const mainRoutes: Routes = [
     // index 指向框架模块
     { path: 'index', loadChildren: 'src/main/layout/layout.module#LayoutModule', canActivateChild: [AuthGuard], canLoad: [AuthGuard] },
     // 如果路由为空就指向 index
     { path: '', redirectTo: 'index', pathMatch: 'full' },
-    // 没有权限的显示模块
-    { path: 'no-auth', loadChildren: 'src/main/no-auth/no-auth.module#NoAuthModule' },
     // 登录页
     { path: 'login', loadChildren: 'src/main/login/login.module#LoginModule' },
-    // 错误的路由或不存在的路由指向的模块
-    { path: '**', loadChildren: 'src/main/exception/404.module#Exception404Module' }
+    
+    ...shareRoutes
 ];
 
 // 框架页中对应的路由，指向具体的页面，框架页面中的路由都会带上顶级路由 index 如：/index/workplace 
@@ -36,8 +42,6 @@ export const layoutRoutes: Routes = [
     { path: 'organization', loadChildren: 'src/main/system/organization/organization.module#OrganizationModule', canLoad: [AuthGuard] },
     // 模块设计
     { path: 'module', loadChildren: 'src/main/module/module.module#ModuleModule', canLoad: [AuthGuard] },
-    // 没有权限的显示模块
-    { path: 'no-auth', loadChildren: 'src/main/no-auth/no-auth.module#NoAuthModule' },
-    // 错误的路由或不存在的路由指向的模块
-    { path: '**', loadChildren: 'src/main/exception/404.module#Exception404Module' }
+    
+    ...shareRoutes
 ]

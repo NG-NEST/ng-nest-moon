@@ -31,6 +31,11 @@
               "src/styles.scss",
               "src/fonts/icomoon.css"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            },
             "scripts": []
           },
           "configurations": {

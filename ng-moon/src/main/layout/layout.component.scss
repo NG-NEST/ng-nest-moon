@@ -164,13 +164,13 @@ nm-layout {
                         }
                     }
                 }
-                &.activated {
+                &.active {
                     background-color: white;
                     span {
                         color: $normal-color;
                     }
                 }
-                &.activated,
+                &.active,
                 &:hover {
                     .close {
                         i {
@@ -218,7 +218,7 @@ nm-layout {
                 &:hover {
                     @include hover;
                 }
-                &.activated {
+                &.active {
                     @include activated;
                     &:hover {
                         @include activated;
