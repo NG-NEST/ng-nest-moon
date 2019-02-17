@@ -54,7 +54,7 @@ export class FormComponent implements OnInit, OnChanges {
     getData() {
         if (this.option.data) {
             this.option.data.subscribe(x => {
-                this.form.setValue(x);
+                this.form.patchValue(x);
                 // for (let control of this._controls) {
                 //     control.value = x[control.key];
                 // }

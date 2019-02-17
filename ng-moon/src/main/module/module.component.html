@@ -15,6 +15,13 @@
           <p>说明信息</p>
         </a>
       </li>
+      <li *ngFor='let item of result.list'>
+        <a [routerLink]="['./info/base', { type: 'update', id: item.id }]">
+          <img src='../../assets/module.jpg' />
+          <h4>{{item.name}}</h4>
+          <p>{{item.description}}</p>
+        </a>
+      </li>
     </ul>
   </nm-panel>
 </nm-inner>

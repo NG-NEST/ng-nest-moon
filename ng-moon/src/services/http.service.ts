@@ -52,7 +52,7 @@ export class HttpService {
      * @returns 
      * @memberof HttpService
      */
-    put(url: string, params?): Observable<boolean> {
+    put(url: string, params?): Observable<any> {
         return this.request("PUT", url, params)
     }
 
