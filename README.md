@@ -35,7 +35,8 @@ $ npm install
 $ ng serve -o
 ```
 ### 4. 开始--后台
-例子使用 `TypeORM` 连接的 `MySql` 数据库，运行前请在 nj-moon/ormconfig.json 文件中配置好数据库连接（ `MySql` 中新建一个空的数据库就可以了，运行时会自动创建好表） 
+例子使用 `TypeORM` 连接的 `MySql` 数据库，运行前请在 nj-moon/ormconfig.js 文件中配置好数据库连接（ `MySql` 中新建一个空的数据库就可以了，运行时会自动创建好表）
+目前在 `TypeORM` 中还未找到初始化数据的方法，等前台功能处理的差不多了，根据下面后台的规划一起处理。 
 ```bash
 # development
 $ npm run start
@@ -71,8 +72,8 @@ $ npm run start:prod
 | ——动态表单  | √           |             |
 | ——工作流    |             |             |
 | 菜单管理    | √           |             |
-| 组织机构    |             |             |
-| 角色管理    |             |             |
+| 组织机构    | √           |             |
+| 角色管理    | √           |             |
 | 用户管理    | √           |             |
 
 ### 6. 架构规划(后台)

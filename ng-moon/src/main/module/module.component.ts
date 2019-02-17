@@ -2,6 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ModuleService } from './module.service';
 import * as _ from 'lodash';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { SettingService } from 'src/services/setting.service';
 
 @Component({
   selector: 'nm-module',
@@ -11,6 +13,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ModuleComponent implements OnInit {
 
+  result = {
+    list: [],
+    query: {}
+  }
+
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -18,13 +25,23 @@ export class ModuleComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getData().subscribe(x => {
+      Object.assign(this.result, x)
+    });
+  }
 
+  getData(): Observable<any> {
+    return Observable.create(x => {
+      this.moduleService.findAll(this.result.query).subscribe(y => {
+        x.next(y);
+      })
+    })
   }
 
   action(type) {
     switch (type) {
       case 'add':
-        this.router.navigate(['./info', { type: type }], { relativeTo: this.activatedRoute });
+        this.router.navigate(['./info/base', { type: type }], { relativeTo: this.activatedRoute });
         break;
     }
   }

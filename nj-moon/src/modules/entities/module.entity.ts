@@ -11,9 +11,9 @@ export class Module {
     @Column()
     description: string;
 
-    @Column()
+    @Column({ nullable: true})
     icon: string;
 
-    @Column()
+    @Column({ nullable: true})
     updateDate: Date;
 }
