@@ -38,4 +38,6 @@ export interface InputOption{
     tooltip?: TooltipOption;
 
     key?: string;
+
+    isInfo?: boolean;
 }

@@ -22,10 +22,8 @@ export class MiBaseInfoComponent implements OnInit {
     submitSubject = new Subject();
 
     getData = this.activatedRoute.paramMap.pipe(switchMap((params: ParamMap) => {
-        let id = params.get('id');
-        let type = params.get('type');
-        if (type === 'update') {
-            return this.moduleInfoService.findOne(id)
+        if (this.moduleInfoService.type !== 'add') {
+            return this.moduleInfoService.findOne(this.moduleInfoService.id)
                 .pipe(map(x => {
                     this.moduleInfoService.itemResult = x;
                     // x.actions = _.map(x.actions, y => { return { id: y.id, title: y.name, menuId: y.menuId } });
@@ -68,18 +66,16 @@ export class MiBaseInfoComponent implements OnInit {
 
     ngOnInit() {
         this.activatedRoute.paramMap.subscribe(x => {
-            let type = x.get('type');
-            if (type) this.formOption.type = type;
+            if (this.moduleInfoService.type) this.formOption.type = this.moduleInfoService.type;
         })
         this.submitSubject.subscribe((x: any) => {
             this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
-                let type = params.get('type');
-                if (type === 'add') {
+                if (this.moduleInfoService.type === 'add') {
                     if (x.id === '') x.id = this.settingService.guid();
                     this.moduleInfoService.create(x).subscribe(y => {
                         this.moduleInfoService.itemResult = y
                     })
-                } else if (type === 'update') {
+                } else if (this.moduleInfoService.type === 'update') {
                     this.moduleInfoService.update(x).subscribe(y => {
                         this.moduleInfoService.itemResult = y
                     })

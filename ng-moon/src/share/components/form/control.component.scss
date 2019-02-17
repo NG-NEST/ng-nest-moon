@@ -7,9 +7,24 @@ nm-control {
     }
     &.info {
         nm-input {
-            p>input {
-                pointer-events: none;
-                background-color: lighten($normal-color, 95%);
+            >p {
+                height: 28px;
+                justify-content: flex-start;
+                flex-direction: row;
+                align-items: center;
+                >label {
+                    margin-bottom: 0;
+                    &:after {
+                        content: '：';
+                    }
+                }
+                >input {
+                    pointer-events: none;
+                    background-color: lighten($normal-color, 95%);
+                }
+                >span {
+                    font-size: 12px;
+                }
             }
         }
         nm-add-item {

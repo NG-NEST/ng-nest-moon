@@ -8,15 +8,8 @@
   </nm-panel>
   <nm-panel>
     <ul>
-      <li>
-        <a>
-          <img src='../../assets/module.jpg' />
-          <h4>项目管理</h4>
-          <p>说明信息</p>
-        </a>
-      </li>
       <li *ngFor='let item of result.list'>
-        <a [routerLink]="['./info/base', { type: 'update', id: item.id }]">
+        <a [routerLink]="['./info', {'id': item.id, 'type':'info'}]">
           <img src='../../assets/module.jpg' />
           <h4>{{item.name}}</h4>
           <p>{{item.description}}</p>
