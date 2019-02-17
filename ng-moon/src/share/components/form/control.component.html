@@ -1,6 +1,6 @@
 <ng-container [ngSwitch]="option.controlType">
     <ng-container *ngSwitchCase="'input'">
-        <nm-input [option]="option" [form]="form" [(ngModel)]="option.value"></nm-input>
+        <nm-input [option]="option" [form]="form" [formOption]="formOption" [(ngModel)]="option.value"></nm-input>
     </ng-container>
     <ng-container *ngSwitchCase="'buttons'">
         <nm-buttons [option]="option" [form]="form" [(ngModel)]="option.value"></nm-buttons>

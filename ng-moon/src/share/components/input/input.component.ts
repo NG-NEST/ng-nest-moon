@@ -7,12 +7,13 @@ import { noop } from 'rxjs';
 import { SettingService } from 'src/services/setting.service';
 import { filter } from 'rxjs/operators';
 import * as _ from 'lodash';
+import { FormOption } from '../form/form.type';
 
 @Component({
   selector: 'nm-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
-  inputs: ['option', 'form'],
+  inputs: ['option', 'form', 'formOption'],
   encapsulation: ViewEncapsulation.None,
   providers: [{
     provide: NG_VALUE_ACCESSOR,
@@ -23,6 +24,8 @@ import * as _ from 'lodash';
 export class InputComponent implements OnInit, ControlValueAccessor {
 
   option: InputOption;
+
+  formOption: FormOption;
 
   form: FormGroup
 

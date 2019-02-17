@@ -1,13 +1,19 @@
 <form (ngSubmit)="submit()" [formGroup]="form">
-    <nm-panel class="toolbar" *ngIf="option.type!='info'">
+    <nm-panel class="toolbar">
         <nm-toolbar class="form">
-            <nm-buttons>
+            <nm-buttons *ngIf="option.type=='info'">
+                <nm-button [option]="{icon:'icon-edit', title:'编辑'}" (click)="update()"></nm-button>
+            </nm-buttons>
+            <nm-buttons *ngIf="option.type!='info'">
                 <nm-button [option]="{icon:'icon-x', title:'取消'}" (click)="cancel()"></nm-button>
                 <nm-button class="orange" [option]="{icon:'icon-check', type: 'submit', title:'提交'}"></nm-button>
             </nm-buttons>
         </nm-toolbar>
     </nm-panel>
     <nm-panel class="controls">
+        <ul *ngIf="option.hoverActions.length>0">
+            <li *ngFor="let item of option.hoverActions">{{item}}</li>
+        </ul>
         <nm-grid class="title-{{option.titleLayout}}">
             <ng-container [ngSwitch]="controlsType">
                 <ng-container *ngSwitchCase="'controls'">

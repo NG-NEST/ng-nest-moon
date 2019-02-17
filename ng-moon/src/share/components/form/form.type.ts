@@ -24,6 +24,7 @@ export interface FormOption {
     buttons?: ButtonOption[];
     data?: Observable<any>;
     type?: FormType;
+    hoverActions?: FormType[];
 }
 
 export interface RowI {

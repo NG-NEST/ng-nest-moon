@@ -24,9 +24,12 @@ export class FormComponent implements OnInit, OnChanges {
 
     controlsType: ControlsType = 'controls';
 
+    private _isInfoToUpdate = false;
+
     private _default: FormOption = {
         col: 12,
-        titleLayout: 'top'
+        titleLayout: 'top',
+        hoverActions: []
     }
 
     constructor(
@@ -89,17 +92,29 @@ export class FormComponent implements OnInit, OnChanges {
         }
     }
 
+    update() {
+        this.option.type = 'update';
+        this._isInfoToUpdate = true;
+    }
+
     cancel() {
         if (this.option.buttons) {
             let cancel = _.find(this.option.buttons, x => x.type === 'cancel');
             if (cancel) {
                 cancel.handler.next(this.form.value);
             } else {
-                this.navService.back();
+                this.back();
             }
         } else {
-            this.navService.back();
+            this.back();
         }
-        
+    }
+
+    back() {
+        if (this._isInfoToUpdate) {
+            this.option.type = 'info';
+            this._isInfoToUpdate = false;
+        }
+        else this.navService.back();
     }
 }
