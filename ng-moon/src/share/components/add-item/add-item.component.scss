@@ -27,7 +27,9 @@ nm-modal.add-item {
                 flex-direction: column-reverse;
                 >nm-panel {
                     &.controls {
-                        border: 0;
+                        border: none;
+                        background: none;
+                        box-shadow: none;
                         >nm-grid {
                             >nm-row {
                                 padding: 0;

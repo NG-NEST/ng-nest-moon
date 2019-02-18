@@ -6,6 +6,7 @@ import * as _ from 'lodash';
 import { FormGroup } from '@angular/forms';
 import { FormService } from './form.service';
 import { NavService } from 'src/services/nav.service';
+import { SettingService } from 'src/services/setting.service';
 
 @Component({
     selector: 'nm-form',
@@ -24,22 +25,25 @@ export class FormComponent implements OnInit, OnChanges {
 
     controlsType: ControlsType = 'controls';
 
+    private _initValue;
+
     private _isInfoToUpdate = false;
 
     private _default: FormOption = {
         col: 12,
-        titleLayout: 'top',
-        hoverActions: []
+        titleLayout: 'top'
     }
 
     constructor(
         private formService: FormService,
         private navService: NavService,
-        private changeDetectorRef: ChangeDetectorRef
+        private changeDetectorRef: ChangeDetectorRef,
+        private setting: SettingService
     ) { }
 
     ngOnInit() {
-        this.option = Object.assign(this._default, this.option);
+        // this.option = Object.assign(this._default, this.option);
+        this.setting.mapToObject(this._default, this.option)
         this.config();
     }
 
@@ -57,6 +61,7 @@ export class FormComponent implements OnInit, OnChanges {
     getData() {
         if (this.option.data) {
             this.option.data.subscribe(x => {
+                if (!this._initValue) this._initValue = x;
                 this.form.patchValue(x);
                 // for (let control of this._controls) {
                 //     control.value = x[control.key];
@@ -95,6 +100,12 @@ export class FormComponent implements OnInit, OnChanges {
     update() {
         this.option.type = 'update';
         this._isInfoToUpdate = true;
+        if (this.option.buttons) {
+            let update = _.find(this.option.buttons, x => x.type === 'update');
+            if (update) {
+                update.handler.next(this.form.value);
+            }
+        }
     }
 
     cancel() {
@@ -113,6 +124,7 @@ export class FormComponent implements OnInit, OnChanges {
     back() {
         if (this._isInfoToUpdate) {
             this.option.type = 'info';
+            this.form.patchValue(this._initValue)
             this._isInfoToUpdate = false;
         }
         else this.navService.back();

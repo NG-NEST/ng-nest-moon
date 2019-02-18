@@ -110,8 +110,7 @@ const providers = [
     ModalService,
     FormService,
     TooltipService,
-    SelectService,
-    AddItemService
+    SelectService
 ]
 
 @NgModule({

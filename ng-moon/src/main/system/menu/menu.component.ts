@@ -114,7 +114,7 @@ export class MenuComponent implements OnInit {
     this.updateSubject.subscribe((x: TreeNode) => {
       this.menu.option.type = 'update';
       this.menuService.findOne(x.id).subscribe(y => {
-        this.menu.form.setValue(y);
+        this.menu.form.patchValue(y);
       })
     })
     this.deleteSubject.subscribe((x: TreeNode) => {
@@ -141,7 +141,7 @@ export class MenuComponent implements OnInit {
     this.nodeClickSubject.subscribe((x: TreeNode) => {
       this.menu.option.type = 'info';
       this.menuService.findOne(x.id).subscribe(y => {
-        if (y) this.menu.form.setValue(y);
+        if (y) this.menu.form.patchValue(y);
       })
     })
     this.addDefaultSubject.subscribe((x) => {

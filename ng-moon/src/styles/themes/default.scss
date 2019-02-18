@@ -2,9 +2,10 @@
 $prefix: nm;
 // 颜色
 $primary-color: #3d404d;
+$assist-color: #3194d0;
 $normal-color: #2e2e2e;
-$a-color: #3194d0;
-$a-hover-color: #477aac;
+$a-color: $assist-color;
+$a-hover-color: lighten($a-color, 10%);;
 // 内容内边距
 $padding-content: 15px;
 // 边框颜色

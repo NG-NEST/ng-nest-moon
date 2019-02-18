@@ -11,8 +11,8 @@ nm-pagination {
         align-items: center;
         color: $normal-color;
         &:hover {
-            color: $a-color;
-            border-color: $a-color;
+            color: $assist-color;
+            border-color: $assist-color;
         }
         &.disabled {
             color: #e8e8e8;

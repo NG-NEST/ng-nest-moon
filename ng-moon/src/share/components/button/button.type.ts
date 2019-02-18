@@ -1,7 +1,7 @@
 import { TooltipOption } from "../tooltip/tooltip.type";
 import { Observable, Subject } from "rxjs";
 
-export type ButtonType = 'button' | 'submit' | 'reset' | 'cancel';
+export type ButtonType = 'button' | 'submit' | 'reset' | 'cancel' | 'update';
 export type ButtonsType = 'button' | 'single' | 'multiple';
 
 export interface ButtonOption {

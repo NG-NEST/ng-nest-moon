@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "styles/index";
+@import "index";
 @import '~@angular/cdk/overlay-prebuilt.css';
 *,
 :after,
@@ -21,6 +21,16 @@ body {
     font-size: 14px;
     width: 100%;
     height: 100%;
+}
+
+span,
+label,
+h1,
+h2,
+h3,
+h4,
+h5 {
+    cursor: default;
 }
 
 body,

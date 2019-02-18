@@ -17,7 +17,7 @@ $max-height: 600px;
             position: relative;
             >span.title {
                 flex: 1;
-                background: $a-color;
+                background: $assist-color;
                 color: white;
                 padding: 6px 28px 6px 8px;
                 border-radius: 2px;
@@ -31,7 +31,7 @@ $max-height: 600px;
                 color: white;
                 &:hover {
                     transition: all .4s;
-                    background: lighten($a-color, 15%);
+                    background: lighten($assist-color, 15%);
                 }
             }
         }

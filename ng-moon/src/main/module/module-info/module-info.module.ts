@@ -4,7 +4,6 @@ import { ShareModule } from 'src/share/share.module';
 import { ModuleInfoComponent } from './module-info.component';
 import { ModuleInfoRoutesModule } from './module-info-routes.module';
 import { MiBaseInfoComponent } from './mi-base/mi-base.component';
-import { ModuleInfoService } from './module-info.service';
 
 const components = [
     ModuleInfoComponent,
@@ -18,7 +17,6 @@ const components = [
         ModuleInfoRoutesModule
     ],
     declarations: [...components],
-    exports: [...components],
-    providers: [ModuleInfoService]
+    exports: [...components]
 })
 export class ModuleInfoModule { }

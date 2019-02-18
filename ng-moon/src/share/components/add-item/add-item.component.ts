@@ -21,6 +21,7 @@ import { FormComponent } from '../form/form.component';
     encapsulation: ViewEncapsulation.None,
     inputs: ['option', 'form'],
     providers: [
+        AddItemService,
         {
             provide: NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => AddItemComponent),
@@ -129,7 +130,7 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
             case 'update':
                 this.type = 'update';
                 this.modal = this.addItemService.create(this.option);
-                setTimeout(() => this.formCom.form.setValue(item))
+                setTimeout(() => this.formCom.form.patchValue(item))
                 break;
             case 'cancel':
                 this.modal.detach();

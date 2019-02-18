@@ -50,8 +50,8 @@ nm-checkbox {
         >p {
             >span.checkbox {
                 &:before {
-                    border-color: $a-color;
-                    background-color: $a-color;
+                    border-color: $assist-color;
+                    background-color: $assist-color;
                 }
                 &:after {
                     border-color: white;

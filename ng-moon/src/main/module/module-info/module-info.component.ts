@@ -1,13 +1,22 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, forwardRef } from '@angular/core';
 import * as _ from 'lodash';
 import { ActivatedRoute } from '@angular/router';
 import { ModuleInfoService } from './module-info.service';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
     selector: 'nm-module-info',
     templateUrl: './module-info.component.html',
     styleUrls: ['./module-info.component.scss'],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    providers: [
+        ModuleInfoService,
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => ModuleInfoComponent),
+            multi: true
+        }
+    ]
 })
 export class ModuleInfoComponent implements OnInit {
 

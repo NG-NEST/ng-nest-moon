@@ -5,10 +5,10 @@ nm-form {
             >nm-grid {
                 >nm-row {
                     padding: 10px;
-                    border-bottom: 1px solid #f8f8f8;
+                    border-bottom: 1px solid #efefefe0;;
                     position: relative;
                     &:hover {
-                        background: rgba(242, 242, 242, 0.32);
+                        // background: rgba(242, 242, 242, 0.32);
                         >div.title>label>span[class*='icon-'] {
                             color: $primary-color;
                         }
