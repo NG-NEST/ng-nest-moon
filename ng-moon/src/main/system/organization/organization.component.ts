@@ -83,7 +83,7 @@ export class OrganizationComponent implements OnInit {
     this.updateSubject.subscribe((x: TreeNode) => {
       this.organization.option.type = 'update';
       this.organizationService.findOne(x.id).subscribe(y => {
-        this.organization.form.setValue(y);
+        this.organization.form.patchValue(y);
       })
     })
     this.deleteSubject.subscribe((x: TreeNode) => {
@@ -110,7 +110,7 @@ export class OrganizationComponent implements OnInit {
     this.nodeClickSubject.subscribe((x: TreeNode) => {
       this.organization.option.type = 'info';
       this.organizationService.findOne(x.id).subscribe(y => {
-        if (y) this.organization.form.setValue(y);
+        if (y) this.organization.form.patchValue(y);
       })
     })
   }

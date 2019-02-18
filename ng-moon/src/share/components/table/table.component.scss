@@ -16,13 +16,13 @@ nm-table {
         border-spacing: 0;
         border: 1px solid #e8e8e8;
         margin-bottom: 5px;
-        border-radius: 10px;
+        border-radius: 2px;
         overflow: hidden;
         &:hover {
             box-shadow: 0 0 2px 1px #d4d4d43b;
         }
-        &.data-null{
-            >thead>tr>th{
+        &.data-null {
+            >thead>tr>th {
                 border-bottom: 0;
             }
         }
@@ -36,7 +36,7 @@ nm-table {
                     &.operations {
                         text-align: center;
                     }
-                    &.select{
+                    &.select {
                         text-align: center;
                     }
                     border-bottom: 1px solid $border-color;
@@ -77,9 +77,13 @@ nm-table {
                             padding: 7px;
                             vertical-align: middle;
                             font-size: 14px;
+                            &:hover {
+                                text-shadow: 0 0 15px rgba($a-color, .3);
+                                color: $a-color;
+                            }
                         }
                     }
-                    &.select{
+                    &.select {
                         text-align: center;
                     }
                 }

@@ -6,7 +6,7 @@ nm-module-info {
             margin-top: 0px;
             &.left {
                 width: 200px;
-                margin-right: 10px;
+                margin-right: 15px;
                 background-color: #fafafa;
                 height: fit-content;
                 >.info {
@@ -55,7 +55,7 @@ nm-module-info {
                                 margin: 0 5px;
                             }
                             &:hover {
-                                color: $a-color;
+                                color: $assist-color;
                             }
                         }
                         &:hover {
@@ -63,10 +63,10 @@ nm-module-info {
                             border-color: #b3b3b3d5;
                         }
                         &.active {
-                            border-left-color: $a-color;
+                            border-left-color: $assist-color;
                             >a {
-                                color: $a-color;
-                                border-left-color: $a-color;
+                                color: $assist-color;
+                                border-left-color: $assist-color;
                             }
                         }
                     }

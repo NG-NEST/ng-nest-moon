@@ -21,6 +21,8 @@ export class MiBaseInfoComponent implements OnInit {
 
     submitSubject = new Subject();
 
+    updateSubject = new Subject();
+
     getData = this.activatedRoute.paramMap.pipe(switchMap((params: ParamMap) => {
         if (this.moduleInfoService.type !== 'add') {
             return this.moduleInfoService.findOne(this.moduleInfoService.id)
@@ -51,7 +53,8 @@ export class MiBaseInfoComponent implements OnInit {
             })
         ],
         buttons: [
-            { type: 'submit', handler: this.submitSubject }
+            { type: 'submit', handler: this.submitSubject },
+            { type: 'update', handler: this.updateSubject }
         ],
         data: this.getData,
         type: 'info'
@@ -74,13 +77,18 @@ export class MiBaseInfoComponent implements OnInit {
                     if (x.id === '') x.id = this.settingService.guid();
                     this.moduleInfoService.create(x).subscribe(y => {
                         this.moduleInfoService.itemResult = y
+                        this.formOption.type = 'info';
                     })
                 } else if (this.moduleInfoService.type === 'update') {
                     this.moduleInfoService.update(x).subscribe(y => {
-                        this.moduleInfoService.itemResult = y
+                        this.moduleInfoService.itemResult = y;
+                        this.formOption.type = 'info';
                     })
                 }
             });
+        })
+        this.updateSubject.subscribe((x: any) => {
+            this.moduleInfoService.type = 'update'
         })
     }
 }

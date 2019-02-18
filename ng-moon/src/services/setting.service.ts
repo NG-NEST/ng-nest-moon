@@ -84,11 +84,9 @@ export class SettingService {
    * @param value 
    */
   setFormValue(form: FormGroup, key: string, value: any) {
-    let formValue = _.cloneDeep(form.value);
-    if (typeof (formValue[key]) !== 'undefined') {
-      formValue[key] = value;
-      form.setValue(formValue);
-    }
+    let formValue = {};
+    formValue[key] = value;
+    form.patchValue(formValue);
   }
 
   mapToObject(from: object, to: object) {

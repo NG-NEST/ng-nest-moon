@@ -49,7 +49,7 @@ nm-tree {
                 }
                 &.selected {
                     color: white;
-                    background: $a-color;
+                    background: $assist-color;
                     >label {
                         >span {
                             color: lighten($normal-color, 70%);

@@ -1,4 +1,4 @@
-@import "../../styles/index";
+@import "index";
 // 字体颜色
 $font-color: $normal-color;
 // 头部背景色
@@ -22,7 +22,7 @@ $sider-node-hover-background-color: #d0d0d0;
 // 悬停文字颜色
 $sider-node-hover-color: $normal-color;
 // 选中背景颜色
-$selected-background-color: $a-color;
+$selected-background-color: $assist-color;
 // 选中文字颜色
 $selected-color: white;
 // 动画时间

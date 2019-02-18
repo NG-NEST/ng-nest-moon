@@ -11,9 +11,6 @@
         </nm-toolbar>
     </nm-panel>
     <nm-panel class="controls">
-        <ul *ngIf="option.hoverActions.length>0">
-            <li *ngFor="let item of option.hoverActions">{{item}}</li>
-        </ul>
         <nm-grid class="title-{{option.titleLayout}}">
             <ng-container [ngSwitch]="controlsType">
                 <ng-container *ngSwitchCase="'controls'">

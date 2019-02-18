@@ -45,10 +45,10 @@ nm-radio {
         >p {
             >span.radio {
                 &:before {
-                    border-color: $a-color;
+                    border-color: $assist-color;
                 }
                 &:after {
-                    background-color: $a-color;
+                    background-color: $assist-color;
                 }
             }
         }

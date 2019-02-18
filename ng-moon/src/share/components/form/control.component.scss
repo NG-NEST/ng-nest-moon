@@ -1,4 +1,4 @@
-@import "../../../styles/index";
+@import "index";
 nm-control {
     padding: 5px;
     >label {
@@ -6,9 +6,14 @@ nm-control {
         margin-right: 10px;
     }
     &.info {
+        &:hover {
+            background-color: lighten($normal-color, 75%);
+            border-radius: 2px;
+            // border: 1px solid transparent;
+        }
         nm-input {
             >p {
-                height: 28px;
+                height: 20px;
                 justify-content: flex-start;
                 flex-direction: row;
                 align-items: center;
@@ -30,7 +35,6 @@ nm-control {
         nm-add-item {
             >nm-buttons {
                 pointer-events: none;
-                background-color: lighten($normal-color, 95%);
             }
             >nm-table {
                 td.operations {

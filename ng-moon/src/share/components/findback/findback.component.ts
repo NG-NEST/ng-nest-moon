@@ -131,7 +131,7 @@ export class FindbackComponent implements OnInit, ControlValueAccessor {
                 break;
             case 'remove':
                 _.remove(this.selected, (x: any) => x.id == item.id);
-                this.option.table.selectedSub.next(this.selected);
+                if (this.option.table) this.option.table.selectedSub.next(this.selected);
                 break;
             case 'removeValue':
                 _.remove(this.value, (x: any) => x.id == item.id);
