@@ -91,7 +91,8 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
      * @memberof SimpleReuseStrategy
      */
     private getRouteUrl(route: ActivatedRouteSnapshot) {
-        return route['_routerState'].url;
+        return route['_routerState'].url.replace(/\//g, '_')
+    + '_' + (route.routeConfig.loadChildren || route.routeConfig.component.toString().split('(')[0].split(' ')[1] );
     }
 
     /**

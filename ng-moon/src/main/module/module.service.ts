@@ -10,3 +10,11 @@ export class ModuleService extends RepositoryService {
     }
 }
 
+@Injectable()
+export class PageService extends RepositoryService {
+
+    constructor(public http: HttpService) {
+        super(http, { controller: { name: "pages" } });
+    }
+}
+

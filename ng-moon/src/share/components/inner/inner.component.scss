@@ -1,14 +1,17 @@
-@import "../../../styles/index";
+@import "index";
 nm-inner {
     padding: $padding-content;
     display: block;
     width: 100%;
     height: 100%;
     overflow: auto;
-    nm-panel{
+    nm-panel {
         margin-top: 10px;
-        &:first-child{
+        &:first-child {
             margin-top: 0;
         }
+    }
+    &.no-padding {
+        padding: 0;
     }
 }

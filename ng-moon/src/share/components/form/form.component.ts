@@ -61,7 +61,7 @@ export class FormComponent implements OnInit, OnChanges {
     getData() {
         if (this.option.data) {
             this.option.data.subscribe(x => {
-                if (!this._initValue) this._initValue = x;
+                if (typeof (this._initValue) == 'undefined' || (this._initValue && this._initValue.id)) this._initValue = x;
                 this.form.patchValue(x);
                 // for (let control of this._controls) {
                 //     control.value = x[control.key];
@@ -100,6 +100,7 @@ export class FormComponent implements OnInit, OnChanges {
     update() {
         this.option.type = 'update';
         this._isInfoToUpdate = true;
+        if (typeof (this._initValue) == 'undefined') this._initValue = _.cloneDeep(this.form.value);
         if (this.option.buttons) {
             let update = _.find(this.option.buttons, x => x.type === 'update');
             if (update) {
@@ -124,7 +125,7 @@ export class FormComponent implements OnInit, OnChanges {
     back() {
         if (this._isInfoToUpdate) {
             this.option.type = 'info';
-            this.form.patchValue(this._initValue)
+            if (this._initValue) this.form.patchValue(this._initValue)
             this._isInfoToUpdate = false;
         }
         else this.navService.back();
