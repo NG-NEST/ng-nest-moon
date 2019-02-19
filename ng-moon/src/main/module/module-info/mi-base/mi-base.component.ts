@@ -12,10 +12,9 @@ import { ModuleInfoService } from '../module-info.service';
 @Component({
     selector: 'nm-mi-base',
     templateUrl: './mi-base.component.html',
-    styleUrls: ['./mi-base.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class MiBaseInfoComponent implements OnInit {
+export class MiBaseComponent implements OnInit {
 
     @ViewChild('base') base: FormComponent;
 

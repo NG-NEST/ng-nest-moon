@@ -2,13 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ModuleInfoComponent } from './module-info.component';
 import { shareRoutes } from 'src/environments/routes';
-import { MiBaseInfoComponent } from './mi-base/mi-base.component';
+import { MiBaseComponent } from './mi-base/mi-base.component';
+import { MiPageComponent } from './mi-page/mi-page.component';
+import { MiPageInfoComponent } from './mi-page/mi-page-info.component';
 
 const routes: Routes = [
   {
     path: '', component: ModuleInfoComponent, children: [
       { path: '', redirectTo: 'base', pathMatch: 'full' },
-      { path: 'base', component: MiBaseInfoComponent },
+      { path: 'base', component: MiBaseComponent },
+      { path: 'page', component: MiPageComponent },
+      { path: 'page/info', component: MiPageInfoComponent },
       ...shareRoutes
     ]
   },

@@ -1,7 +1,7 @@
 import { Controller, UseGuards } from '@nestjs/common';
-import { ControllerService } from '../common/services/controller.service';
-import { Module } from './entities/module.entity';
-import { ModuleService } from './services/module.service';
+import { ControllerService } from '../../common/services/controller.service';
+import { Module } from '../entities/module.entity';
+import { ModuleService } from '../services/module.service';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('modules')

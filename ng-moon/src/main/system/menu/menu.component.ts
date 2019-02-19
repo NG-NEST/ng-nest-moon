@@ -141,7 +141,10 @@ export class MenuComponent implements OnInit {
     this.nodeClickSubject.subscribe((x: TreeNode) => {
       this.menu.option.type = 'info';
       this.menuService.findOne(x.id).subscribe(y => {
-        if (y) this.menu.form.patchValue(y);
+        if (y) {
+          
+          this.menu.form.patchValue(y); 
+        }
       })
     })
     this.addDefaultSubject.subscribe((x) => {
