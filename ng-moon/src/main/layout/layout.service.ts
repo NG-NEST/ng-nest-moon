@@ -130,10 +130,11 @@ export class LayoutService {
      * @memberof LayoutService
      */
     setTabs() {
-        let routers = this.router.url.split('/');
+        let url = this.router.url;
+        let routers = url.split('/');
         if (routers.length > 2) {
             let router = routers[2];
-            let subPage = routers.length > 3 ? routers[3] : null;
+            let subPage = routers.length > 3 ? _.drop(routers, 3).join('/') : null;
             let menu = _.find(this.menus, x => x.router == router)
             if (menu) {
                 let tabsPage = this.session.tabsPage;

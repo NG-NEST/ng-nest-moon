@@ -30,6 +30,7 @@ export class NavService {
 
   removeThis() {
     let url = this.location.path();
+    // console.log(SimpleReuseStrategy.handlers);
     SimpleReuseStrategy.deleteRouteSnapshot(url);
   }
 }

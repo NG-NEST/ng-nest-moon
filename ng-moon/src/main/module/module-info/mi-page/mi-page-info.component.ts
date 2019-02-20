@@ -48,6 +48,7 @@ export class MiPageInfoComponent implements OnInit {
             new Row({
                 title: '页面信息', icon: 'icon-user', controls: [
                     new InputControl({ key: "name", label: "页面名称", col: 4 }),
+                    new InputControl({ key: "code", label: "编码", col: 4 }),
                     new InputControl({ key: "description", label: "描述", col: 12 }),
                 ]
             })

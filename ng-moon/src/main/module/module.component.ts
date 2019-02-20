@@ -41,7 +41,7 @@ export class ModuleComponent implements OnInit {
   action(type) {
     switch (type) {
       case 'add':
-        this.router.navigate(['./info', { type: 'add' }], { relativeTo: this.activatedRoute });
+        this.router.navigate(['./add'], { relativeTo: this.activatedRoute });
         break;
     }
   }

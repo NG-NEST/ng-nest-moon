@@ -56,10 +56,10 @@ export class RoleComponent implements OnInit {
   action(type, param?) {
     switch (type) {
       case 'add':
-        this.router.navigate(['./info', { type: type }], { relativeTo: this.activatedRoute });
+        this.router.navigate([`./${type}`], { relativeTo: this.activatedRoute });
         break;
       case 'update':
-        this.router.navigate(['./info', { type: type, id: param.id }], { relativeTo: this.activatedRoute });
+        this.router.navigate([`./${type}/${param.id}`], { relativeTo: this.activatedRoute });
         break;
     }
   }

@@ -1,4 +1,5 @@
 import { RouteReuseStrategy, DefaultUrlSerializer, ActivatedRouteSnapshot, DetachedRouteHandle } from '@angular/router';
+import * as _ from 'lodash';
 
 /**
  * 路由复用
@@ -91,8 +92,9 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
      * @memberof SimpleReuseStrategy
      */
     private getRouteUrl(route: ActivatedRouteSnapshot) {
-        return route['_routerState'].url.replace(/\//g, '_')
-    + '_' + (route.routeConfig.loadChildren || route.routeConfig.component.toString().split('(')[0].split(' ')[1] );
+        let url = route['_routerState'].url.replace(/\//g, '_')
+            // + '_' + (route.routeConfig.loadChildren || route.routeConfig.component.toString().split('(')[0].split(' ')[1]);
+        return url
     }
 
     /**
@@ -104,14 +106,19 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
      */
     public static deleteRouteSnapshot(name?: string): void {
         if (name) {
-            if (SimpleReuseStrategy.handlers[name]) {
-                delete SimpleReuseStrategy.handlers[name];
+            let handle = name.replace(/\//g, '_')
+            if (SimpleReuseStrategy.handlers[handle]) {
+                delete SimpleReuseStrategy.handlers[handle];
             }
-            SimpleReuseStrategy.waitDelete = name;
+            SimpleReuseStrategy.waitDelete = handle;
         } else {
             for (let key in SimpleReuseStrategy.handlers) {
                 delete SimpleReuseStrategy.handlers[key];
             }
         }
+    }
+
+    public static getHandlers(name: string){
+
     }
 }

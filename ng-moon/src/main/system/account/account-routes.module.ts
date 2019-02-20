@@ -5,7 +5,8 @@ import { AccountInfoComponent } from './account-info/account-info.component';
 
 const routes: Routes = [
   { path: '',  component: AccountComponent },
-  { path: 'info',  component: AccountInfoComponent }
+  { path: ':type',  component: AccountInfoComponent },
+  { path: ':type/:id',  component: AccountInfoComponent }
 ];
 
 @NgModule({
