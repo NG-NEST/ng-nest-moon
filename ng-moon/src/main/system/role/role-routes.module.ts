@@ -5,7 +5,8 @@ import { RoleInfoComponent } from './role-info/role-info.component';
 
 const routes: Routes = [
   { path: '',  component: RoleComponent },
-  { path: 'info',  component: RoleInfoComponent }
+  { path: ':type',  component: RoleInfoComponent },
+  { path: ':type/:id',  component: RoleInfoComponent }
 ];
 
 @NgModule({

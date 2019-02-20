@@ -9,6 +9,9 @@ export class Page {
     @Column()
     name: string;
 
+    @Column()
+    code: string;
+
     @Column({ nullable: true})
     description: string;
 

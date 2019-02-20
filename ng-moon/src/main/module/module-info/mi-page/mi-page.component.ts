@@ -21,6 +21,7 @@ export class MiPageComponent implements OnInit {
     table: TableOption = {
         columns: [
             { key: 'name', title: '页面名称' },
+            { key: 'code', title: '编码' },
             { key: 'description', title: '描述' }
         ],
         operations: [
