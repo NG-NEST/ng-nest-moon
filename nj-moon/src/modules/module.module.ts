@@ -6,10 +6,11 @@ import { ModuleController } from './controllers/module.controller';
 import { Page } from './entities/page.entity';
 import { PageController } from './controllers/page.controller';
 import { PageService } from './services/page.service';
+import { Control } from './entities/control.entity';
 
 @Module({
     imports:[
-        TypeOrmModule.forFeature([M, Page])
+        TypeOrmModule.forFeature([M, Page, Control])
     ],
     controllers: [
         ModuleController,

@@ -9,7 +9,7 @@
   <nm-panel>
     <ul>
       <li *ngFor='let item of result.list'>
-        <a [routerLink]="['./info/'+item.id+'/base']">
+        <a [routerLink]="['./info', item.id]">
           <img src='../../assets/module.jpg' />
           <h4>{{item.name}}</h4>
           <p>{{item.description}}</p>

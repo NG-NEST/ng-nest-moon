@@ -32,9 +32,11 @@ nm-table {
                 >th {
                     &:first-child {
                         text-align: center;
+                        width: 55px;
                     }
                     &.operations {
                         text-align: center;
+                        width: 30px;
                     }
                     &.select {
                         text-align: center;
