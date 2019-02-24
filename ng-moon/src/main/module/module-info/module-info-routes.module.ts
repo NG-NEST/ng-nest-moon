@@ -9,10 +9,11 @@ import { MiPageInfoComponent } from './mi-page/mi-page-info.component';
 const routes: Routes = [
   {
     path: '', component: ModuleInfoComponent, children: [
-      // { path: '', redirectTo: 'base', pathMatch: 'full' },
-      { path: ':id/base', component: MiBaseComponent },
-      { path: ':id/page', component: MiPageComponent },
-      { path: ':id/page/info', component: MiPageInfoComponent },
+      { path: '', redirectTo: 'base', pathMatch: 'full' },
+      { path: 'base', component: MiBaseComponent },
+      { path: 'page', component: MiPageComponent },
+      { path: 'page/:type', component: MiPageInfoComponent },
+      { path: 'page/:type/:id', component: MiPageInfoComponent },
       ...shareRoutes
     ]
   },

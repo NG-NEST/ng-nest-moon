@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormOption, Row, ButtonsControl, SelectControl, InputControl, FindbackControl } from 'src/share/components/form/form.type';
+import { FormOption, Row, ButtonsControl, SelectControl, InputControl, FindbackControl, AddItemControl } from 'src/share/components/form/form.type';
 import { Observable, Subject } from 'rxjs';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap, map } from 'rxjs/operators';
@@ -32,7 +32,12 @@ export class MiPageInfoComponent implements OnInit {
                     return x;
                 }));
         } else {
-            return Observable.create(x => { x.next({ moduleId: this.moduleInfoService.id }) });
+            return Observable.create(x => {
+                x.next({
+                    id: this.settingService.guid(),
+                    moduleId: this.moduleInfoService.id
+                })
+            });
         }
     }))
 
@@ -50,6 +55,42 @@ export class MiPageInfoComponent implements OnInit {
                     new InputControl({ key: "name", label: "页面名称", col: 4 }),
                     new InputControl({ key: "code", label: "编码", col: 4 }),
                     new InputControl({ key: "description", label: "描述", col: 12 }),
+                ]
+            }),
+            new Row({
+                title: '功能', icon: 'icon-grid', controls: [
+                    new AddItemControl({
+                        key: "controls",
+                        title: '功能',
+                        width: 300,
+                        buttons: [
+                            // {
+                            //     label: '常用字段', handler: this.addDefaultSubject, defaultData: [
+                            //         { name: '查看', code: 'info', icon: 'icon-eye' },
+                            //         { name: '增加', code: 'add', icon: 'icon-plus' },
+                            //         { name: '修改', code: 'update', icon: 'icon-edit-2' },
+                            //         { name: '删除', code: 'delete', icon: 'icon-trash-2' }
+                            //     ]
+                            // }
+                        ],
+                        form: {
+                            controls: [
+                                new Row({
+                                    hide: true, controls: [
+                                        new InputControl({ key: "id", label: "编号" }),
+                                        new InputControl({ key: "pageId", label: "编号", relation: 'many-one' }),
+                                    ]
+                                }),
+                                new Row({
+                                    controls: [
+                                        new InputControl({ key: "name", label: "名称", colHead: true }),
+                                        new InputControl({ key: "code", label: "编码", colHead: true }),
+                                        new InputControl({ key: "description", label: "描述", colHead: true }),
+                                    ]
+                                })
+                            ]
+                        }
+                    }),
                 ]
             })
         ],

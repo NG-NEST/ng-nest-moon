@@ -20,7 +20,7 @@ export class Action {
     @Column({ length: 36 })
     menuId: string;
 
-    @ManyToOne(type => Menu, menu => menu.actions)
+    @ManyToOne(type => Menu, menu => menu.actions, { cascade: ['insert', 'update'] })
     menu: Menu;
 
     @ManyToMany(type => Role, role => role.actions)
