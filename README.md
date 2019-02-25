@@ -6,7 +6,7 @@
     NG-NEST
 </h1>
 
-使用 Angular 和 NestJS 构建的企业级后台管理系统：
+使用 Angular 和 NestJS 构建的企业级后台管理系统框架：
 
 > * 提供基本的系统模块
 > * 基于RBAC的权限管理
@@ -76,6 +76,7 @@ $ npm run start:prod
 | 用户管理    | √           |             |
 
 ### 6. 架构规划(后台)
+大部分功能在 `NestJs` 中已经实现，只需要集成进去就可以了。
 <div align="center">
     <img src="https://github.com/NG-NEST/ng-nest-moon/blob/master/doc/assets/ng-nest-moon.png?raw=true" />
 </div>
