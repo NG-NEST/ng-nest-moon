@@ -39,18 +39,9 @@ $ ng serve -o
 <p> `MySql` 数据库文件 nj-moon/nj-nest.sql ，通过 MySQL Workbench 导入。 使用 `TypeORM` 可以自动创建好表，但是暂时未找到初始化数据的方式，目前直接提供数据库文件导入，后期会删除。  </p>
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
+$ cd nj-moon
+$ npm install
 $ npm run start:dev
-
-# incremental rebuild (webpack)
-$ npm run webpack
-$ npm run start:hmr
-
-# production mode
-$ npm run start:prod
 ```
 ### 5. 功能清单(规划中)
 | 功能        | 基本        |  完善       |
