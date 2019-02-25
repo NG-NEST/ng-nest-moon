@@ -149,6 +149,8 @@ export class FindbackComponent implements OnInit, ControlValueAccessor {
                     && this.selected[0].hasOwnProperty(this.option.tableRelation)) {
                     let len = _.filter(this.selected, z => z[this.option.tableRelation] == item.id).length;
                     item.assist = len ? `${len}` : null;
+                } else {
+                    item.assist = 0;
                 }
                 break;
             case 'selected':
