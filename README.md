@@ -96,3 +96,15 @@ $ npm run start:dev
 <div align="center">
     <img src="https://github.com/NG-NEST/ng-nest-moon/blob/master/doc/assets/ng-nest-user.png?raw=true" />
 </div>
+
+------
+
+<div align="center">
+    <img src="https://github.com/NG-NEST/ng-nest-moon/blob/master/doc/assets/ng-nest-role.png?raw=true" />
+</div>
+
+------
+
+<div align="center">
+    <img src="https://github.com/NG-NEST/ng-nest-moon/blob/master/doc/assets/ng-nest-module.png?raw=true" />
+</div>
