@@ -58,10 +58,10 @@ export class MiPageInfoComponent implements OnInit {
                 ]
             }),
             new Row({
-                title: '功能', icon: 'icon-grid', controls: [
+                title: '控件', icon: 'icon-grid', controls: [
                     new AddItemControl({
                         key: "controls",
-                        title: '功能',
+                        title: '控件',
                         width: 300,
                         buttons: [
                             // {
