@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryColumn, OneToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { Page } from './page.entity';
 
 @Entity("system_module")
@@ -15,8 +15,11 @@ export class Module {
     @Column({ nullable: true})
     icon: string;
 
-    @Column({ nullable: true})
-    updateDate: Date;
+    @CreateDateColumn()
+    createTime: Date;
+
+    @UpdateDateColumn()
+    updateTime: Date;
 
     @OneToMany(type => Page, page => page.module)
     pages: Page[];

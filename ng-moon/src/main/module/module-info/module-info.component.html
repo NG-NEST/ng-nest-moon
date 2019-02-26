@@ -3,9 +3,13 @@
         <div class="info">
             <h1>{{moduleInfoService.itemResult.name}}</h1>
             <ul>
-                <li *ngIf="moduleInfoService.itemResult.updateDate">更新：<span>moduleInfoService.itemResult.updateDate |
-                        date:'yyyy-mm-dd'</span></li>
-                <li *ngIf="moduleInfoService.itemResult.description"><span>{{moduleInfoService.itemResult.description}}</span></li>
+                <li *ngIf="moduleInfoService.itemResult.updateTime">
+                    更新：
+                    <span>{{moduleInfoService.itemResult.updateTime | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+                </li>
+                <li *ngIf="moduleInfoService.itemResult.description">
+                    <span>{{moduleInfoService.itemResult.description}}</span>
+                </li>
             </ul>
         </div>
         <ul>

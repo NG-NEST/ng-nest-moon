@@ -11,6 +11,7 @@ import { OverlayRef } from '@angular/cdk/overlay';
 import { distinctUntilKeyChanged, map, debounceTime } from 'rxjs/operators';
 import { TableComponent } from '../table/table.component';
 import { TreeComponent } from '../tree/tree.component';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'nm-findback',
@@ -96,12 +97,18 @@ export class FindbackComponent implements OnInit, ControlValueAccessor {
         private elementRef: ElementRef,
         private findbackService: FindbackService,
         private renderer: Renderer2,
-        private setting: SettingService
+        private setting: SettingService,
+        private sanitizer: DomSanitizer
     ) { }
 
     ngOnInit() {
         this.setting.mapToObject(this._default, this.option);
         this.option.templateRef = this.templateRef;
+
+        if (this.option.table) this.option.layoutType = LayoutType.Table;
+        if (this.option.tree) this.option.layoutType = LayoutType.Tree;
+        if (this.option.table && this.option.tree) this.option.layoutType = LayoutType.TreeAndTable;
+
         if (this.option.table && this.option.table.selectSub == null) {
             this.option.table.selectSub = new Subject<any>();
         }
@@ -114,9 +121,6 @@ export class FindbackComponent implements OnInit, ControlValueAccessor {
                 return y
             })))
         }
-        if (this.option.table) this.option.layoutType = LayoutType.Table;
-        if (this.option.tree) this.option.layoutType = LayoutType.Tree;
-        if (this.option.table && this.option.tree) this.option.layoutType = LayoutType.TreeAndTable;
         this.subject();
     }
 
@@ -144,13 +148,19 @@ export class FindbackComponent implements OnInit, ControlValueAccessor {
                 this.modal.detach();
                 break;
             case 'changeAssist':
-                if (this.selected
-                    && this.selected.length > 0
-                    && this.selected[0].hasOwnProperty(this.option.tableRelation)) {
-                    let len = _.filter(this.selected, z => z[this.option.tableRelation] == item.id).length;
-                    item.assist = len ? `${len}` : null;
-                } else {
-                    item.assist = 0;
+                if (this.option.layoutType == LayoutType.TreeAndTable) {
+                    if (this.selected
+                        && this.selected.length > 0
+                        && this.selected[0].hasOwnProperty(this.option.tableRelation)) {
+                        let len = _.filter(this.selected, z => z[this.option.tableRelation] == item.id).length;
+                        item.assist = len ? `${len}` : null;
+                    } else {
+                        item.assist = 0;
+                    }
+                } else if (this.option.layoutType == LayoutType.Tree) {
+                    item.assist = _.find(this.selected, z => z.id == item.id) ?
+                        this.sanitizer.bypassSecurityTrustHtml('<i class="icon-check"></i>')
+                        : 0;
                 }
                 break;
             case 'selected':
@@ -201,7 +211,9 @@ export class FindbackComponent implements OnInit, ControlValueAccessor {
                 }
             } else if (this.option.layoutType == LayoutType.Tree) {
                 this.option.tree.nodeClick.subscribe(x => {
-                    //x.$selected = !x.$selected;
+                    x.assist = x.assist === 0 ?
+                        this.sanitizer.bypassSecurityTrustHtml('<i class="icon-check"></i>')
+                        : 0;
                     this.action('selected', { id: x.id, title: x.label });
                 })
             }

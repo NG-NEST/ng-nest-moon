@@ -48,13 +48,7 @@ nm-tree {
                     }
                 }
                 &.selected {
-                    color: white;
-                    background: $assist-color;
-                    >label {
-                        >span {
-                            color: lighten($normal-color, 70%);
-                        }
-                    }
+                    color: $assist-color;
                 }
             }
         }
