@@ -4,7 +4,8 @@ import { ModuleComponent } from './module.component';
 
 const routes: Routes = [
   { path: '',  component: ModuleComponent },
-  { path: 'info/:id',  loadChildren: 'src/main/module/module-info/module-info.module#ModuleInfoModule' }
+  { path: 'info/:id',  loadChildren: 'src/main/module/module-info/module-info.module#ModuleInfoModule' },
+  { path: ':type',  loadChildren: 'src/main/module/module-info/module-info.module#ModuleInfoModule' },
 ];
 
 @NgModule({

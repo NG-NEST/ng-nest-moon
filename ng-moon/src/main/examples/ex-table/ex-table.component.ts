@@ -35,9 +35,16 @@ export class ExTableComponent implements OnInit {
 
   getData(): Observable<any> {
     return Observable.create(x => {
-      let result = []
+      let result = {
+        count: 10,
+        list: [],
+        query: {
+          index: 1,
+          size: 10
+        }
+      }
       for (let i = 1; i <= 10; i++) {
-        result.push({
+        result.list.push({
           account: `账号${i}`,
           password: `密码${i}`,
           name: `姓名${i}`,
@@ -45,8 +52,10 @@ export class ExTableComponent implements OnInit {
           phone: `电话${i}`,
         })
       }
-      x.next(result);
-      x.complete();
+      setTimeout(() => {
+        x.next(result);
+        x.complete();
+      }, 100)
     })
   }
 

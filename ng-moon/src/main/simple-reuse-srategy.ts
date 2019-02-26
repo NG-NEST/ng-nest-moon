@@ -36,7 +36,7 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
      */
     public store(route: ActivatedRouteSnapshot, handle: DetachedRouteHandle): void {
         if (handle == null) return;
-        if (SimpleReuseStrategy.waitDelete && SimpleReuseStrategy.waitDelete == this.getRouteUrl(route)) {
+        if (SimpleReuseStrategy.waitDelete && this.getRouteUrl(route).indexOf(SimpleReuseStrategy.waitDelete) == 0) {
             //如果待删除是当前路由则不存储快照
             SimpleReuseStrategy.waitDelete = null
             return;
@@ -93,7 +93,7 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
      */
     private getRouteUrl(route: ActivatedRouteSnapshot) {
         let url = route['_routerState'].url.replace(/\//g, '_')
-            // + '_' + (route.routeConfig.loadChildren || route.routeConfig.component.toString().split('(')[0].split(' ')[1]);
+            + '_' + (route.routeConfig.loadChildren || route.routeConfig.component.toString().split('(')[0].split(' ')[1]);
         return url
     }
 
@@ -107,9 +107,11 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
     public static deleteRouteSnapshot(name?: string): void {
         if (name) {
             let handle = name.replace(/\//g, '_')
-            if (SimpleReuseStrategy.handlers[handle]) {
-                delete SimpleReuseStrategy.handlers[handle];
-            }
+            _.findKey(SimpleReuseStrategy.handlers, (x, y) => {
+                if (y.indexOf(handle) === 0) {
+                    delete SimpleReuseStrategy.handlers[y];
+                }
+            })
             SimpleReuseStrategy.waitDelete = handle;
         } else {
             for (let key in SimpleReuseStrategy.handlers) {
@@ -118,7 +120,7 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
         }
     }
 
-    public static getHandlers(name: string){
+    public static getHandlers(name: string) {
 
     }
 }

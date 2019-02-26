@@ -29,7 +29,6 @@ export class PageService extends RepositoryService<Page> {
     }
 
     async create(entity: Page): Promise<Page> {
-        console.log(entity);
         return await getManager().transaction<Page>(async x => {
             let result = await this.entityRepository.save(entity);
             entity.controls.forEach(async y => await this.controlRepository.save(y));

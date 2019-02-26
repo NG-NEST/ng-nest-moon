@@ -98,6 +98,14 @@ nm-modal.findback {
                 justify-content: flex-end;
             }
             &.tree {
+                >nm-tree {
+                    ul>li {
+                        >a>label {
+                            display: flex;
+                            justify-content: space-between;
+                        }
+                    }
+                }
                 >.selected {
                     margin-left: 0;
                     padding-left: 0;
