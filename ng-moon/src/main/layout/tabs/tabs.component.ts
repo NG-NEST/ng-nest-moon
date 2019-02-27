@@ -3,6 +3,7 @@ import { LayoutService, Menu } from '../layout.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash';
 import { environment } from 'src/environments/environment';
+import { SimpleReuseStrategy } from 'src/main/simple-reuse-srategy';
 
 @Component({
   selector: 'nm-tabs',
@@ -64,6 +65,7 @@ export class TabsComponent implements OnInit {
       if (x.router === tab.router) deleteIndex = index;
       return x.router === tab.router;
     });
+    SimpleReuseStrategy.deleteRouteSnapshot(`/${environment.layout}/${tab.router}`);
     this.layoutService.session = { tabsPage: tabsPage };
 
     // 判断路由跳转

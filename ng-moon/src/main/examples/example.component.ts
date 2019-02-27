@@ -33,7 +33,7 @@ export class ExampleComponent implements OnInit {
     { title: '工作流', page: './ex-input' }
   ]
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
   }

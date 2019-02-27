@@ -93,7 +93,10 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
      */
     private getRouteUrl(route: ActivatedRouteSnapshot) {
         let url = route['_routerState'].url.replace(/\//g, '_')
-            + '_' + (route.routeConfig.loadChildren || route.routeConfig.component.toString().split('(')[0].split(' ')[1]);
+        // if (!route.routeConfig.loadChildren) {
+        //     url += `${route.routeConfig.component.toString().split('(')[0].split(' ')[1]}`
+        // }
+        // + '_' + (route.routeConfig.loadChildren || route.routeConfig.component.toString().split('(')[0].split(' ')[1]);
         return url
     }
 
@@ -118,9 +121,5 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
                 delete SimpleReuseStrategy.handlers[key];
             }
         }
-    }
-
-    public static getHandlers(name: string) {
-
     }
 }

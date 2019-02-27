@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { LayoutService } from '../../layout.service';
+import { LayoutService, Menu } from '../../layout.service';
+import { SimpleReuseStrategy } from 'src/main/simple-reuse-srategy';
+import * as _ from 'lodash';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: '[nm-sider-node]',
@@ -40,6 +43,13 @@ export class SiderNodeComponent implements OnInit {
   toggle(event: Event, option) {
     event.stopPropagation();
     if (this.child.length > 0) option.childrenShow = !option.childrenShow;
+  }
+
+  sider(option) {
+    let tab = _.find(this.layoutService.session.tabsPage, (x: Menu) => x.router == option.router);
+    if (tab && tab.subPage) {
+      SimpleReuseStrategy.deleteRouteSnapshot(`/${environment.layout}/${option.router}`);
+    }
   }
 
 }

@@ -13,9 +13,9 @@ export const shareRoutes: Routes = [
 // 顶级路由，指向框架页
 export const mainRoutes: Routes = [
     // index 指向框架模块
-    { path: 'index', loadChildren: 'src/main/layout/layout.module#LayoutModule', canActivateChild: [AuthGuard], canLoad: [AuthGuard] },
+    { path: environment.layout, loadChildren: 'src/main/layout/layout.module#LayoutModule', canActivateChild: [AuthGuard], canLoad: [AuthGuard] },
     // 如果路由为空就指向 index
-    { path: '', redirectTo: 'index', pathMatch: 'full' },
+    { path: '', redirectTo: environment.layout, pathMatch: 'full' },
     // 登录页
     { path: 'login', loadChildren: 'src/main/login/login.module#LoginModule' },
     

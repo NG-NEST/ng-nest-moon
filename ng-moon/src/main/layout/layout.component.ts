@@ -15,7 +15,6 @@ export class LayoutComponent implements OnInit {
   constructor(private layoutService: LayoutService) { }
 
   ngOnInit() {
-    // console.log("111")
   }
 
   ngAfterViewInit() {
