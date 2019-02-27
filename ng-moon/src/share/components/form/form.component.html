@@ -1,7 +1,7 @@
 <form (ngSubmit)="submit()" [formGroup]="form">
     <nm-panel class="toolbar">
         <nm-toolbar class="form">
-            <nm-buttons *ngIf="option.type=='info'">
+            <nm-buttons *ngIf="option.type=='info' && form?.value?.id">
                 <nm-button [option]="{icon:'icon-edit', title:'编辑'}" (click)="update()"></nm-button>
             </nm-buttons>
             <nm-buttons *ngIf="option.type!='info'">
@@ -15,7 +15,8 @@
             <ng-container [ngSwitch]="controlsType">
                 <ng-container *ngSwitchCase="'controls'">
                     <nm-row>
-                        <ng-container *ngTemplateOutlet="controlsTemp;context:{controls: option.controls}"></ng-container>
+                        <ng-container *ngTemplateOutlet="controlsTemp;context:{controls: option.controls}">
+                        </ng-container>
                     </nm-row>
                 </ng-container>
                 <ng-container *ngSwitchCase="'row'">
