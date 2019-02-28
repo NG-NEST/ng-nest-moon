@@ -37,5 +37,7 @@ export interface TableOperation {
 
     icon?: string;
 
+    action?: string;
+
     handler?(param: any): any;
 }
