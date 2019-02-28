@@ -37,8 +37,8 @@ export class AccountComponent implements OnInit {
       { key: 'phone', title: '电话' }
     ],
     operations: [
-      { icon: 'icon-edit-2', handler: (x) => this.update(x) },
-      { icon: 'icon-trash-2', handler: (x) => this.remove(x) }
+      { icon: 'icon-edit-2', action:'update', handler: (x) => this.update(x) },
+      { icon: 'icon-trash-2', action:'delete', handler: (x) => this.remove(x) }
     ],
     data: this.getData()
   }
