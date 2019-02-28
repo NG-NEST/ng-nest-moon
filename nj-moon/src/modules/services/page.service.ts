@@ -31,7 +31,7 @@ export class PageService extends RepositoryService<Page> {
     async create(entity: Page): Promise<Page> {
         return await getManager().transaction<Page>(async x => {
             let result = await this.entityRepository.save(entity);
-            entity.controls.forEach(async y => await this.controlRepository.save(y));
+            if (entity.controls instanceof Array) entity.controls.forEach(async y => await this.controlRepository.save(y));
             return result;
         })
     }
@@ -42,8 +42,8 @@ export class PageService extends RepositoryService<Page> {
             return await getManager().transaction(async x => {
                 let removes = _.filter(find.controls, y => !_.find(entity.controls, z => y.id == z.id)) as Control[];
                 let adds = _.filter(entity.controls, y => !_.find(find.controls, z => y.id == z.id)) as Control[];
-                if (removes.length > 0) await this.controlRepository.remove(removes);
-                if (adds.length > 0) adds.forEach(async y => await this.controlRepository.save(y));
+                if (removes instanceof Array) await this.controlRepository.remove(removes);
+                if (adds instanceof Array) adds.forEach(async y => await this.controlRepository.save(y));
                 Object.assign(find, entity);
                 let result = await this.entityRepository.save(find);
                 return result

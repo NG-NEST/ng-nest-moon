@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { AuthService, Menu as AuthMenu } from 'src/services/auths/auth.service';
+import { NavService } from 'src/services/nav.service';
 
 @Injectable({ providedIn: 'root' })
 export class LayoutService {
@@ -27,6 +28,7 @@ export class LayoutService {
         public auth: AuthService,
         public settings: SettingService,
         public router: Router,
+        public nav: NavService,
         public activtedRouter: ActivatedRoute
     ) {
         this.listenerRouter();
