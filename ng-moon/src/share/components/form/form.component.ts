@@ -31,7 +31,8 @@ export class FormComponent implements OnInit, OnChanges {
 
     private _default: FormOption = {
         col: 12,
-        titleLayout: 'top'
+        titleLayout: 'top',
+        isOnePage: false
     }
 
     constructor(
@@ -123,7 +124,7 @@ export class FormComponent implements OnInit, OnChanges {
     }
 
     back() {
-        if (this._isInfoToUpdate) {
+        if (this._isInfoToUpdate || this.option.isOnePage) {
             this.option.type = 'info';
             if (this._initValue) this.form.patchValue(this._initValue)
             this._isInfoToUpdate = false;

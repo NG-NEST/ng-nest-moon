@@ -3,12 +3,12 @@ import { ButtonOption, ButtonsOption } from "../button/button.type";
 import { Select, SelectOption } from "../select/select.type";
 import { Observable } from "rxjs";
 import { Findback, FindbackOption } from "../findback/findback.type";
-import { PropertyWrite } from "@angular/compiler";
 import { AddItem, AddItemOption } from "../add-item/add-item.type";
+import { CheckboxOption } from "../checkbox/checkbox.type";
 
 export type ColType = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 12;
 
-export type ControlType = 'input' | 'buttons' | 'select' | 'findback' | 'add-item';
+export type ControlType = 'input' | 'checkbox' | 'buttons' | 'select' | 'findback' | 'add-item';
 
 export type ControlsType = 'controls' | 'row';
 
@@ -24,6 +24,7 @@ export interface FormOption {
     buttons?: ButtonOption[];
     data?: Observable<any>;
     type?: FormType;
+    isOnePage?: boolean; 
     hoverActions?: FormType[];
 }
 
@@ -76,6 +77,17 @@ export class InputControl extends Control<string | number> {
         super(option);
         Object.assign(this, option);
         if (typeof (this.value) == 'undefined') this.value = '';
+    }
+}
+
+export interface CheckboxControlOption extends ControlI<boolean>, CheckboxOption { }
+
+export class CheckboxControl extends Control<boolean> {
+    controlType: ControlType = 'checkbox';
+    constructor(option: CheckboxControlOption = {}) {
+        super(option);
+        Object.assign(this, option);
+        if (typeof (this.value) == 'undefined') this.value = false;
     }
 }
 

@@ -62,7 +62,8 @@ export class OrganizationComponent implements OnInit {
     buttons: [
       { type: 'submit', handler: this.submitSubject }
     ],
-    type: 'info'
+    type: 'info',
+    isOnePage: true
   }
 
   constructor(
