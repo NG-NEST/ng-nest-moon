@@ -2,6 +2,9 @@
     <ng-container *ngSwitchCase="'input'">
         <nm-input [option]="option" [form]="form" [formOption]="formOption" [(ngModel)]="option.value"></nm-input>
     </ng-container>
+    <ng-container *ngSwitchCase="'checkbox'">
+        <nm-checkbox [option]="option" [form]="form" [formOption]="formOption" [(ngModel)]="option.value"></nm-checkbox>
+    </ng-container>
     <ng-container *ngSwitchCase="'buttons'">
         <nm-buttons [option]="option" [form]="form" [(ngModel)]="option.value"></nm-buttons>
     </ng-container>

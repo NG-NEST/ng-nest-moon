@@ -83,7 +83,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   constructor(private setting: SettingService) { }
 
   ngOnInit() {
-    this.option = Object.assign(this._default, this.option);
+    this.setting.mapToObject(this._default, this.option);
     if (this.form) this.form.valueChanges.pipe(filter(x => _.has(x, this.option.key))).subscribe(x => {
       this.value = x[this.option.key];
     })

@@ -13,6 +13,15 @@ export class Control {
     code: string;
 
     @Column({ nullable: true })
+    required?: boolean;
+
+    @Column({ nullable: true })
+    disabled?: boolean;
+
+    @Column({ nullable: true })
+    readonly?: boolean;
+
+    @Column({ nullable: true })
     description: string;
 
     @Column({ length: 36 })

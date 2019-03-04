@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { OverlayRef } from '@angular/cdk/overlay';
 import { AddItemModalOption } from './add-item.type';
 import { ModalService } from '../modal/modal.service';
+import { Observable } from 'rxjs';
 
 /**
  * 
@@ -15,10 +16,14 @@ export class AddItemService {
     constructor(
         private modalSerivce: ModalService) { }
 
-    create(option: AddItemModalOption): OverlayRef {
+    create(option: AddItemModalOption): Observable<OverlayRef> {
         let overlay = this.modalSerivce.create(option);
         option.detach = () => overlay.detach();
-        return overlay;
+        return Observable.create(x => {
+            if (overlay.hasAttached()) {
+                x.next(overlay);
+            }
+        });
     }
 
 }
