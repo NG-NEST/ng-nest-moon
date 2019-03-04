@@ -47,7 +47,6 @@ export class ActionDirective {
             if (this.hidden) {
                 this.ele.nativeElement.parentNode.removeChild(this.ele.nativeElement);
             } else {
-                debugger
                 this.ele.nativeElement.disabled = true;
                 // this.renderer.listen(this.ele.nativeElement, "click", null);
                 this.renderer.addClass(this.ele.nativeElement, 'disabled');

@@ -3,7 +3,7 @@ export interface CheckboxOption {
     /**
      * 标题
      */
-    title?: string;
+    label?: string;
     /**
      * 图标
      */

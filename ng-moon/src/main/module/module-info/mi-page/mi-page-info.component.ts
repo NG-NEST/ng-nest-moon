@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormOption, Row, ButtonsControl, SelectControl, InputControl, FindbackControl, AddItemControl } from 'src/share/components/form/form.type';
+import { FormOption, Row, ButtonsControl, SelectControl, InputControl, FindbackControl, AddItemControl, CheckboxControl } from 'src/share/components/form/form.type';
 import { Observable, Subject } from 'rxjs';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap, map } from 'rxjs/operators';
@@ -83,9 +83,12 @@ export class MiPageInfoComponent implements OnInit {
                                 }),
                                 new Row({
                                     controls: [
-                                        new InputControl({ key: "name", label: "名称", colHead: true }),
-                                        new InputControl({ key: "code", label: "编码", colHead: true }),
-                                        new InputControl({ key: "description", label: "描述", colHead: true }),
+                                        new InputControl({ key: "name", label: "名称", colHead: true, col: 6 }),
+                                        new InputControl({ key: "code", label: "编码", colHead: true, col: 6 }),
+                                        new CheckboxControl({ key: "required", label: "必填", colHead: true, col: 3 }),
+                                        new CheckboxControl({ key: "disabled", label: "禁用", colHead: true, col: 3 }),
+                                        new CheckboxControl({ key: "readonly", label: "只读", colHead: true, col: 3 }),
+                                        new InputControl({ key: "description", label: "描述" })
                                     ]
                                 })
                             ]

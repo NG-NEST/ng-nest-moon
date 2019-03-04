@@ -121,7 +121,9 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
         switch (type) {
             case 'add':
                 this.type = 'add';
-                this.modal = this.addItemService.create(this.option);
+                this.addItemService.create(this.option).subscribe(x => {
+                    this.modal = x;
+                });
                 break;
             case 'remove':
                 _.remove(this.value, (x: any) => x.id == item.id);
@@ -129,8 +131,11 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
                 break;
             case 'update':
                 this.type = 'update';
-                this.modal = this.addItemService.create(this.option);
-                setTimeout(() => this.formCom.form.patchValue(item))
+                this.addItemService.create(this.option).subscribe(x => {
+                    this.modal = x;
+                    setTimeout(()=> this.formCom.form.patchValue(item))
+                    
+                });
                 break;
             case 'cancel':
                 this.modal.detach();

@@ -5,12 +5,15 @@ import { CheckboxOption } from './checkbox.type';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormGroup } from '@angular/forms';
 import { noop } from 'rxjs';
 import { SettingService } from 'src/services/setting.service';
+import { FormOption } from '../form/form.type';
+import { filter } from 'rxjs/operators';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'nm-checkbox',
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
-  inputs: ['option', 'form'],
+  inputs: ['option', 'form', 'formOption'],
   encapsulation: ViewEncapsulation.None,
   providers: [{
     provide: NG_VALUE_ACCESSOR,
@@ -22,7 +25,9 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
 
   option: CheckboxOption;
 
-  form: FormGroup;
+  formOption: FormOption;
+
+  form: FormGroup
 
   private _value: any;
   private onTouchedCallback: () => void = noop;
@@ -69,7 +74,10 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
   constructor(private setting: SettingService) { }
 
   ngOnInit() {
-    this.option = Object.assign(this._default, this.option);
+    this.setting.mapToObject(this._default, this.option);
+    if (this.form) this.form.valueChanges.pipe(filter(x => _.has(x, this.option.key))).subscribe(x => {
+      this.value = x[this.option.key];
+    })
   }
 
 }
