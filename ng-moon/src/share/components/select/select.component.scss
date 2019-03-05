@@ -1,5 +1,6 @@
 nm-select {
     display: inline-block;
+    min-width: 100px;
     >div.inner {
         display: flex;
         align-items: center;
@@ -8,8 +9,8 @@ nm-select {
             font-size: 12px;
             padding: 5px 6px;
             border-radius: 1px;
-            min-width: 100px;
             display: flex;
+            flex: 1;
             justify-content: space-between;
             align-items: center;
             color: #333333;

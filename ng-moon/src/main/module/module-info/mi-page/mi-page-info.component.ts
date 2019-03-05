@@ -62,7 +62,7 @@ export class MiPageInfoComponent implements OnInit {
                     new AddItemControl({
                         key: "controls",
                         title: '控件',
-                        width: 300,
+                        width: 400,
                         buttons: [
                             // {
                             //     label: '常用字段', handler: this.addDefaultSubject, defaultData: [
@@ -82,13 +82,45 @@ export class MiPageInfoComponent implements OnInit {
                                     ]
                                 }),
                                 new Row({
+                                    title: "基本信息",
+                                    icon: "icon-align-justify",
                                     controls: [
                                         new InputControl({ key: "name", label: "名称", colHead: true, col: 6 }),
                                         new InputControl({ key: "code", label: "编码", colHead: true, col: 6 }),
+                                        new InputControl({ key: "description", label: "描述" })
+                                    ]
+                                }),
+                                new Row({
+                                    title: "验证",
+                                    icon: "icon-alert-triangle",
+                                    controls: [
                                         new CheckboxControl({ key: "required", label: "必填", colHead: true, col: 3 }),
                                         new CheckboxControl({ key: "disabled", label: "禁用", colHead: true, col: 3 }),
                                         new CheckboxControl({ key: "readonly", label: "只读", colHead: true, col: 3 }),
-                                        new InputControl({ key: "description", label: "描述" })
+                                    ]
+                                }),
+                                new Row({
+                                    title: "布局样式",
+                                    icon: "icon-sidebar",
+                                    controls: [
+                                        new SelectControl({
+                                            key: 'col', label: '列宽比例', type: 'buttons', data: [
+                                                { key: 1, label: '1' },
+                                                { key: 2, label: '2' },
+                                                { key: 3, label: '3' },
+                                                { key: 4, label: '4' },
+                                                { key: 5, label: '5' },
+                                                { key: 6, label: '6' },
+                                                { key: 7, label: '7' },
+                                                { key: 8, label: '8' },
+                                                { key: 9, label: '9' },
+                                                { key: 10, label: '10' },
+                                                { key: 11, label: '11' },
+                                                { key: 12, label: '12' }
+                                            ], col: 4, tooltip: {
+                                                message: `<p>采用12等分的栅格布局</p>`
+                                            }
+                                        })
                                     ]
                                 })
                             ]

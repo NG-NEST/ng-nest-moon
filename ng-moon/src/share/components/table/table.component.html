@@ -16,9 +16,8 @@
                 <span *ngFor="let operation of option.operations" class="{{operation.icon}}" (click)="handler(operation, item)" [action]="operation.action" [hidden]="true"></span>
             </td>
             <ng-container *ngFor="let col of option.columns">
-                <td *ngIf="!col.hidden">{{item[col.key]}}</td>
+                <td *ngIf="!col.hidden" [innerHtml]="setTdValue(item[col.key])"></td>
             </ng-container>
-
             <th class="select" *ngIf="option.selectType">
                 <nm-checkbox [(ngModel)]="item.$selected" (click)="action('checkbox', item, $event)"></nm-checkbox>
             </th>

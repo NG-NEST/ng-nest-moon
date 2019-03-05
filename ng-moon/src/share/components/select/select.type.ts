@@ -17,6 +17,7 @@ export interface SelectOption extends PortalOption {
     data?: Select[];
     placeholder?: string;
     tooltip?: TooltipOption;
+    width?: number;
     key?: string;
 }
 
