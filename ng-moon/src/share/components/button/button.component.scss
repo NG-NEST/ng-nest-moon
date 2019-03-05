@@ -27,8 +27,8 @@ nm-button {
     &.selected {
         >p {
             >button {
-                background: $primary-color;
-                border-color: $primary-color;
+                background: $assist-color;
+                border-color: $assist-color;
                 color: white;
             }
         }

@@ -5,7 +5,8 @@ nm-form {
             >nm-grid {
                 >nm-row {
                     padding: 10px;
-                    border-bottom: 1px solid #efefefe0;;
+                    border-bottom: 1px solid #efefefe0;
+                    ;
                     position: relative;
                     &:hover {
                         // background: rgba(242, 242, 242, 0.32);
@@ -43,12 +44,18 @@ nm-form {
                                 top: 15px;
                             }
                         }
+                        >nm-control {
+                            >label {
+                                margin-right: 0;
+                                margin-bottom: 5px;
+                                color: #666;
+                                display: inline-block;
+                            }
+                        }
                     }
                 }
             }
-            &.controls {
-                
-            }
+            &.controls {}
         }
     }
 }

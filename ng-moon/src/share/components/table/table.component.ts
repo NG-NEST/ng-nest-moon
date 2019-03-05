@@ -8,6 +8,7 @@ import { Subject, Subscription, Observable } from 'rxjs';
 import { SettingService } from 'src/services/setting.service';
 import { PaginationComponent } from '../pagination/pagination.component';
 import * as _ from 'lodash';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'nm-table',
@@ -41,7 +42,10 @@ export class TableComponent implements OnInit, OnDestroy {
 
     @ViewChild("pagination") pagination: PaginationComponent;
 
-    constructor(private setting: SettingService) { }
+    constructor(
+        private setting: SettingService,
+        private domSanitizer: DomSanitizer
+        ) { }
 
     ngOnInit() {
         this.setting.mapToObject(this._default, this.option);
@@ -107,6 +111,15 @@ export class TableComponent implements OnInit, OnDestroy {
                     this.action('checkbox', option);
                 }
                 break;
+        }
+    }
+
+    setTdValue(value) {
+        if (_.isString(value)) return value;
+        else if (_.isBoolean(value)) {
+            if (value) {
+                return this.domSanitizer.bypassSecurityTrustHtml(`<i class="icon-check"></i>`)
+            }
         }
     }
 

@@ -30,10 +30,25 @@ nm-modal.add-item {
                         border: none;
                         background: none;
                         box-shadow: none;
-                        >nm-grid {
+                        >nm-grid.title-top {
                             >nm-row {
                                 padding: 0;
                                 border: 0;
+                                &.has-title {
+                                    padding-top: 31px;
+                                    >div.title {
+                                        top: 10px;
+                                        left: 0;
+                                    }
+                                }
+                                &:first-child {
+                                    &.has-title {
+                                        padding-top: 21px;
+                                        >div.title {
+                                            top: 0;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
