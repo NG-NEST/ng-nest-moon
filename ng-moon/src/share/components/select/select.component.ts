@@ -7,6 +7,8 @@ import { SelectOption, SelectPortalOption, Select } from './select.type';
 import { NG_VALUE_ACCESSOR, FormGroup } from '@angular/forms';
 import { noop, Subject } from 'rxjs';
 import { SettingService } from 'src/services/setting.service';
+import { filter } from 'rxjs/operators';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'nm-select',
@@ -116,6 +118,9 @@ export class SelectComponent implements OnInit {
                 }
             })
         }
+        if (this.form) this.form.valueChanges.pipe(filter(x => _.has(x, this.option.key))).subscribe(x => {
+            this.value = x[this.option.key];
+        })
     }
 
 }

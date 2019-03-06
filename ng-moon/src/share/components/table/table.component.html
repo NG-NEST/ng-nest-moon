@@ -4,7 +4,7 @@
             <th>序号</th>
             <th class="operations" *ngIf="option.operations?.length>0">操作</th>
             <ng-container *ngFor="let item of option.columns">
-                <th *ngIf="!item.hidden">{{item.title}}</th>
+                <th *ngIf="!item.hidden" [ngStyle]="{'width.px': item.width}">{{item.title}}</th>
             </ng-container>
             <th class="select" *ngIf="option.selectType">选择</th>
         </tr>

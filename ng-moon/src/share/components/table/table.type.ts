@@ -31,6 +31,8 @@ export interface TableColumn {
     title?: string;
 
     hidden?: boolean;
+
+    width?: string | number;
 }
 
 export interface TableOperation {
