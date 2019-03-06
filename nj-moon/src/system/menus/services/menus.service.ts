@@ -38,8 +38,12 @@ export class MenusService extends RepositoryService<Menu> {
             return await getManager().transaction(async x => {
                 let removeActions = _.filter(find.actions, y => !_.find(entity.actions, z => y.id == z.id)) as Action[];
                 let addActions = _.filter(entity.actions, y => !_.find(find.actions, z => y.id == z.id)) as Action[];
+                let updateActions = _.filter(find.actions, y => _.find(entity.actions, z => y.id == z.id)) as Action[];
                 if (removeActions.length > 0) await this.actionRepository.remove(removeActions);
                 if (addActions.length > 0) addActions.forEach(async y => await this.actionRepository.save(y));
+                if (updateActions instanceof Array) updateActions.forEach(async y => {
+                    await this.actionRepository.save(Object.assign(y, _.find(entity.actions, z => z.id == y.id)))
+                })
                 Object.assign(find, entity);
                 let result = await this.menuRepository.save(find);
                 return result

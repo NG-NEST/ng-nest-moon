@@ -176,8 +176,9 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
 
     setTable() {
         this.table.columns = _.filter(this.controls, x => x.colHead).map((x: any) => {
-            return { key: x.key, title: x.label }
+            return { key: x.key, title: x.label, hidden: x.hidden, width: x.width }
         });
+        console.log(this.table.columns)
         this.table.operations = [
             { icon: 'icon-edit-2', handler: (x) => this.action('update', x) },
             { icon: 'icon-trash-2', handler: (x) => this.action('remove', x) }

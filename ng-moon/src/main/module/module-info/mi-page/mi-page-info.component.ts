@@ -94,9 +94,9 @@ export class MiPageInfoComponent implements OnInit {
                                     title: "验证",
                                     icon: "icon-alert-triangle",
                                     controls: [
-                                        new CheckboxControl({ key: "required", label: "必填", colHead: true, col: 3 }),
-                                        new CheckboxControl({ key: "disabled", label: "禁用", colHead: true, col: 3 }),
-                                        new CheckboxControl({ key: "readonly", label: "只读", colHead: true, col: 3 }),
+                                        new CheckboxControl({ key: "required", label: "必填", width: 50, colHead: true, col: 3 }),
+                                        new CheckboxControl({ key: "disabled", label: "禁用", width: 50, colHead: true, col: 3 }),
+                                        new CheckboxControl({ key: "readonly", label: "只读", width: 50, colHead: true, col: 3 }),
                                     ]
                                 }),
                                 new Row({
@@ -118,7 +118,8 @@ export class MiPageInfoComponent implements OnInit {
                                                 { key: 11, label: '11' },
                                                 { key: 12, label: '12' }
                                             ], col: 4, tooltip: {
-                                                message: `<p>采用12等分的栅格布局</p>`
+                                                message: `<p>采用12等分的栅格布局</p>
+                                                          <p>默认空，按控件默认大小设置</p>`
                                             }
                                         })
                                     ]
@@ -162,4 +163,19 @@ export class MiPageInfoComponent implements OnInit {
             });
         })
     }
+}
+
+export enum ColEnum {
+    One = 1,
+    Two = 2,
+    Three = 3,
+    Four = 4,
+    Five = 5,
+    Six = 6,
+    Seven = 7,
+    Eight = 8,
+    Nine = 9,
+    Ten = 10,
+    Eleven = 11,
+    Twelve = 12
 }
