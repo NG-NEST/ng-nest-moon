@@ -33,10 +33,10 @@ export class ExFindbackComponent implements OnInit {
     type: 'multiple',
     table: {
       columns: [
-        { key: 'title', title: '角色名称' },
+        { key: 'label', title: '角色名称' },
       ],
       data: this.getData().pipe(map(x => {
-        x.list = _.map(x.list, y => { return { id: y.id, title: y.name } })
+        x.list = _.map(x.list, y => { return { id: y.id, label: y.name } })
         return x
       })),
       selectType: 'multiple'

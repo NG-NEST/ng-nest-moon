@@ -1,5 +1,6 @@
 import { Entity, PrimaryColumn, Column, ManyToOne, ObjectType } from "typeorm";
 import { Page } from "./page.entity";
+import { Select } from "../../common/interfaces/select.interface";
 
 @Entity("system_control")
 export class Control {
@@ -25,7 +26,10 @@ export class Control {
     readonly?: boolean;
 
     @Column({ nullable: true, type: 'json' })
-    col?: Object;
+    col?: ColType;
+
+    @Column({ type: 'json' })
+    type: ControlType;
 
     @Column({ length: 36 })
     pageId: string;
@@ -34,10 +38,9 @@ export class Control {
     page: Page;
 }
 
-export interface ColType {
-    id: ColEnum,
-    label: string
-}
+export interface ControlType extends Select<ControlEnum> { }
+
+export interface ColType extends Select<ColEnum> { }
 
 export enum ColEnum {
     One = 1,
@@ -52,4 +55,13 @@ export enum ColEnum {
     Ten = 10,
     Eleven = 11,
     Twelve = 12
+}
+
+export enum ControlEnum {
+    Input = 'input',
+    Checkbox = 'checkbox',
+    Buttons = 'buttons',
+    Select = 'select',
+    Findback = 'findback',
+    AddItem = 'add-item'
 }

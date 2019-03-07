@@ -45,6 +45,9 @@ nm-form {
                             }
                         }
                         >nm-control {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: flex-start;
                             >label {
                                 margin-right: 0;
                                 margin-bottom: 5px;

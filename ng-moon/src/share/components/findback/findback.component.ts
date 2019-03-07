@@ -214,7 +214,7 @@ export class FindbackComponent implements OnInit, ControlValueAccessor {
                     x.assist = x.assist === 0 ?
                         this.sanitizer.bypassSecurityTrustHtml('<i class="icon-check"></i>')
                         : 0;
-                    this.action('selected', { id: x.id, title: x.label });
+                    this.action('selected', { id: x.id, label: x.label });
                 })
             }
         }

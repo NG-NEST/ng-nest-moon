@@ -31,6 +31,10 @@ export class SelectPortalComponent implements OnInit {
     return this.option.type === 'buttons';
   }
 
+  @HostBinding('style.width.px') get width(){
+    return `${this.option.connectRef.nativeElement.clientWidth}`;
+  }
+
   private _category: Select[] = [];
 
   constructor(@Inject(SELECTPORTALOPTION) public option: SelectPortalOption) { }

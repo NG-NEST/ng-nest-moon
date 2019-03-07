@@ -29,7 +29,7 @@ export class RoleInfoComponent implements OnInit {
         if (type === 'update') {
             return this.roleService.findOne(id)
                 .pipe(map(x => {
-                    x.actions = _.map(x.actions, y => { return { id: y.id, title: y.name, menuId: y.menuId } });
+                    x.actions = _.map(x.actions, y => { return { id: y.id, label: y.name, menuId: y.menuId } });
                     return x;
                 }));
         } else {
@@ -62,7 +62,7 @@ export class RoleInfoComponent implements OnInit {
                         tableRelation: 'menuId',
                         table: {
                             columns: [
-                                { key: 'title', title: '菜单功能' }
+                                { key: 'label', title: '菜单功能' }
                             ],
                             data: this.getActionsData(),
                             query: {
@@ -115,7 +115,7 @@ export class RoleInfoComponent implements OnInit {
         return Observable.create(x => {
             let actionsControl = _.find(this.role.controls, x => x.key == 'actions') as any;
             this.actionService.findAll(actionsControl.table.query).pipe(map(x => {
-                x.list = _.map(x.list, y => { return { id: y.id, title: y.name, menuId: y.menuId } })
+                x.list = _.map(x.list, y => { return { id: y.id, label: y.name, menuId: y.menuId } })
                 return x
             })).subscribe(y => {
                 x.next(y);
