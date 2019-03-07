@@ -16,7 +16,9 @@ nm-select-portal {
         display: flex;
         justify-content: center;
         align-items: center;
+        flex: 1;
         >ul {
+            width: 100%;
             >li {
                 min-width: 100px;
                 cursor: default;

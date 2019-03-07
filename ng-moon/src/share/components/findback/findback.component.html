@@ -13,7 +13,7 @@
     <div class="selected">
         <ul>
             <li *ngFor="let item of value">
-                <span class="title">{{item.title}}</span>
+                <span class="label">{{item.label}}</span>
                 <span class="icon-x" (click)="action('removeValue', item)"></span>
             </li>
         </ul>
@@ -27,7 +27,7 @@
         <div class="selected" *ngIf="option.layoutType!= 'treeAndTable'">
             <ul>
                 <li *ngFor="let item of selected">
-                    <span class="title">{{item.title}}</span>
+                    <span class="label">{{item.label}}</span>
                     <span class="icon-x" (click)="action('remove', item)"></span>
                 </li>
             </ul>

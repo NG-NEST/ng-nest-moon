@@ -28,8 +28,8 @@ export class AccountInfoComponent implements OnInit {
         if (type === 'update') {
             return this.accountService.findOne(id)
                 .pipe(map(x => {
-                    x.roles = _.map(x.roles, y => { return { id: y.id, title: y.name } });
-                    x.organizations = _.map(x.organizations, y => { return { id: y.id, title: y.label } });
+                    x.roles = _.map(x.roles, y => { return { id: y.id, label: y.name } });
+                    x.organizations = _.map(x.organizations, y => { return { id: y.id, label: y.label } });
                     return x;
                 }));
         } else {
@@ -61,7 +61,7 @@ export class AccountInfoComponent implements OnInit {
                         type: 'multiple',
                         table: {
                             columns: [
-                                { key: 'title', title: '角色名称' },
+                                { key: 'label', title: '角色名称' },
                             ],
                             data: this.getRolesData(),
                             selectType: 'multiple'
@@ -129,7 +129,7 @@ export class AccountInfoComponent implements OnInit {
         return Observable.create(x => {
             let rolesControl = _.find(this.account.controls, x => x.key == 'roles') as any;
             this.roleService.findAll(rolesControl.table.query).pipe(map(x => {
-                x.list = _.map(x.list, y => { return { id: y.id, title: y.name } })
+                x.list = _.map(x.list, y => { return { id: y.id, label: y.name } })
                 return x
             })).subscribe(y => {
                 x.next(y);

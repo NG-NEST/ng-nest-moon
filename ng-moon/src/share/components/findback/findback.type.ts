@@ -24,7 +24,7 @@ export interface FindbackOption extends ModalOption {
 
 export interface Findback {
     id?: string;
-    title?: string;
+    label?: string;
 }
 
 export interface FindbackModalOption extends FindbackOption {

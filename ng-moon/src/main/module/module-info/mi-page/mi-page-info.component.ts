@@ -87,7 +87,17 @@ export class MiPageInfoComponent implements OnInit {
                                     controls: [
                                         new InputControl({ key: "name", label: "名称", colHead: true, col: 6 }),
                                         new InputControl({ key: "code", label: "编码", colHead: true, col: 6 }),
-                                        new InputControl({ key: "description", label: "描述" })
+                                        new SelectControl({
+                                            key: 'type', label: '类型', data: [
+                                                { key: 'input', label: '输入框' },
+                                                { key: 'checkbox', label: '复选框' },
+                                                { key: 'buttons', label: '按钮组' },
+                                                { key: 'select', label: '下拉选择' },
+                                                { key: 'findback', label: '查找带回' },
+                                                { key: 'add-item', label: '添加行' }
+                                            ], col: 6
+                                        }),
+                                        new InputControl({ key: "description", label: "描述", col: 6 })
                                     ]
                                 }),
                                 new Row({
