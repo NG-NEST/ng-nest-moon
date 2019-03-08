@@ -10,6 +10,9 @@ export class Module {
     name: string;
 
     @Column()
+    code: string;
+
+    @Column()
     description: string;
 
     @Column({ nullable: true})

@@ -16,5 +16,9 @@ export class PageService extends RepositoryService {
     constructor(public http: HttpService) {
         super(http, { controller: { name: "pages" } });
     }
+
+    findByCode(param: { moduleCode: string, pageCode: string }) {
+        return this.http.get(`${this.option.controller.name}/findByCode/${param.moduleCode}/${param.pageCode}`)
+    }
 }
 

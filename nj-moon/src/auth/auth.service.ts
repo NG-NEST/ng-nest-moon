@@ -26,13 +26,13 @@ export class AuthService {
         private readonly actionRepository: Repository<Action>
     ) { }
 
-    async createToken(account: string, password: string): Promise<any> {
-        const user: JwtPayload = { account: account, password: password }
+    async createToken(id: string): Promise<any> {
+        const user: JwtPayload = { id: id }
         return jwt.sign(user, 'secretKey', { expiresIn: this.expires });
     }
 
     async validateAccount(payload: JwtPayload): Promise<any> {
-        return this.userRepository.findOne({ account: payload.account });
+        return this.userRepository.findOne(payload.id);
     }
 
     async finduserByAccount(account: string): Promise<User> {
@@ -48,7 +48,7 @@ export class AuthService {
         if (this.user != undefined && this.user.password == password) {
             let permissions = await this.getPermissions(this.user);
             return new Promise((x, y) => {
-                this.createToken(this.user.account, this.user.password)
+                this.createToken(this.user.id)
                     .then(z => x({ name: this.user.name, token: z, permissions: permissions }))
                     .catch(z => y(z))
             })

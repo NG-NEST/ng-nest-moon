@@ -46,6 +46,7 @@ export class MiBaseComponent implements OnInit {
             new Row({
                 controls: [
                     new InputControl({ key: "name", label: "模块名称", col: 4 }),
+                    new InputControl({ key: "code", label: "编码", col: 4 }),
                     new InputControl({ key: "icon", label: "图标", col: 4 }),
                     new InputControl({ key: "description", label: "描述", col: 12 })
                 ]

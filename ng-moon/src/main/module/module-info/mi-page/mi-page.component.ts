@@ -25,8 +25,9 @@ export class MiPageComponent implements OnInit {
             { key: 'description', title: '描述' }
         ],
         operations: [
-            { icon: 'icon-edit-2', handler: (x) => this.update(x) },
-            { icon: 'icon-trash-2', handler: (x) => this.remove(x) }
+            { icon: 'icon-edit-2', title: '编辑', handler: (x) => this.update(x) },
+            { icon: 'icon-trash-2', title: '删除', handler: (x) => this.remove(x) },
+            { icon: 'icon-eye', title: '预览', action: 'eye', handler: (x) => this.eye(x) }
         ],
         data: this.getData()
     }
@@ -41,7 +42,7 @@ export class MiPageComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        
+
     }
 
     update(param) {
@@ -52,6 +53,10 @@ export class MiPageComponent implements OnInit {
         this.pageService.remove(param.id).subscribe(x => {
             this.tableCom.refresh();
         });
+    }
+
+    eye(param) {
+        this.action('eye', param);
     }
 
     getData(): Observable<any> {
@@ -69,6 +74,9 @@ export class MiPageComponent implements OnInit {
                 this.router.navigate([`./${type}`], { relativeTo: this.activatedRoute });
                 break;
             case 'update':
+                this.router.navigate([`./${type}`, param.id], { relativeTo: this.activatedRoute });
+                break;
+            case 'eye':
                 this.router.navigate([`./${type}`, param.id], { relativeTo: this.activatedRoute });
                 break;
         }
