@@ -6,12 +6,14 @@ import { ModuleInfoRoutesModule } from './module-info-routes.module';
 import { MiBaseComponent } from './mi-base/mi-base.component';
 import { MiPageComponent } from './mi-page/mi-page.component';
 import { MiPageInfoComponent } from './mi-page/mi-page-info.component';
+import { MiPageEyeComponent } from './mi-page/mi-page-eye.component';
 
 const components = [
     ModuleInfoComponent,
     MiBaseComponent,
     MiPageComponent,
-    MiPageInfoComponent
+    MiPageInfoComponent,
+    MiPageEyeComponent
 ]
 
 @NgModule({

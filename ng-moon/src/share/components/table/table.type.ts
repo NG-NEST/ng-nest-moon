@@ -41,5 +41,7 @@ export interface TableOperation {
 
     action?: string;
 
+    title?: string; 
+
     handler?(param: any): any;
 }

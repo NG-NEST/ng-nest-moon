@@ -73,4 +73,16 @@ export class PageService extends RepositoryService<Page> {
             x(result);
         })
     }
+
+    async findByCode(moduleCode: string, pageCode: string): Promise<Page> {
+        return this.entityRepository
+            .createQueryBuilder('page')
+            .leftJoinAndSelect('page.controls', 'control')
+            .leftJoin("page.module", "module")
+            .where("module.code=:moduleCode and page.code=:pageCode", {
+                pageCode: pageCode,
+                moduleCode: moduleCode
+            })
+            .getOne();
+    }
 }

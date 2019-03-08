@@ -49,7 +49,6 @@ export class TableComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.setting.mapToObject(this._default, this.option);
-        console.log(this.option)
         if (this.option.initRequestData) this.refresh();
         this.subject();
     }
@@ -70,7 +69,6 @@ export class TableComponent implements OnInit, OnDestroy {
     refresh() {
         if (this.option.data instanceof Observable) {
             this.option.data.subscribe((x: ResultList<any>) => {
-                console.log(x)
                 this._resultList.list = x.list;
                 this._resultList.count = x.count;
                 this._resultList.query = x.query;
