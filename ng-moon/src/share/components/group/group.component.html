@@ -1,1 +1,19 @@
-123
+<header>
+    <h1 *ngIf="option.title">{{option.title}}</h1>
+    <span class="icon-x" (click)="close()"></span>
+</header>
+<article>
+    <div class="group-list">
+        <div class="group-item" *ngFor="let group of _data" (drop)="drop($event, group)"
+            (dragover)="dragover($event, group)">
+            <div class="group-item-title">
+                <span>{{group.label}}</span>
+            </div>
+            <ul>
+                <ng-container *ngFor="let item of group.data">
+                    <li draggable="true" (dragstart)="dragstart($event, group, item)">{{item.label}}</li>
+                </ng-container>
+            </ul>
+        </div>
+    </div>
+</article>

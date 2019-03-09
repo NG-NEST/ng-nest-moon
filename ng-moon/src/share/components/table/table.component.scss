@@ -41,9 +41,9 @@ nm-table {
                     &.select {
                         text-align: center;
                     }
-                    border-bottom: 1px solid $border-color;
-                    line-height: 35px;
-                    height: 35px;
+                    border-bottom: 1px solid #e8e8e8;
+                    line-height: 30px;
+                    height: 30px;
                     padding: 0 8px;
                     text-align: left;
                     white-space: nowrap;
@@ -59,8 +59,8 @@ nm-table {
                     background-color: rgba(0, 0, 0, .05);
                 }
                 >td {
-                    line-height: 35px;
-                    height: 35px;
+                    line-height: 30px;
+                    height: 30px;
                     padding: 0 8px;
                     text-align: left;
                     white-space: nowrap;

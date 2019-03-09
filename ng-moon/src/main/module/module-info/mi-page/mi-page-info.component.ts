@@ -171,7 +171,11 @@ export class MiPageInfoComponent implements OnInit {
         })
         this.groupSetSubject.subscribe((x: any) => {
             let data = this.page.form.value;
-            this.groupService.create({})
+            this.groupService.create({
+                title: x.label, data: _.map(data.controls, y => {
+                    return { id: y.id, label: y.name }
+                })
+            })
         })
     }
 }

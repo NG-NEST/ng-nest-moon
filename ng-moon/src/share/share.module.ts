@@ -42,10 +42,10 @@ import { CoverPipe } from './pipes/cover.pipe';
 import { FindbackComponent } from './components/findback/findback.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { AddItemComponent } from './components/add-item/add-item.component';
-import { AddItemService } from './components/add-item/add-item.service';
-import { ActionDirective } from './pipes/action.directive';
 import { GroupService } from './components/group/group.service';
 import { GroupComponent } from './components/group/group.component';
+import { ActionDirective } from './directives/action.directive';
+import { LongPressDirective } from './directives/long-press.directive';
 
 // 声明模块中拥有的视图类
 const components = [
@@ -82,7 +82,8 @@ const components = [
     GroupComponent,
 
     CoverPipe,
-    ActionDirective
+    ActionDirective,
+    LongPressDirective
 ]
 
 // 能够动态创建的视图类
