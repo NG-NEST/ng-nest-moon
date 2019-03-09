@@ -2,7 +2,6 @@ import {
   Component, OnInit} from '@angular/core';
 import { PaginationOption, HandlerType } from './pagination.type';
 import * as _ from 'lodash';
-import { SettingService } from 'src/services/setting.service';
 
 @Component({
   selector: 'nm-pagination',
@@ -16,7 +15,8 @@ export class PaginationComponent implements OnInit {
 
   private _pageCount: number;
 
-
+  _isFirst: boolean = false;
+  _isLast: boolean = false;
 
   constructor() { }
 
@@ -26,6 +26,8 @@ export class PaginationComponent implements OnInit {
   setPagination() {
     this._pageCount = _.ceil(this.option.count / this.option.query.size);
     this._pageCount = this._pageCount == 0 ? 1 : this._pageCount;
+    this._isFirst = this.option.query.index === 1;
+    this._isLast = this.option.query.index === this._pageCount;
   }
 
   handler(type: HandlerType) {

@@ -1,0 +1,83 @@
+@import "index";
+nm-group {
+    background: white;
+    min-width: 300px;
+    max-width: 100%;
+    min-height: 150px;
+    max-height: 100%;
+    border-radius: 2px;
+    box-shadow: 0 0 20px 1px #00000030;
+    position: relative;
+    >header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        >h1 {
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0;
+        }
+        >span[class*='icon-'] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 4px;
+            margin: 4px;
+            border-radius: 20px;
+            color: #333333;
+            font-size: 16px;
+            &:hover {
+                transition: all .4s;
+                background: #eeeeee;
+                color: black;
+            }
+        }
+    }
+    >article {
+        padding: 0 15px 15px 15px;
+        >.group-list {
+            display: flex;
+            flex-wrap: wrap;
+            user-select: none;
+            >.group-item {
+                width: 150px;
+                height: 250px;
+                border: 1px solid #ddd;
+                border-radius: 2px;
+                margin-left: 10px;
+                >.group-item-title {
+                    border-bottom: 1px solid #ddd;
+                    background-color: #fafafa;
+                    padding: 5px 10px;
+                }
+                >ul {
+                    >li {
+                        padding: 5px 10px;
+                        margin: 5px;
+                        border: 1px solid #ddd;
+                        border-left-width: 2px;
+                        font-size: 12px;
+                        border-top-right-radius: 2px;
+                        border-bottom-right-radius: 2px;
+                        transition: all .3s;
+                        &:hover {
+                            border-color: $assist-color;
+                            color: $assist-color
+                        }
+                        &.isDashed {
+                            border-color: $assist-color;
+                            border-radius: 2px;
+                            border-style: dashed;
+                            border-left-width: 1px;
+                            min-height: 28px;
+                        }
+                    }
+                }
+                &:first-child {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+}
