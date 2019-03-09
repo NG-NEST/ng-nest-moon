@@ -1,5 +1,5 @@
 import {
-  Component, OnInit, ViewEncapsulation, forwardRef, ChangeDetectorRef
+  Component, OnInit, forwardRef, ChangeDetectorRef
 } from '@angular/core';
 import { TreeOption, TreeNode } from './tree.type';
 import { TreeService } from './tree.service';
@@ -11,7 +11,6 @@ import { SettingService } from 'src/services/setting.service';
   selector: 'nm-tree',
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
-  encapsulation: ViewEncapsulation.None,
   inputs: ['option'],
   providers: [
     TreeService,

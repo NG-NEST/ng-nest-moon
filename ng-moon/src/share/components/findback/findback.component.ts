@@ -1,5 +1,5 @@
 import {
-    Component, OnInit, ViewEncapsulation, ElementRef, forwardRef, ViewChild, Renderer2, TemplateRef
+    Component, OnInit, ElementRef, forwardRef, ViewChild, Renderer2, TemplateRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormGroup, ControlValueAccessor } from '@angular/forms';
 import { noop, Subject } from 'rxjs';
@@ -17,7 +17,6 @@ import { DomSanitizer } from '@angular/platform-browser';
     selector: 'nm-findback',
     templateUrl: './findback.component.html',
     styleUrls: ['./findback.component.scss'],
-    encapsulation: ViewEncapsulation.None,
     inputs: ['option', 'form'],
     providers: [
         FindbackService,
@@ -64,7 +63,6 @@ export class FindbackComponent implements OnInit, ControlValueAccessor {
     };
 
     private _value: any;
-    private onTouchedCallback: () => void = noop;
     private onChangeCallback: (_: any) => void = noop;
 
     get value(): any {
@@ -90,13 +88,10 @@ export class FindbackComponent implements OnInit, ControlValueAccessor {
     }
 
     registerOnTouched(fn: any): void {
-        this.onTouchedCallback = fn;
     }
 
     constructor(
-        private elementRef: ElementRef,
         private findbackService: FindbackService,
-        private renderer: Renderer2,
         private setting: SettingService,
         private sanitizer: DomSanitizer
     ) { }

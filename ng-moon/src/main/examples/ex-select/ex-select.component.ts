@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SelectOption } from 'src/share/components/select/select.type';
 
 /**
@@ -11,8 +11,7 @@ import { SelectOption } from 'src/share/components/select/select.type';
 @Component({
   selector: 'ex-select',
   templateUrl: './ex-select.component.html',
-  styleUrls: ['./ex-select.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./ex-select.component.scss']
 })
 export class ExSelectComponent implements OnInit {
 

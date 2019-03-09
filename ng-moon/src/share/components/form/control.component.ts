@@ -1,5 +1,5 @@
 import {
-    Component, OnInit, ViewEncapsulation, HostBinding, ElementRef, Renderer2
+    Component, OnInit, HostBinding, ElementRef, Renderer2
 } from '@angular/core';
 import { ControlOption, FormOption } from './form.type';
 import { FormGroup } from '@angular/forms';
@@ -9,7 +9,6 @@ import { SettingService } from 'src/services/setting.service';
     selector: 'nm-control',
     templateUrl: './control.component.html',
     styleUrls: ['./control.component.scss'],
-    encapsulation: ViewEncapsulation.None,
     inputs: ['option', 'form', 'formOption']
 })
 export class ControlComponent implements OnInit {

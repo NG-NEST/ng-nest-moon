@@ -25,6 +25,9 @@ export class Control {
     @Column({ nullable: true })
     readonly?: boolean;
 
+    @Column()
+    sort: number;
+
     @Column({ nullable: true, type: 'json' })
     col?: ColType;
 

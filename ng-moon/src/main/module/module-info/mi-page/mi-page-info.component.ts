@@ -9,6 +9,7 @@ import { SettingService } from 'src/services/setting.service';
 import * as _ from 'lodash';
 import { PageService } from '../../module.service';
 import { ModuleInfoService } from '../module-info.service';
+import { GroupService } from 'src/share/components/group/group.service';
 
 @Component({
     selector: 'nm-mi-page-info',
@@ -20,7 +21,7 @@ export class MiPageInfoComponent implements OnInit {
 
     submitSubject = new Subject();
 
-    actionsTreeNodeClickSubject = new Subject();
+    groupSetSubject = new Subject();
 
     getData = this.activatedRoute.paramMap.pipe(switchMap((params: ParamMap) => {
         let id = params.get('id');
@@ -28,7 +29,7 @@ export class MiPageInfoComponent implements OnInit {
         if (type === 'update') {
             return this.pageService.findOne(id)
                 .pipe(map(x => {
-                    // x.actions = _.map(x.actions, y => { return { id: y.id, title: y.name, menuId: y.menuId } });
+                    x.controls = _.orderBy(x.controls, 'sort');
                     return x;
                 }));
         } else {
@@ -64,14 +65,9 @@ export class MiPageInfoComponent implements OnInit {
                         title: '控件',
                         width: 400,
                         buttons: [
-                            // {
-                            //     label: '常用字段', handler: this.addDefaultSubject, defaultData: [
-                            //         { name: '查看', code: 'info', icon: 'icon-eye' },
-                            //         { name: '增加', code: 'add', icon: 'icon-plus' },
-                            //         { name: '修改', code: 'update', icon: 'icon-edit-2' },
-                            //         { name: '删除', code: 'delete', icon: 'icon-trash-2' }
-                            //     ]
-                            // }
+                            {
+                                label: '分组排序', handler: this.groupSetSubject
+                            }
                         ],
                         form: {
                             controls: [
@@ -153,7 +149,8 @@ export class MiPageInfoComponent implements OnInit {
         private moduleInfoService: ModuleInfoService,
         private pageService: PageService,
         private navService: NavService,
-        private settingService: SettingService
+        private settingService: SettingService,
+        private groupService: GroupService
     ) { }
 
     ngOnInit() {
@@ -171,6 +168,10 @@ export class MiPageInfoComponent implements OnInit {
                     })
                 }
             });
+        })
+        this.groupSetSubject.subscribe((x: any) => {
+            let data = this.page.form.value;
+            this.groupService.create({})
         })
     }
 }

@@ -1,14 +1,12 @@
 import {
-  Component, OnInit, ViewEncapsulation, HostBinding, ElementRef, HostListener
-} from '@angular/core';
+  Component, OnInit, HostBinding, ElementRef} from '@angular/core';
 import { ButtonOption } from './button.type';
 
 @Component({
   selector: 'nm-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
-  inputs: ['option'],
-  encapsulation: ViewEncapsulation.None
+  inputs: ['option']
 })
 export class ButtonComponent implements OnInit {
 

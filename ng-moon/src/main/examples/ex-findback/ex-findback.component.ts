@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FindbackOption } from 'src/share/components/findback/findback.type';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -17,7 +17,6 @@ import { FindbackComponent } from 'src/share/components/findback/findback.compon
   selector: 'ex-findback',
   templateUrl: './ex-findback.component.html',
   styleUrls: ['./ex-findback.component.scss'],
-  encapsulation: ViewEncapsulation.None,
   providers: [
     RoleService
   ]

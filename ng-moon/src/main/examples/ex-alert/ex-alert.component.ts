@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlertService } from 'src/share/components/alert/alert.service';
 import { Observable } from 'rxjs';
 
@@ -12,8 +12,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'ex-alert',
   templateUrl: './ex-alert.component.html',
-  styleUrls: ['./ex-alert.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./ex-alert.component.scss']
 })
 export class ExAlertComponent implements OnInit {
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 /**
  * 输入框
@@ -10,8 +10,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 @Component({
   selector: 'ex-input',
   templateUrl: './ex-input.component.html',
-  styleUrls: ['./ex-input.component.scss'],
-  encapsulation: ViewEncapsulation.None  
+  styleUrls: ['./ex-input.component.scss']
 })
 export class ExInputComponent implements OnInit {
 

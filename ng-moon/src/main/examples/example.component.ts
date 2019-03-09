@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 /**
  * 示例
@@ -10,8 +10,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 @Component({
   selector: 'nm-example',
   templateUrl: './example.component.html',
-  styleUrls: ['./example.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./example.component.scss']
 })
 export class ExampleComponent implements OnInit {
 

@@ -1,13 +1,12 @@
 import {
-  Component, OnInit, ViewEncapsulation, Inject
+  Component, OnInit, Inject
 } from '@angular/core';
 import { ToastOption, TOASTOPTION } from './toast.type';
 
 @Component({
   selector: 'nm-toast',
   templateUrl: './toast.component.html',
-  styleUrls: ['./toast.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./toast.component.scss']
 })
 export class ToastComponent implements OnInit {
 

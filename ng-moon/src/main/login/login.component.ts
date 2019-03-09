@@ -1,15 +1,13 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User, AuthService } from 'src/services/auths/auth.service';
 import { environment } from 'src/environments/environment';
 import { ToastService } from 'src/share/components/toast/toast.service';
-import { SimpleReuseStrategy } from '../simple-reuse-srategy';
 
 @Component({
   selector: 'nm-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
@@ -35,14 +33,14 @@ export class LoginComponent implements OnInit {
     if (this.loading == false) {
       this.loading = true;
       if (this.user.account && this.user.password) {
-        this.authService.login(this.user).subscribe(x => {
+        this.authService.login(this.user).subscribe(() => {
           if (this.authService.isLoggedIn) {
 
             let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : `/${environment.layout}`;
             this.router.navigate([redirect]);
           }
           this.loading = false;
-        }, y => {
+        }, () => {
           this.loading = false;
         })
       } else {

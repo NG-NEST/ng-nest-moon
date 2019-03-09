@@ -1,5 +1,5 @@
 import {
-  Component, OnInit, ViewEncapsulation, Inject, HostListener, HostBinding
+  Component, OnInit, Inject, HostListener, HostBinding
 } from '@angular/core';
 import { SELECTPORTALOPTION, SelectPortalOption, Select } from './select.type';
 import * as _ from 'lodash';
@@ -7,16 +7,15 @@ import * as _ from 'lodash';
 @Component({
   selector: 'nm-select-portal',
   templateUrl: './select-portal.component.html',
-  styleUrls: ['./select-portal.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./select-portal.component.scss']
 })
 export class SelectPortalComponent implements OnInit {
 
-  @HostListener('mouseenter', ['$event']) mouseover(event) {
+  @HostListener('mouseenter', ['$event']) mouseover() {
     if (this.option.leaveTimeout) clearTimeout(this.option.leaveTimeout);
   }
 
-  @HostListener('mouseleave', ['$event']) mouseout(event) {
+  @HostListener('mouseleave', ['$event']) mouseout() {
     if (this.option.leaveTimeout) clearTimeout(this.option.leaveTimeout)
     this.option.leaveTimeout = setTimeout(() => {
       this.option.detach();

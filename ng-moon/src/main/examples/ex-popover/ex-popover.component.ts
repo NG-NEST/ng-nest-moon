@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewContainerRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PopoverService } from 'src/share/components/popover/popover.service';
 import { ButtonComponent } from 'src/share/components/button/button.component';
 import { Observable } from 'rxjs';
@@ -13,8 +13,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'ex-popover',
   templateUrl: './ex-popover.component.html',
-  styleUrls: ['./ex-popover.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./ex-popover.component.scss']
 })
 export class ExPopoverComponent implements OnInit {
 

@@ -25,13 +25,20 @@ export class PageService extends RepositoryService<Page> {
     }
 
     async findOne(id: string | number | Date | ObjectID): Promise<Page> {
-        return await this.entityRepository.findOne(id, { relations: ['controls'] });
+        return await this.entityRepository.createQueryBuilder('page')
+            .leftJoinAndSelect('page.controls', 'control')
+            .where("page.id=:id", { id: id })
+            .getOne();
     }
 
     async create(entity: Page): Promise<Page> {
         return await getManager().transaction<Page>(async x => {
             let result = await this.entityRepository.save(entity);
-            if (entity.controls instanceof Array) entity.controls.forEach(async y => await this.controlRepository.save(y));
+            if (entity.controls instanceof Array)
+                entity.controls.forEach(async (y, index) => {
+                    y.sort = index;
+                    await this.controlRepository.save(y)
+                });
             return result;
         })
     }

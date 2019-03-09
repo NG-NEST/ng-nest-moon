@@ -53,9 +53,13 @@ export class MiPageEyeComponent implements OnInit {
     ngOnInit() {
         this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
             let id = params.get('id');
-            this.pageService.findOne(id).subscribe(y => {
-                this.setFormOption(y)
-            })
+            this.pageService.findOne(id)
+                .pipe(map(x => {
+                    x.controls = _.orderBy(x.controls, 'sort');
+                    return x;
+                })).subscribe(y => {
+                    this.setFormOption(y)
+                })
         });
 
     }
