@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuService } from './menu.service';
 import { TreeOption, TreeNode } from 'src/share/components/tree/tree.type';
 import { map } from 'rxjs/operators';
@@ -13,8 +13,7 @@ import { ToastService } from 'src/share/components/toast/toast.service';
 @Component({
   selector: 'nm-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
 
@@ -119,7 +118,7 @@ export class MenuComponent implements OnInit {
       })
     })
     this.deleteSubject.subscribe((x: TreeNode) => {
-      this.menuService.remove(x.id).subscribe(y => {
+      this.menuService.remove(x.id).subscribe(() => {
         this.menuTree.remove(x);
         this.toastService.create('删除成功');
       })
@@ -148,7 +147,7 @@ export class MenuComponent implements OnInit {
         }
       })
     })
-    this.addDefaultSubject.subscribe((x) => {
+    this.addDefaultSubject.subscribe(() => {
 
     })
   }

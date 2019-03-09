@@ -1,5 +1,5 @@
 import {
-  Component, OnInit, ViewEncapsulation, HostBinding, forwardRef
+  Component, OnInit, HostBinding, forwardRef
 } from '@angular/core';
 import { InputOption } from './input.type';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormGroup } from '@angular/forms';
@@ -14,7 +14,6 @@ import { FormOption } from '../form/form.type';
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
   inputs: ['option', 'form', 'formOption'],
-  encapsulation: ViewEncapsulation.None,
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => InputComponent),
@@ -39,7 +38,6 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   private _value: any;
-  private onTouchedCallback: () => void = noop;
   private onChangeCallback: (_: any) => void = noop;
 
   get value(): any {
@@ -65,7 +63,6 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   registerOnTouched(fn: any): void {
-    this.onTouchedCallback = fn;
   }
 
   @HostBinding("class.horizontal") get layout() {

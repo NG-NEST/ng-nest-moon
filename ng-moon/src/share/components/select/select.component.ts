@@ -1,9 +1,9 @@
 import {
-    Component, OnInit, ViewEncapsulation, HostListener, ElementRef, forwardRef, ViewChild, Renderer2
+    Component, OnInit, ElementRef, forwardRef, ViewChild, Renderer2
 } from '@angular/core';
 import { SelectService } from './select.service';
 import { OverlayRef } from '@angular/cdk/overlay';
-import { SelectOption, SelectPortalOption, Select } from './select.type';
+import { SelectOption, SelectPortalOption } from './select.type';
 import { NG_VALUE_ACCESSOR, FormGroup } from '@angular/forms';
 import { noop, Subject } from 'rxjs';
 import { SettingService } from 'src/services/setting.service';
@@ -14,7 +14,6 @@ import * as _ from 'lodash';
     selector: 'nm-select',
     templateUrl: './select.component.html',
     styleUrls: ['./select.component.scss'],
-    encapsulation: ViewEncapsulation.None,
     inputs: ['option', 'form'],
     providers: [{
         provide: NG_VALUE_ACCESSOR,
@@ -39,7 +38,6 @@ export class SelectComponent implements OnInit {
     private _selectOverlayRef: OverlayRef;
 
     private _value: any;
-    private onTouchedCallback: () => void = noop;
     private onChangeCallback: (_: any) => void = noop;
 
     get value(): any {
@@ -76,7 +74,6 @@ export class SelectComponent implements OnInit {
     }
 
     registerOnTouched(fn: any): void {
-        this.onTouchedCallback = fn;
     }
 
     constructor(

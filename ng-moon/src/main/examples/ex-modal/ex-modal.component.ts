@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { ModalService } from 'src/share/components/modal/modal.service';
 
 /**
@@ -11,8 +11,7 @@ import { ModalService } from 'src/share/components/modal/modal.service';
 @Component({
   selector: 'ex-modal',
   templateUrl: './ex-modal.component.html',
-  styleUrls: ['./ex-modal.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./ex-modal.component.scss']
 })
 export class ExModalComponent implements OnInit {
 

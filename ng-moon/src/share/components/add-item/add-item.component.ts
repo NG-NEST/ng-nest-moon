@@ -1,6 +1,5 @@
 import {
-    Component, OnInit, ViewEncapsulation, ElementRef, forwardRef, ViewChild, Renderer2, TemplateRef, HostBinding
-} from '@angular/core';
+    Component, OnInit, forwardRef, ViewChild, TemplateRef} from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormGroup, ControlValueAccessor } from '@angular/forms';
 import { noop, Subject } from 'rxjs';
 import { SettingService } from 'src/services/setting.service';
@@ -18,7 +17,6 @@ import { FormComponent } from '../form/form.component';
     selector: 'nm-add-item',
     templateUrl: './add-item.component.html',
     styleUrls: ['./add-item.component.scss'],
-    encapsulation: ViewEncapsulation.None,
     inputs: ['option', 'form'],
     providers: [
         AddItemService,
@@ -69,7 +67,6 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
     };
 
     private _value: any;
-    private onTouchedCallback: () => void = noop;
     private onChangeCallback: (_: any) => void = noop;
 
     get value(): any {
@@ -95,7 +92,6 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
     }
 
     registerOnTouched(fn: any): void {
-        this.onTouchedCallback = fn;
     }
 
     constructor(
@@ -179,8 +175,8 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
             return { key: x.key, title: x.label, hidden: x.hidden, width: x.width }
         });
         this.table.operations = [
-            { icon: 'icon-edit-2', handler: (x) => this.action('update', x) },
-            { icon: 'icon-trash-2', handler: (x) => this.action('remove', x) }
+            { icon: 'icon-edit-2', title:'编辑', handler: (x) => this.action('update', x) },
+            { icon: 'icon-trash-2', title:'删除', handler: (x) => this.action('remove', x) }
         ]
     }
 
@@ -206,7 +202,7 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
             this.formCom.form.reset();
             this.action('cancel')
         })
-        this.cancelSubject.subscribe(x => {
+        this.cancelSubject.subscribe(() => {
             this.action('cancel')
         })
         if (this.form) {

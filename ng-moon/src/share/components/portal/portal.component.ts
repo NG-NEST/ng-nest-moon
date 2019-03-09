@@ -1,12 +1,10 @@
 import {
-    Component, OnInit, ViewEncapsulation
-  } from '@angular/core';
+    Component, OnInit  } from '@angular/core';
   
   @Component({
     selector: 'nm-portal',
     templateUrl: './portal.component.html',
-    styleUrls: ['./portal.component.scss'],
-    encapsulation: ViewEncapsulation.None
+    styleUrls: ['./portal.component.scss']
   })
   export class PortalComponent implements OnInit {
   

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ButtonOption } from 'src/share/components/button/button.type';
 
 /**
@@ -11,8 +11,7 @@ import { ButtonOption } from 'src/share/components/button/button.type';
 @Component({
   selector: 'ex-button',
   templateUrl: './ex-button.component.html',
-  styleUrls: ['./ex-button.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./ex-button.component.scss']
 })
 export class ExButtonComponent implements OnInit {
 

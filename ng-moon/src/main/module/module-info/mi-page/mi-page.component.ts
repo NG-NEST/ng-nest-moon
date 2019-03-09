@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import * as _ from 'lodash';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavService } from 'src/services/nav.service';
@@ -11,8 +11,7 @@ import { ModuleInfoService } from '../module-info.service';
 
 @Component({
     selector: 'nm-mi-page',
-    templateUrl: './mi-page.component.html',
-    encapsulation: ViewEncapsulation.None
+    templateUrl: './mi-page.component.html'
 })
 export class MiPageComponent implements OnInit {
 

@@ -1,12 +1,10 @@
 import {
-  Component, OnInit, ViewEncapsulation
-} from '@angular/core';
+  Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'nm-panel',
   templateUrl: './panel.component.html',
-  styleUrls: ['./panel.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./panel.component.scss']
 })
 export class PanelComponent implements OnInit {
 

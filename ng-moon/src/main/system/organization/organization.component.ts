@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { OrganizationService } from './organization.service';
 import { TreeOption, TreeNode } from 'src/share/components/tree/tree.type';
 import { map } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { Subject } from 'rxjs';
-import { FormOption, Row, InputControl, AddItemControl } from 'src/share/components/form/form.type';
+import { FormOption, Row, InputControl } from 'src/share/components/form/form.type';
 import { FormComponent } from 'src/share/components/form/form.component';
 import { TreeComponent } from 'src/share/components/tree/tree.component';
 import { SettingService } from 'src/services/setting.service';
@@ -13,8 +13,7 @@ import { ToastService } from 'src/share/components/toast/toast.service';
 @Component({
   selector: 'nm-organization',
   templateUrl: './organization.component.html',
-  styleUrls: ['./organization.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./organization.component.scss']
 })
 export class OrganizationComponent implements OnInit {
 
@@ -88,7 +87,7 @@ export class OrganizationComponent implements OnInit {
       })
     })
     this.deleteSubject.subscribe((x: TreeNode) => {
-      this.organizationService.remove(x.id).subscribe(y => {
+      this.organizationService.remove(x.id).subscribe(() => {
         this.organizationTree.remove(x);
         this.toastService.create('删除成功');
       })

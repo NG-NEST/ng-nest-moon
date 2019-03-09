@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 /**
  * 多选
@@ -10,8 +10,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 @Component({
   selector: 'ex-checkbox',
   templateUrl: './ex-checkbox.component.html',
-  styleUrls: ['./ex-checkbox.component.scss'],
-  encapsulation: ViewEncapsulation.None  
+  styleUrls: ['./ex-checkbox.component.scss']
 })
 export class ExCheckboxComponent implements OnInit {
 

@@ -1,5 +1,5 @@
 import {
-    Component, OnInit, OnChanges, ViewEncapsulation, ChangeDetectorRef, HostBinding,
+    Component, OnInit, OnChanges, ChangeDetectorRef,
 } from '@angular/core';
 import { FormOption, Control, Row, ControlsType } from './form.type';
 import * as _ from 'lodash';
@@ -12,7 +12,6 @@ import { SettingService } from 'src/services/setting.service';
     selector: 'nm-form',
     templateUrl: './form.component.html',
     styleUrls: ['./form.component.scss'],
-    encapsulation: ViewEncapsulation.None,
     inputs: ['option']
 })
 export class FormComponent implements OnInit, OnChanges {
@@ -38,7 +37,6 @@ export class FormComponent implements OnInit, OnChanges {
     constructor(
         private formService: FormService,
         private navService: NavService,
-        private changeDetectorRef: ChangeDetectorRef,
         private setting: SettingService
     ) { }
 

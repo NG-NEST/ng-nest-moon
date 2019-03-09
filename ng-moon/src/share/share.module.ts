@@ -44,6 +44,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { AddItemComponent } from './components/add-item/add-item.component';
 import { AddItemService } from './components/add-item/add-item.service';
 import { ActionDirective } from './pipes/action.directive';
+import { GroupService } from './components/group/group.service';
+import { GroupComponent } from './components/group/group.component';
 
 // 声明模块中拥有的视图类
 const components = [
@@ -77,6 +79,7 @@ const components = [
     PaginationComponent,
     FindbackComponent,
     AddItemComponent,
+    GroupComponent,
 
     CoverPipe,
     ActionDirective
@@ -89,7 +92,8 @@ const entryComponents = [
     PopoverComponent,
     ModalComponent,
     TooltipPortalComponent,
-    SelectPortalComponent
+    SelectPortalComponent,
+    GroupComponent
 ]
 
 // 模块
@@ -110,7 +114,8 @@ const providers = [
     ModalService,
     FormService,
     TooltipService,
-    SelectService
+    SelectService,
+    GroupService
 ]
 
 @NgModule({

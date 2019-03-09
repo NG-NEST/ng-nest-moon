@@ -1,5 +1,5 @@
 import {
-    Component, OnInit, ViewEncapsulation, HostListener, ElementRef
+    Component, OnInit, ElementRef
 } from '@angular/core';
 import { TooltipService } from './tooltip.service';
 import { OverlayRef } from '@angular/cdk/overlay';
@@ -12,7 +12,6 @@ import { SettingService } from 'src/services/setting.service';
     selector: 'nm-tooltip',
     templateUrl: './tooltip.component.html',
     styleUrls: ['./tooltip.component.scss'],
-    encapsulation: ViewEncapsulation.None,
     inputs: ['option']
 })
 export class TooltipComponent implements OnInit {
@@ -33,20 +32,18 @@ export class TooltipComponent implements OnInit {
 
     constructor(
         private elementRef: ElementRef, 
-        private tooltipService: TooltipService,
-        private setting: SettingService
-        ) {
+        private tooltipService: TooltipService        ) {
         
     }
 
     ngOnInit() {
         Object.assign(this._portalOption, this.option);
-        fromEvent(this.elementRef.nativeElement, "mouseenter").pipe(debounceTime(200)).subscribe(x => {
+        fromEvent(this.elementRef.nativeElement, "mouseenter").pipe(debounceTime(200)).subscribe(() => {
             if (!this._tooltipOverlayRef) {
                 this._tooltipOverlayRef = this.tooltipService.create(this._portalOption);
             }
         })
-        fromEvent(this.elementRef.nativeElement, "mouseleave").pipe(debounceTime(200)).subscribe(x => {
+        fromEvent(this.elementRef.nativeElement, "mouseleave").pipe(debounceTime(200)).subscribe(() => {
             if (this._tooltipOverlayRef) {
                 this._tooltipOverlayRef.detach();
                 this._tooltipOverlayRef.dispose();

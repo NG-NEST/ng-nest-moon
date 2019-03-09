@@ -1,5 +1,5 @@
 import {
-  Component, OnInit, ViewEncapsulation, HostBinding, ElementRef, forwardRef
+  Component, OnInit, ElementRef, forwardRef
 } from '@angular/core';
 import { ButtonsOption, ButtonOption } from './button.type';
 import { NG_VALUE_ACCESSOR, FormGroup } from '@angular/forms';
@@ -12,7 +12,6 @@ import { SettingService } from 'src/services/setting.service';
   templateUrl: './buttons.component.html',
   styleUrls: ['./buttons.component.scss'],
   inputs: ['option', 'form'],
-  encapsulation: ViewEncapsulation.None,
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => ButtonsComponent),
@@ -30,7 +29,6 @@ export class ButtonsComponent implements OnInit {
   }
 
   private _value: any;
-  private onTouchedCallback: () => void = noop;
   private onChangeCallback: (_: any) => void = noop;
 
   get value(): any {
@@ -56,7 +54,6 @@ export class ButtonsComponent implements OnInit {
   }
 
   registerOnTouched(fn: any): void {
-    this.onTouchedCallback = fn;
   }
 
   constructor(public elementRef: ElementRef, private setting: SettingService) { }

@@ -1,5 +1,5 @@
 import {
-  Component, OnInit, ViewEncapsulation, HostBinding, HostListener, forwardRef
+  Component, OnInit, HostBinding, HostListener, forwardRef
 } from '@angular/core';
 import { CheckboxOption } from './checkbox.type';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormGroup } from '@angular/forms';
@@ -14,7 +14,6 @@ import * as _ from 'lodash';
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
   inputs: ['option', 'form', 'formOption'],
-  encapsulation: ViewEncapsulation.None,
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => CheckboxComponent),
@@ -30,7 +29,6 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
   form: FormGroup
 
   private _value: any;
-  private onTouchedCallback: () => void = noop;
   private onChangeCallback: (_: any) => void = noop;
 
   get value(): any {
@@ -56,7 +54,6 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
   }
 
   registerOnTouched(fn: any): void {
-    this.onTouchedCallback = fn;
   }
 
   private _default: CheckboxOption = {

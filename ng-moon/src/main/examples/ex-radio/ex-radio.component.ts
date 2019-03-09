@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 /**
  * 单选
@@ -10,8 +10,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 @Component({
   selector: 'ex-radio',
   templateUrl: './ex-radio.component.html',
-  styleUrls: ['./ex-radio.component.scss'],
-  encapsulation: ViewEncapsulation.None  
+  styleUrls: ['./ex-radio.component.scss']
 })
 export class ExRadioComponent implements OnInit {
 

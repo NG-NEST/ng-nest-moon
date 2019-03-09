@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, forwardRef } from '@angular/core';
+import { Component, OnInit, forwardRef } from '@angular/core';
 import * as _ from 'lodash';
 import { ActivatedRoute } from '@angular/router';
 import { ModuleInfoService } from './module-info.service';
@@ -9,7 +9,6 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
     selector: 'nm-module-info',
     templateUrl: './module-info.component.html',
     styleUrls: ['./module-info.component.scss'],
-    encapsulation: ViewEncapsulation.None,
     providers: [
         ModuleInfoService,
         PageService,

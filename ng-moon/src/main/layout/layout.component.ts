@@ -1,11 +1,10 @@
-import { Component, OnInit, ViewEncapsulation, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { LayoutService } from './layout.service';
 
 @Component({
   selector: 'nm-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
 

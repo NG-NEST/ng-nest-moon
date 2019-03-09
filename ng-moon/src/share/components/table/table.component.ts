@@ -1,5 +1,5 @@
 import {
-    Component, OnInit, ViewEncapsulation, ViewChild, OnDestroy
+    Component, OnInit, ViewChild, OnDestroy
 } from '@angular/core';
 import { TableOption } from './table.type';
 import { ResultList } from 'src/services/repository.service';
@@ -14,8 +14,7 @@ import { DomSanitizer } from '@angular/platform-browser';
     selector: 'nm-table',
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.scss'],
-    inputs: ['option'],
-    encapsulation: ViewEncapsulation.None
+    inputs: ['option']
 })
 export class TableComponent implements OnInit, OnDestroy {
 

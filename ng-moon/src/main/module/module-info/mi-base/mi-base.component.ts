@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import * as _ from 'lodash';
 import { FormComponent } from 'src/share/components/form/form.component';
 import { FormOption, Row, InputControl } from 'src/share/components/form/form.type';
@@ -11,8 +11,7 @@ import { ModuleInfoService } from '../module-info.service';
 
 @Component({
     selector: 'nm-mi-base',
-    templateUrl: './mi-base.component.html',
-    encapsulation: ViewEncapsulation.None
+    templateUrl: './mi-base.component.html'
 })
 export class MiBaseComponent implements OnInit {
 
