@@ -1,19 +1,37 @@
 <header>
     <h1 *ngIf="option.title">{{option.title}}</h1>
-    <span class="icon-x" (click)="close()"></span>
+    <span class="icon-x" (click)="action('close')"></span>
 </header>
 <article>
-    <div class="group-list">
-        <div class="group-item" *ngFor="let group of _data" (drop)="drop($event, group)"
-            (dragover)="dragover($event, group)">
-            <div class="group-item-title">
+    <nm-buttons>
+        <nm-button [option]="{icon:'icon-plus', label:'增加分组'}" (click)="action('add')" title="增加"></nm-button>
+    </nm-buttons>
+    <div class="list" cdkDropListGroup>
+        <ul class="item" *ngFor="let group of _data" cdkDropList (cdkDropListDropped)="dropCdk($event, group)"
+            [cdkDropListData]="group.data">
+            <div class="item-title">
+                <i *ngIf="group.icon" [class]="group.icon"></i>
                 <span>{{group.label}}</span>
+                <div class="item-title-icons">
+                    <i class="icon-edit-2" (click)="action('updateGroup', group)"></i>
+                    <i class="icon-trash-2" *ngIf="_data.length>1 ? true : false"
+                        (click)="action('deleteGroup', group)"></i>
+                </div>
             </div>
-            <ul>
-                <ng-container *ngFor="let item of group.data">
-                    <li draggable="true" (dragstart)="dragstart($event, group, item)">{{item.label}}</li>
-                </ng-container>
-            </ul>
-        </div>
+            <li *ngFor="let item of group.data" cdkDrag [cdkDragData]="item">{{item.label}}</li>
+        </ul>
     </div>
+    <nm-panel class="toolbar">
+        <nm-toolbar class="form">
+            <nm-buttons>
+                <nm-button [option]="{icon:'icon-x', title:'取消'}" (click)="action('close')"></nm-button>
+                <nm-button class="orange" [option]="{icon:'icon-check', type: 'submit', title:'提交'}"
+                    (click)="action('submit')"></nm-button>
+            </nm-buttons>
+        </nm-toolbar>
+    </nm-panel>
 </article>
+
+<ng-template #formTemp>
+    <nm-form #formCom [option]="option.addGroupOption.form" [ngStyle]="{width: option.addGroupOption.width}"></nm-form>
+</ng-template>

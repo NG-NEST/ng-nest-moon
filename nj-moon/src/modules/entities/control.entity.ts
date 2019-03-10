@@ -34,6 +34,9 @@ export class Control {
     @Column({ type: 'json' })
     type: ControlType;
 
+    @Column({ nullable: true, type: 'json' })
+    group?: Object;
+
     @Column({ length: 36 })
     pageId: string;
 

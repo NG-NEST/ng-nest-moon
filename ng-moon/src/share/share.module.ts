@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollComponent } from './components/scroll/scroll.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { SearchComponent } from './components/search/search.component';
@@ -103,7 +104,8 @@ const modules = [
     FormsModule,
     ReactiveFormsModule,
     OverlayModule,
-    PortalModule
+    PortalModule,
+    DragDropModule
 ]
 
 // 服务
