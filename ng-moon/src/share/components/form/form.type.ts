@@ -24,7 +24,7 @@ export interface FormOption {
     buttons?: ButtonOption[];
     data?: Observable<any>;
     type?: FormType;
-    isOnePage?: boolean; 
+    isOnePage?: boolean;
     hoverActions?: FormType[];
 }
 

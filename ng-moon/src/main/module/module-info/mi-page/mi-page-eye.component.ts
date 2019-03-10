@@ -67,15 +67,49 @@ export class MiPageEyeComponent implements OnInit {
     setFormOption(param) {
         this.formOption = {
             title: param.name,
-            controls: _.map(param.controls, x => {
-                let control;
-                switch (x.type.key) {
-                    case 'input':
-                        control = new InputControl({ key: x.code, label: x.name, col: x.col.key })
-                        break;
-                }
-                return control
-            })
+            controls: this.setControls(param.controls)
         }
+    }
+
+    setControls(controls: []) {
+        let defaultGroup: Row = new Row({ controls: [] })
+        let group = _.groupBy(controls, (x: any) => {
+            if (!x.group) x.group = defaultGroup
+            return x.group.id
+        })
+        let result = _.map(group, (x: any[]) => {
+            if (x.length > 0) {
+                let groupItem = x[0].group;
+                let row: Row = new Row({ title: groupItem.label, icon: groupItem.icon, controls: [] })
+                for (let item of x) row.controls.push(this.setControl(item))
+                return row;
+            }
+        })
+        return result;
+    }
+
+    setControl(control) {
+        let result;
+        switch (control.type.key) {
+            case 'input':
+                result = new InputControl({ key: control.code, label: control.name, col: control.col.key })
+                break;
+            case 'checkbox':
+                result = new CheckboxControl({ key: control.code, label: control.name, col: control.col.key })
+                break;
+            case 'buttons':
+                result = new ButtonsControl({ key: control.code, label: control.name, col: control.col.key })
+                break;
+            case 'select':
+                result = new SelectControl({ key: control.code, label: control.name, col: control.col.key })
+                break;
+            case 'findback':
+                result = new FindbackControl({ key: control.code, label: control.name, col: control.col.key })
+                break;
+            case 'add-item':
+                result = new AddItemControl({ key: control.code, label: control.name, col: control.col.key })
+                break;
+        }
+        return result
     }
 }

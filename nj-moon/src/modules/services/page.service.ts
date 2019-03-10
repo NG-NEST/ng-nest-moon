@@ -45,6 +45,7 @@ export class PageService extends RepositoryService<Page> {
 
     async update(entity: Page): Promise<Page> {
         let find = await this.entityRepository.findOne(entity.id, { relations: ['controls'] });
+        entity.controls.forEach((x, i) => { x.sort = i });
         if (find) {
             return await getManager().transaction(async x => {
                 let removes = _.filter(find.controls, y => !_.find(entity.controls, z => y.id == z.id)) as Control[];

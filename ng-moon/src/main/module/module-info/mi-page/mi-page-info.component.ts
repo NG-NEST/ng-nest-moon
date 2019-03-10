@@ -23,6 +23,8 @@ export class MiPageInfoComponent implements OnInit {
 
     groupSetSubject = new Subject();
 
+    groupSubmitSubject = new Subject<any[]>();
+
     getData = this.activatedRoute.paramMap.pipe(switchMap((params: ParamMap) => {
         let id = params.get('id');
         let type = params.get('type');
@@ -172,10 +174,15 @@ export class MiPageInfoComponent implements OnInit {
         this.groupSetSubject.subscribe((x: any) => {
             let data = this.page.form.value;
             this.groupService.create({
-                title: x.label, data: _.map(data.controls, y => {
-                    return { id: y.id, label: y.name }
+                title: x.label, submitSubject: this.groupSubmitSubject, data: _.map(data.controls, y => {
+                    y.label = y.name;
+                    console.log(y)
+                    return y
                 })
             })
+        })
+        this.groupSubmitSubject.subscribe((x: any) => {
+            this.page.form.patchValue({ controls: x })
         })
     }
 }

@@ -62,7 +62,7 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
     }
 
     private _default: AddItemOption = {
-        panelClass: 'add-item',
+        panelClass: 'form',
         buttons: []
     };
 
