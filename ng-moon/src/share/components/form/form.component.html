@@ -6,7 +6,7 @@
             </nm-buttons>
             <nm-buttons *ngIf="option.type!='info'">
                 <nm-button [option]="{icon:'icon-x', title:'取消'}" (click)="cancel()"></nm-button>
-                <nm-button class="orange" [option]="{icon:'icon-check', type: 'submit', title:'提交'}"></nm-button>
+                <nm-button class="orange" [disabled]="form.invalid" [option]="{icon:'icon-check', type: 'submit', title:'提交'}"></nm-button>
             </nm-buttons>
         </nm-toolbar>
     </nm-panel>

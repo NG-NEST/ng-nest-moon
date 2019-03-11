@@ -21,15 +21,20 @@ export class ControlComponent implements OnInit {
 
     @HostBinding('class.info') get info() { return this.formOption.type == 'info' }
 
+    @HostBinding('class.required') get required() { return this.option.required }
+
+    @HostBinding('class.disabled') get disabled() { return this.option.disabled }
+
     private _default: ControlOption = {
-        col: 12
+        col: 12,
+        required: false
     }
 
     constructor(
         private elementRef: ElementRef, 
         private renderer: Renderer2,
         private setting: SettingService
-        ) { }
+        ) {}
 
     ngOnInit() {
         // this.option = Object.assign(this._default, this.option);

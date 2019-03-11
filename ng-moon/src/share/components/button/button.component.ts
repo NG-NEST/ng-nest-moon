@@ -1,19 +1,26 @@
 import {
-  Component, OnInit, HostBinding, ElementRef} from '@angular/core';
+  Component, OnInit, HostBinding, ElementRef
+} from '@angular/core';
 import { ButtonOption } from './button.type';
 
 @Component({
   selector: 'nm-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
-  inputs: ['option']
+  inputs: ['disabled', 'option']
 })
 export class ButtonComponent implements OnInit {
 
   option: ButtonOption;
 
+  disabled: boolean = false;
+
   @HostBinding('class.is-icon') get isIcon() {
     return typeof (this.option.icon) !== 'undefined' && typeof (this.option.label) === 'undefined';
+  }
+
+  @HostBinding('class.disabled') get isDisabled() {
+    return this.disabled
   }
 
   private _default: ButtonOption = {

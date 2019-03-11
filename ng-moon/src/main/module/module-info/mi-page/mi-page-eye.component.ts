@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormOption, Row, ButtonsControl, SelectControl, InputControl, FindbackControl, AddItemControl, CheckboxControl } from 'src/share/components/form/form.type';
+import { FormOption, Row, ButtonsControl, SelectControl, InputControl, FindbackControl, AddItemControl, CheckboxControl, Control } from 'src/share/components/form/form.type';
 import { Observable, Subject } from 'rxjs';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap, map } from 'rxjs/operators';
@@ -90,24 +90,33 @@ export class MiPageEyeComponent implements OnInit {
 
     setControl(control) {
         let result;
+        let ctrl = new Control<any>({
+            value: control.value,
+            key: control.code,
+            label: control.name,
+            col: control.col.key,
+            disabled: control.disabled,
+            readonly: control.readonly,
+            required: control.required
+        });
         switch (control.type.key) {
             case 'input':
-                result = new InputControl({ key: control.code, label: control.name, col: control.col.key })
+                result = new InputControl(Object.assign({}, ctrl))
                 break;
             case 'checkbox':
-                result = new CheckboxControl({ key: control.code, label: control.name, col: control.col.key })
+                result = new CheckboxControl(Object.assign({}, ctrl))
                 break;
             case 'buttons':
-                result = new ButtonsControl({ key: control.code, label: control.name, col: control.col.key })
+                result = new ButtonsControl(Object.assign({}, ctrl))
                 break;
             case 'select':
-                result = new SelectControl({ key: control.code, label: control.name, col: control.col.key })
+                result = new SelectControl(Object.assign({}, ctrl))
                 break;
             case 'findback':
-                result = new FindbackControl({ key: control.code, label: control.name, col: control.col.key })
+                result = new FindbackControl(Object.assign({}, ctrl))
                 break;
             case 'add-item':
-                result = new AddItemControl({ key: control.code, label: control.name, col: control.col.key })
+                result = new AddItemControl(Object.assign({}, ctrl))
                 break;
         }
         return result
