@@ -7,6 +7,7 @@ import { FormGroup } from '@angular/forms';
 import { FormService } from './form.service';
 import { NavService } from 'src/services/nav.service';
 import { SettingService } from 'src/services/setting.service';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
     selector: 'nm-form',
@@ -55,6 +56,7 @@ export class FormComponent implements OnInit, OnChanges {
         this.getControls();
         this.form = this.formService.create(this.controls);
         this.getData();
+        this.subject();
     }
 
     getData() {
@@ -128,5 +130,13 @@ export class FormComponent implements OnInit, OnChanges {
             this._isInfoToUpdate = false;
         }
         else this.navService.back();
+    }
+
+    subject() {
+        if (this.form) {
+            this.form.statusChanges.pipe(distinctUntilChanged()).subscribe(x => {
+                console.log(x);
+            })
+        }
     }
 }

@@ -8,15 +8,12 @@ nm-control {
     &.info {
         &:hover {
             background-color: lighten($normal-color, 75%);
-            border-radius: 2px;
-            // border: 1px solid transparent;
+            border-radius: 2px; // border: 1px solid transparent;
         }
         nm-input {
             >p {
                 height: 20px;
-                justify-content: flex-start;
-                flex-direction: row;
-                align-items: center;
+                line-height: 20px;
                 >label {
                     margin-bottom: 0;
                     &:after {
@@ -43,6 +40,18 @@ nm-control {
                         color: lighten($normal-color, 10%);
                     }
                 }
+            }
+        }
+    }
+    &.required {
+        >nm-input {
+            >p>label:after {
+                content: '*';
+                margin-left: 3px;
+                color: $danger-color;
+                margin-top: 2px;
+                font-size: 20px;
+                position: absolute;
             }
         }
     }

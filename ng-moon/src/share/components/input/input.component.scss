@@ -2,15 +2,13 @@
 nm-input {
     display: block;
     >p {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
         position: relative;
         >label {
             margin-bottom: 5px;
             font-size: 12px;
             white-space: nowrap;
             color: #666;
+            display: inline-block;
         }
         >input,
         >div.tooltip>input {
