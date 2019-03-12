@@ -25,6 +25,12 @@ export class Control {
     @Column({ nullable: true })
     readonly?: boolean;
 
+    @Column({ nullable: true })
+    hide?: boolean;
+
+    @Column({ nullable: null })
+    primary?: boolean;
+
     @Column()
     sort: number;
 

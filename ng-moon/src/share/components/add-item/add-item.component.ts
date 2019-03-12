@@ -1,5 +1,6 @@
 import {
-    Component, OnInit, forwardRef, ViewChild, TemplateRef} from '@angular/core';
+    Component, OnInit, forwardRef, ViewChild, TemplateRef
+} from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormGroup, ControlValueAccessor } from '@angular/forms';
 import { noop, Subject } from 'rxjs';
 import { SettingService } from 'src/services/setting.service';
@@ -8,7 +9,7 @@ import { AddItemService } from './add-item.service';
 import * as _ from 'lodash';
 import { OverlayRef } from '@angular/cdk/overlay';
 import { distinctUntilKeyChanged, map } from 'rxjs/operators';
-import { Control, Row, ControlsType } from '../form/form.type';
+import { Control, Row, ControlsType, FormOption } from '../form/form.type';
 import { TableOption } from '../table/table.type';
 import { TableComponent } from '../table/table.component';
 import { FormComponent } from '../form/form.component';
@@ -66,6 +67,8 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
         buttons: []
     };
 
+    private _initControls: Control<any>[] | Row[];
+
     private _value: any;
     private onChangeCallback: (_: any) => void = noop;
 
@@ -101,15 +104,12 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
 
     ngOnInit() {
         this.setting.mapToObject(this._default, this.option);
+        this.option.templateRef = this.templateRef;
         this.getType();
         this.getControls();
         this.setTable();
         this.setRelation();
-        this.option.templateRef = this.templateRef;
-        this.option.form.buttons = [
-            { type: 'submit', handler: this.submitSubject },
-            { type: 'cancel', handler: this.cancelSubject }
-        ]
+        this.setForm();
         this.subject();
     }
 
@@ -117,6 +117,7 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
         switch (type) {
             case 'add':
                 this.type = 'add';
+                this.option.form.controls = _.cloneDeep(this._initControls);
                 this.addItemService.create(this.option).subscribe(x => {
                     this.modal = x;
                 });
@@ -129,8 +130,7 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
                 this.type = 'update';
                 this.addItemService.create(this.option).subscribe(x => {
                     this.modal = x;
-                    setTimeout(()=> this.formCom.form.patchValue(item))
-                    
+                    setTimeout(() => this.formCom.form.patchValue(item))
                 });
                 break;
             case 'cancel':
@@ -170,13 +170,21 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
         }
     }
 
+    setForm() {
+        this.option.form.buttons = [
+            { type: 'submit', handler: this.submitSubject },
+            { type: 'cancel', handler: this.cancelSubject }
+        ]
+        this._initControls = _.cloneDeep(this.option.form.controls);
+    }
+
     setTable() {
         this.table.columns = _.filter(this.controls, x => x.colHead).map((x: any) => {
             return { key: x.key, title: x.label, hidden: x.hidden, width: x.width }
         });
         this.table.operations = [
-            { icon: 'icon-edit-2', title:'编辑', handler: (x) => this.action('update', x) },
-            { icon: 'icon-trash-2', title:'删除', handler: (x) => this.action('remove', x) }
+            { icon: 'icon-edit-2', title: '编辑', handler: (x) => this.action('update', x) },
+            { icon: 'icon-trash-2', title: '删除', handler: (x) => this.action('remove', x) }
         ]
     }
 

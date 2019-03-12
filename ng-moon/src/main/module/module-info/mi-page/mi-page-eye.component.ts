@@ -95,28 +95,30 @@ export class MiPageEyeComponent implements OnInit {
             key: control.code,
             label: control.name,
             col: control.col.key,
+            primary: control.primary,
             disabled: control.disabled,
             readonly: control.readonly,
-            required: control.required
+            required: control.required,
+            hide: control.hide
         });
         switch (control.type.key) {
             case 'input':
-                result = new InputControl(Object.assign({}, ctrl))
+                result = new InputControl(ctrl)
                 break;
             case 'checkbox':
-                result = new CheckboxControl(Object.assign({}, ctrl))
+                result = new CheckboxControl(ctrl)
                 break;
             case 'buttons':
-                result = new ButtonsControl(Object.assign({}, ctrl))
+                result = new ButtonsControl(ctrl)
                 break;
             case 'select':
-                result = new SelectControl(Object.assign({}, ctrl))
+                result = new SelectControl(ctrl)
                 break;
             case 'findback':
-                result = new FindbackControl(Object.assign({}, ctrl))
+                result = new FindbackControl(ctrl)
                 break;
             case 'add-item':
-                result = new AddItemControl(Object.assign({}, ctrl))
+                result = new AddItemControl(ctrl)
                 break;
         }
         return result
