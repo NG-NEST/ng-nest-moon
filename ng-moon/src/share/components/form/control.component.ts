@@ -25,29 +25,31 @@ export class ControlComponent implements OnInit {
 
     @HostBinding('class.disabled') get disabled() { return this.option.disabled }
 
+    @HostBinding('class.hide') get hide() { return this.option.hide }
+
     private _default: ControlOption = {
         col: 12,
         required: false
     }
 
     constructor(
-        private elementRef: ElementRef, 
+        private elementRef: ElementRef,
         private renderer: Renderer2,
         private setting: SettingService
-        ) {}
+    ) { }
 
     ngOnInit() {
-        // this.option = Object.assign(this._default, this.option);
         this.setting.mapToObject(this._default, this.option)
         this.setClass();
-    }
-
-    ngOnChanges(){
-        // console.log(this.formOption.type)
+        this.setControl();
     }
 
     setClass() {
         this.renderer.addClass(this.elementRef.nativeElement, `col-${this.option.col}`);
+    }
+
+    setControl() {
+        if (this.option.primary) this.option.value = this.setting.guid();
     }
 
 }

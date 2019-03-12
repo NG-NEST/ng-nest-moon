@@ -53,9 +53,11 @@ export interface ControlI<T> {
     label?: string;
     controlType?: ControlType;
     col?: ColType;
+    primary?: boolean;
     disabled?: boolean;
     readonly?: boolean;
     required?: boolean;
+    hide?: boolean;
     [property: string]: any;
 }
 
@@ -65,9 +67,11 @@ export class Control<T> {
     label: string;
     controlType: ControlType;
     col: ColType;
+    primary?: boolean;
     disabled?: boolean;
     readonly?: boolean;
     required?: boolean;
+    hide?: boolean;
     [property: string]: any;
     constructor(option: ControlI<T> = {}) {
         Object.assign(this, option)

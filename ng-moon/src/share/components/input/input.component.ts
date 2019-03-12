@@ -5,7 +5,7 @@ import { InputOption } from './input.type';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormGroup } from '@angular/forms';
 import { noop } from 'rxjs';
 import { SettingService } from 'src/services/setting.service';
-import { filter } from 'rxjs/operators';
+import { filter, distinctUntilKeyChanged, map } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { FormOption } from '../form/form.type';
 
@@ -54,6 +54,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   writeValue(val: any): void {
     if (val !== this._value) {
+      if (this.form) this.setting.setFormValue(this.form, this.option.key, val);
       this._value = val;
     }
   }
@@ -81,8 +82,8 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit() {
     this.setting.mapToObject(this._default, this.option);
-    if (this.form) this.form.valueChanges.pipe(filter(x => _.has(x, this.option.key))).subscribe(x => {
-      this.value = x[this.option.key];
+    if (this.form) this.form.valueChanges.pipe(distinctUntilKeyChanged(this.option.key), map(x => x[this.option.key])).subscribe(x => {
+      this.value = x;
     })
   }
 

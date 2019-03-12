@@ -83,8 +83,8 @@ export class MiPageInfoComponent implements OnInit {
                                     title: "基本信息",
                                     icon: "icon-align-justify",
                                     controls: [
-                                        new InputControl({ key: "name", label: "名称", colHead: true, col: 6 }),
-                                        new InputControl({ key: "code", label: "编码", colHead: true, col: 6 }),
+                                        new InputControl({ key: "name", label: "名称", colHead: true, col: 6, required: true }),
+                                        new InputControl({ key: "code", label: "编码", colHead: true, col: 6, required: true }),
                                         new SelectControl({
                                             key: 'type', label: '类型', data: [
                                                 { key: 'input', label: '输入框' },
@@ -93,18 +93,20 @@ export class MiPageInfoComponent implements OnInit {
                                                 { key: 'select', label: '下拉选择' },
                                                 { key: 'findback', label: '查找带回' },
                                                 { key: 'add-item', label: '添加行' }
-                                            ], col: 6
+                                            ], col: 6, value: { key: 'input', label: '输入框' }
                                         }),
                                         new InputControl({ key: "description", label: "描述", col: 6 })
                                     ]
                                 }),
                                 new Row({
-                                    title: "验证",
+                                    title: "控件状态",
                                     icon: "icon-alert-triangle",
                                     controls: [
                                         new CheckboxControl({ key: "required", label: "必填", width: 50, colHead: true, col: 3 }),
                                         new CheckboxControl({ key: "disabled", label: "禁用", width: 50, colHead: true, col: 3 }),
                                         new CheckboxControl({ key: "readonly", label: "只读", width: 50, colHead: true, col: 3 }),
+                                        new CheckboxControl({ key: "hide", label: "隐藏", width: 50, colHead: true, col: 3 }),
+                                        new CheckboxControl({ key: "primary", label: "主键", width: 50, colHead: true, col: 3 })
                                     ]
                                 }),
                                 new Row({
@@ -125,9 +127,8 @@ export class MiPageInfoComponent implements OnInit {
                                                 { key: 10, label: '10' },
                                                 { key: 11, label: '11' },
                                                 { key: 12, label: '12' }
-                                            ], col: 4, tooltip: {
-                                                message: `<p>采用12等分的栅格布局</p>
-                                                          <p>默认空，按控件默认大小设置</p>`
+                                            ], col: 4, value: { key: 12, label: '12' }, tooltip: {
+                                                message: `<p>采用12等分的栅格布局</p>`
                                             }
                                         })
                                     ]
@@ -176,7 +177,6 @@ export class MiPageInfoComponent implements OnInit {
             this.groupService.create({
                 title: x.label, submitSubject: this.groupSubmitSubject, data: _.map(data.controls, y => {
                     y.label = y.name;
-                    console.log(y)
                     return y
                 })
             })
