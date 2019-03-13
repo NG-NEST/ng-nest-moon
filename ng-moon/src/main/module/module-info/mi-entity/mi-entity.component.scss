@@ -1,0 +1,47 @@
+nm-mi-entity {
+    border: 1px dotted #bfbfbf;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    background-image: linear-gradient(90deg, rgba(168, 168, 168, 0.15) 10%, rgba(168, 168, 168, 0) 10%), linear-gradient(rgba(168, 168, 168, 0.15) 10%, rgba(168, 168, 168, 0) 10%);
+    background-size: 10px 10px;
+    >nm-inner {
+        overflow: auto;
+        >div.item {
+            display: inline-block;
+            border: 2px solid #d2d2d2a3;
+            border-radius: 5px;
+            background-color: white;
+            min-width: 120px;
+            >h5 {
+                margin: 0px;
+                padding: 5px;
+                text-align: center;
+                background-color: #d2d2d2a3;
+            }
+            >ul {
+                background-color: #f1f1f1a3;
+                >li {
+                    display: flex;
+                    >span {
+                        align-items: center;
+                        display: inline-block;
+                        margin: 2px 3px;
+                        &.label {
+                            width: 60px;
+                        }
+                        &.key{
+                            width: 90px;
+                        }
+                        &.type{
+                            width: 70px;
+                        }
+                        &.length{
+                            width: 30px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

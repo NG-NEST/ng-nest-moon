@@ -1,5 +1,6 @@
 import { RouteReuseStrategy, DefaultUrlSerializer, ActivatedRouteSnapshot, DetachedRouteHandle } from '@angular/router';
 import * as _ from 'lodash';
+import { ComponentRef } from '@angular/core';
 
 /**
  * 路由复用
@@ -112,6 +113,8 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
             let handle = name.replace(/\//g, '_')
             _.findKey(SimpleReuseStrategy.handlers, (x, y) => {
                 if (y.indexOf(handle) === 0) {
+                    // let sub = SimpleReuseStrategy.handlers[y]['componentRef']['instance']['sub']
+                    // if(sub) sub.unsubscribe();
                     delete SimpleReuseStrategy.handlers[y];
                 }
             })

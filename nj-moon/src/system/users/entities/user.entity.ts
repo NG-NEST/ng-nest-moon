@@ -8,7 +8,7 @@ export class User {
     @PrimaryColumn("uuid", { length: 36 })
     id: string;
 
-    @Column()
+    @Column({ length: 36 })
     name: string;
 
     @Column()

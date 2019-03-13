@@ -6,12 +6,14 @@ import { MiBaseComponent } from './mi-base/mi-base.component';
 import { MiPageComponent } from './mi-page/mi-page.component';
 import { MiPageInfoComponent } from './mi-page/mi-page-info.component';
 import { MiPageEyeComponent } from './mi-page/mi-page-eye.component';
+import { MiEntityComponent } from './mi-entity/mi-entity.component';
 
 const routes: Routes = [
   {
     path: '', component: ModuleInfoComponent, children: [
       { path: '', redirectTo: 'base', pathMatch: 'full' },
       { path: 'base', component: MiBaseComponent },
+      { path: 'entity', component: MiEntityComponent },
       { path: 'page', component: MiPageComponent },
       { path: 'page/eye/:id', component: MiPageEyeComponent },
       { path: 'page/:type', component: MiPageInfoComponent },
