@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   templateUrl: './module.component.html',
   styleUrls: ['./module.component.scss']
 })
-export class ModuleComponent implements OnInit {
+export class ModuleComponent implements OnInit{
 
   result = {
     list: [],

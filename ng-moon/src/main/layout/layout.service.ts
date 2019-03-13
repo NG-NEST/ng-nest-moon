@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Component } from '@angular/core';
 import { SettingService } from '../../services/setting.service';
 import { environment } from '../../environments/environment';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
@@ -9,6 +9,8 @@ import { NavService } from 'src/services/nav.service';
 
 @Injectable({ providedIn: 'root' })
 export class LayoutService {
+
+    componentRefs: Component[] = []
 
     // 当前存储关键字
     key: string = 'Layout';
@@ -121,7 +123,7 @@ export class LayoutService {
     listenerRouter() {
         this.removeSession();
         this.router.events.pipe(filter(x => x instanceof NavigationEnd))
-            .subscribe(() => {
+            .subscribe((x:NavigationEnd) => {
                 this.setTabs();
             })
     }

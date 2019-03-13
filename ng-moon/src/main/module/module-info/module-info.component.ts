@@ -23,8 +23,9 @@ export class ModuleInfoComponent implements OnInit {
 
     list = [
         { name: '基本信息', icon: 'icon-zap', page: './base' },
+        { name: '实体设计', icon: 'icon-slack', page: './entity' },
         { name: '包含页面', icon: 'icon-file-text ', page: './page' },
-        { name: '页面关系', icon: 'icon-home', page: './page-relation' },
+        { name: '页面关系', icon: 'icon-layers', page: './page-relation' },
     ]
 
     constructor(

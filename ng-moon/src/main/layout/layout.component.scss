@@ -232,6 +232,7 @@ nm-layout {
         padding-top: $header-height+$tabs-height;
         padding-left: $sider-width;
         transition: padding $transition-duration;
+        height: 100%;
         display: block;
     }
     >nm-toggle {

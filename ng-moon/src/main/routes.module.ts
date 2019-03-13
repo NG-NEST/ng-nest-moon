@@ -10,6 +10,7 @@ import { SimpleReuseStrategy } from './simple-reuse-srategy';
             mainRoutes,
             {
                 enableTracing: false,
+                anchorScrolling: 'enabled',
                 preloadingStrategy: SelectivePreloadingStrategy
             }
         )
