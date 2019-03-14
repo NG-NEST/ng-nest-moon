@@ -9,8 +9,8 @@ import { AddItemService } from './add-item.service';
 import * as _ from 'lodash';
 import { OverlayRef } from '@angular/cdk/overlay';
 import { distinctUntilKeyChanged, map } from 'rxjs/operators';
-import { Control, Row, ControlsType, FormOption } from '../form/form.type';
-import { TableOption } from '../table/table.type';
+import { Control, Row, ControlsType } from '../form/form.type';
+import { TableOption, TableColumn } from '../table/table.type';
 import { TableComponent } from '../table/table.component';
 import { FormComponent } from '../form/form.component';
 
@@ -64,7 +64,8 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
 
     private _default: AddItemOption = {
         panelClass: 'form',
-        buttons: []
+        buttons: [],
+        type: 'form'
     };
 
     private _initControls: Control<any>[] | Row[];
@@ -179,8 +180,12 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
     }
 
     setTable() {
+        if (this.option.type === 'batch') this.table.type = 'update';
         this.table.columns = _.filter(this.controls, x => x.colHead).map((x: any) => {
-            return { key: x.key, title: x.label, hidden: x.hidden, width: x.width }
+            let column: TableColumn = {
+                key: x.key, title: x.label, hidden: x.hidden, width: x.width, control: x
+            }
+            return column
         });
         this.table.operations = [
             { icon: 'icon-edit-2', title: '编辑', handler: (x) => this.action('update', x) },

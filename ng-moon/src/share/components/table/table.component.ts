@@ -1,5 +1,5 @@
 import {
-    Component, OnInit, ViewChild, OnDestroy
+    Component, OnInit, ViewChild, OnDestroy, HostBinding
 } from '@angular/core';
 import { TableOption } from './table.type';
 import { ResultList } from 'src/services/repository.service';
@@ -26,7 +26,8 @@ export class TableComponent implements OnInit, OnDestroy {
             index: 1,
             size: 10,
             filter: {}
-        }
+        },
+        type: 'info'
     }
 
     _resultList: PaginationOption = {
@@ -40,6 +41,10 @@ export class TableComponent implements OnInit, OnDestroy {
     private _querySub: Subscription;
 
     @ViewChild("pagination") pagination: PaginationComponent;
+
+    @HostBinding("class.data-null") get resultList() {
+        return this._resultList && this._resultList.list && this._resultList.list.length == 0
+    }
 
     constructor(
         private setting: SettingService,

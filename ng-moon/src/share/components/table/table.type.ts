@@ -1,7 +1,10 @@
 import { Observable, Subject } from "rxjs";
 import { Query } from "src/services/repository.service";
+import { Control } from "../form/form.type";
 
 export type SelectType = 'single' | 'multiple';
+
+export type TableType = 'info' | 'update'
 
 export interface TableOption {
 
@@ -22,6 +25,8 @@ export interface TableOption {
     selectedSub?: Subject<any>;
 
     initRequestData?: boolean;
+
+    type?: TableType;
 }
 
 export interface TableColumn {
@@ -33,6 +38,8 @@ export interface TableColumn {
     hidden?: boolean;
 
     width?: string | number;
+
+    control?: Control<any>;
 }
 
 export interface TableOperation {

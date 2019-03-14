@@ -1,5 +1,5 @@
 import {
-  Component, OnInit} from '@angular/core';
+  Component, OnInit, HostBinding} from '@angular/core';
 import { PaginationOption, HandlerType } from './pagination.type';
 import * as _ from 'lodash';
 

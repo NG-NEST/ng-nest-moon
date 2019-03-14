@@ -1,4 +1,4 @@
 <a *ngIf="option?.query?.size" title="上一页" (click)="handler('previous')" [ngClass]="{'disabled': _isFirst}"><span class="icon-chevron-left "></span></a>
 <a *ngIf="option?.query?.size" title="下一页" (click)="handler('next')" [ngClass]="{'disabled': _isLast}"><span class="icon-chevron-right"></span></a>
 <a *ngIf="option?.query?.index && option?.query?.size" class="info">第{{option?.query?.index}}页 / 共{{_pageCount}}页</a>
-<a class="info" *ngIf="option.count">总数：{{option.count}}</a>
+<a class="info" *ngIf="option?.query?.index && option?.query?.size && option.count">总数：{{option.count}}</a>
