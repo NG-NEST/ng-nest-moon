@@ -9,9 +9,12 @@ export const ADDITEMMODALOPTION = new InjectionToken<{}>('ADDITEMMODALOPTION');
 
 export type ActionType = 'add' | 'update' | 'remove';
 
+export type AddItemType = 'form' | 'batch';
+
 export interface AddItemOption extends ModalOption {
     label?: string;
     data?: Observable<AddItem[]>;
+    type?: AddItemType;
     form?: FormOption;
     buttons?: ButtonOption[];
     placeholder?: string;

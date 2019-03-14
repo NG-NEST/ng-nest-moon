@@ -1,14 +1,26 @@
-<nm-inner class="no-padding dragBox">
-    <div class="item" cdkDragBoundary=".dragBox" cdkDrag>
-        <h5>用户信息</h5>
-        <ul>
-            <li *ngFor="let item of data">
-                <span class="label">{{item.label}}</span>
-                <span class="key">{{item.key}}</span>
-                <span class="type">{{item.type}}</span>
-                <span class="length" *ngIf="item.length">{{item.length}}</span>
-            </li>
-        
-        </ul>
-    </div>
+<nm-inner class="no-padding">
+    <nm-panel class="drag">
+        <nm-toolbar class="form">
+            <nm-buttons>
+                <nm-button [option]="{icon:'icon-plus', title:'增加'}" (click)="action('add')"></nm-button>
+            </nm-buttons>
+        </nm-toolbar>
+        <div class="dragBox">
+            <div class="item" cdkDragBoundary=".dragBox" cdkDrag>
+                <h5>用户信息<i class="icon-more-horizontal"></i></h5>
+                <ul>
+                    <li *ngFor="let item of data">
+                        <span class="label">{{item.label}}</span>
+                        <span class="key">{{item.key}}</span>
+                        <span class="type">{{item.type}}</span>
+                        <span class="length" *ngIf="item.length">{{item.length}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nm-panel>
 </nm-inner>
+
+<ng-template #entityTemp>
+    <nm-form #entityForm [option]="formOption"></nm-form>
+</ng-template>
