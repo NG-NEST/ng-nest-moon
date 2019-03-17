@@ -45,13 +45,10 @@ export class MiEntityComponent implements OnInit {
             id: this.settingService.guid(),
             moduleId: this.moduleInfoService.id,
             columns: [
-                { id: this.settingService.guid(), label: 'id' }
+                { id: this.settingService.guid(), label: '名称' }
             ]
         })
     });
-
-
-
 
     formOption: FormOption = {
         title: '页面信息',

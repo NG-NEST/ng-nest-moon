@@ -19,7 +19,7 @@ export class ControlComponent implements OnInit {
 
     form: FormGroup;
 
-    @HostBinding('class.info') get info() { return this.formOption.type == 'info' }
+    @HostBinding('class.info') get info() { return this.formOption && this.formOption.type == 'info' }
 
     @HostBinding('class.required') get required() { return this.option.required }
 
@@ -39,7 +39,8 @@ export class ControlComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.setting.mapToObject(this._default, this.option)
+        this.setting.mapToObject(this._default, this.option);
+        console.log(this.option)
         this.setClass();
         this.setControl();
     }
