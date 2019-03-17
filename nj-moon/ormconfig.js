@@ -5,7 +5,7 @@ module.exports = {
     "port": 3306,
     "username": "root",
     "password": "123qwe",
-    "database": "ng-nest",
+    "database": "nj-nest",
     "entities": [`${SOURCE_PATH}/**/**.entity{.ts,.js}`],
     "synchronize": true,
     "logging": [

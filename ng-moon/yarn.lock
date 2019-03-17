@@ -109,15 +109,6 @@
   dependencies:
     tslib "^1.9.0"
 
-"@angular/cdk@^7.0.0":
-  version "7.3.3"
-  resolved "http://registry.npm.taobao.org/@angular/cdk/download/@angular/cdk-7.3.3.tgz#02a2ad248141cd9968a5950ce0602da3fcf5445b"
-  integrity sha1-AqKtJIFBzZlopZUM4GAto/z1RFs=
-  dependencies:
-    tslib "^1.7.1"
-  optionalDependencies:
-    parse5 "^5.0.0"
-
 "@angular/cli@~7.0.3":
   version "7.0.3"
   resolved "http://registry.npm.taobao.org/@angular/cli/download/@angular/cli-7.0.3.tgz#fcc41f9eaae2ee15d86115804f3dbb2bdb63a8c2"
@@ -5075,11 +5066,6 @@ parse5@4.0.0:
   resolved "http://registry.npm.taobao.org/parse5/download/parse5-4.0.0.tgz#6d78656e3da8d78b4ec0b906f7c08ef1dfe3f608"
   integrity sha1-bXhlbj2o14tOwLkG98CO8d/j9gg=
 
-parse5@^5.0.0:
-  version "5.1.0"
-  resolved "http://registry.npm.taobao.org/parse5/download/parse5-5.1.0.tgz#c59341c9723f414c452975564c7c00a68d58acd2"
-  integrity sha1-xZNByXI/QUxFKXVWTHwApo1YrNI=
-
 parseqs@0.0.5:
   version "0.0.5"
   resolved "http://registry.npm.taobao.org/parseqs/download/parseqs-0.0.5.tgz#d5208a3738e46766e291ba2ea173684921a8b89d"
@@ -6800,7 +6786,7 @@ ts-node@~7.0.0:
     source-map-support "^0.5.6"
     yn "^2.0.0"
 
-tslib@^1.7.1, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
+tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.9.3"
   resolved "http://registry.npm.taobao.org/tslib/download/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
   integrity sha1-1+TdeSRdhUKMTX5IIqeZF5VMooY=
