@@ -87,6 +87,7 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
 
     writeValue(val: any): void {
         if (val !== this._value) {
+            console.log(val)
             this._value = val;
         }
     }
@@ -118,10 +119,22 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
         switch (type) {
             case 'add':
                 this.type = 'add';
-                this.option.form.controls = _.cloneDeep(this._initControls);
-                this.addItemService.create(this.option).subscribe(x => {
-                    this.modal = x;
-                });
+                if (this.option.type === 'form') {
+                    this.option.form.controls = _.cloneDeep(this._initControls);
+                    this.addItemService.create(this.option).subscribe(x => {
+                        this.modal = x;
+                    });
+                } else if (this.option.type === 'batch') {
+                    let addValue: { [prop: string]: any } = {}
+                    _.map(this.controls, x => addValue[x.key] = x.value);
+                    if (_.isEmpty(addValue.id)) {
+                        addValue.id = this.setting.guid();
+                    }
+                    if (this.relationManyOne && this.form) {
+                        addValue[this.relationManyOne.key] = this.form.value.id;
+                    }
+                    this.value = _.union(this.value, [addValue]);
+                }
                 break;
             case 'remove':
                 _.remove(this.value, (x: any) => x.id == item.id);

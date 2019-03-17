@@ -1,5 +1,6 @@
 import { Entity, Column, PrimaryColumn, OneToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { Page } from './page.entity';
+import { Table } from "./table.entity";
 
 @Entity("system_module")
 export class Module {
@@ -26,4 +27,7 @@ export class Module {
 
     @OneToMany(type => Page, page => page.module)
     pages: Page[];
+
+    @OneToMany(type => Table, table => table.module)
+    tables: Table[];
 }

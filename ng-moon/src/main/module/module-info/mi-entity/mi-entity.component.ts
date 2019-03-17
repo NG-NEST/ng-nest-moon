@@ -9,6 +9,7 @@ import { ColumnTypeData } from './mi-entity.store';
 import { Select } from 'src/share/components/select/select.type';
 import { SettingService } from 'src/services/setting.service';
 import { ModuleInfoService } from '../module-info.service';
+import { TableService } from '../../module.service';
 
 @Component({
     selector: 'nm-mi-entity',
@@ -40,18 +41,17 @@ export class MiEntityComponent implements OnInit {
 
     submitSubject = new Subject();
 
+    cancelSubject = new Subject();
+
     getData = Observable.create(x => {
         x.next({
             id: this.settingService.guid(),
-            moduleId: this.moduleInfoService.id,
-            columns: [
-                { id: this.settingService.guid(), label: '名称' }
-            ]
+            moduleId: this.moduleInfoService.id
         })
     });
 
     formOption: FormOption = {
-        title: '页面信息',
+        title: '实体信息',
         controls: [
             new Row({
                 hide: true, controls: [
@@ -69,7 +69,7 @@ export class MiEntityComponent implements OnInit {
             new Row({
                 title: '属性', icon: 'icon-grid', controls: [
                     new AddItemControl({
-                        key: "columns",
+                        key: "cols",
                         type: 'batch',
                         buttons: [
                             // {
@@ -81,23 +81,24 @@ export class MiEntityComponent implements OnInit {
                                 new Row({
                                     hide: true, controls: [
                                         new InputControl({ key: "id", label: "编号" }),
-                                        new InputControl({ key: "entityId", label: "编号", relation: 'many-one' }),
+                                        new InputControl({ key: "tableId", label: "编号", relation: 'many-one' }),
                                     ]
                                 }),
                                 new Row({
                                     title: "基本信息",
                                     icon: "icon-align-justify",
                                     controls: [
-                                        new InputControl({ key: "label", label: "名称", colHead: true, col: 6, required: true }),
-                                        new InputControl({ key: "name", label: "编码", colHead: true, col: 6, required: true }),
+                                        new InputControl({ key: "label", label: "名称", width: 100, colHead: true, required: true }),
+                                        new InputControl({ key: "name", label: "编码", width: 100, colHead: true, required: true }),
                                         new SelectControl({
-                                            key: 'type', label: '类型', data: ColumnTypeData as Select[], col: 6, colHead: true
+                                            key: "type", label: "类型", width: 100, data: ColumnTypeData as Select[], colHead: true,
+                                            value: { key: 'varchar', label: '字符串' }
                                         }),
-                                        new InputControl({ key: "length", label: "长度", colHead: true, col: 6 }),
-                                        new CheckboxControl({ key: "primary", label: "主键", width: 50, colHead: true, col: 3 }),
-                                        new CheckboxControl({ key: "nullable", label: "允许空", width: 50, colHead: true, col: 3 }),
-                                        new CheckboxControl({ key: "unique", label: "唯一", width: 50, colHead: true, col: 3 }),
-                                        new InputControl({ key: "default", label: "默认值", colHead: true, col: 6 }),
+                                        new InputControl({ key: "length", label: "长度", width: 50, colHead: true, }),
+                                        new CheckboxControl({ key: "primary", label: "主键", width: 50, colHead: true }),
+                                        new CheckboxControl({ key: "nullable", label: "允许空", width: 50, colHead: true }),
+                                        new CheckboxControl({ key: "unique", label: "唯一", width: 50, colHead: true }),
+                                        new InputControl({ key: "default", label: "默认值", width: 165, colHead: true }),
                                     ]
                                 })
                             ]
@@ -107,19 +108,23 @@ export class MiEntityComponent implements OnInit {
             })
         ],
         buttons: [
-            { type: 'submit', handler: this.submitSubject }
+            { type: 'submit', handler: this.submitSubject },
+            { type: 'cancel', handler: this.cancelSubject }
         ],
-        data: this.getData
+        data: this.getData,
+        type: 'info',
+        isOnePage: true
     }
 
     constructor(
         private modalService: ModalService,
+        private tableService: TableService,
         private settingService: SettingService,
         private moduleInfoService: ModuleInfoService
     ) { }
 
     ngOnInit() {
-
+        this.subject();
     }
 
     action(type: string) {
@@ -132,7 +137,22 @@ export class MiEntityComponent implements OnInit {
                     width: 800,
                     height: 600
                 })
+                setTimeout(() => {
+                    this.entityForm.option.type = 'add';
+                })
                 break;
         }
+    }
+
+    subject() {
+        this.submitSubject.subscribe(x => {
+            console.log(x)
+        })
+        this.cancelSubject.subscribe(x => {
+            if (this.modal) {
+                this.modal.detach();
+                this.modal.dispose();
+            }
+        })
     }
 }

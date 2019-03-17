@@ -2,7 +2,7 @@ import { Component, OnInit, forwardRef } from '@angular/core';
 import * as _ from 'lodash';
 import { ActivatedRoute } from '@angular/router';
 import { ModuleInfoService } from './module-info.service';
-import { PageService } from '../module.service';
+import { PageService, TableService } from '../module.service';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -12,6 +12,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
     providers: [
         ModuleInfoService,
         PageService,
+        TableService,
         {
             provide: NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => ModuleInfoComponent),

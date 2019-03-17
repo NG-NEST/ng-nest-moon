@@ -1,7 +1,7 @@
 import {
     Component, OnInit, ViewChild, OnDestroy, HostBinding
 } from '@angular/core';
-import { TableOption } from './table.type';
+import { TableOption, TableColumn } from './table.type';
 import { ResultList } from 'src/services/repository.service';
 import { PaginationResult, PaginationOption } from '../pagination/pagination.type';
 import { Subject, Subscription, Observable } from 'rxjs';
@@ -27,11 +27,17 @@ export class TableComponent implements OnInit, OnDestroy {
             size: 10,
             filter: {}
         },
-        type: 'info'
+        type: 'info',
+        noData: '暂无数据'
     }
 
+    _columns: TableColumn[] = [];
+
+    _columnLength: number = 1;
+
     _resultList: PaginationOption = {
-        handler: new Subject<PaginationResult>()
+        handler: new Subject<PaginationResult>(),
+        list: []
     };
 
     private _selected = [];
@@ -46,7 +52,7 @@ export class TableComponent implements OnInit, OnDestroy {
         return this._resultList && this._resultList.list && this._resultList.list.length == 0
     }
 
-    @HostBinding("class.batch") get batchType(){
+    @HostBinding("class.batch") get batchType() {
         return this.option.type === 'batch';
     }
 
@@ -58,6 +64,7 @@ export class TableComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.setting.mapToObject(this._default, this.option);
         if (this.option.initRequestData) this.refresh();
+        this.setTable();
         this.subject();
     }
 
@@ -88,8 +95,17 @@ export class TableComponent implements OnInit, OnDestroy {
         }
     }
 
+    setTable() {
+        this._columns = _.filter(this.option.columns, x => !x.hidden);
+        this._columnLength += this._columns.length + (this.option.operations && this.option.operations.length > 0 ? 1 : 0)
+            + (this.option.selectType ? 1 : 0)
+    }
+
     setArrayData(data) {
-        if (!data) return;
+        if (!data) {
+            // this._resultList.list = [];
+            return
+        };
         this._resultList.list = data
         this._resultList.count = data.length;
         this._resultList.query = { index: 1, size: 0 }
