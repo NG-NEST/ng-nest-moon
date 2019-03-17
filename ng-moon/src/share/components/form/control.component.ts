@@ -1,17 +1,23 @@
 import {
-    Component, OnInit, HostBinding, ElementRef, Renderer2
+    Component, OnInit, HostBinding, ElementRef, Renderer2, forwardRef
 } from '@angular/core';
 import { ControlOption, FormOption } from './form.type';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SettingService } from 'src/services/setting.service';
+import { noop } from 'rxjs';
 
 @Component({
     selector: 'nm-control',
     templateUrl: './control.component.html',
     styleUrls: ['./control.component.scss'],
-    inputs: ['option', 'form', 'formOption']
+    inputs: ['option', 'form', 'formOption'],
+    providers: [{
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() => ControlComponent),
+        multi: true,
+    }]
 })
-export class ControlComponent implements OnInit {
+export class ControlComponent implements OnInit, ControlValueAccessor {
 
     option: ControlOption;
 
@@ -27,6 +33,33 @@ export class ControlComponent implements OnInit {
 
     @HostBinding('class.hide') get hide() { return this.option.hide }
 
+    private _value: any;
+    private onChangeCallback: (_: any) => void = noop;
+
+    get value(): any {
+        return this._value;
+    };
+
+    set value(val: any) {
+        if (val !== this._value) {
+            this._value = val;
+            this.onChangeCallback(val);
+        }
+    }
+
+    writeValue(val: any): void {
+        if (val !== this._value) {
+            this._value = val;
+        }
+    }
+
+    registerOnChange(fn: any): void {
+        this.onChangeCallback = fn;
+    }
+
+    registerOnTouched(fn: any): void {
+    }
+
     private _default: ControlOption = {
         col: 12,
         required: false
@@ -40,7 +73,6 @@ export class ControlComponent implements OnInit {
 
     ngOnInit() {
         this.setting.mapToObject(this._default, this.option);
-        console.log(this.option)
         this.setClass();
         this.setControl();
     }

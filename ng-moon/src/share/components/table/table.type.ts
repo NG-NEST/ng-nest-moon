@@ -27,6 +27,8 @@ export interface TableOption {
     initRequestData?: boolean;
 
     type?: TableType;
+
+    noData?: string;
 }
 
 export interface TableColumn {

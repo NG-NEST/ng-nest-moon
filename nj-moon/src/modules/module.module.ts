@@ -7,18 +7,24 @@ import { Page } from './entities/page.entity';
 import { PageController } from './controllers/page.controller';
 import { PageService } from './services/page.service';
 import { Control } from './entities/control.entity';
+import { TableService } from './services/table.service';
+import { TableController } from './controllers/table.controller';
+import { Col } from './entities/col.entity';
+import { Table } from './entities/table.entity';
 
 @Module({
     imports:[
-        TypeOrmModule.forFeature([M, Page, Control])
+        TypeOrmModule.forFeature([M, Page, Control, Table, Col])
     ],
     controllers: [
         ModuleController,
-        PageController
+        PageController,
+        TableController
     ],
     providers: [
         ModuleService,
-        PageService
+        PageService,
+        TableService
     ]
 })
 export class ModuleModule { }

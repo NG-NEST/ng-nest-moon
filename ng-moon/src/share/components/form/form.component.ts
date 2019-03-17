@@ -135,7 +135,7 @@ export class FormComponent implements OnInit, OnChanges {
     subject() {
         if (this.form) {
             this.form.statusChanges.pipe(distinctUntilChanged()).subscribe(x => {
-                console.log(x);
+                // console.log(x);
             })
         }
     }

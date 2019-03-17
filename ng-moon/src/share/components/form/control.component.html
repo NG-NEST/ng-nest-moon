@@ -1,23 +1,23 @@
 <ng-container [ngSwitch]="option.controlType">
     <ng-container *ngSwitchCase="'input'">
-        <nm-input [option]="option" [form]="form" [formOption]="formOption" [(ngModel)]="option.value"></nm-input>
+        <nm-input [option]="option" [form]="form" [formOption]="formOption" [(ngModel)]="value"></nm-input>
     </ng-container>
     <ng-container *ngSwitchCase="'checkbox'">
-        <nm-checkbox [option]="option" [form]="form" [formOption]="formOption" [(ngModel)]="option.value"></nm-checkbox>
+        <nm-checkbox [option]="option" [form]="form" [formOption]="formOption" [(ngModel)]="value"></nm-checkbox>
     </ng-container>
     <ng-container *ngSwitchCase="'buttons'">
-        <nm-buttons [option]="option" [form]="form" [(ngModel)]="option.value"></nm-buttons>
+        <nm-buttons [option]="option" [form]="form" [(ngModel)]="value"></nm-buttons>
     </ng-container>
     <ng-container *ngSwitchCase="'select'">
         <label *ngIf="option.label">{{option.label}}</label>
-        <nm-select [option]="option" [form]="form" [(ngModel)]="option.value"></nm-select>
+        <nm-select [option]="option" [form]="form" [(ngModel)]="value"></nm-select>
     </ng-container>
     <ng-container *ngSwitchCase="'findback'">
         <label *ngIf="option.label">{{option.label}}</label>
-        <nm-findback [option]="option" [form]="form" [(ngModel)]="option.value"></nm-findback>
+        <nm-findback [option]="option" [form]="form" [(ngModel)]="value"></nm-findback>
     </ng-container>
     <ng-container *ngSwitchCase="'add-item'">
         <label *ngIf="option.label">{{option.label}}</label>
-        <nm-add-item [option]="option" [form]="form" [(ngModel)]="option.value"></nm-add-item>
+        <nm-add-item [option]="option" [form]="form" [(ngModel)]="value"></nm-add-item>
     </ng-container>
 </ng-container>

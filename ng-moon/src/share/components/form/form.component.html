@@ -37,7 +37,7 @@
 </ng-template>
 
 <ng-template #controlsTemp let-controls='controls'>
-    <nm-control [option]="control" [form]="form" [formOption]="option" *ngFor="let control of controls"></nm-control>
+    <nm-control [option]="control" [(ngModel)]="control.value" [form]="form" [formOption]="option" *ngFor="let control of controls"></nm-control>
 </ng-template>
 
 <ng-template #titleTemp let-row='row'>
