@@ -36,7 +36,7 @@ $ ng serve -o
 ```
 ### 4. 开始--后台
 例子使用 `TypeORM` 连接的 `MySql` 数据库，运行前请在 `nj-moon/ormconfig.js` 文件中配置好数据库连接。  
-`MySql` 数据库文件 `nj-moon/nj-nest.sql` ，通过 `MySQL Workbench` 导入。 使用 `TypeORM` 可以自动创建好表，但是暂时未找到初始化数据的方式，目前直接提供数据库文件导入，后期会删除。  
+`MySql` 数据库文件 `nj-moon/ng-nest.sql` ，通过 `MySQL Workbench` 导入。 使用 `TypeORM` 可以自动创建好表，但是暂时未找到初始化数据的方式，目前直接提供数据库文件导入，后期会删除。  
 
 ```bash
 $ cd nj-moon
