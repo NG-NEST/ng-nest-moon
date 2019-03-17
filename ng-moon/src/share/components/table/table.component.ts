@@ -46,6 +46,10 @@ export class TableComponent implements OnInit, OnDestroy {
         return this._resultList && this._resultList.list && this._resultList.list.length == 0
     }
 
+    @HostBinding("class.batch") get batchType(){
+        return this.option.type === 'batch';
+    }
+
     constructor(
         private setting: SettingService,
         private domSanitizer: DomSanitizer

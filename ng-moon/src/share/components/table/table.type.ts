@@ -4,7 +4,7 @@ import { Control } from "../form/form.type";
 
 export type SelectType = 'single' | 'multiple';
 
-export type TableType = 'info' | 'update'
+export type TableType = 'info' | 'batch'
 
 export interface TableOption {
 

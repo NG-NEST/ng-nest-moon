@@ -92,4 +92,32 @@ nm-table {
             }
         }
     }
+    &.batch {
+        >table {
+            >thead {}
+            >tbody {
+                >tr {
+                    >td {
+                        >nm-control {
+                            &[class*='col-'] {
+                                width: 100%;
+                            }
+                            padding: 0;
+                            >label {
+                                display: none;
+                            }
+                            >nm-input,
+                            >nm-checkbox {
+                                >p {
+                                    label {
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

@@ -180,17 +180,20 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
     }
 
     setTable() {
-        if (this.option.type === 'batch') this.table.type = 'update';
+        this.table.operations = [
+            { icon: 'icon-trash-2', title: '删除', handler: (x) => this.action('remove', x) }
+        ]
+        if (this.option.type === 'batch') {
+            this.table.type = 'batch';
+        } else {
+            this.table.operations.unshift({ icon: 'icon-edit-2', title: '编辑', handler: (x) => this.action('update', x) })
+        }
         this.table.columns = _.filter(this.controls, x => x.colHead).map((x: any) => {
             let column: TableColumn = {
                 key: x.key, title: x.label, hidden: x.hidden, width: x.width, control: x
             }
             return column
         });
-        this.table.operations = [
-            { icon: 'icon-edit-2', title: '编辑', handler: (x) => this.action('update', x) },
-            { icon: 'icon-trash-2', title: '删除', handler: (x) => this.action('remove', x) }
-        ]
     }
 
     setRelation() {
