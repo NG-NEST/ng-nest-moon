@@ -33,5 +33,9 @@ export class TableService extends RepositoryService {
     findByCode(param: { moduleCode: string, tableCode: string }) {
         return this.http.get(`${this.option.controller.name}/findByCode/${param.moduleCode}/${param.tableCode}`)
     }
+
+    updateTransform(param){
+        return this.http.put(`${this.option.controller.name}/updateTransform`, param)
+    }
 }
 
