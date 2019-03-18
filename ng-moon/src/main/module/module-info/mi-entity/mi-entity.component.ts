@@ -1,15 +1,17 @@
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, ElementRef } from '@angular/core';
 import * as _ from 'lodash';
 import { FormComponent } from 'src/share/components/form/form.component';
 import { OverlayRef } from '@angular/cdk/overlay';
 import { ModalService } from 'src/share/components/modal/modal.service';
-import { FormOption, Row, InputControl, AddItemControl, SelectControl, CheckboxControl } from 'src/share/components/form/form.type';
+import { FormOption, Row, InputControl, AddItemControl, SelectControl, CheckboxControl, Control } from 'src/share/components/form/form.type';
 import { Subject, Observable } from 'rxjs';
 import { ColumnTypeData } from './mi-entity.store';
 import { Select } from 'src/share/components/select/select.type';
 import { SettingService } from 'src/services/setting.service';
 import { ModuleInfoService } from '../module-info.service';
 import { TableService } from '../../module.service';
+import { map } from 'rxjs/operators';
+import { CdkDrag } from '@angular/cdk/drag-drop';
 
 @Component({
     selector: 'nm-mi-entity',
@@ -18,19 +20,13 @@ import { TableService } from '../../module.service';
 })
 export class MiEntityComponent implements OnInit {
 
-    data = [
-        { id: '1', label: '编号', key: 'id', type: 'varchar', length: 36, primary: true },
-        { id: '2', label: '账号', key: 'account', type: 'varchar', length: 32 },
-        { id: '3', label: '密码', key: 'password', type: 'varchar', length: 64 },
-        { id: '4', label: '姓名', key: 'name', type: 'varchar', length: 64 },
-        { id: '5', label: '邮箱', key: 'email', type: 'varchar', length: 64 },
-        { id: '6', label: '手机号', key: 'phone', type: 'char', length: 11 },
-        { id: '7', label: '角色', key: 'roles' },
-        { id: '8', label: '组织机构', key: 'organizations' }
+    list = [];
 
-    ]
+    _initList = [];
 
     @ViewChild('entityTemp') entityTemp: TemplateRef<any>;
+
+    @ViewChild('dragBox') dragBox: ElementRef;
 
     entityForm: FormComponent;
     @ViewChild("entityForm") set _formCom(val) {
@@ -43,7 +39,9 @@ export class MiEntityComponent implements OnInit {
 
     cancelSubject = new Subject();
 
-    getData = Observable.create(x => {
+    private _initControls: Control<any>[] | Row[];
+
+    getFormData = Observable.create(x => {
         x.next({
             id: this.settingService.guid(),
             moduleId: this.moduleInfoService.id
@@ -57,6 +55,7 @@ export class MiEntityComponent implements OnInit {
                 hide: true, controls: [
                     new InputControl({ key: "id", label: "编号" }),
                     new InputControl({ key: "moduleId", label: "对应模块Id" }),
+                    new Control({ key: "transform", label: "位置", value: { x: 50, y: 32 } }),
                 ]
             }),
             new Row({
@@ -81,7 +80,7 @@ export class MiEntityComponent implements OnInit {
                                 new Row({
                                     hide: true, controls: [
                                         new InputControl({ key: "id", label: "编号" }),
-                                        new InputControl({ key: "tableId", label: "编号", relation: 'many-one' }),
+                                        new InputControl({ key: "tableId", label: "编号", relation: 'many-one' })
                                     ]
                                 }),
                                 new Row({
@@ -111,7 +110,7 @@ export class MiEntityComponent implements OnInit {
             { type: 'submit', handler: this.submitSubject },
             { type: 'cancel', handler: this.cancelSubject }
         ],
-        data: this.getData,
+        data: this.getFormData,
         type: 'info',
         isOnePage: true
     }
@@ -124,12 +123,15 @@ export class MiEntityComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.getData();
+        this.setForm();
         this.subject();
     }
 
     action(type: string) {
         switch (type) {
             case 'add':
+                this.formOption.controls = _.cloneDeep(this._initControls);
                 this.modal = this.modalService.create({
                     panelClass: 'form',
                     templateRef: this.entityTemp,
@@ -141,18 +143,58 @@ export class MiEntityComponent implements OnInit {
                     this.entityForm.option.type = 'add';
                 })
                 break;
+            case 'update':
+
+                break;
+            case 'cancel':
+                if (this.modal) {
+                    this.modal.detach();
+                    this.modal.dispose();
+                }
+                break;
         }
     }
 
+    getData() {
+        this.tableService.findAll({ size: 0, filter: { moduleId: this.moduleInfoService.id } })
+            .pipe(map(x => {
+                x.list = _.map(x.list, y => {
+                    y.cols = _.orderBy(y.cols, 'sort')
+                    return y;
+                })
+                return x;
+            }))
+            .subscribe(x => {
+                this.list = x.list;
+                this._initList = _.cloneDeep(this.list);
+            })
+    }
+
+    dragEnded(drag: { source: CdkDrag }, item) {
+        let initItem = _.find(this._initList, x => x.id === item.id)
+        let transform = drag.source._dragRef['_activeTransform'];
+        item.transform = { x: transform.x + initItem.transform.x, y: transform.y + initItem.transform.y };
+        this.tableService.updateTransform({ id: item.id, transform: item.transform }).subscribe();
+    }
+
+    setForm() {
+        this._initControls = _.cloneDeep(this.formOption.controls);
+    }
+
     subject() {
-        this.submitSubject.subscribe(x => {
-            console.log(x)
+        this.submitSubject.subscribe((x: any) => {
+            if (this.entityForm.option.type == 'add') {
+                this.tableService.create(x).subscribe(x => {
+                    this.action('cancel')
+                })
+            } else if (this.entityForm.option.type == 'update') {
+                this.tableService.update(x).subscribe(x => {
+                    this.action('cancel')
+                })
+            }
         })
         this.cancelSubject.subscribe(x => {
-            if (this.modal) {
-                this.modal.detach();
-                this.modal.dispose();
-            }
+            this.action('cancel')
         })
     }
 }

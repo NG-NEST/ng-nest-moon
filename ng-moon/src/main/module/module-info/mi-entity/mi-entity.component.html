@@ -5,18 +5,22 @@
                 <nm-button [option]="{icon:'icon-plus', title:'增加'}" (click)="action('add')"></nm-button>
             </nm-buttons>
         </nm-toolbar>
-        <div class="dragBox">
-            <div class="item" cdkDragBoundary=".dragBox" cdkDrag>
-                <h5>用户信息<i class="icon-more-horizontal"></i></h5>
-                <ul>
-                    <li *ngFor="let item of data">
-                        <span class="label">{{item.label}}</span>
-                        <span class="key">{{item.key}}</span>
-                        <span class="type">{{item.type}}</span>
-                        <span class="length" *ngIf="item.length">{{item.length}}</span>
-                    </li>
-                </ul>
-            </div>
+        <div class="dragBox" #dragBox>
+            <ng-container *ngFor="let table of list">
+                <div class="item" cdkDrag cdkDragBoundary=".dragBox" (cdkDragEnded)="dragEnded($event, table)"
+                    [style.transform]="'translate3d('+table.transform.x+'px, '+table.transform.y+'px, 0px)'">
+                    <h5>{{table.name}} - {{table.code}}<i class="icon-more-horizontal"></i>
+                    </h5>
+                    <ul>
+                        <li *ngFor="let col of table.cols">
+                            <span class="label">{{col.label}}</span>
+                            <span class="name">{{col.name}}</span>
+                            <span class="type" [title]="col.type.label">{{col.type.key}}</span>
+                            <span class="length" *ngIf="col.length">{{col.length}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </ng-container>
         </div>
     </nm-panel>
 </nm-inner>

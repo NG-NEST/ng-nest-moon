@@ -87,7 +87,6 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
 
     writeValue(val: any): void {
         if (val !== this._value) {
-            console.log(val)
             this._value = val;
         }
     }

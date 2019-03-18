@@ -67,6 +67,7 @@ export class TableService extends RepositoryService<Table> {
         return new Promise<ResultList<Table>>(async (x) => {
             let querys = this.entityRepository
                 .createQueryBuilder('table')
+                .leftJoinAndSelect("table.cols", "col")
                 .leftJoin("table.module", "module")
             if (query.code) querys.andWhere("table.code like '%:code%'", { name: query.code })
             if (query.moduleId) querys.andWhere("module.id=:id", { id: query.moduleId })
@@ -92,5 +93,11 @@ export class TableService extends RepositoryService<Table> {
                 moduleCode: moduleCode
             })
             .getOne();
+    }
+
+    async updateTransform(entity: Table): Promise<void> {
+        let find = await this.entityRepository.findOne(entity.id);
+        find.transform = entity.transform;
+        await this.entityRepository.save(find);
     }
 }

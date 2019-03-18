@@ -13,10 +13,13 @@ export class Table {
     @Column()
     code: string;
 
-    @Column({ nullable: true})
+    @Column({ nullable: true })
     description: string;
 
-    @Column({ nullable: true})
+    @Column({ nullable: true, type: "json" })
+    transform: object;
+
+    @Column({ nullable: true })
     moduleId: string;
 
     @ManyToOne(type => Module, module => module.tables)
