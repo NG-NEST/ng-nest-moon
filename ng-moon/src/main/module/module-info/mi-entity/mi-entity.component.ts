@@ -5,13 +5,15 @@ import { OverlayRef } from '@angular/cdk/overlay';
 import { ModalService } from 'src/share/components/modal/modal.service';
 import { FormOption, Row, InputControl, AddItemControl, SelectControl, CheckboxControl, Control } from 'src/share/components/form/form.type';
 import { Subject, Observable } from 'rxjs';
-import { ColumnTypeData } from './mi-entity.store';
+import { ColumnTypeData, ImportTypeormTpl, EntityTpl, PrimaryColumnTpl, ColumnTpl, ClassTpl, StringType, NumberType } from './mi-entity.store';
 import { Select } from 'src/share/components/select/select.type';
 import { SettingService } from 'src/services/setting.service';
 import { ModuleInfoService } from '../module-info.service';
 import { TableService } from '../../module.service';
 import { map } from 'rxjs/operators';
 import { CdkDrag } from '@angular/cdk/drag-drop';
+import { PopoverService } from 'src/share/components/popover/popover.service';
+import { WithLengthColumnType, SpatialColumnType } from './mi-entity.type';
 
 @Component({
     selector: 'nm-mi-entity',
@@ -39,9 +41,15 @@ export class MiEntityComponent implements OnInit {
 
     cancelSubject = new Subject();
 
+    removeSubject = new Subject();
+
+    active: any = {};
+
+    type: string = 'add'
+
     private _initControls: Control<any>[] | Row[];
 
-    getFormData = Observable.create(x => {
+    getFormAddData = Observable.create(x => {
         x.next({
             id: this.settingService.guid(),
             moduleId: this.moduleInfoService.id
@@ -110,7 +118,6 @@ export class MiEntityComponent implements OnInit {
             { type: 'submit', handler: this.submitSubject },
             { type: 'cancel', handler: this.cancelSubject }
         ],
-        data: this.getFormData,
         type: 'info',
         isOnePage: true
     }
@@ -119,7 +126,8 @@ export class MiEntityComponent implements OnInit {
         private modalService: ModalService,
         private tableService: TableService,
         private settingService: SettingService,
-        private moduleInfoService: ModuleInfoService
+        private moduleInfoService: ModuleInfoService,
+        private popoverService: PopoverService
     ) { }
 
     ngOnInit() {
@@ -128,23 +136,52 @@ export class MiEntityComponent implements OnInit {
         this.subject();
     }
 
-    action(type: string) {
+    action(type: string, data?: any, event?: Event) {
         switch (type) {
             case 'add':
                 this.formOption.controls = _.cloneDeep(this._initControls);
+                this.formOption.data = this.getFormAddData
                 this.modal = this.modalService.create({
                     panelClass: 'form',
                     templateRef: this.entityTemp,
                     title: '新建实体',
-                    width: 800,
-                    height: 600
+                    width: 800
                 })
-                setTimeout(() => {
-                    this.entityForm.option.type = 'add';
-                })
+                this.type = type;
+                setTimeout(() => { this.entityForm.option.type = this.type })
                 break;
             case 'update':
-
+                this.formOption.controls = _.cloneDeep(this._initControls);
+                this.formOption.data = this.tableService.findOne(data.id).pipe(map(x => {
+                    x.cols = _.orderBy(x.cols, 'sort')
+                    return x;
+                }))
+                this.modal = this.modalService.create({
+                    panelClass: 'form',
+                    templateRef: this.entityTemp,
+                    title: '更新实体',
+                    width: 800
+                })
+                this.type = type;
+                setTimeout(() => { this.entityForm.option.type = this.type })
+                break;
+            case 'more':
+                this.popoverService.create({
+                    connectRef: new ElementRef(event.srcElement),
+                    originPos: { originX: 'end', originY: 'bottom' },
+                    overlayPos: { overlayX: 'end', overlayY: 'top' },
+                    menus: [
+                        { title: '删除', icon: 'icon-trash-2', handler: this.removeSubject },
+                        { title: '生成代码', icon: 'icon-hash', handler: () => this.createCode(data) }
+                    ]
+                })
+                break;
+            case 'active':
+                let item = _.remove(this.list, x => x.id === data.id);
+                if (item.length > 0) {
+                    this.active = item[0];
+                    this.list.push(this.active);
+                }
                 break;
             case 'cancel':
                 if (this.modal) {
@@ -171,8 +208,8 @@ export class MiEntityComponent implements OnInit {
     }
 
     dragEnded(drag: { source: CdkDrag }, item) {
-        let initItem = _.find(this._initList, x => x.id === item.id)
-        let transform = drag.source._dragRef['_activeTransform'];
+        let initItem = _.find(this._initList, x => x.id === item.id),
+            transform = drag.source._dragRef['_activeTransform'];
         item.transform = { x: transform.x + initItem.transform.x, y: transform.y + initItem.transform.y };
         this.tableService.updateTransform({ id: item.id, transform: item.transform }).subscribe();
     }
@@ -183,12 +220,16 @@ export class MiEntityComponent implements OnInit {
 
     subject() {
         this.submitSubject.subscribe((x: any) => {
-            if (this.entityForm.option.type == 'add') {
-                this.tableService.create(x).subscribe(x => {
+            if (this.type === 'add') {
+                this.tableService.create(x).subscribe(y => {
+                    this.list = _.union(this.list, [x]);
+                    this._initList = _.cloneDeep(this.list);
                     this.action('cancel')
                 })
-            } else if (this.entityForm.option.type == 'update') {
-                this.tableService.update(x).subscribe(x => {
+            } else if (this.type === 'update') {
+                this.tableService.update(x).subscribe(y => {
+                    let find = _.find(this.list, z => z.id === y.id)
+                    Object.assign(find, y);
                     this.action('cancel')
                 })
             }
@@ -196,5 +237,50 @@ export class MiEntityComponent implements OnInit {
         this.cancelSubject.subscribe(x => {
             this.action('cancel')
         })
+        this.removeSubject.subscribe(x => {
+            this.tableService.remove(this.active.id).subscribe(x => {
+                _.remove(this.list, z => z.id === this.active.id)
+            })
+        })
+    }
+
+    createCode(data) {
+        let importTypeormTpl = ImportTypeormTpl,
+            importTypeorm = '',
+            entityTpl = EntityTpl,
+            columnsTpl = '',
+            classTpl = ClassTpl;
+
+        if (data.code) {
+            entityTpl = entityTpl.replace(`$[entity]`, `'${data.code}'`);
+            if (importTypeorm === '') importTypeorm = 'Entity';
+        }
+
+        for (let col of data.cols) {
+            let name = col.name,
+                type = 'string',
+                column = ColumnTpl,
+                length = 36;
+            if (col.primary) {
+                column = PrimaryColumnTpl;
+            }
+            if (StringType.indexOf(col.type.key) > -1) { type = 'string'; }
+            else if (NumberType.indexOf(col.type.key) > -1) { type = 'number'; }
+
+            column = column.replace(`$[name]`, name);
+            column = column.replace(`$[type]`, type);
+
+            columnsTpl += column;
+        }
+
+        importTypeormTpl = importTypeormTpl.replace(`$[importTypeorm]`, importTypeorm);
+
+        classTpl = classTpl.replace(`$[entityTpl]`, entityTpl);
+        classTpl = classTpl.replace(`$[className]`, data.name);
+        classTpl = classTpl.replace(`$[importTypeormTpl]`, importTypeormTpl);
+        classTpl = classTpl.replace(`$[columnsTpl]`, columnsTpl)
+
+        console.log(classTpl)
+
     }
 }

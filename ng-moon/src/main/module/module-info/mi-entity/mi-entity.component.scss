@@ -1,3 +1,4 @@
+@import "index";
 nm-mi-entity {
     >nm-inner {
         overflow: auto;
@@ -10,63 +11,87 @@ nm-mi-entity {
                 z-index: 1000;
             }
             .dragBox {
-                width: 1000px;
-                height: 1500px;
+                width: 2000px;
+                height: 2000px;
                 border: 1px dotted #bfbfbf;
                 display: inline-block;
                 background-image: linear-gradient(90deg, rgba(168, 168, 168, 0.15) 10%, rgba(168, 168, 168, 0) 10%), linear-gradient(rgba(168, 168, 168, 0.15) 10%, rgba(168, 168, 168, 0) 10%);
                 background-size: 10px 10px;
                 position: relative;
-                >div.item {
-                    display: inline-block;
-                    border: 2px solid #d2d2d2a3;
-                    border-radius: 3px;
-                    background-color: white;
-                    min-width: 120px;
-                    position: absolute;
-                    >h5 {
-                        margin: 0px;
-                        padding: 6px;
-                        text-align: center;
-                        background-color: #d2d2d2a3;
-                        position: relative;
-                        >i {
-                            font-size: 14px;
-                            padding: 4px 8px;
-                            margin: 2px;
-                            border-radius: 2px;
-                            position: absolute;
-                            right: 0;
-                            top: 0;
+                >div {
+                    &.table {
+                        display: inline-block;
+                        border: 2px solid #717070a3;
+                        border-radius: 3px;
+                        background-color: white;
+                        min-width: 120px;
+                        position: absolute;
+                        >h5 {
+                            margin: 0px;
+                            height: 28px;
+                            line-height: 28px;
+                            text-align: center;
+                            background-color: #d2d2d2;
+                            position: relative;
+                            >span {
+                                position: absolute;
+                                right: 0;
+                                top: 0;
+                                padding: 2px;
+                                display: none;
+                                >i {
+                                    font-size: 14px;
+                                    padding: 4px;
+                                    border-radius: 2px;
+                                    &:hover {
+                                        transition: all .4s;
+                                        background: lighten($primary-color, 10%);
+                                        color: lighten($primary-color, 60%);
+                                        transition: color 0.3s, background-color 0.3s;
+                                    }
+                                }
+                            }
                             &:hover {
-                                transition: all .4s;
-                                background: #d0d0d0;
-                                color: black;
-                                transition: color 0.3s, background-color 0.3s;
+                                >span {
+                                    display: inline;
+                                }
+                            }
+                        }
+                        >ul {
+                            background-color: #f1f1f1a3;
+                            padding: 3px 0;
+                            >li {
+                                display: flex;
+                                >p {
+                                    align-items: center;
+                                    display: inline-block;
+                                    margin: 2px 3px;
+                                    &.label {
+                                        width: 60px;
+                                    }
+                                    &.name {
+                                        width: 90px;
+                                    }
+                                    &.type {
+                                        width: 70px;
+                                    }
+                                    &.length {
+                                        width: 30px;
+                                    }
+                                }
+                                &.primary {
+                                    >p>span {
+                                        border-bottom: 2px solid #717070;
+                                    }
+                                }
                             }
                         }
                     }
-                    >ul {
-                        background-color: #f1f1f1a3;
-                        >li {
-                            display: flex;
-                            >span {
-                                align-items: center;
-                                display: inline-block;
-                                margin: 2px 3px;
-                                &.label {
-                                    width: 60px;
-                                }
-                                &.name {
-                                    width: 90px;
-                                }
-                                &.type {
-                                    width: 70px;
-                                }
-                                &.length {
-                                    width: 30px;
-                                }
-                            }
+                    &.active {
+                        border-color: $primary-color;
+                        >h5 {
+                            background-color: $primary-color;
+                            color: lighten($primary-color, 60%);
                         }
                     }
                 }
