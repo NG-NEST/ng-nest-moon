@@ -7,16 +7,23 @@
         </nm-toolbar>
         <div class="dragBox" #dragBox>
             <ng-container *ngFor="let table of list">
-                <div class="item" cdkDrag cdkDragBoundary=".dragBox" (cdkDragEnded)="dragEnded($event, table)"
-                    [style.transform]="'translate3d('+table.transform.x+'px, '+table.transform.y+'px, 0px)'">
-                    <h5>{{table.name}} - {{table.code}}<i class="icon-more-horizontal"></i>
+                <div class="table" [ngClass]="{'active': active.id===table.id}" cdkDrag cdkDragBoundary=".dragBox"
+                    (cdkDragEnded)="dragEnded($event, table)"
+                    [style.transform]="'translate3d('+table.transform.x+'px, '+table.transform.y+'px, 0px)'"
+                    (mousedown)="action('active', table)">
+                    <h5>
+                        {{table.description}} - {{table.name}}
+                        <span>
+                            <i class="icon-edit-2" (click)="action('update', table)"></i>
+                            <i class="icon-more-horizontal" (click)="action('more', table, $event)"></i>
+                        </span>
                     </h5>
                     <ul>
-                        <li *ngFor="let col of table.cols">
-                            <span class="label">{{col.label}}</span>
-                            <span class="name">{{col.name}}</span>
-                            <span class="type" [title]="col.type.label">{{col.type.key}}</span>
-                            <span class="length" *ngIf="col.length">{{col.length}}</span>
+                        <li *ngFor="let col of table.cols" [ngClass]="{'primary': col.primary}">
+                            <p class="label"><span>{{col.label}}</span></p>
+                            <p class="name"><span>{{col.name}}</span></p>
+                            <p class="type" [title]="col.type.label"><span>{{col.type.key}}</span></p>
+                            <p class="length" *ngIf="col.length"><span>{{col.length}}</span></p>
                         </li>
                     </ul>
                 </div>

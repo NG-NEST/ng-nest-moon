@@ -53,8 +53,8 @@ nm-button {
     }
     &.orange {
         >p>button {
-            background-color: orange;
-            border: 1px solid orange;
+            background-color: $orange-color;
+            border: 1px solid $orange-color;
             color: white;
         }
     }

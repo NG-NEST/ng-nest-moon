@@ -1,6 +1,6 @@
 import { InjectionToken, ElementRef } from "@angular/core";
 import { PortalOption } from "../portal/portal.type";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 
 export const POPOVEROPTION = new InjectionToken<{}>('POPOVEROPTION');
 
@@ -13,5 +13,5 @@ export interface PopoverMenu {
     icon?: string;
     type?: string;
     title?: string;
-    handler?: Observable<any>;
+    handler?: Observable<any> | Subject<any> | Function;
 }

@@ -2,6 +2,7 @@ import {
   Component, OnInit, Inject
 } from '@angular/core';
 import { PopoverOption, POPOVEROPTION, PopoverMenu } from './popover.type';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'nm-popover',
@@ -17,10 +18,20 @@ export class PopoverComponent implements OnInit {
   }
 
   handler(menu: PopoverMenu) {
-    menu.handler && menu.handler.subscribe(x => {
-      console.log(x);
-      this.option.detach();
-    })
+    if (menu.handler) {
+      if (menu.handler instanceof Subject) {
+        menu.handler.next(menu);
+        this.option.detach();
+      } else if (menu.handler instanceof Observable) {
+        menu.handler.subscribe(x => {
+          this.option.detach()
+        })
+      } else if (menu.handler instanceof Function) {
+        menu.handler(menu);
+        this.option.detach();
+      }
+    }
+
   }
 
 }
