@@ -1,58 +1,45 @@
 import { ColumnType } from "./mi-entity.type";
 
 export const ColumnTypeData: { key: ColumnType, label: string }[] = [
-    { key: 'varchar', label: '字符串' },
-    { key: 'int', label: '整型' },
-    { key: 'text', label: '文本' },
-    { key: 'datetime', label: '日期' },
-    { key: 'json', label: '对象' }
+    { key: 'varchar', label: 'varchar' },
+    { key: 'char', label: 'char' },
+    { key: 'int', label: 'int' },
+    { key: 'text', label: 'text' },
+    { key: 'date', label: 'date' },
+    { key: 'json', label: 'json' }
 ]
 
-export const StringType = ['varchar'];
+export const StringType = ['varchar', 'char'];
 
 export const NumberType = ['int'];
 
-export const ImportTypeormTpl: string = `import { $[importTypeorm] } from 'typeorm';`
+export const ImportTypeormTpl: string = `import { $[importTypeorm] } from 'typeorm';`;
 
-export const EntityTpl: string = `@Entity($[entity])`
+export const EntityTpl: string =`
+/**
+ * $[description]
+ */
+@Entity($[entity])`;
 
-export const PrimaryColumnTpl: string = `
-    @PrimaryColumn($[primaryColumn])
+export const PrimaryColumnTpl: string =`   
+    /**
+     * $[description]
+     */
+    @PrimaryColumn("uuid", { length: 36, type: 'char' })
     $[name]: $[type];
-`
+`;
 
-export const ColumnTpl: string = `
-    @Column($[column])
+export const ColumnTpl: string =`   
+    /**
+     * $[description]
+     */
+    @Column($[param])
     $[name]: $[type];
-`
+`;
 
-export const ClassTpl: string = `
+export const ClassTpl: string =`
 $[importTypeormTpl]
-
 $[entityTpl]
 export class $[className] {
     $[columnsTpl]
-}
-`
-
-export const Template: string = `
-    import { Entity, Column, ManyToOne, PrimaryColumn, ManyToMany } from 'typeorm';
-
-    @Entity("system_action")
-    export class Action {
-        @PrimaryColumn("uuid", { length: 36 })
-        id: string;
-
-        @Column()
-        name: string;
-
-        @Column()
-        code: string;
-
-        @Column()
-        icon: string;
-
-        @Column({ length: 36 })
-        menuId: string;
-    }
-`
+}`;

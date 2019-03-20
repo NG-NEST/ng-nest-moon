@@ -5,7 +5,7 @@ import { Role } from '../../roles/entities/role.entity';
 
 @Entity("system_action")
 export class Action {
-    @PrimaryColumn("uuid", { length: 36 })
+    @PrimaryColumn("uuid", { length: 36, type: 'char' })
     id: string;
 
     @Column()

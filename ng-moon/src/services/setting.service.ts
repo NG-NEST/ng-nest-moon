@@ -89,17 +89,41 @@ export class SettingService {
     form.patchValue(formValue);
   }
 
+  /**
+   * 初始化值替换
+   * @param from 
+   * @param to 
+   */
   mapToObject(from: object, to: object) {
     for (let key in from) {
       if (typeof (to[key]) == "undefined") to[key] = from[key];
     }
   }
 
+  /**
+   * 生成guid
+   */
   guid() {
     let S4 = () => {
       return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
     }
     return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+  }
+
+  /**
+   * 替换值
+   * @param str 需要做替换处理的字符串
+   * @param obj 替换的对象 key-value
+   * @param prop 对象属性模块， 默认 '$[prop]'
+   */
+  replace(str: string, obj: object, tpl: string = '$[prop]') {
+    if (str && obj) {
+      for (let key in obj) {
+        let replaceStr = tpl.replace('prop', key);
+        str = str.replace(replaceStr, obj[key]);
+      }
+      return str;
+    }
   }
 }
 

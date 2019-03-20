@@ -51,7 +51,7 @@ export class MiEntityComponent implements OnInit {
 
     getFormAddData = Observable.create(x => {
         x.next({
-            id: this.settingService.guid(),
+            id: this.setting.guid(),
             moduleId: this.moduleInfoService.id
         })
     });
@@ -125,7 +125,7 @@ export class MiEntityComponent implements OnInit {
     constructor(
         private modalService: ModalService,
         private tableService: TableService,
-        private settingService: SettingService,
+        private setting: SettingService,
         private moduleInfoService: ModuleInfoService,
         private popoverService: PopoverService
     ) { }
@@ -246,41 +246,65 @@ export class MiEntityComponent implements OnInit {
 
     createCode(data) {
         let importTypeormTpl = ImportTypeormTpl,
-            importTypeorm = '',
+            importTypeorm = [],
             entityTpl = EntityTpl,
             columnsTpl = '',
-            classTpl = ClassTpl;
-
+            classTpl = ClassTpl,
+            hasColumn = false,
+            hasPrimaryColumn = false;
         if (data.code) {
             entityTpl = entityTpl.replace(`$[entity]`, `'${data.code}'`);
-            if (importTypeorm === '') importTypeorm = 'Entity';
+            entityTpl = entityTpl.replace(`$[description]`, `${data.description}`);
+            importTypeorm.push('Entity');
         }
-
         for (let col of data.cols) {
             let name = col.name,
                 type = 'string',
                 column = ColumnTpl,
-                length = 36;
+                param = '',
+                description = '',
+                columnParam = [];
             if (col.primary) {
+                if (!hasPrimaryColumn) {
+                    importTypeorm.push('PrimaryColumn');
+                    hasPrimaryColumn = true;
+                }
                 column = PrimaryColumnTpl;
+            } else if (!hasColumn) {
+                importTypeorm.push('Column');
+                hasColumn = true;
             }
+            if (col.nullable) columnParam.push(`nullable: true`);
+            if (col.unique) columnParam.push(`unique: true`);
+            if (col.type.key === 'text') columnParam.push(`type: 'text'`);
+            if (col.type.key === 'json') columnParam.push(`type: 'json'`);
+            if (col.type.key === 'char') columnParam.push(`type: 'char'`);
+            if (col.type.key === 'int') columnParam.push(`type: 'int'`);
+            if (col.length > 0) columnParam.push(`length: ${col.length}`);
+            if (columnParam.length > 0) param = `{ ${columnParam.join(', ')} }`;
+            if (col.label) description = col.label;
             if (StringType.indexOf(col.type.key) > -1) { type = 'string'; }
             else if (NumberType.indexOf(col.type.key) > -1) { type = 'number'; }
+            else if (col.type.key === 'json') { type = 'Object'; }
+            else if (col.type.key === 'date') { type = 'Date'; }
 
-            column = column.replace(`$[name]`, name);
-            column = column.replace(`$[type]`, type);
+            column = this.setting.replace(column, {
+                description: description,
+                name: name,
+                type: type,
+                param: param
+            });
 
             columnsTpl += column;
         }
 
-        importTypeormTpl = importTypeormTpl.replace(`$[importTypeorm]`, importTypeorm);
+        importTypeormTpl = importTypeormTpl.replace(`$[importTypeorm]`, importTypeorm.join(`, `));
 
         classTpl = classTpl.replace(`$[entityTpl]`, entityTpl);
         classTpl = classTpl.replace(`$[className]`, data.name);
         classTpl = classTpl.replace(`$[importTypeormTpl]`, importTypeormTpl);
-        classTpl = classTpl.replace(`$[columnsTpl]`, columnsTpl)
+        classTpl = classTpl.replace(`$[columnsTpl]`, columnsTpl);
 
         console.log(classTpl)
-
     }
 }
