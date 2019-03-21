@@ -86,7 +86,9 @@ nm-table {
                         }
                     }
                     &.select {
-                        text-align: center;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
                     }
                     &.no-data {
                         color: #666;

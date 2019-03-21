@@ -9,7 +9,8 @@
   <nm-panel>
     <ul>
       <li *ngFor='let item of result.list'>
-        <a [routerLink]="['./info', item.id]">
+        <a (click)="action('info', item)">
+          <i class="icon-x" (click)="action('remove', item, $event)"></i>
           <img src='../../assets/module.jpg' />
           <h4>{{item.name}}</h4>
           <p>{{item.description}}</p>

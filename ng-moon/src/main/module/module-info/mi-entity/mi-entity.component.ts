@@ -13,12 +13,13 @@ import { TableService } from '../../module.service';
 import { map } from 'rxjs/operators';
 import { CdkDrag } from '@angular/cdk/drag-drop';
 import { PopoverService } from 'src/share/components/popover/popover.service';
-import { WithLengthColumnType, SpatialColumnType } from './mi-entity.type';
+import { MiEntityService } from './mi-entity.service';
 
 @Component({
     selector: 'nm-mi-entity',
     styleUrls: ['./mi-entity.component.scss'],
-    templateUrl: './mi-entity.component.html'
+    templateUrl: './mi-entity.component.html',
+    providers: [MiEntityService]
 })
 export class MiEntityComponent implements OnInit {
 
@@ -28,10 +29,12 @@ export class MiEntityComponent implements OnInit {
 
     @ViewChild('entityTemp') entityTemp: TemplateRef<any>;
 
+    @ViewChild('codeTemp') codeTemp: TemplateRef<any>;
+
     @ViewChild('dragBox') dragBox: ElementRef;
 
     entityForm: FormComponent;
-    @ViewChild("entityForm") set _formCom(val) {
+    @ViewChild('entityForm') set _formCom(val) {
         this.entityForm = val;
     }
 
@@ -45,7 +48,9 @@ export class MiEntityComponent implements OnInit {
 
     active: any = {};
 
-    type: string = 'add'
+    type: string = 'add';
+
+    entityCode = '';
 
     private _initControls: Control<any>[] | Row[];
 
@@ -127,7 +132,8 @@ export class MiEntityComponent implements OnInit {
         private tableService: TableService,
         private setting: SettingService,
         private moduleInfoService: ModuleInfoService,
-        private popoverService: PopoverService
+        private popoverService: PopoverService,
+        private miEntityService: MiEntityService
     ) { }
 
     ngOnInit() {
@@ -138,15 +144,27 @@ export class MiEntityComponent implements OnInit {
 
     action(type: string, data?: any, event?: Event) {
         switch (type) {
-            case 'add':
-                this.formOption.controls = _.cloneDeep(this._initControls);
-                this.formOption.data = this.getFormAddData
+            case 'entityModal':
                 this.modal = this.modalService.create({
                     panelClass: 'form',
                     templateRef: this.entityTemp,
-                    title: '新建实体',
+                    title: data,
                     width: 800
                 })
+                break;
+            case 'codeModal':
+                this.modal = this.modalService.create({
+                    panelClass: 'tabs',
+                    templateRef: this.codeTemp,
+                    title: '生成代码',
+                    width: 800,
+                    height: 600
+                })
+                break;
+            case 'add':
+                this.formOption.controls = _.cloneDeep(this._initControls);
+                this.formOption.data = this.getFormAddData
+                this.action('entityModal', '新建实体')
                 this.type = type;
                 setTimeout(() => { this.entityForm.option.type = this.type })
                 break;
@@ -156,12 +174,7 @@ export class MiEntityComponent implements OnInit {
                     x.cols = _.orderBy(x.cols, 'sort')
                     return x;
                 }))
-                this.modal = this.modalService.create({
-                    panelClass: 'form',
-                    templateRef: this.entityTemp,
-                    title: '更新实体',
-                    width: 800
-                })
+                this.action('entityModal', '更新实体')
                 this.type = type;
                 setTimeout(() => { this.entityForm.option.type = this.type })
                 break;
@@ -245,66 +258,7 @@ export class MiEntityComponent implements OnInit {
     }
 
     createCode(data) {
-        let importTypeormTpl = ImportTypeormTpl,
-            importTypeorm = [],
-            entityTpl = EntityTpl,
-            columnsTpl = '',
-            classTpl = ClassTpl,
-            hasColumn = false,
-            hasPrimaryColumn = false;
-        if (data.code) {
-            entityTpl = entityTpl.replace(`$[entity]`, `'${data.code}'`);
-            entityTpl = entityTpl.replace(`$[description]`, `${data.description}`);
-            importTypeorm.push('Entity');
-        }
-        for (let col of data.cols) {
-            let name = col.name,
-                type = 'string',
-                column = ColumnTpl,
-                param = '',
-                description = '',
-                columnParam = [];
-            if (col.primary) {
-                if (!hasPrimaryColumn) {
-                    importTypeorm.push('PrimaryColumn');
-                    hasPrimaryColumn = true;
-                }
-                column = PrimaryColumnTpl;
-            } else if (!hasColumn) {
-                importTypeorm.push('Column');
-                hasColumn = true;
-            }
-            if (col.nullable) columnParam.push(`nullable: true`);
-            if (col.unique) columnParam.push(`unique: true`);
-            if (col.type.key === 'text') columnParam.push(`type: 'text'`);
-            if (col.type.key === 'json') columnParam.push(`type: 'json'`);
-            if (col.type.key === 'char') columnParam.push(`type: 'char'`);
-            if (col.type.key === 'int') columnParam.push(`type: 'int'`);
-            if (col.length > 0) columnParam.push(`length: ${col.length}`);
-            if (columnParam.length > 0) param = `{ ${columnParam.join(', ')} }`;
-            if (col.label) description = col.label;
-            if (StringType.indexOf(col.type.key) > -1) { type = 'string'; }
-            else if (NumberType.indexOf(col.type.key) > -1) { type = 'number'; }
-            else if (col.type.key === 'json') { type = 'Object'; }
-            else if (col.type.key === 'date') { type = 'Date'; }
-
-            column = this.setting.replace(column, {
-                description: description,
-                name: name,
-                type: type,
-                param: param
-            });
-
-            columnsTpl += column;
-        }
-
-        importTypeormTpl = importTypeormTpl.replace(`$[importTypeorm]`, importTypeorm.join(`, `));
-
-        classTpl = classTpl.replace(`$[entityTpl]`, entityTpl);
-        classTpl = classTpl.replace(`$[className]`, data.name);
-        classTpl = classTpl.replace(`$[importTypeormTpl]`, importTypeormTpl);
-        classTpl = classTpl.replace(`$[columnsTpl]`, columnsTpl);
-
-        console.log(classTpl)
+        this.entityCode = this.miEntityService.createCode(data);
+        this.action('codeModal')
     }
 }

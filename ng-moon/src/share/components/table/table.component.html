@@ -29,9 +29,9 @@
                     </td>
                 </ng-container>
             </ng-container>
-            <th class="select" *ngIf="option.selectType">
+            <td class="select" *ngIf="option.selectType">
                 <nm-checkbox [(ngModel)]="item.$selected" (click)="action('checkbox', item, $event)"></nm-checkbox>
-            </th>
+            </td>
         </tr>
     </tbody>
 </table>

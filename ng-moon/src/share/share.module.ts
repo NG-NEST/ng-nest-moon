@@ -47,6 +47,7 @@ import { GroupService } from './components/group/group.service';
 import { GroupComponent } from './components/group/group.component';
 import { ActionDirective } from './directives/action.directive';
 import { LongPressDirective } from './directives/long-press.directive';
+import { CodeComponent } from './components/code/code.component';
 
 // 声明模块中拥有的视图类
 const components = [
@@ -81,6 +82,7 @@ const components = [
     FindbackComponent,
     AddItemComponent,
     GroupComponent,
+    CodeComponent,
 
     CoverPipe,
     ActionDirective,

@@ -37,3 +37,58 @@ nm-modal {
         padding: 0 15px 15px 15px;
     }
 }
+
+nm-modal.form {
+    >article {
+        display: flex;
+        >nm-form {
+            display: flex;
+            flex: 1;
+            >form {
+                display: flex;
+                flex: 1;
+                flex-direction: column-reverse;
+                >nm-panel {
+                    &.controls {
+                        border: none;
+                        background: none;
+                        box-shadow: none;
+                        >nm-grid.title-top {
+                            >nm-row {
+                                padding: 0;
+                                border: 0;
+                                &.has-title {
+                                    padding-top: 31px;
+                                    >div.title {
+                                        top: 10px;
+                                        left: 0;
+                                    }
+                                }
+                                &:first-child {
+                                    &.has-title {
+                                        padding-top: 21px;
+                                        >div.title {
+                                            top: 0;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    >nm-toolbar {
+                        margin-top: 15px;
+                        justify-content: flex-end;
+                    }
+                }
+            }
+        }
+    }
+}
+
+nm-modal.tabs {
+    width: 100%;
+    height: 100%;
+    >article {
+        height: calc(100% - #{50px});
+    }
+}

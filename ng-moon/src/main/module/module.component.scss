@@ -18,6 +18,7 @@ nm-module {
                         justify-content: center;
                         padding-bottom: 10px;
                         overflow: hidden;
+                        position: relative;
                         >img {
                             border-top-left-radius: 2px;
                             border-top-right-radius: 2px;
@@ -33,7 +34,30 @@ nm-module {
                             color: lighten($normal-color, 50%);
                             font-size: 12px;
                         }
+                        >i.icon-x {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            padding: 3px;
+                            margin: 3px;
+                            border-radius: 20px;
+                            color: white;
+                            background: #79797936;
+                            font-size: 12px;
+                            visibility: hidden;
+                            opacity: 0;
+                            &:hover {
+                                transition: all .3s;
+                                background: #79797961;
+                                color: white;
+                            }
+                        }
                         &:hover {
+                            >i.icon-x{
+                                visibility: visible;
+                                transition: all .3s linear;
+                                opacity: 1;
+                            }
                             box-shadow: 0 0 2px 2px #a1a1a13b;
                             border-color: #b3b3b3d5;
                         }
