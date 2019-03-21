@@ -6,7 +6,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormGroup } from '@angular/for
 import { noop } from 'rxjs';
 import { SettingService } from 'src/services/setting.service';
 import { FormOption } from '../form/form.type';
-import { filter } from 'rxjs/operators';
+import { filter, distinctUntilKeyChanged, map } from 'rxjs/operators';
 import * as _ from 'lodash';
 
 @Component({
@@ -72,8 +72,8 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit() {
     this.setting.mapToObject(this._default, this.option);
-    if (this.form) this.form.valueChanges.pipe(filter(x => _.has(x, this.option.key))).subscribe(x => {
-      this.value = x[this.option.key];
+    if (this.form) this.form.valueChanges.pipe(distinctUntilKeyChanged(this.option.key), map(x => x[this.option.key])).subscribe(x => {
+      this.value = x;
     })
   }
 

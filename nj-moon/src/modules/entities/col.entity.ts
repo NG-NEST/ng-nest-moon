@@ -3,7 +3,7 @@ import { Table } from "./table.entity";
 
 @Entity("system_col")
 export class Col {
-    @PrimaryColumn("uuid", { length: 36 })
+    @PrimaryColumn("uuid", { length: 36, type: 'char' })
     id: string;
 
     @Column()
@@ -33,9 +33,9 @@ export class Col {
     @Column({ nullable: true })
     default?: string;
 
-    @Column({ length: 36 })
+    @Column({ length: 36, type: 'char' })
     tableId: string;
 
-    @ManyToOne(type => Table, table => table.cols, { cascade: ['insert', 'update'] })
+    @ManyToOne(type => Table, table => table.cols, { onDelete:'CASCADE' })
     table: Table;
 }

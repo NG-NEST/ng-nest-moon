@@ -4,7 +4,7 @@ import { Select } from "../../common/interfaces/select.interface";
 
 @Entity("system_control")
 export class Control {
-    @PrimaryColumn("uuid", { length: 36 })
+    @PrimaryColumn("uuid", { length: 36, type: 'char' })
     id: string;
 
     @Column()
@@ -43,10 +43,10 @@ export class Control {
     @Column({ nullable: true, type: 'json' })
     group?: Object;
 
-    @Column({ length: 36 })
+    @Column({ length: 36, type: 'char' })
     pageId: string;
 
-    @ManyToOne(type => Page, page => page.controls, { cascade: ['insert', 'update'] })
+    @ManyToOne(type => Page, page => page.controls, { onDelete:'CASCADE' })
     page: Page;
 }
 

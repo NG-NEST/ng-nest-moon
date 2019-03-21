@@ -15,21 +15,21 @@ export const NumberType = ['int'];
 
 export const ImportTypeormTpl: string = `import { $[importTypeorm] } from 'typeorm';`;
 
-export const EntityTpl: string =`
+export const EntityTpl: string = `
 /**
  * $[description]
  */
 @Entity($[entity])`;
 
-export const PrimaryColumnTpl: string =`   
+export const PrimaryColumnTpl: string = `   
     /**
      * $[description]
      */
-    @PrimaryColumn("uuid", { length: 36, type: 'char' })
+    @PrimaryColumn('uuid', { length: 36, type: 'char' })
     $[name]: $[type];
 `;
 
-export const ColumnTpl: string =`   
+export const ColumnTpl: string = `   
     /**
      * $[description]
      */
@@ -37,8 +37,8 @@ export const ColumnTpl: string =`
     $[name]: $[type];
 `;
 
-export const ClassTpl: string =`
-$[importTypeormTpl]
+export const ClassTpl: string =
+    `$[importTypeormTpl]
 $[entityTpl]
 export class $[className] {
     $[columnsTpl]

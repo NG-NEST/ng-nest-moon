@@ -7,7 +7,7 @@ import { SelectOption, SelectPortalOption } from './select.type';
 import { NG_VALUE_ACCESSOR, FormGroup } from '@angular/forms';
 import { noop, Subject } from 'rxjs';
 import { SettingService } from 'src/services/setting.service';
-import { filter } from 'rxjs/operators';
+import { filter, distinctUntilKeyChanged, map } from 'rxjs/operators';
 import * as _ from 'lodash';
 
 @Component({
@@ -115,9 +115,10 @@ export class SelectComponent implements OnInit {
                 }
             })
         }
-        if (this.form) this.form.valueChanges.pipe(filter(x => _.has(x, this.option.key))).subscribe(x => {
-            this.value = x[this.option.key];
-        })
+        if (this.form) this.form.valueChanges.pipe(map(x => x[this.option.key]))
+            .subscribe(x => {
+                if (this.value && this.value.key !== x.key) this.value = x;
+            })
     }
 
 }

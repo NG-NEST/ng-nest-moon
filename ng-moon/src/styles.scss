@@ -56,6 +56,12 @@ a {
     }
 }
 
+code,
+pre,
+tt {
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+}
+
 body,
 input {
     font-family: -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
@@ -64,10 +70,8 @@ input {
 nm-col,
 nm-control {
     position: relative;
-    float: left; // padding-left: 15px;
-    display: block; // &:last-child {
-    //     padding-right: 15px;
-    // }
+    float: left;
+    display: block;
     overflow: auto;
     &.col-12 {
         width: 100%;

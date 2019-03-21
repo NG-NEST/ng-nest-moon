@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: nj-nest
+-- Host: localhost    Database: nj-nest
 -- ------------------------------------------------------
 -- Server version	8.0.12
 
@@ -23,14 +23,14 @@ DROP TABLE IF EXISTS `system_action`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `system_action` (
-  `id` varchar(36) NOT NULL,
+  `id` char(36) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `icon` varchar(255) NOT NULL,
   `code` varchar(255) NOT NULL,
+  `icon` varchar(255) NOT NULL,
   `menuId` varchar(36) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_3ed34464adf967339c44f99ff80` (`menuId`),
-  CONSTRAINT `FK_3ed34464adf967339c44f99ff80` FOREIGN KEY (`menuId`) REFERENCES `system_menu` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_3ed34464adf967339c44f99ff80` FOREIGN KEY (`menuId`) REFERENCES `system_menu` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -40,8 +40,43 @@ CREATE TABLE `system_action` (
 
 LOCK TABLES `system_action` WRITE;
 /*!40000 ALTER TABLE `system_action` DISABLE KEYS */;
-INSERT INTO `system_action` VALUES ('01eb22db-469d-c603-1900-71bc77e5ad22','删除','icon-trash-2','delete','7f16db0f-bba0-67db-60e3-3be17fae3fed'),('06da1c10-e6a5-3e7d-5eba-030d88649335','查看','icon-eye','info','7e4ed6d0-d49f-5211-89ab-f1e9819955a9'),('07fa9bba-cb45-1547-6d84-ff010d4523c3','删除','icon-trash-2','delete','3a221ac9-434a-058f-7ba0-17770084a089'),('0e08825b-8005-3dbf-db82-522b3cc57dd8','增加','icon-plus','add','6245fe47-337c-b983-3401-a908a1b3a660'),('13e9f6f9-9735-105e-a7ad-6724c04d3cff','预览','icon-eye','eye','3a221ac9-434a-058f-7ba0-17770084a089'),('353a8846-9e2c-aec6-69e5-54d44072b9e3','查看','icon-eye','info','b69ccd6f-041a-4cad-a5fd-475b63739582'),('3810c30f-2023-2fed-a6d0-728c17d67d32','修改','icon-edit-2','update','7e4ed6d0-d49f-5211-89ab-f1e9819955a9'),('3ea69fdd-9f8d-4b20-6fe9-1536d016ebeb','增加','icon-plus','add','7e4ed6d0-d49f-5211-89ab-f1e9819955a9'),('3ed7caf4-3df8-098c-1839-cb755ea943cd','增加','icon-plus','add','3a221ac9-434a-058f-7ba0-17770084a089'),('5308a038-ab41-c9fd-dce0-670b441ab0d8','查看','icon-eye','info','acc6b9a6-0e25-4153-925d-171c4c8571ca'),('5477e0ea-38c3-156c-b67e-0fddc1ac2210','修改','icon-edit-2','update','3a221ac9-434a-058f-7ba0-17770084a089'),('5b2ae5a1-3f84-f916-da76-3699bdb7a269','修改','icon-edit-2','update','292241ae-0591-bd25-d4da-c60ac980682f'),('6d1fbe5e-5d19-8412-adda-7a0aefc12aa8','增加','icon-plus','add','292241ae-0591-bd25-d4da-c60ac980682f'),('71565f92-a1fa-0f9e-6be5-356f61028759','增加','icon-plus','add','b69ccd6f-041a-4cad-a5fd-475b63739582'),('71ac81c2-b24d-7e02-16d3-a5c2be44aa7c','增加','icon-plus','add','acc6b9a6-0e25-4153-925d-171c4c8571ca'),('7a186958-5818-1590-806f-895573bbfa4f','删除','icon-trash-2','delete','292241ae-0591-bd25-d4da-c60ac980682f'),('7dc6e968-516d-9812-eac3-5b6f27b3e1bb','删除','icon-trash-2','delete','7e4ed6d0-d49f-5211-89ab-f1e9819955a9'),('8ea7927c-628a-3575-71d8-ac87c8c00297','删除','icon-trash-2','delete','acc6b9a6-0e25-4153-925d-171c4c8571ca'),('9a274bc2-a04f-774f-eb1a-927236b8af05','查看','icon-eye','info','6245fe47-337c-b983-3401-a908a1b3a660'),('9b24c25e-f987-65c4-2dba-d96e9e79eeb0','删除','icon-trash-2','delete','b69ccd6f-041a-4cad-a5fd-475b63739582'),('c1af55f0-fc74-9b95-e581-75f2d740d285','修改','icon-edit-2','update','acc6b9a6-0e25-4153-925d-171c4c8571ca'),('c6d7ee42-b982-cf0d-2e53-5179140fb3e5','修改','icon-edit-2','update','6245fe47-337c-b983-3401-a908a1b3a660'),('c7fb6189-d60d-d3ea-28d8-817b1cd6ee0d','增加','icon-plus','add','7f16db0f-bba0-67db-60e3-3be17fae3fed'),('c8544510-78a1-2854-307e-e0576162bbf7','修改','icon-edit-2','update','b69ccd6f-041a-4cad-a5fd-475b63739582'),('c98ca681-b0bd-9326-0fb0-81430b74c4ab','查看','icon-eye','info','292241ae-0591-bd25-d4da-c60ac980682f'),('df525cbf-f8dd-95e9-9cd3-066d05e645ac','查看','icon-eye','info','7f16db0f-bba0-67db-60e3-3be17fae3fed'),('e5418bd6-c41c-3ccf-eb44-b1cfec35edb9','修改','icon-edit-2','update','7f16db0f-bba0-67db-60e3-3be17fae3fed'),('f96b9f40-7e1a-15f4-1af6-f8912c9abad3','查看','icon-eye','info','3a221ac9-434a-058f-7ba0-17770084a089'),('fd825d86-276c-1d91-0df0-9b28a4600105','删除','icon-trash-2','delete','6245fe47-337c-b983-3401-a908a1b3a660');
+INSERT INTO `system_action` VALUES ('00e0a452-a48e-244e-64e9-8ade6d8bc271','修改','update','icon-edit-2','b69ccd6f-041a-4cad-a5fd-475b63739582'),('0a2f4ce7-7e03-4b79-72ab-b2f1c7b1806c','修改','update','icon-edit-2','acc6b9a6-0e25-4153-925d-171c4c8571ca'),('26043e9e-2773-93c4-255b-d6980aad048a','修改','update','icon-edit-2','292241ae-0591-bd25-d4da-c60ac980682f'),('3b27d845-3496-9fa9-b574-87e9cdb6d3e7','增加','add','icon-plus','7f16db0f-bba0-67db-60e3-3be17fae3fed'),('3eb89353-3bdd-f5d0-b00d-052c006da927','删除','delete','icon-trash-2','292241ae-0591-bd25-d4da-c60ac980682f'),('497bf1af-060c-d47a-9d59-464c6b55fa4e','增加','add','icon-plus','7e4ed6d0-d49f-5211-89ab-f1e9819955a9'),('4a8aef28-a15d-7122-86d9-dc0152e13e4d','查看','info','icon-eye','b69ccd6f-041a-4cad-a5fd-475b63739582'),('4ddcf978-fd15-4c91-98f2-ffbf1f0da553','增加','add','icon-plus','acc6b9a6-0e25-4153-925d-171c4c8571ca'),('4e479a5d-4144-2b81-b540-28cc2f3225a9','查看','info','icon-eye','6245fe47-337c-b983-3401-a908a1b3a660'),('51416df9-edbf-3bdc-843e-98c576b1bdd3','删除','delete','icon-trash-2','b69ccd6f-041a-4cad-a5fd-475b63739582'),('514b71f8-4491-4ce0-f019-f406e95d0a63','删除','delete','icon-trash-2','3a221ac9-434a-058f-7ba0-17770084a089'),('54583935-c451-5352-e6b2-0cbb6bb69c10','查看','info','icon-eye','7e4ed6d0-d49f-5211-89ab-f1e9819955a9'),('64023e86-11e3-0652-cc77-76de64087751','增加','add','icon-plus','6245fe47-337c-b983-3401-a908a1b3a660'),('6b1b7f9d-e768-f2f6-75cd-7f6a69451c9e','删除','delete','icon-trash-2','7f16db0f-bba0-67db-60e3-3be17fae3fed'),('6ba5dd34-2f3c-16e0-a7bb-f252740a3998','删除','delete','icon-trash-2','7e4ed6d0-d49f-5211-89ab-f1e9819955a9'),('72ed8a4a-b5cf-4fb7-d8aa-c2938a491e19','增加','add','icon-plus','3a221ac9-434a-058f-7ba0-17770084a089'),('7ffbec83-d88c-ef7e-0968-efb84600350a','修改','update','icon-edit-2','3a221ac9-434a-058f-7ba0-17770084a089'),('86deb23e-84e7-b904-0544-e292e833571e','查看','info','icon-eye','acc6b9a6-0e25-4153-925d-171c4c8571ca'),('89762686-8c01-528e-f91e-848b1500286b','删除','delete','icon-trash-2','acc6b9a6-0e25-4153-925d-171c4c8571ca'),('90185774-4081-25cc-6a29-d199c097f064','查看','info','icon-eye','3a221ac9-434a-058f-7ba0-17770084a089'),('9aad69a0-a781-5172-e4dd-874db6decce0','修改','update','icon-edit-2','7e4ed6d0-d49f-5211-89ab-f1e9819955a9'),('b54389f5-3d0c-34ea-1e77-5975bb0a59cb','查看','info','icon-eye','292241ae-0591-bd25-d4da-c60ac980682f'),('bdb427ac-5f0f-84e7-3b80-036e41669f6d','修改','update','icon-edit-2','6245fe47-337c-b983-3401-a908a1b3a660'),('d273be9a-a945-a88a-9c0c-034394e6fe31','查看','info','icon-eye','7f16db0f-bba0-67db-60e3-3be17fae3fed'),('d4c011a1-4c30-80b0-ee1d-45e050b1abf6','删除','delete','icon-trash-2','6245fe47-337c-b983-3401-a908a1b3a660'),('e1d32faf-3451-e243-8cbc-498d43ab0679','增加','add','icon-plus','b69ccd6f-041a-4cad-a5fd-475b63739582'),('e6521f6f-2ece-90a2-fa20-791300d3e114','修改','update','icon-edit-2','7f16db0f-bba0-67db-60e3-3be17fae3fed'),('ef5e43f3-0c8f-4f26-fdbb-bc2cc45acb62','增加','add','icon-plus','292241ae-0591-bd25-d4da-c60ac980682f');
 /*!40000 ALTER TABLE `system_action` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `system_col`
+--
+
+DROP TABLE IF EXISTS `system_col`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `system_col` (
+  `id` varchar(36) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `tableId` varchar(36) NOT NULL,
+  `label` varchar(255) NOT NULL,
+  `type` json DEFAULT NULL,
+  `length` int(11) DEFAULT NULL,
+  `primary` tinyint(4) DEFAULT NULL,
+  `nullable` tinyint(4) DEFAULT NULL,
+  `unique` tinyint(4) DEFAULT NULL,
+  `default` varchar(255) DEFAULT NULL,
+  `sort` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_ffb2656480f943927e94318532e` (`tableId`),
+  CONSTRAINT `FK_ffb2656480f943927e94318532e` FOREIGN KEY (`tableId`) REFERENCES `system_table` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `system_col`
+--
+
+LOCK TABLES `system_col` WRITE;
+/*!40000 ALTER TABLE `system_col` DISABLE KEYS */;
+INSERT INTO `system_col` VALUES ('078d8cde-adb1-ca47-0850-160616b1eb93','account','b59b561c-974e-345c-ac94-c8a6d0133d7c','账号','{\"key\": \"varchar\", \"label\": \"varchar\"}',32,0,0,0,'',1),('4b2995a6-3604-b31d-3712-a6a9ea91610d','phone','b59b561c-974e-345c-ac94-c8a6d0133d7c','手机号','{\"key\": \"char\", \"label\": \"char\"}',11,0,1,0,'',5),('ca609b3e-9a4a-3ba1-518b-a380ac165bab','name','b59b561c-974e-345c-ac94-c8a6d0133d7c','姓名','{\"key\": \"varchar\", \"label\": \"varchar\"}',64,0,0,0,'',3),('ce1ead3d-3505-9539-a7f7-20f1908e6cb0','id','b59b561c-974e-345c-ac94-c8a6d0133d7c','编号','{\"key\": \"varchar\", \"label\": \"varchar\"}',36,1,0,0,'',0),('d65744e6-e550-7d6a-9134-b6bd7369e356','password','b59b561c-974e-345c-ac94-c8a6d0133d7c','密码','{\"key\": \"varchar\", \"label\": \"varchar\"}',64,0,0,0,'',2),('fd02f941-a3e3-7d91-6129-d79f40c5d4fb','email','b59b561c-974e-345c-ac94-c8a6d0133d7c','邮箱','{\"key\": \"varchar\", \"label\": \"varchar\"}',64,0,1,0,'',4);
+/*!40000 ALTER TABLE `system_col` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -78,7 +113,7 @@ CREATE TABLE `system_control` (
 
 LOCK TABLES `system_control` WRITE;
 /*!40000 ALTER TABLE `system_control` DISABLE KEYS */;
-INSERT INTO `system_control` VALUES ('22a42f15-ba41-6066-3b5a-8899de75cbf8','编码','id','','0aff95ff-6de2-021a-4b45-f1228f9a9913',1,0,1,'{\"key\": 12, \"label\": \"12\"}','{\"key\": \"input\", \"label\": \"输入框\"}',0,'{\"id\": \"be83e80d-a753-2764-35c3-c6a3f29f9485\", \"icon\": \"icon-user\", \"label\": \"基本信息\"}',1,1),('7da73d57-8776-814b-dbb4-dd96a1f00c01','密码','password',NULL,'0aff95ff-6de2-021a-4b45-f1228f9a9913',1,0,0,'{\"key\": 4, \"label\": \"4\"}','{\"key\": \"input\", \"label\": \"输入框\"}',2,'{\"id\": \"be83e80d-a753-2764-35c3-c6a3f29f9485\", \"icon\": \"icon-user\", \"label\": \"基本信息\"}',NULL,0),('8300d947-c1df-bd06-945d-4131bcc70acf','邮箱','email',NULL,'0aff95ff-6de2-021a-4b45-f1228f9a9913',0,0,0,'{\"key\": 4, \"label\": \"4\"}','{\"key\": \"input\", \"label\": \"输入框\"}',4,'{\"id\": \"be83e80d-a753-2764-35c3-c6a3f29f9485\", \"icon\": \"icon-user\", \"label\": \"基本信息\"}',NULL,0),('9655d321-5c75-42aa-5f9a-c38068e31b4d','组织机构','organizations',NULL,'0aff95ff-6de2-021a-4b45-f1228f9a9913',0,NULL,NULL,'{\"key\": 12, \"label\": \"12\"}','{\"key\": \"findback\", \"label\": \"查找带回\"}',7,'{\"id\": \"bf22ae8f-ec75-2022-48fb-4392eade905d\", \"icon\": \"icon-navigation-2\", \"label\": \"组织机构\"}',NULL,0),('a04b47d6-2f48-915f-aa9d-89c4b71dac49','手机号','phone','','0aff95ff-6de2-021a-4b45-f1228f9a9913',0,0,0,'{\"key\": 4, \"label\": \"4\"}','{\"key\": \"input\", \"label\": \"输入框\"}',5,'{\"id\": \"be83e80d-a753-2764-35c3-c6a3f29f9485\", \"icon\": \"icon-user\", \"label\": \"基本信息\"}',NULL,0),('acd028a6-15b5-376a-dd22-ea25904af3e6','账号','account','','0aff95ff-6de2-021a-4b45-f1228f9a9913',1,0,0,'{\"key\": 4, \"label\": \"4\"}','{\"key\": \"input\", \"label\": \"输入框\"}',1,'{\"id\": \"be83e80d-a753-2764-35c3-c6a3f29f9485\", \"icon\": \"icon-user\", \"label\": \"基本信息\"}',NULL,0),('af2817b0-2f9c-4125-c79b-3495e2953df5','姓名','name',NULL,'0aff95ff-6de2-021a-4b45-f1228f9a9913',1,NULL,NULL,'{\"key\": 4, \"label\": \"4\"}','{\"key\": \"input\", \"label\": \"输入框\"}',3,'{\"id\": \"be83e80d-a753-2764-35c3-c6a3f29f9485\", \"icon\": \"icon-user\", \"label\": \"基本信息\"}',NULL,0),('e7309d9d-ffc6-aac9-71c5-6ed855e364da','角色','roles','','0aff95ff-6de2-021a-4b45-f1228f9a9913',0,0,0,'{\"key\": 12, \"label\": \"12\"}','{\"key\": \"findback\", \"label\": \"查找带回\"}',6,'{\"id\": \"67d32fed-cf39-65cc-fb23-baebd055e77e\", \"icon\": \"icon-navigation-2\", \"label\": \"角色\"}',NULL,0);
+INSERT INTO `system_control` VALUES ('22a42f15-ba41-6066-3b5a-8899de75cbf8','编码','id','','0aff95ff-6de2-021a-4b45-f1228f9a9913',1,0,1,'{\"key\": 12, \"label\": \"12\"}','{\"key\": \"input\", \"label\": \"输入框\"}',0,'{\"id\": \"be83e80d-a753-2764-35c3-c6a3f29f9485\", \"icon\": \"icon-user\", \"label\": \"基本信息\"}',1,1),('7da73d57-8776-814b-dbb4-dd96a1f00c01','密码','password',NULL,'0aff95ff-6de2-021a-4b45-f1228f9a9913',1,0,0,'{\"key\": 4, \"label\": \"4\"}','{\"key\": \"input\", \"label\": \"输入框\"}',2,'{\"id\": \"be83e80d-a753-2764-35c3-c6a3f29f9485\", \"icon\": \"icon-user\", \"label\": \"基本信息\"}',NULL,0),('8300d947-c1df-bd06-945d-4131bcc70acf','邮箱','email',NULL,'0aff95ff-6de2-021a-4b45-f1228f9a9913',0,0,0,'{\"key\": 4, \"label\": \"4\"}','{\"key\": \"input\", \"label\": \"输入框\"}',4,'{\"id\": \"be83e80d-a753-2764-35c3-c6a3f29f9485\", \"icon\": \"icon-user\", \"label\": \"基本信息\"}',NULL,0),('9655d321-5c75-42aa-5f9a-c38068e31b4d','组织机构','organizations',NULL,'0aff95ff-6de2-021a-4b45-f1228f9a9913',0,NULL,NULL,'{\"key\": 12, \"label\": \"12\"}','{\"key\": \"findback\", \"label\": \"查找带回\"}',7,'{\"id\": \"bf22ae8f-ec75-2022-48fb-4392eade905d\", \"icon\": \"icon-navigation-2\", \"label\": \"组织机构\"}',NULL,0),('a04b47d6-2f48-915f-aa9d-89c4b71dac49','手机号','phone','','0aff95ff-6de2-021a-4b45-f1228f9a9913',0,0,0,'{\"key\": 4, \"label\": \"4\"}','{\"key\": \"input\", \"label\": \"输入框\"}',5,'{\"id\": \"be83e80d-a753-2764-35c3-c6a3f29f9485\", \"icon\": \"icon-user\", \"label\": \"基本信息\"}',NULL,0),('acd028a6-15b5-376a-dd22-ea25904af3e6','账号','account','','0aff95ff-6de2-021a-4b45-f1228f9a9913',1,0,0,'{\"key\": 4, \"label\": \"4\"}','{\"key\": \"input\", \"label\": \"输入框\"}',1,'{\"id\": \"be83e80d-a753-2764-35c3-c6a3f29f9485\", \"icon\": \"icon-user\", \"label\": \"基本信息\"}',NULL,0),('af2817b0-2f9c-4125-c79b-3495e2953df5','姓名','name',NULL,'0aff95ff-6de2-021a-4b45-f1228f9a9913',1,NULL,NULL,'{\"key\": 4, \"label\": \"4\"}','{\"key\": \"input\", \"label\": \"输入框\"}',3,'{\"id\": \"be83e80d-a753-2764-35c3-c6a3f29f9485\", \"icon\": \"icon-user\", \"label\": \"基本信息\"}',NULL,0),('c4393d24-6bf7-9103-b0a2-ddec58f2388f','id','编码','','084b04e1-7df5-d50f-828a-5f5b9eaebcdc',1,0,0,'{\"key\": 12, \"label\": \"12\"}','{\"key\": \"input\", \"label\": \"输入框\"}',0,NULL,0,0),('e7309d9d-ffc6-aac9-71c5-6ed855e364da','角色','roles','','0aff95ff-6de2-021a-4b45-f1228f9a9913',0,0,0,'{\"key\": 12, \"label\": \"12\"}','{\"key\": \"findback\", \"label\": \"查找带回\"}',6,'{\"id\": \"67d32fed-cf39-65cc-fb23-baebd055e77e\", \"icon\": \"icon-navigation-2\", \"label\": \"角色\"}',NULL,0);
 /*!40000 ALTER TABLE `system_control` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -196,7 +231,7 @@ CREATE TABLE `system_page` (
 
 LOCK TABLES `system_page` WRITE;
 /*!40000 ALTER TABLE `system_page` DISABLE KEYS */;
-INSERT INTO `system_page` VALUES ('0aff95ff-6de2-021a-4b45-f1228f9a9913','用户详情','','5447ae12-3cad-6273-f473-50e42b307434','info'),('cb35038c-b342-9b13-e9de-8d15cd941643','用户列表','','5447ae12-3cad-6273-f473-50e42b307434','list'),('cf2c70ba-0279-7221-0c30-e97c4901af56','13','564',NULL,'');
+INSERT INTO `system_page` VALUES ('084b04e1-7df5-d50f-828a-5f5b9eaebcdc','模块管理','','337cd45f-beb1-61bf-6622-895c19172b90','module'),('0aff95ff-6de2-021a-4b45-f1228f9a9913','用户详情','','5447ae12-3cad-6273-f473-50e42b307434','info'),('cb35038c-b342-9b13-e9de-8d15cd941643','用户列表','','5447ae12-3cad-6273-f473-50e42b307434','list'),('cf2c70ba-0279-7221-0c30-e97c4901af56','13','564',NULL,'');
 /*!40000 ALTER TABLE `system_page` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -259,7 +294,7 @@ DROP TABLE IF EXISTS `system_role_action`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `system_role_action` (
   `roleId` varchar(36) NOT NULL,
-  `actionId` varchar(36) NOT NULL,
+  `actionId` char(36) NOT NULL,
   PRIMARY KEY (`roleId`,`actionId`),
   KEY `FK_a0ec504b9c427ffcc85e212594c` (`actionId`),
   CONSTRAINT `FK_25439811e232662e2dc087330d9` FOREIGN KEY (`roleId`) REFERENCES `system_role` (`id`) ON DELETE CASCADE,
@@ -273,8 +308,38 @@ CREATE TABLE `system_role_action` (
 
 LOCK TABLES `system_role_action` WRITE;
 /*!40000 ALTER TABLE `system_role_action` DISABLE KEYS */;
-INSERT INTO `system_role_action` VALUES ('469c5d65-11fc-a83a-d077-578780f492a5','01eb22db-469d-c603-1900-71bc77e5ad22'),('469c5d65-11fc-a83a-d077-578780f492a5','06da1c10-e6a5-3e7d-5eba-030d88649335'),('469c5d65-11fc-a83a-d077-578780f492a5','07fa9bba-cb45-1547-6d84-ff010d4523c3'),('469c5d65-11fc-a83a-d077-578780f492a5','0e08825b-8005-3dbf-db82-522b3cc57dd8'),('469c5d65-11fc-a83a-d077-578780f492a5','13e9f6f9-9735-105e-a7ad-6724c04d3cff'),('469c5d65-11fc-a83a-d077-578780f492a5','353a8846-9e2c-aec6-69e5-54d44072b9e3'),('469c5d65-11fc-a83a-d077-578780f492a5','3810c30f-2023-2fed-a6d0-728c17d67d32'),('469c5d65-11fc-a83a-d077-578780f492a5','3ea69fdd-9f8d-4b20-6fe9-1536d016ebeb'),('469c5d65-11fc-a83a-d077-578780f492a5','3ed7caf4-3df8-098c-1839-cb755ea943cd'),('469c5d65-11fc-a83a-d077-578780f492a5','5308a038-ab41-c9fd-dce0-670b441ab0d8'),('469c5d65-11fc-a83a-d077-578780f492a5','5477e0ea-38c3-156c-b67e-0fddc1ac2210'),('469c5d65-11fc-a83a-d077-578780f492a5','5b2ae5a1-3f84-f916-da76-3699bdb7a269'),('469c5d65-11fc-a83a-d077-578780f492a5','6d1fbe5e-5d19-8412-adda-7a0aefc12aa8'),('6bdb4fd4-4327-05c8-6850-070ad284346b','6d1fbe5e-5d19-8412-adda-7a0aefc12aa8'),('469c5d65-11fc-a83a-d077-578780f492a5','71565f92-a1fa-0f9e-6be5-356f61028759'),('469c5d65-11fc-a83a-d077-578780f492a5','71ac81c2-b24d-7e02-16d3-a5c2be44aa7c'),('469c5d65-11fc-a83a-d077-578780f492a5','7a186958-5818-1590-806f-895573bbfa4f'),('469c5d65-11fc-a83a-d077-578780f492a5','7dc6e968-516d-9812-eac3-5b6f27b3e1bb'),('469c5d65-11fc-a83a-d077-578780f492a5','8ea7927c-628a-3575-71d8-ac87c8c00297'),('469c5d65-11fc-a83a-d077-578780f492a5','9a274bc2-a04f-774f-eb1a-927236b8af05'),('469c5d65-11fc-a83a-d077-578780f492a5','9b24c25e-f987-65c4-2dba-d96e9e79eeb0'),('469c5d65-11fc-a83a-d077-578780f492a5','c1af55f0-fc74-9b95-e581-75f2d740d285'),('469c5d65-11fc-a83a-d077-578780f492a5','c6d7ee42-b982-cf0d-2e53-5179140fb3e5'),('469c5d65-11fc-a83a-d077-578780f492a5','c7fb6189-d60d-d3ea-28d8-817b1cd6ee0d'),('6bdb4fd4-4327-05c8-6850-070ad284346b','c7fb6189-d60d-d3ea-28d8-817b1cd6ee0d'),('469c5d65-11fc-a83a-d077-578780f492a5','c8544510-78a1-2854-307e-e0576162bbf7'),('469c5d65-11fc-a83a-d077-578780f492a5','c98ca681-b0bd-9326-0fb0-81430b74c4ab'),('469c5d65-11fc-a83a-d077-578780f492a5','df525cbf-f8dd-95e9-9cd3-066d05e645ac'),('469c5d65-11fc-a83a-d077-578780f492a5','e5418bd6-c41c-3ccf-eb44-b1cfec35edb9'),('6bdb4fd4-4327-05c8-6850-070ad284346b','e5418bd6-c41c-3ccf-eb44-b1cfec35edb9'),('469c5d65-11fc-a83a-d077-578780f492a5','f96b9f40-7e1a-15f4-1af6-f8912c9abad3'),('469c5d65-11fc-a83a-d077-578780f492a5','fd825d86-276c-1d91-0df0-9b28a4600105');
+INSERT INTO `system_role_action` VALUES ('469c5d65-11fc-a83a-d077-578780f492a5','00e0a452-a48e-244e-64e9-8ade6d8bc271'),('469c5d65-11fc-a83a-d077-578780f492a5','0a2f4ce7-7e03-4b79-72ab-b2f1c7b1806c'),('469c5d65-11fc-a83a-d077-578780f492a5','26043e9e-2773-93c4-255b-d6980aad048a'),('469c5d65-11fc-a83a-d077-578780f492a5','3b27d845-3496-9fa9-b574-87e9cdb6d3e7'),('469c5d65-11fc-a83a-d077-578780f492a5','3eb89353-3bdd-f5d0-b00d-052c006da927'),('469c5d65-11fc-a83a-d077-578780f492a5','497bf1af-060c-d47a-9d59-464c6b55fa4e'),('469c5d65-11fc-a83a-d077-578780f492a5','4a8aef28-a15d-7122-86d9-dc0152e13e4d'),('469c5d65-11fc-a83a-d077-578780f492a5','4ddcf978-fd15-4c91-98f2-ffbf1f0da553'),('469c5d65-11fc-a83a-d077-578780f492a5','4e479a5d-4144-2b81-b540-28cc2f3225a9'),('469c5d65-11fc-a83a-d077-578780f492a5','51416df9-edbf-3bdc-843e-98c576b1bdd3'),('469c5d65-11fc-a83a-d077-578780f492a5','514b71f8-4491-4ce0-f019-f406e95d0a63'),('469c5d65-11fc-a83a-d077-578780f492a5','54583935-c451-5352-e6b2-0cbb6bb69c10'),('469c5d65-11fc-a83a-d077-578780f492a5','64023e86-11e3-0652-cc77-76de64087751'),('469c5d65-11fc-a83a-d077-578780f492a5','6b1b7f9d-e768-f2f6-75cd-7f6a69451c9e'),('469c5d65-11fc-a83a-d077-578780f492a5','6ba5dd34-2f3c-16e0-a7bb-f252740a3998'),('469c5d65-11fc-a83a-d077-578780f492a5','72ed8a4a-b5cf-4fb7-d8aa-c2938a491e19'),('469c5d65-11fc-a83a-d077-578780f492a5','7ffbec83-d88c-ef7e-0968-efb84600350a'),('469c5d65-11fc-a83a-d077-578780f492a5','86deb23e-84e7-b904-0544-e292e833571e'),('469c5d65-11fc-a83a-d077-578780f492a5','89762686-8c01-528e-f91e-848b1500286b'),('469c5d65-11fc-a83a-d077-578780f492a5','90185774-4081-25cc-6a29-d199c097f064'),('469c5d65-11fc-a83a-d077-578780f492a5','9aad69a0-a781-5172-e4dd-874db6decce0'),('469c5d65-11fc-a83a-d077-578780f492a5','b54389f5-3d0c-34ea-1e77-5975bb0a59cb'),('469c5d65-11fc-a83a-d077-578780f492a5','bdb427ac-5f0f-84e7-3b80-036e41669f6d'),('469c5d65-11fc-a83a-d077-578780f492a5','d273be9a-a945-a88a-9c0c-034394e6fe31'),('469c5d65-11fc-a83a-d077-578780f492a5','d4c011a1-4c30-80b0-ee1d-45e050b1abf6'),('469c5d65-11fc-a83a-d077-578780f492a5','e1d32faf-3451-e243-8cbc-498d43ab0679'),('469c5d65-11fc-a83a-d077-578780f492a5','e6521f6f-2ece-90a2-fa20-791300d3e114'),('469c5d65-11fc-a83a-d077-578780f492a5','ef5e43f3-0c8f-4f26-fdbb-bc2cc45acb62');
 /*!40000 ALTER TABLE `system_role_action` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `system_table`
+--
+
+DROP TABLE IF EXISTS `system_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `system_table` (
+  `id` varchar(36) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `moduleId` varchar(255) DEFAULT NULL,
+  `transform` json DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_18b6873e5862386d08dcb5f3452` (`moduleId`),
+  CONSTRAINT `FK_18b6873e5862386d08dcb5f3452` FOREIGN KEY (`moduleId`) REFERENCES `system_module` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `system_table`
+--
+
+LOCK TABLES `system_table` WRITE;
+/*!40000 ALTER TABLE `system_table` DISABLE KEYS */;
+INSERT INTO `system_table` VALUES ('b59b561c-974e-345c-ac94-c8a6d0133d7c','User','system_user','用户信息','5e847fc4-c290-af47-5ea5-50aa61696a50','{\"x\": -1, \"y\": 40}');
+/*!40000 ALTER TABLE `system_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -368,4 +433,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-17 18:34:17
+-- Dump completed on 2019-03-21 19:10:53

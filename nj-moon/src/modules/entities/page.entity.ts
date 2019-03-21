@@ -4,7 +4,7 @@ import { Control } from './control.entity';
 
 @Entity("system_page")
 export class Page {
-    @PrimaryColumn("uuid", { length: 36 })
+    @PrimaryColumn("uuid", { length: 36, type: 'char' })
     id: string;
 
     @Column()
@@ -16,10 +16,10 @@ export class Page {
     @Column({ nullable: true})
     description: string;
 
-    @Column({ nullable: true})
+    @Column({ nullable: true, length: 36, type: 'char'})
     moduleId: string;
 
-    @ManyToOne(type => Module, module => module.pages)
+    @ManyToOne(type => Module, module => module.pages, { onDelete:'CASCADE' })
     module: Module;
 
     @ManyToMany(type => Page, page => page)

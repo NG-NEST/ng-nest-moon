@@ -4,7 +4,7 @@ import { Table } from "./table.entity";
 
 @Entity("system_module")
 export class Module {
-    @PrimaryColumn("uuid", { length: 36 })
+    @PrimaryColumn("uuid", { length: 36, type: 'char' })
     id: string;
 
     @Column()
