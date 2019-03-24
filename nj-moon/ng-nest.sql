@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
 --
--- Host: localhost    Database: nj-nest
+-- Host: localhost    Database: ng-nest
 -- ------------------------------------------------------
 -- Server version	8.0.12
 
@@ -23,11 +23,11 @@ DROP TABLE IF EXISTS `system_action`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `system_action` (
-  `id` char(36) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `code` varchar(255) NOT NULL,
-  `icon` varchar(255) NOT NULL,
-  `menuId` varchar(36) NOT NULL,
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `menuId` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_3ed34464adf967339c44f99ff80` (`menuId`),
   CONSTRAINT `FK_3ed34464adf967339c44f99ff80` FOREIGN KEY (`menuId`) REFERENCES `system_menu` (`id`)
@@ -52,17 +52,17 @@ DROP TABLE IF EXISTS `system_col`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `system_col` (
-  `id` varchar(36) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `tableId` varchar(36) NOT NULL,
-  `label` varchar(255) NOT NULL,
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `label` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sort` int(11) NOT NULL,
   `type` json DEFAULT NULL,
   `length` int(11) DEFAULT NULL,
   `primary` tinyint(4) DEFAULT NULL,
   `nullable` tinyint(4) DEFAULT NULL,
   `unique` tinyint(4) DEFAULT NULL,
-  `default` varchar(255) DEFAULT NULL,
-  `sort` int(11) NOT NULL,
+  `default` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tableId` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_ffb2656480f943927e94318532e` (`tableId`),
   CONSTRAINT `FK_ffb2656480f943927e94318532e` FOREIGN KEY (`tableId`) REFERENCES `system_table` (`id`) ON DELETE CASCADE
@@ -75,7 +75,6 @@ CREATE TABLE `system_col` (
 
 LOCK TABLES `system_col` WRITE;
 /*!40000 ALTER TABLE `system_col` DISABLE KEYS */;
-INSERT INTO `system_col` VALUES ('078d8cde-adb1-ca47-0850-160616b1eb93','account','b59b561c-974e-345c-ac94-c8a6d0133d7c','账号','{\"key\": \"varchar\", \"label\": \"varchar\"}',32,0,0,0,'',1),('4b2995a6-3604-b31d-3712-a6a9ea91610d','phone','b59b561c-974e-345c-ac94-c8a6d0133d7c','手机号','{\"key\": \"char\", \"label\": \"char\"}',11,0,1,0,'',5),('ca609b3e-9a4a-3ba1-518b-a380ac165bab','name','b59b561c-974e-345c-ac94-c8a6d0133d7c','姓名','{\"key\": \"varchar\", \"label\": \"varchar\"}',64,0,0,0,'',3),('ce1ead3d-3505-9539-a7f7-20f1908e6cb0','id','b59b561c-974e-345c-ac94-c8a6d0133d7c','编号','{\"key\": \"varchar\", \"label\": \"varchar\"}',36,1,0,0,'',0),('d65744e6-e550-7d6a-9134-b6bd7369e356','password','b59b561c-974e-345c-ac94-c8a6d0133d7c','密码','{\"key\": \"varchar\", \"label\": \"varchar\"}',64,0,0,0,'',2),('fd02f941-a3e3-7d91-6129-d79f40c5d4fb','email','b59b561c-974e-345c-ac94-c8a6d0133d7c','邮箱','{\"key\": \"varchar\", \"label\": \"varchar\"}',64,0,1,0,'',4);
 /*!40000 ALTER TABLE `system_col` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,20 +86,20 @@ DROP TABLE IF EXISTS `system_control`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `system_control` (
-  `id` varchar(36) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `code` varchar(255) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `pageId` varchar(36) NOT NULL,
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `required` tinyint(4) DEFAULT NULL,
   `disabled` tinyint(4) DEFAULT NULL,
   `readonly` tinyint(4) DEFAULT NULL,
-  `col` json DEFAULT NULL,
-  `type` json NOT NULL,
-  `sort` int(11) NOT NULL,
-  `group` json DEFAULT NULL,
   `hide` tinyint(4) DEFAULT NULL,
   `primary` tinyint(4) NOT NULL,
+  `sort` int(11) NOT NULL,
+  `col` json DEFAULT NULL,
+  `type` json NOT NULL,
+  `group` json DEFAULT NULL,
+  `pageId` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_71c3bf30155ee1f0c19e92181f5` (`pageId`),
   CONSTRAINT `FK_71c3bf30155ee1f0c19e92181f5` FOREIGN KEY (`pageId`) REFERENCES `system_page` (`id`) ON DELETE CASCADE
@@ -113,7 +112,6 @@ CREATE TABLE `system_control` (
 
 LOCK TABLES `system_control` WRITE;
 /*!40000 ALTER TABLE `system_control` DISABLE KEYS */;
-INSERT INTO `system_control` VALUES ('22a42f15-ba41-6066-3b5a-8899de75cbf8','编码','id','','0aff95ff-6de2-021a-4b45-f1228f9a9913',1,0,1,'{\"key\": 12, \"label\": \"12\"}','{\"key\": \"input\", \"label\": \"输入框\"}',0,'{\"id\": \"be83e80d-a753-2764-35c3-c6a3f29f9485\", \"icon\": \"icon-user\", \"label\": \"基本信息\"}',1,1),('7da73d57-8776-814b-dbb4-dd96a1f00c01','密码','password',NULL,'0aff95ff-6de2-021a-4b45-f1228f9a9913',1,0,0,'{\"key\": 4, \"label\": \"4\"}','{\"key\": \"input\", \"label\": \"输入框\"}',2,'{\"id\": \"be83e80d-a753-2764-35c3-c6a3f29f9485\", \"icon\": \"icon-user\", \"label\": \"基本信息\"}',NULL,0),('8300d947-c1df-bd06-945d-4131bcc70acf','邮箱','email',NULL,'0aff95ff-6de2-021a-4b45-f1228f9a9913',0,0,0,'{\"key\": 4, \"label\": \"4\"}','{\"key\": \"input\", \"label\": \"输入框\"}',4,'{\"id\": \"be83e80d-a753-2764-35c3-c6a3f29f9485\", \"icon\": \"icon-user\", \"label\": \"基本信息\"}',NULL,0),('9655d321-5c75-42aa-5f9a-c38068e31b4d','组织机构','organizations',NULL,'0aff95ff-6de2-021a-4b45-f1228f9a9913',0,NULL,NULL,'{\"key\": 12, \"label\": \"12\"}','{\"key\": \"findback\", \"label\": \"查找带回\"}',7,'{\"id\": \"bf22ae8f-ec75-2022-48fb-4392eade905d\", \"icon\": \"icon-navigation-2\", \"label\": \"组织机构\"}',NULL,0),('a04b47d6-2f48-915f-aa9d-89c4b71dac49','手机号','phone','','0aff95ff-6de2-021a-4b45-f1228f9a9913',0,0,0,'{\"key\": 4, \"label\": \"4\"}','{\"key\": \"input\", \"label\": \"输入框\"}',5,'{\"id\": \"be83e80d-a753-2764-35c3-c6a3f29f9485\", \"icon\": \"icon-user\", \"label\": \"基本信息\"}',NULL,0),('acd028a6-15b5-376a-dd22-ea25904af3e6','账号','account','','0aff95ff-6de2-021a-4b45-f1228f9a9913',1,0,0,'{\"key\": 4, \"label\": \"4\"}','{\"key\": \"input\", \"label\": \"输入框\"}',1,'{\"id\": \"be83e80d-a753-2764-35c3-c6a3f29f9485\", \"icon\": \"icon-user\", \"label\": \"基本信息\"}',NULL,0),('af2817b0-2f9c-4125-c79b-3495e2953df5','姓名','name',NULL,'0aff95ff-6de2-021a-4b45-f1228f9a9913',1,NULL,NULL,'{\"key\": 4, \"label\": \"4\"}','{\"key\": \"input\", \"label\": \"输入框\"}',3,'{\"id\": \"be83e80d-a753-2764-35c3-c6a3f29f9485\", \"icon\": \"icon-user\", \"label\": \"基本信息\"}',NULL,0),('c4393d24-6bf7-9103-b0a2-ddec58f2388f','id','编码','','084b04e1-7df5-d50f-828a-5f5b9eaebcdc',1,0,0,'{\"key\": 12, \"label\": \"12\"}','{\"key\": \"input\", \"label\": \"输入框\"}',0,NULL,0,0),('e7309d9d-ffc6-aac9-71c5-6ed855e364da','角色','roles','','0aff95ff-6de2-021a-4b45-f1228f9a9913',0,0,0,'{\"key\": 12, \"label\": \"12\"}','{\"key\": \"findback\", \"label\": \"查找带回\"}',6,'{\"id\": \"67d32fed-cf39-65cc-fb23-baebd055e77e\", \"icon\": \"icon-navigation-2\", \"label\": \"角色\"}',NULL,0);
 /*!40000 ALTER TABLE `system_control` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,12 +123,12 @@ DROP TABLE IF EXISTS `system_menu`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `system_menu` (
-  `id` varchar(36) NOT NULL,
-  `label` varchar(255) NOT NULL,
-  `router` varchar(255) NOT NULL,
-  `icon` varchar(255) NOT NULL,
-  `parentId` varchar(36) DEFAULT NULL,
-  `path` text,
+  `id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `label` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `router` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `parentId` varchar(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `path` text COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `FK_d7fcb6cbe5c416b793101e32a3f` (`parentId`),
   CONSTRAINT `FK_d7fcb6cbe5c416b793101e32a3f` FOREIGN KEY (`parentId`) REFERENCES `system_menu` (`id`)
@@ -155,13 +153,13 @@ DROP TABLE IF EXISTS `system_module`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `system_module` (
-  `id` varchar(36) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `icon` varchar(255) DEFAULT NULL,
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `createTime` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
   `updateTime` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-  `code` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -172,7 +170,6 @@ CREATE TABLE `system_module` (
 
 LOCK TABLES `system_module` WRITE;
 /*!40000 ALTER TABLE `system_module` DISABLE KEYS */;
-INSERT INTO `system_module` VALUES ('337cd45f-beb1-61bf-6622-895c19172b90','5656','5555','4444','2019-02-26 21:53:37.514162','2019-02-26 21:58:24.000000',''),('5447ae12-3cad-6273-f473-50e42b307434','用户管理','用户管理描述','icon-user','2019-02-26 21:53:37.514162','2019-03-08 20:20:37.000000','user'),('5e847fc4-c290-af47-5ea5-50aa61696a50','需求管理','需求管理描','icon-home','2019-02-26 21:53:37.514162','2019-02-26 21:53:37.548137',''),('9a584ec8-3d23-1bfb-5cb8-b40582dbb174','组织机构','组织机构描述','icon-users','2019-02-26 21:53:37.514162','2019-02-26 21:53:37.548137',''),('a95a605e-5df1-4887-3090-d46cdfad3328','菜单管理','菜单管理描述','icon-list','2019-02-26 21:53:37.514162','2019-02-26 21:53:37.548137',''),('c07d36db-922e-39d7-4a79-cacd767198fb','客户管理','客户信息士大夫','icon-home','2019-02-26 21:53:37.514162','2019-02-26 21:53:37.548137',''),('f20eda79-8189-2148-b146-0c4207fbd9e2','角色管理','角色管理描述','icon-file','2019-02-26 21:53:37.514162','2019-02-26 21:53:37.548137',''),('f53e6186-d2ef-a21d-7d40-e2628997a87c','示例页面','示例页面描述','icon-home','2019-02-26 21:53:37.514162','2019-02-26 21:53:37.548137','');
 /*!40000 ALTER TABLE `system_module` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,12 +181,12 @@ DROP TABLE IF EXISTS `system_organization`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `system_organization` (
-  `id` varchar(36) NOT NULL,
-  `label` varchar(255) NOT NULL,
-  `type` varchar(255) NOT NULL,
-  `icon` varchar(255) NOT NULL,
-  `parentId` varchar(36) DEFAULT NULL,
-  `path` text,
+  `id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `label` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `parentId` varchar(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `path` text COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `FK_86110f24fd2d3afdba313c5060d` (`parentId`),
   CONSTRAINT `FK_86110f24fd2d3afdba313c5060d` FOREIGN KEY (`parentId`) REFERENCES `system_organization` (`id`)
@@ -214,14 +211,14 @@ DROP TABLE IF EXISTS `system_page`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `system_page` (
-  `id` varchar(36) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `moduleId` varchar(255) DEFAULT NULL,
-  `code` varchar(255) NOT NULL,
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `moduleId` char(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_cd172e2eea0e95fbfd852d6d699` (`moduleId`),
-  CONSTRAINT `FK_cd172e2eea0e95fbfd852d6d699` FOREIGN KEY (`moduleId`) REFERENCES `system_module` (`id`)
+  CONSTRAINT `FK_cd172e2eea0e95fbfd852d6d699` FOREIGN KEY (`moduleId`) REFERENCES `system_module` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -231,7 +228,6 @@ CREATE TABLE `system_page` (
 
 LOCK TABLES `system_page` WRITE;
 /*!40000 ALTER TABLE `system_page` DISABLE KEYS */;
-INSERT INTO `system_page` VALUES ('084b04e1-7df5-d50f-828a-5f5b9eaebcdc','模块管理','','337cd45f-beb1-61bf-6622-895c19172b90','module'),('0aff95ff-6de2-021a-4b45-f1228f9a9913','用户详情','','5447ae12-3cad-6273-f473-50e42b307434','info'),('cb35038c-b342-9b13-e9de-8d15cd941643','用户列表','','5447ae12-3cad-6273-f473-50e42b307434','list'),('cf2c70ba-0279-7221-0c30-e97c4901af56','13','564',NULL,'');
 /*!40000 ALTER TABLE `system_page` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -243,8 +239,8 @@ DROP TABLE IF EXISTS `system_page_relation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `system_page_relation` (
-  `fromPageId` varchar(36) NOT NULL,
-  `toPageId` varchar(36) NOT NULL,
+  `fromPageId` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `toPageId` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`fromPageId`,`toPageId`),
   KEY `FK_6c166329aff74304c4c25390a5f` (`toPageId`),
   CONSTRAINT `FK_6c166329aff74304c4c25390a5f` FOREIGN KEY (`toPageId`) REFERENCES `system_page` (`id`) ON DELETE CASCADE,
@@ -269,8 +265,8 @@ DROP TABLE IF EXISTS `system_role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `system_role` (
-  `id` varchar(36) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -293,8 +289,8 @@ DROP TABLE IF EXISTS `system_role_action`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `system_role_action` (
-  `roleId` varchar(36) NOT NULL,
-  `actionId` char(36) NOT NULL,
+  `roleId` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `actionId` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`roleId`,`actionId`),
   KEY `FK_a0ec504b9c427ffcc85e212594c` (`actionId`),
   CONSTRAINT `FK_25439811e232662e2dc087330d9` FOREIGN KEY (`roleId`) REFERENCES `system_role` (`id`) ON DELETE CASCADE,
@@ -320,15 +316,15 @@ DROP TABLE IF EXISTS `system_table`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `system_table` (
-  `id` varchar(36) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `code` varchar(255) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `moduleId` varchar(255) DEFAULT NULL,
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `transform` json DEFAULT NULL,
+  `moduleId` char(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_18b6873e5862386d08dcb5f3452` (`moduleId`),
-  CONSTRAINT `FK_18b6873e5862386d08dcb5f3452` FOREIGN KEY (`moduleId`) REFERENCES `system_module` (`id`)
+  CONSTRAINT `FK_18b6873e5862386d08dcb5f3452` FOREIGN KEY (`moduleId`) REFERENCES `system_module` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -338,7 +334,6 @@ CREATE TABLE `system_table` (
 
 LOCK TABLES `system_table` WRITE;
 /*!40000 ALTER TABLE `system_table` DISABLE KEYS */;
-INSERT INTO `system_table` VALUES ('b59b561c-974e-345c-ac94-c8a6d0133d7c','User','system_user','用户信息','5e847fc4-c290-af47-5ea5-50aa61696a50','{\"x\": -1, \"y\": 40}');
 /*!40000 ALTER TABLE `system_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -350,12 +345,12 @@ DROP TABLE IF EXISTS `system_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `system_user` (
-  `id` varchar(36) NOT NULL,
-  `account` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `phone` varchar(255) NOT NULL,
-  `name` varchar(36) NOT NULL,
+  `id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `account` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -378,8 +373,8 @@ DROP TABLE IF EXISTS `system_user_organization`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `system_user_organization` (
-  `userId` varchar(36) NOT NULL,
-  `organizationId` varchar(36) NOT NULL,
+  `userId` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `organizationId` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`userId`,`organizationId`),
   KEY `FK_68941b8e6cc24f7f5cc3898edb4` (`organizationId`),
   CONSTRAINT `FK_68941b8e6cc24f7f5cc3898edb4` FOREIGN KEY (`organizationId`) REFERENCES `system_organization` (`id`) ON DELETE CASCADE,
@@ -405,8 +400,8 @@ DROP TABLE IF EXISTS `system_user_role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `system_user_role` (
-  `userId` varchar(36) NOT NULL,
-  `roleId` varchar(36) NOT NULL,
+  `userId` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `roleId` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`userId`,`roleId`),
   KEY `FK_4c2ae6cf44ed3a1e1040122db4b` (`roleId`),
   CONSTRAINT `FK_4c2ae6cf44ed3a1e1040122db4b` FOREIGN KEY (`roleId`) REFERENCES `system_role` (`id`) ON DELETE CASCADE,
@@ -433,4 +428,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-21 19:10:53
+-- Dump completed on 2019-03-24 18:12:17
