@@ -9,6 +9,7 @@ import { SettingService } from 'src/services/setting.service';
 import { PaginationComponent } from '../pagination/pagination.component';
 import * as _ from 'lodash';
 import { DomSanitizer } from '@angular/platform-browser';
+import { moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
     selector: 'nm-table',
@@ -22,6 +23,7 @@ export class TableComponent implements OnInit, OnDestroy {
 
     private _default: TableOption = {
         initRequestData: true,
+        dropListDisabled: true,
         query: {
             index: 1,
             size: 10,
@@ -123,7 +125,7 @@ export class TableComponent implements OnInit, OnDestroy {
         }
     }
 
-    action(type, option, event?: Event) {
+    action(type, option, event?: any) {
         switch (type) {
             case 'checkbox':
                 if (event) event.stopPropagation();
@@ -134,6 +136,10 @@ export class TableComponent implements OnInit, OnDestroy {
                     option.$selected = !option.$selected;
                     this.action('checkbox', option);
                 }
+                break;
+            case 'trDrop':
+                moveItemInArray(option, event.previousIndex, event.currentIndex);
+                console.log(option)
                 break;
         }
     }

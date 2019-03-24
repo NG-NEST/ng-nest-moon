@@ -9,11 +9,11 @@
             <th class="select" *ngIf="option.selectType">选择</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody cdkDropList [cdkDropListDisabled]="option.dropListDisabled" (cdkDropListDropped)="action('trDrop', _resultList.list, $event)" [ngClass]="{'batch':option.type === 'batch'}">
         <tr *ngIf="_resultList.list.length===0">
             <td class="no-data" [attr.colspan]="_columnLength">{{option.noData}}</td>
         </tr>
-        <tr *ngFor="let item of _resultList.list; index as i" (click)="action('trClick', item)">
+        <tr cdkDrag *ngFor="let item of _resultList.list; index as i" (click)="action('trClick', item)">
             <td>{{(option.query.size*(option.query.index-1)+i+1) | nmCover}}</td>
             <td class="operations" *ngIf="option.operations?.length>0">
                 <span *ngFor="let operation of option.operations" [title]="operation.title" class="{{operation.icon}}"

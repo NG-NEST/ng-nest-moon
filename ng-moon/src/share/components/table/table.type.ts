@@ -26,6 +26,8 @@ export interface TableOption {
 
     initRequestData?: boolean;
 
+    dropListDisabled?: boolean;
+
     type?: TableType;
 
     noData?: string;

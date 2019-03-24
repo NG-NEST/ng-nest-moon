@@ -1,4 +1,109 @@
 @import "index";
+@mixin tr {
+    >td {
+        line-height: 30px;
+        height: 30px;
+        padding: 0 8px;
+        text-align: left;
+        white-space: nowrap;
+        cursor: default;
+        border-left: 1px solid #e8e8e8;
+        border-bottom: 1px solid #e8e8e8;
+        &:first-child {
+            text-align: center;
+            width: 55px;
+            border-left: none;
+        }
+        &.operations {
+            color: $primary-color;
+            text-align: center;
+            padding: 0 12px;
+            width: 30px;
+            >span {
+                display: inline-block;
+                padding: 7px;
+                vertical-align: middle;
+                font-size: 14px;
+                &:hover {
+                    text-shadow: 0 0 15px rgba($a-color, .3);
+                    color: $a-color;
+                }
+            }
+        }
+        &.select {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        &.no-data {
+            color: #666;
+        }
+    }
+    &:last-child {
+        >td {
+            border-bottom: none;
+        }
+    }
+    &:nth-child(even) {
+        background-color: #F4F4F6;
+    }
+    &:hover {
+        background-color: rgba(0, 0, 0, .05);
+    }
+}
+
+@mixin batchTr {
+    background-color: rgba(0, 0, 0, .05);
+    >td {
+        padding: 0;
+        line-height: inherit;
+        height: inherit;
+        >nm-control {
+            &[class*='col-'] {
+                width: 100%;
+            }
+            padding: 0;
+            >label {
+                display: none;
+            }
+            >nm-input,
+            >nm-checkbox {
+                >p {
+                    label {
+                        display: none;
+                    }
+                    >input {
+                        border-color: white;
+                        &:focus {
+                            border-color: $input-focus-border-color;
+                        }
+                    }
+                }
+            }
+            >nm-checkbox {
+                padding: 6px;
+                width: 100%;
+                >p {
+                    >span {
+                        background-color: white
+                    }
+                }
+            }
+            >nm-select {
+                >div.inner {
+                    >ul {
+                        border-color: white;
+                        background-color: white;
+                    }
+                }
+            }
+        }
+        &.no-data {
+            padding: 6px;
+        }
+    }
+}
+
 nm-table {
     display: block;
     table,
@@ -55,55 +160,32 @@ nm-table {
         }
         >tbody {
             >tr {
-                >td {
-                    line-height: 30px;
-                    height: 30px;
-                    padding: 0 8px;
-                    text-align: left;
-                    white-space: nowrap;
-                    cursor: default;
-                    border-left: 1px solid #e8e8e8;
-                    border-bottom: 1px solid #e8e8e8;
-                    &:first-child {
-                        text-align: center;
-                        width: 55px;
-                        border-left: none;
-                    }
-                    &.operations {
-                        color: $primary-color;
-                        text-align: center;
-                        padding: 0 12px;
-                        width: 30px;
-                        >span {
-                            display: inline-block;
-                            padding: 7px;
-                            vertical-align: middle;
-                            font-size: 14px;
-                            &:hover {
-                                text-shadow: 0 0 15px rgba($a-color, .3);
-                                color: $a-color;
+                @include tr;
+            }
+            &.cdk-drop-list-dragging {
+                >tr {
+                    &.cdk-drag-placeholder {
+                        opacity: .8;
+                        >td {
+                            line-height: 29px;
+                            height: 29px;
+                            border-style: dashed;
+                            color: $assist-color;
+                            border-color: $assist-color;
+                            border-top-width: 1px;
+                            border-left-width: 1px;
+                            border-right-width: 0;
+                            &.operations {
+                                color: $assist-color;
+                            }
+                            &:last-child {
+                                border-right-width: 1px;
                             }
                         }
                     }
-                    &.select {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
+                    &:not(.cdk-drag-placeholder) {
+                        transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
                     }
-                    &.no-data {
-                        color: #666;
-                    }
-                }
-                &:last-child {
-                    >td {
-                        border-bottom: none;
-                    }
-                }
-                &:nth-child(even) {
-                    background-color: #F4F4F6;
-                }
-                &:hover {
-                    background-color: rgba(0, 0, 0, .05);
                 }
             }
         }
@@ -119,57 +201,47 @@ nm-table {
             }
             >tbody {
                 >tr {
-                    background-color: rgba(0, 0, 0, .05);
-                    >td {
-                        padding: 0;
-                        line-height: inherit;
-                        height: inherit;
-                        >nm-control {
-                            &[class*='col-'] {
-                                width: 100%;
+                    @include batchTr;
+                }
+                &.batch.cdk-drop-list-dragging {
+                    >tr {
+                        &.cdk-drag-placeholder {
+                            >td {
+                                line-height: 27px;
+                                height: 27px;
                             }
-                            padding: 0;
-                            >label {
-                                display: none;
-                            }
-                            >nm-input,
-                            >nm-checkbox {
-                                >p {
-                                    label {
-                                        display: none;
-                                    }
-                                    >input {
-                                        border-color: white;
-                                        &:focus {
-                                            border-color: $input-focus-border-color;
-                                        }
-                                    }
-                                }
-                            }
-                            >nm-checkbox {
-                                padding: 6px;
-                                width: 100%;
-                                >p {
-                                    >span {
-                                        background-color: white
-                                    }
-                                }
-                            }
-                            >nm-select {
-                                >div.inner {
-                                    >ul {
-                                        border-color: white;
-                                        background-color: white;
-                                    }
-                                }
-                            }
-                        }
-                        &.no-data {
-                            padding: 6px;
                         }
                     }
                 }
             }
         }
+    }
+}
+
+body {
+    >tr {
+        @include tr;
+        &.cdk-drag-preview {
+            // padding: 5px 10px;
+            border: 1px solid #ddd;
+            font-size: 12px;
+            border-color: $assist-color;
+            color: $assist-color;
+            list-style: none;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        &.cdk-drag-animating {
+            transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+        }
+        >td {
+            border-color: $assist-color;
+            color: $assist-color;
+            &.operations {
+                color: $assist-color;
+            }
+        }
+    }
+    &.batch>tr {
+        @include batchTr;
     }
 }
