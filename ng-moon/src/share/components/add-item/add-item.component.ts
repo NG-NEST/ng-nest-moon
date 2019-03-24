@@ -47,6 +47,7 @@ export class AddItemComponent implements OnInit, ControlValueAccessor {
     controlsType: ControlsType = 'controls';
 
     table: TableOption = {
+        dropListDisabled: false,
         columns: [],
         data: []
     }
