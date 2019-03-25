@@ -1,5 +1,5 @@
 import {
-    Component, OnInit, ElementRef
+    Component, OnInit, ElementRef, ViewEncapsulation
 } from '@angular/core';
 import { TooltipService } from './tooltip.service';
 import { OverlayRef } from '@angular/cdk/overlay';
@@ -12,7 +12,8 @@ import { SettingService } from 'src/services/setting.service';
     selector: 'nm-tooltip',
     templateUrl: './tooltip.component.html',
     styleUrls: ['./tooltip.component.scss'],
-    inputs: ['option']
+    inputs: ['option'],
+    encapsulation: ViewEncapsulation.None
 })
 export class TooltipComponent implements OnInit {
 

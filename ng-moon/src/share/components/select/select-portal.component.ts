@@ -1,5 +1,5 @@
 import {
-  Component, OnInit, Inject, HostListener, HostBinding
+  Component, OnInit, Inject, HostListener, HostBinding, ViewEncapsulation
 } from '@angular/core';
 import { SELECTPORTALOPTION, SelectPortalOption, Select } from './select.type';
 import * as _ from 'lodash';
@@ -7,7 +7,8 @@ import * as _ from 'lodash';
 @Component({
   selector: 'nm-select-portal',
   templateUrl: './select-portal.component.html',
-  styleUrls: ['./select-portal.component.scss']
+  styleUrls: ['./select-portal.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SelectPortalComponent implements OnInit {
 

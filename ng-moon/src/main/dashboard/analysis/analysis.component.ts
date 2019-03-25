@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 /**
  * 分析型首页
@@ -10,7 +10,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'nm-analysis',
   templateUrl: './analysis.component.html',
-  styleUrls: ['./analysis.component.scss']
+  styleUrls: ['./analysis.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AnalysisComponent implements OnInit {
 

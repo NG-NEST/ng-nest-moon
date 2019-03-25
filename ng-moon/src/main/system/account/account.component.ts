@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TableOption } from 'src/share/components/table/table.type';
 import { Observable, Subject } from 'rxjs';
 import { AccountService } from './account.service';
@@ -12,7 +12,8 @@ import { OrganizationService } from '../organization/organization.service';
 @Component({
   selector: 'nm-account',
   templateUrl: './account.component.html',
-  styleUrls: ['./account.component.scss']
+  styleUrls: ['./account.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AccountComponent implements OnInit {
 

@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild, TemplateRef, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, ElementRef, ViewEncapsulation } from '@angular/core';
 import * as _ from 'lodash';
 import { FormComponent } from 'src/share/components/form/form.component';
 import { OverlayRef } from '@angular/cdk/overlay';
 import { ModalService } from 'src/share/components/modal/modal.service';
 import { FormOption, Row, InputControl, AddItemControl, SelectControl, CheckboxControl, Control } from 'src/share/components/form/form.type';
 import { Subject, Observable } from 'rxjs';
-import { ColumnTypeData, ImportTypeormTpl, EntityTpl, PrimaryColumnTpl, ColumnTpl, ClassTpl, StringType, NumberType } from './mi-entity.store';
+import { ColumnTypeData } from './mi-entity.store';
 import { Select } from 'src/share/components/select/select.type';
 import { SettingService } from 'src/services/setting.service';
 import { ModuleInfoService } from '../module-info.service';
@@ -19,7 +19,8 @@ import { MiEntityService } from './mi-entity.service';
     selector: 'nm-mi-entity',
     styleUrls: ['./mi-entity.component.scss'],
     templateUrl: './mi-entity.component.html',
-    providers: [MiEntityService]
+    providers: [MiEntityService],
+    encapsulation: ViewEncapsulation.None
 })
 export class MiEntityComponent implements OnInit {
 
@@ -45,6 +46,8 @@ export class MiEntityComponent implements OnInit {
     cancelSubject = new Subject();
 
     removeSubject = new Subject();
+
+    addDefaultPrimarySubject = new Subject();
 
     active: any = {};
 
@@ -84,9 +87,14 @@ export class MiEntityComponent implements OnInit {
                         key: "cols",
                         type: 'batch',
                         buttons: [
-                            // {
-                            //     label: '分组排序', handler: this.groupSetSubject
-                            // }
+                            {
+                                label: '添加默认主键', handler: this.addDefaultPrimarySubject, defaultData: [
+                                    {
+                                        label: '编码', name: 'id', length: 36, type: { key: 'varchar', label: 'varchar' },
+                                        default: '', nullable: false, primary: true, unique: false, sort: 0
+                                    }
+                                ]
+                            }
                         ],
                         form: {
                             controls: [
@@ -104,7 +112,7 @@ export class MiEntityComponent implements OnInit {
                                         new InputControl({ key: "name", label: "编码", width: 100, colHead: true, required: true }),
                                         new SelectControl({
                                             key: "type", label: "类型", width: 100, data: ColumnTypeData as Select[], colHead: true,
-                                            value: { key: 'varchar', label: '字符串' }
+                                            value: { key: 'varchar', label: 'varchar' }
                                         }),
                                         new InputControl({ key: "length", label: "长度", width: 50, colHead: true, }),
                                         new CheckboxControl({ key: "primary", label: "主键", width: 50, colHead: true }),
@@ -234,7 +242,7 @@ export class MiEntityComponent implements OnInit {
     subject() {
         this.submitSubject.subscribe((x: any) => {
             if (this.type === 'add') {
-                this.tableService.create(x).subscribe(y => {
+                this.tableService.create(x).subscribe(() => {
                     this.list = _.union(this.list, [x]);
                     this._initList = _.cloneDeep(this.list);
                     this.action('cancel')
@@ -247,13 +255,16 @@ export class MiEntityComponent implements OnInit {
                 })
             }
         })
-        this.cancelSubject.subscribe(x => {
+        this.cancelSubject.subscribe(() => {
             this.action('cancel')
         })
-        this.removeSubject.subscribe(x => {
-            this.tableService.remove(this.active.id).subscribe(x => {
+        this.removeSubject.subscribe(() => {
+            this.tableService.remove(this.active.id).subscribe(() => {
                 _.remove(this.list, z => z.id === this.active.id)
             })
+        })
+        this.addDefaultPrimarySubject.subscribe(() => {
+
         })
     }
 

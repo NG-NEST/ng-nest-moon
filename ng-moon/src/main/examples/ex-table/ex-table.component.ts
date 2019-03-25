@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TableOption } from 'src/share/components/table/table.type';
 import { Observable } from 'rxjs';
 
@@ -12,7 +12,8 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'ex-table',
   templateUrl: './ex-table.component.html',
-  styleUrls: ['./ex-table.component.scss']
+  styleUrls: ['./ex-table.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ExTableComponent implements OnInit {
 

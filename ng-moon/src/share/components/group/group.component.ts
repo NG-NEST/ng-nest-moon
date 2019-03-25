@@ -1,5 +1,5 @@
 import {
-    Component, OnInit, Inject, ElementRef, Renderer2, ViewChild, TemplateRef
+    Component, OnInit, Inject, ElementRef, Renderer2, ViewChild, TemplateRef, ViewEncapsulation
 } from '@angular/core';
 import { GROUPOPTION, GroupOption, GroupItem } from './group.type';
 import * as _ from 'lodash';
@@ -15,6 +15,7 @@ import { SettingService } from 'src/services/setting.service';
     selector: 'nm-group',
     templateUrl: './group.component.html',
     styleUrls: ['./group.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class GroupComponent implements OnInit {
 

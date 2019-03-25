@@ -1,12 +1,13 @@
 import {
-  Component, OnInit, Inject
+  Component, OnInit, Inject, ViewEncapsulation
 } from '@angular/core';
 import { TOOLTIPPORTALOPTION, TooltipPortalOption } from './tooltip.type';
 
 @Component({
   selector: 'nm-tooltip-portal',
   templateUrl: './tooltip-portal.component.html',
-  styleUrls: ['./tooltip-portal.component.scss']
+  styleUrls: ['./tooltip-portal.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TooltipPortalComponent implements OnInit {
 

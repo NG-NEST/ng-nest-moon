@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { AddItemOption } from 'src/share/components/add-item/add-item.type';
 import { Observable } from 'rxjs';
 import * as _ from 'lodash';
@@ -17,6 +17,7 @@ import { Row, InputControl } from 'src/share/components/form/form.type';
   selector: 'ex-add-item',
   templateUrl: './ex-add-item.component.html',
   styleUrls: ['./ex-add-item.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   providers: [
     RoleService
   ]

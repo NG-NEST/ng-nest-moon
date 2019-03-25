@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { LayoutService, Menu } from '../layout.service';
 import { Router } from '@angular/router';
 import * as _ from 'lodash';
@@ -8,6 +8,7 @@ import { SimpleReuseStrategy } from 'src/main/simple-reuse-srategy';
 @Component({
   selector: 'nm-tabs',
   templateUrl: './tabs.component.html',
+  encapsulation: ViewEncapsulation.None
 })
 export class TabsComponent implements OnInit {
 

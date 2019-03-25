@@ -1,5 +1,5 @@
 import {
-    Component, OnInit, forwardRef, ViewChild, TemplateRef
+    Component, OnInit, forwardRef, ViewChild, TemplateRef, ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormGroup, ControlValueAccessor } from '@angular/forms';
 import { noop, Subject } from 'rxjs';
@@ -26,7 +26,8 @@ import { FormComponent } from '../form/form.component';
             useExisting: forwardRef(() => AddItemComponent),
             multi: true,
         }
-    ]
+    ],
+    encapsulation: ViewEncapsulation.None
 })
 export class AddItemComponent implements OnInit, ControlValueAccessor {
 

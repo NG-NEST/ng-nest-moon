@@ -1,5 +1,5 @@
 import {
-    Component, OnInit, ElementRef, forwardRef, ViewChild, Renderer2, TemplateRef
+    Component, OnInit, ElementRef, forwardRef, ViewChild, Renderer2, TemplateRef, ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormGroup, ControlValueAccessor } from '@angular/forms';
 import { noop, Subject } from 'rxjs';
@@ -25,7 +25,8 @@ import { DomSanitizer } from '@angular/platform-browser';
             useExisting: forwardRef(() => FindbackComponent),
             multi: true,
         }
-    ]
+    ],
+    encapsulation: ViewEncapsulation.None
 })
 export class FindbackComponent implements OnInit, ControlValueAccessor {
 

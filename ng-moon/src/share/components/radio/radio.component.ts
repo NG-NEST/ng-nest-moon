@@ -1,5 +1,5 @@
 import {
-  Component, OnInit, HostBinding, HostListener
+  Component, OnInit, HostBinding, HostListener, ViewEncapsulation
 } from '@angular/core';
 import { RadioOption } from './radio.type';
 
@@ -7,7 +7,8 @@ import { RadioOption } from './radio.type';
   selector: 'nm-radio',
   templateUrl: './radio.component.html',
   styleUrls: ['./radio.component.scss'],
-  inputs: ['option']
+  inputs: ['option'],
+  encapsulation: ViewEncapsulation.None
 })
 export class RadioComponent implements OnInit {
 

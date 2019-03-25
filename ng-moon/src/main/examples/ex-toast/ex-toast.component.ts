@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ToastService } from 'src/share/components/toast/toast.service';
 
 /**
@@ -11,7 +11,8 @@ import { ToastService } from 'src/share/components/toast/toast.service';
 @Component({
   selector: 'ex-toast',
   templateUrl: './ex-toast.component.html',
-  styleUrls: ['./ex-toast.component.scss']
+  styleUrls: ['./ex-toast.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ExToastComponent implements OnInit {
 

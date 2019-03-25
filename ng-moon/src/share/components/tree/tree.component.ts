@@ -1,5 +1,5 @@
 import {
-  Component, OnInit, forwardRef, ChangeDetectorRef
+  Component, OnInit, forwardRef, ChangeDetectorRef, ViewEncapsulation
 } from '@angular/core';
 import { TreeOption, TreeNode } from './tree.type';
 import { TreeService } from './tree.service';
@@ -19,7 +19,8 @@ import { SettingService } from 'src/services/setting.service';
       useExisting: forwardRef(() => TreeComponent),
       multi: true
     }
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 export class TreeComponent implements OnInit {
 

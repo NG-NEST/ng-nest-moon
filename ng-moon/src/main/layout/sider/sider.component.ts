@@ -1,10 +1,11 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { LayoutService } from '../layout.service';
 import * as _ from 'lodash';
 
 @Component({
   selector: 'nm-sider',
   templateUrl: './sider.component.html',
+  encapsulation: ViewEncapsulation.None
 })
 export class SiderComponent implements OnInit {
 

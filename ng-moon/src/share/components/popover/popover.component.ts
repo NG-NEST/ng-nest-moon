@@ -1,5 +1,5 @@
 import {
-  Component, OnInit, Inject
+  Component, OnInit, Inject, ViewEncapsulation
 } from '@angular/core';
 import { PopoverOption, POPOVEROPTION, PopoverMenu } from './popover.type';
 import { Observable, Subject } from 'rxjs';
@@ -7,7 +7,8 @@ import { Observable, Subject } from 'rxjs';
 @Component({
   selector: 'nm-popover',
   templateUrl: './popover.component.html',
-  styleUrls: ['./popover.component.scss']
+  styleUrls: ['./popover.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PopoverComponent implements OnInit {
 

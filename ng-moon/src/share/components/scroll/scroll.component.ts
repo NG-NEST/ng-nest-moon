@@ -1,11 +1,12 @@
 import {
-  Component, OnInit, HostBinding, ViewChild, ElementRef, Renderer2
+  Component, OnInit, HostBinding, ViewChild, ElementRef, Renderer2, ViewEncapsulation
 } from '@angular/core';
 
 @Component({
   selector: 'nm-scroll',
   templateUrl: './scroll.component.html',
-  styleUrls: ['./scroll.component.scss']
+  styleUrls: ['./scroll.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ScrollComponent implements OnInit {
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormOption, Row, ButtonsControl, SelectControl, InputControl, FindbackControl } from 'src/share/components/form/form.type';
 import { RoleService } from '../role.service';
 import { Observable, Subject } from 'rxjs';
@@ -13,7 +13,8 @@ import { MenuService, ActionService } from '../../menu/menu.service';
 @Component({
     selector: 'nm-role-info',
     templateUrl: './role-info.component.html',
-    styleUrls: ['./role-info.component.scss']
+    styleUrls: ['./role-info.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class RoleInfoComponent implements OnInit {
 

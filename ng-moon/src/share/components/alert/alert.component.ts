@@ -1,12 +1,13 @@
 import {
-  Component, OnInit, Inject
+  Component, OnInit, Inject, ViewEncapsulation
 } from '@angular/core';
 import { AlertOption, ALERTOPTION } from './alert.type';
 
 @Component({
   selector: 'nm-alert',
   templateUrl: './alert.component.html',
-  styleUrls: ['./alert.component.scss']
+  styleUrls: ['./alert.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AlertComponent implements OnInit {
 

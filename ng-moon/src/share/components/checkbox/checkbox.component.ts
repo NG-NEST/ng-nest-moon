@@ -1,5 +1,5 @@
 import {
-  Component, OnInit, HostBinding, HostListener, forwardRef
+  Component, OnInit, HostBinding, HostListener, forwardRef, ViewEncapsulation
 } from '@angular/core';
 import { CheckboxOption } from './checkbox.type';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormGroup } from '@angular/forms';
@@ -18,7 +18,8 @@ import * as _ from 'lodash';
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => CheckboxComponent),
     multi: true,
-  }]
+  }],
+  encapsulation: ViewEncapsulation.None
 })
 export class CheckboxComponent implements OnInit, ControlValueAccessor {
 

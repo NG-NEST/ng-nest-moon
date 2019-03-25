@@ -1,5 +1,5 @@
 import {
-  Component, OnInit, HostBinding} from '@angular/core';
+  Component, OnInit, HostBinding, ViewEncapsulation} from '@angular/core';
 import { PaginationOption, HandlerType } from './pagination.type';
 import * as _ from 'lodash';
 
@@ -7,7 +7,8 @@ import * as _ from 'lodash';
   selector: 'nm-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss'],
-  inputs: ['option']
+  inputs: ['option'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PaginationComponent implements OnInit {
 

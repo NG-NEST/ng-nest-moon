@@ -1,5 +1,5 @@
 import {
-  Component, OnInit} from '@angular/core';
+  Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { TreeNode, TreeOperation } from './tree.type';
 import { TreeService } from './tree.service';
 import * as _ from 'lodash';
@@ -9,6 +9,7 @@ import { Subject } from 'rxjs';
   selector: '[nm-tree-node]',
   templateUrl: './tree-node.component.html',
   inputs: ['option', 'level', 'operations', 'nodeClick', 'openLevel'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TreeNodeComponent implements OnInit {
 

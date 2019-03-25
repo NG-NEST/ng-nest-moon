@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { LayoutService, Menu } from '../../layout.service';
 import { SimpleReuseStrategy } from 'src/main/simple-reuse-srategy';
 import * as _ from 'lodash';
@@ -7,7 +7,8 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: '[nm-sider-node]',
   templateUrl: './sider-node.component.html',
-  inputs: ["option", "level"]
+  inputs: ["option", "level"],
+  encapsulation: ViewEncapsulation.None
 })
 export class SiderNodeComponent implements OnInit {
 

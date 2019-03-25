@@ -1,5 +1,5 @@
 import {
-    Component, OnInit, ViewChild, OnDestroy, HostBinding
+    Component, OnInit, ViewChild, OnDestroy, HostBinding, ViewEncapsulation
 } from '@angular/core';
 import { TableOption, TableColumn } from './table.type';
 import { ResultList } from 'src/services/repository.service';
@@ -15,7 +15,8 @@ import { moveItemInArray } from '@angular/cdk/drag-drop';
     selector: 'nm-table',
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.scss'],
-    inputs: ['option']
+    inputs: ['option'],
+    encapsulation: ViewEncapsulation.None
 })
 export class TableComponent implements OnInit, OnDestroy {
 
