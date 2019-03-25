@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormOption } from 'src/share/components/form/form.type';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { map } from 'rxjs/operators';
@@ -8,7 +8,8 @@ import { FormService } from 'src/share/components/form/form.service';
 
 @Component({
     selector: 'nm-mi-page-eye',
-    templateUrl: './mi-page-eye.component.html'
+    templateUrl: './mi-page-eye.component.html',
+    encapsulation: ViewEncapsulation.None
 })
 export class MiPageEyeComponent implements OnInit {
 

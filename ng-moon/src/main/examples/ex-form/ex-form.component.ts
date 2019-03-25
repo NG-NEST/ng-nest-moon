@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormOption, InputControl, Row, ButtonsControl, SelectControl } from 'src/share/components/form/form.type';
 
 /**
@@ -11,7 +11,8 @@ import { FormOption, InputControl, Row, ButtonsControl, SelectControl } from 'sr
 @Component({
   selector: 'ex-form',
   templateUrl: './ex-form.component.html',
-  styleUrls: ['./ex-form.component.scss']
+  styleUrls: ['./ex-form.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ExFormComponent implements OnInit {
 

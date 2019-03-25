@@ -1,5 +1,5 @@
 import {
-    Component, OnInit, ElementRef, forwardRef, ViewChild, Renderer2
+    Component, OnInit, ElementRef, forwardRef, ViewChild, Renderer2, ViewEncapsulation
 } from '@angular/core';
 import { SelectService } from './select.service';
 import { OverlayRef } from '@angular/cdk/overlay';
@@ -19,7 +19,8 @@ import * as _ from 'lodash';
         provide: NG_VALUE_ACCESSOR,
         useExisting: forwardRef(() => SelectComponent),
         multi: true,
-    }]
+    }],
+    encapsulation: ViewEncapsulation.None
 })
 export class SelectComponent implements OnInit {
 

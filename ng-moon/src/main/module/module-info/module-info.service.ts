@@ -11,7 +11,8 @@ export class ModuleInfoService extends ModuleService {
 
     itemResult = {
         name: '模块名称',
-        description: '模块描述'
+        description: '模块描述',
+        updateTime: ''
     };
 
     constructor(public http: HttpService) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TableOption } from 'src/share/components/table/table.type';
 import { Observable } from 'rxjs';
 import { RoleService } from './role.service';
@@ -8,7 +8,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'nm-role',
   templateUrl: './role.component.html',
-  styleUrls: ['./role.component.scss']
+  styleUrls: ['./role.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class RoleComponent implements OnInit {
 

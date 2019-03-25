@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, ManyToOne, ObjectType } from "typeorm";
+import { Entity, PrimaryColumn, Column, ManyToOne } from "typeorm";
 import { Table } from "./table.entity";
 
 @Entity("system_col")

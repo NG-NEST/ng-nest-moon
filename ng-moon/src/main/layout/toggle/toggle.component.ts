@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { LayoutService } from '../layout.service';
 
 @Component({
   selector: 'nm-toggle',
-  templateUrl: './toggle.component.html'
+  templateUrl: './toggle.component.html',
+  encapsulation: ViewEncapsulation.None
 })
 export class ToggleComponent implements OnInit {
 

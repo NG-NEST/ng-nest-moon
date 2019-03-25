@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef } from '@angular/core';
+import { Component, OnInit, forwardRef, ViewEncapsulation } from '@angular/core';
 import * as _ from 'lodash';
 import { ActivatedRoute } from '@angular/router';
 import { ModuleInfoService } from './module-info.service';
@@ -18,7 +18,8 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
             useExisting: forwardRef(() => ModuleInfoComponent),
             multi: true
         }
-    ]
+    ],
+    encapsulation: ViewEncapsulation.None
 })
 export class ModuleInfoComponent implements OnInit {
 
@@ -31,7 +32,7 @@ export class ModuleInfoComponent implements OnInit {
 
     constructor(
         private activatedRoute: ActivatedRoute,
-        private moduleInfoService: ModuleInfoService
+        public moduleInfoService: ModuleInfoService
     ) { }
 
     ngOnInit() {

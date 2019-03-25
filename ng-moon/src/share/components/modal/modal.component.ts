@@ -1,5 +1,5 @@
 import {
-  Component, OnInit, Inject, ViewChild, ViewContainerRef, ElementRef, Renderer2
+  Component, OnInit, Inject, ViewChild, ViewContainerRef, ElementRef, Renderer2, ViewEncapsulation
 } from '@angular/core';
 import { ModalOption, MODALOPTION } from './modal.type';
 import { TemplatePortal, CdkPortalOutlet } from '@angular/cdk/portal';
@@ -7,7 +7,8 @@ import { TemplatePortal, CdkPortalOutlet } from '@angular/cdk/portal';
 @Component({
   selector: 'nm-modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss']
+  styleUrls: ['./modal.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ModalComponent implements OnInit {
 

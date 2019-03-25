@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FindbackOption } from 'src/share/components/findback/findback.type';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -19,7 +19,8 @@ import { FindbackComponent } from 'src/share/components/findback/findback.compon
   styleUrls: ['./ex-findback.component.scss'],
   providers: [
     RoleService
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 export class ExFindbackComponent implements OnInit {
 

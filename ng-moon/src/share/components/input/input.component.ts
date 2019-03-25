@@ -1,5 +1,5 @@
 import {
-  Component, OnInit, HostBinding, forwardRef
+  Component, OnInit, HostBinding, forwardRef, ViewEncapsulation
 } from '@angular/core';
 import { InputOption } from './input.type';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormGroup } from '@angular/forms';
@@ -18,7 +18,8 @@ import { FormOption } from '../form/form.type';
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => InputComponent),
     multi: true,
-  }]
+  }],
+  encapsulation: ViewEncapsulation.None
 })
 export class InputComponent implements OnInit, ControlValueAccessor {
 

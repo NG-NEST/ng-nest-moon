@@ -1,5 +1,5 @@
 import {
-  Component, OnInit, ElementRef, forwardRef
+  Component, OnInit, ElementRef, forwardRef, ViewEncapsulation
 } from '@angular/core';
 import { ButtonsOption, ButtonOption } from './button.type';
 import { NG_VALUE_ACCESSOR, FormGroup } from '@angular/forms';
@@ -16,7 +16,8 @@ import { SettingService } from 'src/services/setting.service';
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => ButtonsComponent),
     multi: true,
-  }]
+  }],
+  encapsulation: ViewEncapsulation.None
 })
 export class ButtonsComponent implements OnInit {
 

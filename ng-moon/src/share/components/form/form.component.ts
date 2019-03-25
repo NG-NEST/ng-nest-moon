@@ -1,5 +1,5 @@
 import {
-    Component, OnInit, OnChanges, ChangeDetectorRef,
+    Component, OnInit, OnChanges, ChangeDetectorRef, ViewEncapsulation,
 } from '@angular/core';
 import { FormOption, Control, Row, ControlsType } from './form.type';
 import * as _ from 'lodash';
@@ -13,7 +13,8 @@ import { distinctUntilChanged } from 'rxjs/operators';
     selector: 'nm-form',
     templateUrl: './form.component.html',
     styleUrls: ['./form.component.scss'],
-    inputs: ['option']
+    inputs: ['option'],
+    encapsulation: ViewEncapsulation.None
 })
 export class FormComponent implements OnInit, OnChanges {
 

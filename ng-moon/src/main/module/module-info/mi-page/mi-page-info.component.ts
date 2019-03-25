@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormOption, Row, ButtonsControl, SelectControl, InputControl, FindbackControl, AddItemControl, CheckboxControl } from 'src/share/components/form/form.type';
 import { Observable, Subject } from 'rxjs';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -13,7 +13,8 @@ import { GroupService } from 'src/share/components/group/group.service';
 
 @Component({
     selector: 'nm-mi-page-info',
-    templateUrl: './mi-page-info.component.html'
+    templateUrl: './mi-page-info.component.html',
+    encapsulation: ViewEncapsulation.None
 })
 export class MiPageInfoComponent implements OnInit {
 

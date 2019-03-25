@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { OrganizationService } from './organization.service';
 import { TreeOption, TreeNode } from 'src/share/components/tree/tree.type';
 import { map } from 'rxjs/operators';
@@ -13,7 +13,8 @@ import { ToastService } from 'src/share/components/toast/toast.service';
 @Component({
   selector: 'nm-organization',
   templateUrl: './organization.component.html',
-  styleUrls: ['./organization.component.scss']
+  styleUrls: ['./organization.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class OrganizationComponent implements OnInit {
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormOption, Row, ButtonsControl, SelectControl, InputControl, FindbackControl } from 'src/share/components/form/form.type';
 import { AccountService } from '../account.service';
 import { Observable, Subject } from 'rxjs';
@@ -14,7 +14,8 @@ import { SettingService } from 'src/services/setting.service';
 @Component({
     selector: 'nm-account-info',
     templateUrl: './account-info.component.html',
-    styleUrls: ['./account-info.component.scss']
+    styleUrls: ['./account-info.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class AccountInfoComponent implements OnInit {
 

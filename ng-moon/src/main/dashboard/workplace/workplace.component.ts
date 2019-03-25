@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 /**
  * 工作型首页
@@ -10,7 +10,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'nm-workplace',
   templateUrl: './workplace.component.html',
-  styleUrls: ['./workplace.component.scss']
+  styleUrls: ['./workplace.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class WorkplaceComponent implements OnInit {
 

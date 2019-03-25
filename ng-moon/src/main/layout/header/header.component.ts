@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthService } from 'src/services/auths/auth.service';
 import { LayoutService } from '../layout.service';
 import { SimpleReuseStrategy } from 'src/main/simple-reuse-srategy';
@@ -7,7 +7,8 @@ import { Location } from '@angular/common';
 
 @Component({
   selector: 'nm-header',
-  templateUrl: './header.component.html'
+  templateUrl: './header.component.html',
+  encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent implements OnInit {
 

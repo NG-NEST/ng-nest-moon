@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ModuleService } from './module.service';
 import * as _ from 'lodash';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -8,7 +8,8 @@ import { ToastService } from 'src/share/components/toast/toast.service';
 @Component({
   selector: 'nm-module',
   templateUrl: './module.component.html',
-  styleUrls: ['./module.component.scss']
+  styleUrls: ['./module.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ModuleComponent implements OnInit {
 

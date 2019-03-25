@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MenuService } from './menu.service';
 import { TreeOption, TreeNode } from 'src/share/components/tree/tree.type';
 import { map } from 'rxjs/operators';
@@ -13,7 +13,8 @@ import { ToastService } from 'src/share/components/toast/toast.service';
 @Component({
   selector: 'nm-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+  styleUrls: ['./menu.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MenuComponent implements OnInit {
 
