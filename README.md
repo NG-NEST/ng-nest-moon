@@ -78,35 +78,8 @@ $ npm run start:dev
 
 ### 7. 前端系统截图
 <div align="center">
-    <img src="https://github.com/NG-NEST/ng-nest-moon/blob/master/doc/assets/ng-nest-login.png?raw=true" />
+    <img src="https://github.com/NG-NEST/ng-nest-moon/blob/master/doc/assets/gif/ng-nest-module-entity.gif" />
+    <span>[模块设计]-[实体设计]</span>
 </div>
 
 ------
-
-<div align="center">
-    <img src="https://github.com/NG-NEST/ng-nest-moon/blob/master/doc/assets/ng-nest-examples.png?raw=true" />
-</div>
-
-------
-
-<div align="center">
-    <img src="https://github.com/NG-NEST/ng-nest-moon/blob/master/doc/assets/ng-nest-menu.png?raw=true" />
-</div>
-
-------
-
-<div align="center">
-    <img src="https://github.com/NG-NEST/ng-nest-moon/blob/master/doc/assets/ng-nest-user.png?raw=true" />
-</div>
-
-------
-
-<div align="center">
-    <img src="https://github.com/NG-NEST/ng-nest-moon/blob/master/doc/assets/ng-nest-role.png?raw=true" />
-</div>
-
-------
-
-<div align="center">
-    <img src="https://github.com/NG-NEST/ng-nest-moon/blob/master/doc/assets/ng-nest-module.png?raw=true" />
-</div>
