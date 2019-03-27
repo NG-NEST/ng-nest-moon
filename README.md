@@ -83,3 +83,10 @@ $ npm run start:dev
 </div>
 
 ------
+
+<div align="center">
+    <img src="https://github.com/NG-NEST/ng-nest-moon/blob/master/doc/assets/gif/ng-nest-module-page.gif" />
+    <span>[模块设计]-[包含页面]</span>
+</div>
+
+------
