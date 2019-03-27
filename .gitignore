@@ -2,4 +2,5 @@ nj-moon/node_modules
 nj-moon/dist
 ng-moon/node_modules
 ng-moon/package-lock.json
+ng-moon/yarn.lock
 ng-moon/dist
