@@ -44,6 +44,7 @@ export class MiEntityService {
             if (col.type.key === 'json') columnParam.push(`type: 'json'`);
             if (col.type.key === 'char') columnParam.push(`type: 'char'`);
             if (col.type.key === 'int') columnParam.push(`type: 'int'`);
+            if (col.default) columnParam.push(`default: '${col.default}'`);
             if (col.length > 0) columnParam.push(`length: ${col.length}`);
             if (columnParam.length > 0) param = `{ ${columnParam.join(', ')} }`;
             if (col.label) description = col.label;
