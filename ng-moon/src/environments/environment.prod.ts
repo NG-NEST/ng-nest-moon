@@ -5,5 +5,5 @@ export const environment = {
   // 默认的首页
   defaultPage: 'examples',
   // WebApi请求地址
-  apiUrl: 'http://127.0.0.1:3000/'
+  apiUrl: 'http://api.ng-nest.com/'
 };

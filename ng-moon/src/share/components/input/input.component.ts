@@ -39,7 +39,8 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   private _value: any;
-  private onChangeCallback: (_: any) => void = noop;
+  private onChangeFn: (_: any) => void = noop;
+  private onTouchedFn: () => void = noop;
 
   get value(): any {
     return this._value;
@@ -49,7 +50,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     if (val !== this._value) {
       this._value = val;
       if (this.form) this.setting.setFormValue(this.form, this.option.key, val);
-      this.onChangeCallback(val);
+      this.onChangeFn(val);
     }
   }
 
@@ -61,10 +62,11 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   registerOnChange(fn: any): void {
-    this.onChangeCallback = fn;
+    this.onChangeFn = fn;
   }
 
   registerOnTouched(fn: any): void {
+    this.onChangeFn = fn;
   }
 
   @HostBinding("class.horizontal") get layout() {
