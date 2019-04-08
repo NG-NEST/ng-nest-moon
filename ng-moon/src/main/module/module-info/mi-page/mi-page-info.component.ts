@@ -46,7 +46,7 @@ export class MiPageInfoComponent implements OnInit {
     }))
 
     formOption: FormOption = {
-        title: '页面信息',
+        title: '详情',
         controls: [
             new Row({
                 hide: true, controls: [
