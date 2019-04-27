@@ -18,11 +18,11 @@ export const mainRoutes: Routes = [
     { path: '', redirectTo: environment.layout, pathMatch: 'full' },
     // 登录页
     { path: 'login', loadChildren: 'src/main/login/login.module#LoginModule' },
-    
+
     ...shareRoutes
 ];
 
-// 框架页中对应的路由，指向具体的页面，框架页面中的路由都会带上顶级路由 index 如：/index/workplace 
+// 框架页中对应的路由，指向具体的页面，框架页面中的路由都会带上顶级路由 index 如：/index/workplace
 export const layoutRoutes: Routes = [
     // 如果路由为空就指向配置的默认首页
     { path: '', redirectTo: environment.defaultPage, pathMatch: 'full' },
@@ -31,7 +31,7 @@ export const layoutRoutes: Routes = [
     // 工作型首页
     { path: 'workplace', loadChildren: 'src/main/dashboard/workplace/workplace.module#WorkplaceModule', canLoad: [AuthGuard] },
     // 数据型首页
-    { path: 'analysis', loadChildren: 'src/main/dashboard/analysis/analysis.module#AnalysisModule', canLoad: [AuthGuard] },
+    { path: 'analysis', loadChildren: 'src/main/dashboard/analysis/analysis.module#AnalysisModule' },
     // 账号管理
     { path: 'account', loadChildren: 'src/main/system/account/account.module#AccountModule', canLoad: [AuthGuard] },
     // 角色管理
@@ -42,6 +42,6 @@ export const layoutRoutes: Routes = [
     { path: 'organization', loadChildren: 'src/main/system/organization/organization.module#OrganizationModule', canLoad: [AuthGuard] },
     // 模块设计
     { path: 'module', loadChildren: 'src/main/module/module.module#ModuleModule', canLoad: [AuthGuard] },
-    
+
     ...shareRoutes
 ]
