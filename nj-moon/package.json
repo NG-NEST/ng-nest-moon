@@ -25,7 +25,7 @@
     "@nestjs/passport": "^5.1.0",
     "@nestjs/swagger": "^2.5.1",
     "@nestjs/typeorm": "^5.2.2",
-    "class-transformer": "^0.1.10",
+    "class-transformer": "^0.3.1",
     "class-validator": "^0.9.1",
     "jsonwebtoken": "^8.3.0",
     "lodash": "^4.17.11",
